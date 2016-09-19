@@ -1,4 +1,6 @@
-import org.junit.Assert;
+package moduls;
+
+import moduls.Item;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

@@ -1,3 +1,5 @@
+package moduls;
+
 /**
  * Created by ${Ruslan} on 19.09.16.
  */
