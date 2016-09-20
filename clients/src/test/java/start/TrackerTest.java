@@ -3,7 +3,9 @@ package start;
 import moduls.Item;
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
+
 
 
 /**
@@ -14,7 +16,8 @@ public class TrackerTest {
 
     @Test
     public void testAddClient() throws Exception {
-        assertThat(tracker.addClient(new Item("Tom", 12, "repair iron")), is());
+        Item item = new Item("Ron", 123, "repair iron");
+        assertThat(tracker.addClient(item), is(item));
     }
 
     @Test
