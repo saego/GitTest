@@ -22,7 +22,21 @@ public class TrackerTest {
 
     @Test
     public void testFindById() throws Exception {
-
+        /*Item testClient = new Item("Ron", 123, "repair iron");
+        String testClientId = tracker.addClient(testClient).getClientId();
+        assertThat(tracker.findById(testClientId), is(testClient));*/
+        Item []itemstest = new Item[3];
+        itemstest[0] = new Item("Roma", 123, "repair irons");
+        itemstest[1] = new Item("Ron", 12, "repair iron");
+        itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
+        String []testClientIds = new String[3];
+        int i = 0;
+        for (Item itemtest:
+                itemstest) {
+            testClientIds[i] = tracker.addClient(itemtest).getClientId();
+            i++;
+        }
+        assertThat(tracker.findById(testClientIds[2]), is(itemstest[2]));
     }
 
     @Test
@@ -36,7 +50,5 @@ public class TrackerTest {
             tracker.addClient(itemtest);
         }
         assertArrayEquals(tracker.getAll(), itemstest);
-
-
     }
 }
