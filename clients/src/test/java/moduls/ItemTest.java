@@ -13,8 +13,7 @@ public class ItemTest {
     String clientName = "Viktor";
     long dateAdd = 32;
     String description = "repair my TV pls";
-    String clientId = "222";
-        Item item = new Item(clientName, dateAdd, description, clientId);
+    Item item = new Item(clientName, dateAdd, description);
 
     @org.junit.Test
     public void testSetName() throws Exception {
@@ -61,6 +60,8 @@ public class ItemTest {
 
     @Test
     public void testGetClientId() throws Exception {
-        assertThat(item.getClientId(), is(clientId));
+        String testClientId = "123";
+        item.setClientId(testClientId);
+        assertThat(item.getClientId(), is(testClientId));
     }
 }

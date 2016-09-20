@@ -9,11 +9,10 @@ public class Item {
     String description;
     String clientId;
 
-    public Item(String name, long dateAdd, String description, String clientId) {
+    public Item(String name, long dateAdd, String description) {
         this.name = name;
         this.dateAdd = dateAdd;
         this.description = description;
-        this.clientId = clientId;
 
     }
 
