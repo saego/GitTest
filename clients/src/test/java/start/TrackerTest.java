@@ -24,4 +24,10 @@ public class TrackerTest {
     public void testFindById() throws Exception {
 
     }
+
+    @Test
+    public void testGetAll() throws Exception {
+        Item item = new Item("Ron", 123, "repair iron");
+        tracker.addClient(item);
+    }
 }

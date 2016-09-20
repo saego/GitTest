@@ -30,7 +30,7 @@ public class Tracker {
         return res;
     }
 
-    public Item[] showAll(){
+    public Item[] getAll(){
         Item[] res = new Item[position];
         for (int i = 0; i != this.position; i++){
             res[i] = items[i];
