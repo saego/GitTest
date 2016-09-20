@@ -1,6 +1,7 @@
 package moduls;
 
 import moduls.Item;
+import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -12,7 +13,8 @@ public class ItemTest {
     String clientName = "Viktor";
     long dateAdd = 32;
     String description = "repair my TV pls";
-        Item item = new Item(clientName, dateAdd, description);
+    String clientId = "222";
+        Item item = new Item(clientName, dateAdd, description, clientId);
 
     @org.junit.Test
     public void testSetName() throws Exception {
@@ -48,5 +50,17 @@ public class ItemTest {
     @org.junit.Test
     public void testGetDescription() throws Exception {
         assertThat(item.getDescription(), is(description));
+    }
+
+    @Test
+    public void testSetClientId() throws Exception {
+        String testClientId = "123";
+        item.setClientId(testClientId);
+        assertThat(item.getClientId(), is(testClientId));
+    }
+
+    @Test
+    public void testGetClientId() throws Exception {
+        assertThat(item.getClientId(), is(clientId));
     }
 }

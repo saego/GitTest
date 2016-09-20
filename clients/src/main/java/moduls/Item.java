@@ -7,11 +7,14 @@ public class Item {
     String name;
     long dateAdd;
     String description;
+    String clientId;
 
-    public Item(String name, long dateAdd, String description) {
+    public Item(String name, long dateAdd, String description, String clientId) {
         this.name = name;
         this.dateAdd = dateAdd;
         this.description = description;
+        this.clientId = clientId;
+
     }
 
     public void setName(String name) {
@@ -36,5 +39,13 @@ public class Item {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getClientId() {
+        return clientId;
     }
 }
