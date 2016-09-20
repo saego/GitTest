@@ -7,8 +7,10 @@ import moduls.Item;
  */
 public class Tracker {
     private Item[] item = new Item[20];
+    private int position = 0;
 
-    public void addClient(){
-
+    public Item addClient(Item item){
+        this.item[position++] = item;
+        return item;
     }
 }
