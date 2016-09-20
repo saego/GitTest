@@ -27,7 +27,16 @@ public class TrackerTest {
 
     @Test
     public void testGetAll() throws Exception {
-        Item item = new Item("Ron", 123, "repair iron");
-        tracker.addClient(item);
+        Item []itemstest = new Item[3];
+        itemstest[0] = new Item("Roma", 123, "repair irons");
+        itemstest[1] = new Item("Ron", 12, "repair iron");
+        itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
+        for (Item itemtest:
+             itemstest) {
+            tracker.addClient(itemtest);
+        }
+        assertArrayEquals(tracker.getAll(), itemstest);
+
+
     }
 }
