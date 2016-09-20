@@ -8,7 +8,7 @@ import java.util.Random;
  * Created by ${Ruslan} on 19.09.16.
  */
 public class Tracker {
-    private Item[] items = new Item[20];
+    private Item[] items = new Item[5];
     private int position = 0;
     private static final Random RN = new Random();
 
