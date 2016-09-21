@@ -48,17 +48,62 @@ public class Tracker {
     }
 
     public Item[] findByName(String clientName){
-        Item []res = new Item[1];
+        int quantity = 0;
+        for (Item item:
+                items) {
+            if (item != null && item.getName().equals(clientName)){
+                quantity++;
+            }
+        }
+        Item []res = new Item [quantity];
+        for (Item item:
+             items) {
+            int index = 0;
+            if (item != null && item.getName().equals(clientName)){
+                res[index] = item;
+                index++;
+            }
+        }
         return res;
     }
 
     public Item[] findByDate(long dateAdd) {
-        Item []res = new Item[1];
+        int quantity = 0;
+        for (Item item:
+                items) {
+            if (item != null && item.getDateAdd() == dateAdd){
+                quantity++;
+            }
+        }
+        Item []res = new Item [quantity];
+        for (Item item:
+                items) {
+            int index = 0;
+            if (item != null && item.getDateAdd() == dateAdd){
+                res[index] = item;
+                index++;
+            }
+        }
         return res;
     }
 
     public Item[] findByDescription(String description){
-        Item []res = new Item[1];
+        int quantity = 0;
+        for (Item item:
+                items) {
+            if (item != null && item.getDescription().equals(description)){
+                quantity++;
+            }
+        }
+        Item []res = new Item [quantity];
+        for (Item item:
+                items) {
+            int index = 0;
+            if (item != null && item.getDescription().equals(description)){
+                res[index] = item;
+                index++;
+            }
+        }
         return res;
     }
 }
