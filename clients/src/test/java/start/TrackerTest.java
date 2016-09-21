@@ -22,9 +22,6 @@ public class TrackerTest {
 
     @Test
     public void testFindById() throws Exception {
-        /*Item testClient = new Item("Ron", 123, "repair iron");
-        String testClientId = tracker.addClient(testClient).getClientId();
-        assertThat(tracker.findById(testClientId), is(testClient));*/
         Item []itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair irons");
         itemstest[1] = new Item("Ron", 12, "repair iron");
