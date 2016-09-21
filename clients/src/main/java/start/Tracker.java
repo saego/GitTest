@@ -56,9 +56,9 @@ public class Tracker {
             }
         }
         Item []res = new Item [quantity];
+        int index = 0;
         for (Item item:
              items) {
-            int index = 0;
             if (item != null && item.getName().equals(clientName)){
                 res[index] = item;
                 index++;
@@ -76,12 +76,11 @@ public class Tracker {
             }
         }
         Item []res = new Item [quantity];
+            int index = 0;
         for (Item item:
                 items) {
-            int index = 0;
             if (item != null && item.getDateAdd() == dateAdd){
-                res[index] = item;
-                index++;
+                res[index++] = item;
             }
         }
         return res;
@@ -96,12 +95,11 @@ public class Tracker {
             }
         }
         Item []res = new Item [quantity];
+            int index = 0;
         for (Item item:
                 items) {
-            int index = 0;
             if (item != null && item.getDescription().equals(description)){
-                res[index] = item;
-                index++;
+                res[index++] = item;
             }
         }
         return res;

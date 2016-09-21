@@ -22,7 +22,7 @@ public class TrackerTest {
 
     @Test
     public void testFindById() throws Exception {
-        Item []itemstest = new Item[3];
+        Item [] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair irons");
         itemstest[1] = new Item("Ron", 12, "repair iron");
         itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
@@ -47,5 +47,54 @@ public class TrackerTest {
             tracker.addClient(itemtest);
         }
         assertArrayEquals(tracker.getAll(), itemstest);
+    }
+
+    @Test
+    public void testFindByName() throws Exception {
+        Item []itemstest = new Item[3];
+        itemstest[0] = new Item("Roma", 123, "repair irons");
+        itemstest[1] = new Item("Ron", 12, "repair iron");
+        itemstest[2] = new Item("Ron", 13, "repair hairdryer");
+        for (Item itemtest:
+                itemstest) {
+            tracker.addClient(itemtest);
+        }
+        Item []check = new Item[2];
+        check[0] = new Item("Ron", 12, "repair iron");
+        check[1] = new Item("Ron", 13, "repair hairdryer");
+        itemstest = check;
+        assertArrayEquals(tracker.findByName("Ron"), itemstest);
+    }
+
+    @Test
+    public void testFindByDate() throws Exception {
+        Item []itemstest = new Item[3];
+        itemstest[0] = new Item("Roma", 123, "repair irons");
+        itemstest[1] = new Item("Ron", 12, "repair iron");
+        itemstest[2] = new Item("Atilla", 12, "repair hairdryer");
+        for (Item itemtest:
+                itemstest) {
+            tracker.addClient(itemtest);
+        }
+        Item []check = new Item[2];
+        check[0] = new Item("Ron", 12, "repair iron");
+        check[1] = new Item("Atilla", 12, "repair hairdryer");
+        assertArrayEquals(tracker.findByDate(12), check);
+    }
+
+    @Test
+    public void testFindByDescription() throws Exception {
+        Item []itemstest = new Item[3];
+        itemstest[0] = new Item("Roma", 123, "repair iron");
+        itemstest[1] = new Item("Ron", 12, "repair iron");
+        itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
+        for (Item itemtest:
+                itemstest) {
+            tracker.addClient(itemtest);
+        }
+        Item []check = new Item[2];
+        check[0] = new Item("Ron", 12, "repair iron");
+        check[1] = new Item("Atilla", 12, "repair iron");
+        assertArrayEquals(tracker.findByDescription("repair iron"), check);
     }
 }
