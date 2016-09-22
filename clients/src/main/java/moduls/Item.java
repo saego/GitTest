@@ -1,7 +1,8 @@
 package moduls;
 
 /**
- * Created by ${Ruslan} on 19.09.16.
+ Created by ${Ruslan} on 19.09.16.
+
  */
 public class Item {
     String name;

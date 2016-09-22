@@ -5,7 +5,8 @@ import moduls.Item;
 import java.util.Random;
 
 /**
- * Created by ${Ruslan} on 19.09.16.
+ Created by ${Ruslan} on 19.09.16.
+
  */
 public class Tracker {
     private Item[] items = new Item[1];

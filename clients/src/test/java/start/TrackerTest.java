@@ -9,7 +9,8 @@ import static org.junit.Assert.*;
 
 
 /**
- * Created by ${Ruslan} on 20.09.16.
+ Created by ${Ruslan} on 20.09.16.
+
  */
 public class TrackerTest {
     Tracker tracker = new Tracker();

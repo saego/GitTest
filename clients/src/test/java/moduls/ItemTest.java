@@ -6,7 +6,8 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Created by ${Ruslan} on 19.09.16.
+ Created by ${Ruslan} on 19.09.16.
+
  */
 public class ItemTest {
     String clientName = "Viktor";
