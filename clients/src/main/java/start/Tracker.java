@@ -67,20 +67,13 @@ public class Tracker {
         return res;
     }
 
-    public Item[] findByDate(long dateAdd) {
-        int quantity = 0;
-        for (Item item:
+    public Item findByDate(long dateAdd) {
+        Item res = null;
+        for (Item item :
                 items) {
-            if (item != null && item.getDateAdd() == dateAdd){
-                quantity++;
-            }
-        }
-        Item []res = new Item [quantity];
-            int index = 0;
-        for (Item item:
-                items) {
-            if (item != null && item.getDateAdd() == dateAdd){
-                res[index++] = item;
+            if (item != null && item.getDateAdd() == dateAdd) {
+                res = item;
+                break;
             }
         }
         return res;

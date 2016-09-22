@@ -71,22 +71,18 @@ public class TrackerTest {
 
     @Test
     public void testFindByDate() throws Exception {
-        Item []itemstest = new Item[3];
+        Item [] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair irons");
-        itemstest[1] = new Item("Ron", 12, "repair iron");
-        itemstest[2] = new Item("Atilla", 12, "repair hairdryer");
+        itemstest[1] = new Item("Ron", 126, "repair iron");
+        itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
+        long []testData = new long[3];
+        int i = 0;
         for (Item itemtest:
                 itemstest) {
-            tracker.addClient(itemtest);
+            testData[i] = tracker.addClient(itemtest).getDateAdd();
+            i++;
         }
-        Item []check = new Item[2];
-        int temp = 1;
-        for(int i = 0; i < check.length; i++){
-            check[i] = itemstest[temp];
-            temp++;
-        }
-        itemstest = check;
-        assertArrayEquals(tracker.findByDate(12), itemstest);
+        assertThat(tracker.findByDate(126), is(itemstest[1]));
     }
 
     @Test
