@@ -60,8 +60,11 @@ public class TrackerTest {
             tracker.addClient(itemtest);
         }
         Item []check = new Item[2];
-        check[0] = new Item("Ron", 12, "repair iron");
-        check[1] = new Item("Ron", 13, "repair hairdryer");
+        int temp = 1;
+        for(int i = 0; i < check.length; i++){
+            check[i] = itemstest[temp];
+            temp++;
+        }
         itemstest = check;
         assertArrayEquals(tracker.findByName("Ron"), itemstest);
     }
@@ -77,9 +80,13 @@ public class TrackerTest {
             tracker.addClient(itemtest);
         }
         Item []check = new Item[2];
-        check[0] = new Item("Ron", 12, "repair iron");
-        check[1] = new Item("Atilla", 12, "repair hairdryer");
-        assertArrayEquals(tracker.findByDate(12), check);
+        int temp = 1;
+        for(int i = 0; i < check.length; i++){
+            check[i] = itemstest[temp];
+            temp++;
+        }
+        itemstest = check;
+        assertArrayEquals(tracker.findByDate(12), itemstest);
     }
 
     @Test
@@ -93,8 +100,12 @@ public class TrackerTest {
             tracker.addClient(itemtest);
         }
         Item []check = new Item[2];
-        check[0] = new Item("Ron", 12, "repair iron");
-        check[1] = new Item("Atilla", 12, "repair iron");
-        assertArrayEquals(tracker.findByDescription("repair iron"), check);
+        int temp = 0;
+        for(int i = 0; i < check.length; i++){
+            check[i] = itemstest[temp];
+            temp++;
+        }
+        itemstest = check;
+        assertArrayEquals(tracker.findByDescription("repair iron"), itemstest);
     }
 }
