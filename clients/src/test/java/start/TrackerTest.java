@@ -82,7 +82,7 @@ public class TrackerTest {
             testData[i] = tracker.addClient(itemtest).getDateAdd();
             i++;
         }
-        assertThat(tracker.findByDate(126), is(itemstest[1]));
+        assertThat(tracker.findByDate(testData[1]), is(itemstest[1]));
     }
 
     @Test
