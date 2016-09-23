@@ -105,4 +105,25 @@ public class TrackerTest {
         itemstest = check;
         assertArrayEquals(tracker.findByDescription("repair iron"), itemstest);
     }
+
+    @Test
+    public void testRemove() throws Exception {
+        Item []itemstest = new Item[3];
+        itemstest[0] = new Item("Roma", 123, "repair iron");
+        itemstest[1] = new Item("Ron", 12, "repair iron");
+        itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
+        for (Item itemtest:
+                itemstest) {
+            tracker.addClient(itemtest);
+        }
+        Item []check = new Item[2];
+        int temp = 0;
+        for(int i = 0; i < check.length; i++){
+            check[i] = itemstest[temp];
+            temp++;
+        }
+        itemstest = check;
+        tracker.remove(itemstest[2].getClientId());
+        assertArrayEquals(tracker.getAll(), itemstest);
+    }
 }

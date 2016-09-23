@@ -98,4 +98,23 @@ public class Tracker {
         }
         return res;
     }
+
+    public void remove(String clientId){
+        for(int i = 0; i < items.length - 1; i++){
+        if(items[i].getClientId().equals(clientId)){
+            Item temp;
+            temp = items[i];
+            items[i] = items[i + 1];
+            items[i + 1] = temp;
+        }
+            Item tempItems[] = new Item[items.length - 1];
+            int tempI = 0;
+            for (Item tempItem: 
+                 tempItems) {
+                tempItem = items[tempI];
+                tempI++;
+            }
+            items = tempItems;
+        }
+    }
 }
