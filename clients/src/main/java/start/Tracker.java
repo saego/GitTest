@@ -13,9 +13,9 @@ public class Tracker {
     private int position = 0;
     private static final Random RN = new Random();
 
-    public Item addClient(Item item){
+    public Item addClient(Item item) {
         item.setClientId(this.generateClientId());
-        if (position >= items.length){
+        if (position >= items.length) {
             Item[] itemsTemp = new Item[items.length + 1];
             System.arraycopy(items, 0, itemsTemp, 0, items.length);
             items = itemsTemp;
@@ -24,11 +24,11 @@ public class Tracker {
         return item;
     }
 
-    public Item findById(String clientId){
+    public Item findById(String clientId) {
         Item res = null;
-        for (Item item:
-             items) {
-            if (item != null && item.getClientId().equals(clientId)){
+        for (Item item :
+                items) {
+            if (item != null && item.getClientId().equals(clientId)) {
                 res = item;
                 break;
             }
@@ -36,31 +36,31 @@ public class Tracker {
         return res;
     }
 
-    public Item[] getAll(){
+    public Item[] getAll() {
         Item[] res = new Item[position];
-        for (int i = 0; i != this.position; i++){
+        for (int i = 0; i != this.position; i++) {
             res[i] = items[i];
         }
-        return  res;
+        return res;
     }
 
-    String generateClientId(){
+    String generateClientId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
-    public Item[] findByName(String clientName){
+    public Item[] findByName(String clientName) {
         int quantity = 0;
-        for (Item item:
+        for (Item item :
                 items) {
-            if (item != null && item.getName().equals(clientName)){
+            if (item != null && item.getName().equals(clientName)) {
                 quantity++;
             }
         }
-        Item []res = new Item [quantity];
+        Item[] res = new Item[quantity];
         int index = 0;
-        for (Item item:
-             items) {
-            if (item != null && item.getName().equals(clientName)){
+        for (Item item :
+                items) {
+            if (item != null && item.getName().equals(clientName)) {
                 res[index] = item;
                 index++;
             }
@@ -80,41 +80,30 @@ public class Tracker {
         return res;
     }
 
-    public Item[] findByDescription(String description){
+    public Item[] findByDescription(String description) {
         int quantity = 0;
-        for (Item item:
+        for (Item item :
                 items) {
-            if (item != null && item.getDescription().equals(description)){
+            if (item != null && item.getDescription().equals(description)) {
                 quantity++;
             }
         }
-        Item []res = new Item [quantity];
-            int index = 0;
-        for (Item item:
+        Item[] res = new Item[quantity];
+        int index = 0;
+        for (Item item :
                 items) {
-            if (item != null && item.getDescription().equals(description)){
+            if (item != null && item.getDescription().equals(description)) {
                 res[index++] = item;
             }
         }
         return res;
     }
 
-    public void remove(String clientId){
-        for(int i = 0; i < items.length - 1; i++){
-        if(items[i].getClientId().equals(clientId)){
-            Item temp;
-            temp = items[i];
-            items[i] = items[i + 1];
-            items[i + 1] = temp;
-        }
-            Item tempItems[] = new Item[items.length - 1];
-            int tempI = 0;
-            for (Item tempItem: 
-                 tempItems) {
-                tempItem = items[tempI];
-                tempI++;
+    public void remove(String clientId) {
+        for (int i = 0; i < items.length - 1; i++) {
+            if (items[i].getClientId().equals(clientId)) {
+                items[i] = null;
             }
-            items = tempItems;
         }
     }
 }
