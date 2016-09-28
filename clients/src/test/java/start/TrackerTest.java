@@ -131,5 +131,11 @@ public class TrackerTest {
                 itemstest) {
             tracker.addClient(itemtest);
         }
+        itemstest[1].setName("Vik");
+        itemstest[1].setDateAdd(321);
+        itemstest[1].setDescription("broken lamp");
+        tracker.rename(itemstest[1]);
+        assertArrayEquals(tracker.getAll(), itemstest);
+
     }
 }
