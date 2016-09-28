@@ -4,10 +4,10 @@ package moduls;
  Created by ${Ruslan} on 28.09.16.
 
  */
-public class Comments {
+public class Comment {
     String comment;
 
-    public Comments(String comment) {
+    public Comment(String comment) {
         this.comment = comment;
     }
 

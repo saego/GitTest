@@ -9,7 +9,7 @@ public class Item {
     private long dateAdd;
     private String description;
     private String clientId;
-    private Comments []comments = new Comments[1];
+    private Comment []comments = new Comment[1];
 
     public Item(String name, long dateAdd, String description) {
         this.name = name;
@@ -48,5 +48,9 @@ public class Item {
 
     public String getClientId() {
         return clientId;
+    }
+
+    public Comment addComment(Comment comment){
+        return comment;
     }
 }
