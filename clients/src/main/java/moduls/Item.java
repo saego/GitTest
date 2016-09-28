@@ -5,10 +5,11 @@ package moduls;
 
  */
 public class Item {
-    String name;
-    long dateAdd;
-    String description;
-    String clientId;
+    private String name;
+    private long dateAdd;
+    private String description;
+    private String clientId;
+    private Comments []comments = new Comments[1];
 
     public Item(String name, long dateAdd, String description) {
         this.name = name;
