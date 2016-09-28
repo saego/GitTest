@@ -100,9 +100,19 @@ public class Tracker {
     }
 
     public void remove(String clientId) {
-        for (int i = 0; i < items.length - 1; i++) {
+        for (int i = 0; i < items.length; i++) {
             if (items[i].getClientId().equals(clientId)) {
                 items[i] = null;
+                break;
+            }
+        }
+    }
+
+    public void rename(Item item) {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].getClientId().equals(item.getClientId())) {
+                items[i] = item;
+                break;
             }
         }
     }

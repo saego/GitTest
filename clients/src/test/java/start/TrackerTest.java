@@ -112,6 +112,10 @@ public class TrackerTest {
         itemstest[0] = new Item("Roma", 123, "repair iron");
         itemstest[1] = new Item("Ron", 12, "repair iron");
         itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
+        for (Item itemtest:
+                itemstest) {
+            tracker.addClient(itemtest);
+        }
         tracker.remove(itemstest[2].getClientId());
         itemstest[2] = null;
         assertArrayEquals(tracker.getAll(), itemstest);
