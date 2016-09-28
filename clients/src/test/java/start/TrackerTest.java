@@ -120,4 +120,16 @@ public class TrackerTest {
         itemstest[2] = null;
         assertArrayEquals(tracker.getAll(), itemstest);
     }
+
+    @Test
+    public void testRename() throws Exception {
+        Item []itemstest = new Item[3];
+        itemstest[0] = new Item("Roma", 123, "repair iron");
+        itemstest[1] = new Item("Ron", 12, "repair iron");
+        itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
+        for (Item itemtest:
+                itemstest) {
+            tracker.addClient(itemtest);
+        }
+    }
 }
