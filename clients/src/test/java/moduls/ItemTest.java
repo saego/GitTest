@@ -66,4 +66,9 @@ public class ItemTest {
         item.setClientId(testClientId);
         assertThat(item.getClientId(), is(testClientId));
     }
+
+    @Test
+    public void testAddComment() throws Exception {
+
+    }
 }
