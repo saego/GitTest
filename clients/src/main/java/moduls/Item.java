@@ -51,6 +51,22 @@ public class Item {
     }
 
     public Comment addComment(Comment comment){
+        for(int i = 0; i < comments.length; i++){
+            if(comments[i] == null){
+                comments[i] = comment;
+                break;
+            }
+        }
+        int commArrayLength = 0;
+        for(int i = 0; i < comments.length; i++){
+            if(comments[i] != null){
+                commArrayLength++;
+            }
+        }
+        if(commArrayLength == comments.length){
+            Comment []tempComments = new Comment[comments.length + 1];
+            comments = tempComments;
+        }
         return comment;
     }
 }
