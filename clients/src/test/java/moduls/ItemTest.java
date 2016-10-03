@@ -69,6 +69,8 @@ public class ItemTest {
 
     @Test
     public void testAddComment() throws Exception {
-
+        Comment [] comments = new Comment[2];
+        comments[0] = new Comment("first comment");
+        comments[1] = new Comment("second comment");
     }
 }
