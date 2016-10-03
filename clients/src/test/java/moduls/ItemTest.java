@@ -14,8 +14,8 @@ public class ItemTest {
     long dateAdd = 32;
     String description = "repair my TV pls";
     Item item = new Item(clientName, dateAdd, description);
-    String comm = "my comment";
-    Comment comment = new Comment(comm);
+    //String comm = "my comment";
+    //Comment comment = new Comment(comm);
 
     @org.junit.Test
     public void testSetName() throws Exception {

@@ -2,6 +2,7 @@ package moduls;
 
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 /**
@@ -9,14 +10,18 @@ import static org.junit.Assert.*;
 
  */
 public class CommentTest {
+    String comm = "some comments";
+    Comment comment = new Comment(comm);
 
     @Test
     public void testGetComment() throws Exception {
-
+        assertThat(comment.getComment(), is(comm));
     }
 
     @Test
     public void testSetComment() throws Exception {
-
+        String testComment = "other comment";
+        comment.setComment(testComment);
+        assertThat(comment.getComment(), is(testComment));
     }
 }
