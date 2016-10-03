@@ -69,4 +69,7 @@ public class Item {
         }
         return comment;
     }
+    public Comment[] getComments(){
+        return comments;
+    }
 }

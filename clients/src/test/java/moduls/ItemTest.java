@@ -3,6 +3,7 @@ package moduls;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -72,5 +73,10 @@ public class ItemTest {
         Comment [] comments = new Comment[2];
         comments[0] = new Comment("first comment");
         comments[1] = new Comment("second comment");
+        for(Comment commentars:
+                comments){
+            item.addComment(commentars);
+        }
+        assertArrayEquals(item.getComments(), comments);
     }
 }
