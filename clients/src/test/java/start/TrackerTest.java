@@ -48,7 +48,7 @@ public class TrackerTest {
                 itemstest) {
             tracker.addClient(itemtest);
         }
-        assertArrayEquals(tracker.getAll(), itemstest);
+        assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class TrackerTest {
         Item[] check = new Item[2];
         int temp = 0;
         for (int i = 0; i < check.length; i++) {
-            check[i] = itemstest[temp];
+            check[temp] = itemstest[i];
             temp++;
         }
         itemstest = check;
@@ -119,7 +119,16 @@ public class TrackerTest {
         }
         tracker.remove(itemstest[2].getClientId());
         itemstest[2] = null;
-        assertArrayEquals(tracker.getAll(), itemstest);
+        Item[] itemstest1 = new Item[2];
+        int temp = 0;
+        for (Item anItemstest : itemstest) {
+            if (anItemstest != null) {
+                itemstest1[temp] = anItemstest;
+                temp++;
+            }
+        }
+        itemstest = itemstest1;
+        assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
     }
 
     @Test
@@ -136,7 +145,7 @@ public class TrackerTest {
         itemstest[1].setDateAdd(321);
         itemstest[1].setDescription("broken lamp");
         tracker.rename(itemstest[1]);
-        assertArrayEquals(tracker.getAll(), itemstest);
+        assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
 
     }
 
@@ -157,12 +166,25 @@ public class TrackerTest {
         tracker.addComment(comments[0], itemstest[0].getClientId());
         tracker.addComment(comments[1], itemstest[0].getClientId());
         tracker.addComment(comments[2], itemstest[2].getClientId());
-        assertArrayEquals(tracker.getAll(), itemstest);
+        assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
     }
 
     public Item[] getWithoutNull(Item []getAllItems){
         int lengthArrWithoutNull = 0;
-
-        itemsWitoutNull;
+        for (Item getAllItem:
+             getAllItems) {
+            if(getAllItem != null){
+                lengthArrWithoutNull++;
+            }
+        }
+        Item[] itemsWitoutNull = new Item[lengthArrWithoutNull];
+        int temp = 0;
+        for (Item getAllItem : getAllItems) {
+            if (getAllItem != null) {
+                itemsWitoutNull[temp] = getAllItem;
+                temp++;
+            }
+        }
+        return itemsWitoutNull;
     }
 }
