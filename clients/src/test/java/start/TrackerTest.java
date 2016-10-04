@@ -1,5 +1,6 @@
 package start;
 
+import moduls.Comment;
 import moduls.Item;
 import org.junit.Test;
 
@@ -23,13 +24,13 @@ public class TrackerTest {
 
     @Test
     public void testFindById() throws Exception {
-        Item [] itemstest = new Item[3];
+        Item[] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair irons");
         itemstest[1] = new Item("Ron", 12, "repair iron");
         itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
-        String []testClientIds = new String[3];
+        String[] testClientIds = new String[3];
         int i = 0;
-        for (Item itemtest:
+        for (Item itemtest :
                 itemstest) {
             testClientIds[i] = tracker.addClient(itemtest).getClientId();
             i++;
@@ -39,12 +40,12 @@ public class TrackerTest {
 
     @Test
     public void testGetAll() throws Exception {
-        Item []itemstest = new Item[3];
+        Item[] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair irons");
         itemstest[1] = new Item("Ron", 12, "repair iron");
         itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
-        for (Item itemtest:
-             itemstest) {
+        for (Item itemtest :
+                itemstest) {
             tracker.addClient(itemtest);
         }
         assertArrayEquals(tracker.getAll(), itemstest);
@@ -52,17 +53,17 @@ public class TrackerTest {
 
     @Test
     public void testFindByName() throws Exception {
-        Item []itemstest = new Item[3];
+        Item[] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair irons");
         itemstest[1] = new Item("Ron", 12, "repair iron");
         itemstest[2] = new Item("Ron", 13, "repair hairdryer");
-        for (Item itemtest:
+        for (Item itemtest :
                 itemstest) {
             tracker.addClient(itemtest);
         }
-        Item []check = new Item[2];
+        Item[] check = new Item[2];
         int temp = 1;
-        for(int i = 0; i < check.length; i++){
+        for (int i = 0; i < check.length; i++) {
             check[i] = itemstest[temp];
             temp++;
         }
@@ -72,13 +73,13 @@ public class TrackerTest {
 
     @Test
     public void testFindByDate() throws Exception {
-        Item [] itemstest = new Item[3];
+        Item[] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair irons");
         itemstest[1] = new Item("Ron", 126, "repair iron");
         itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
-        long []testData = new long[3];
+        long[] testData = new long[3];
         int i = 0;
-        for (Item itemtest:
+        for (Item itemtest :
                 itemstest) {
             testData[i] = tracker.addClient(itemtest).getDateAdd();
             i++;
@@ -88,17 +89,17 @@ public class TrackerTest {
 
     @Test
     public void testFindByDescription() throws Exception {
-        Item []itemstest = new Item[3];
+        Item[] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair iron");
         itemstest[1] = new Item("Ron", 12, "repair iron");
         itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
-        for (Item itemtest:
+        for (Item itemtest :
                 itemstest) {
             tracker.addClient(itemtest);
         }
-        Item []check = new Item[2];
+        Item[] check = new Item[2];
         int temp = 0;
-        for(int i = 0; i < check.length; i++){
+        for (int i = 0; i < check.length; i++) {
             check[i] = itemstest[temp];
             temp++;
         }
@@ -108,11 +109,11 @@ public class TrackerTest {
 
     @Test
     public void testRemove() throws Exception {
-        Item []itemstest = new Item[3];
+        Item[] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair iron");
         itemstest[1] = new Item("Ron", 12, "repair iron");
         itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
-        for (Item itemtest:
+        for (Item itemtest :
                 itemstest) {
             tracker.addClient(itemtest);
         }
@@ -123,11 +124,11 @@ public class TrackerTest {
 
     @Test
     public void testRename() throws Exception {
-        Item []itemstest = new Item[3];
+        Item[] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair iron");
         itemstest[1] = new Item("Ron", 12, "repair iron");
         itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
-        for (Item itemtest:
+        for (Item itemtest :
                 itemstest) {
             tracker.addClient(itemtest);
         }
@@ -137,5 +138,25 @@ public class TrackerTest {
         tracker.rename(itemstest[1]);
         assertArrayEquals(tracker.getAll(), itemstest);
 
+    }
+
+    @Test
+    public void testAddComment() throws Exception {
+        Item[] itemstest = new Item[3];
+        itemstest[0] = new Item("Roma", 123, "repair iron");
+        itemstest[1] = new Item("Ron", 12, "repair iron");
+        itemstest[2] = new Item("Atilla", 13, "repair hairdryer");
+        for (Item itemtest :
+                itemstest) {
+            tracker.addClient(itemtest);
+        }
+        Comment[]comments = new Comment[3];
+        comments[0] = new Comment("comment 1");
+        comments[1] = new Comment("comment 2");
+        for (Comment comment:
+             comments) {
+            tracker.addComment(comment, itemstest[0].getClientId());
+        }
+        assertArrayEquals(tracker.getAll(), itemstest);
     }
 }
