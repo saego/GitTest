@@ -1,5 +1,6 @@
 package start;
 
+import moduls.Comment;
 import moduls.Item;
 
 import java.util.Random;
@@ -112,6 +113,16 @@ public class Tracker {
         for (int i = 0; i < items.length; i++) {
             if (items[i].getClientId().equals(item.getClientId())) {
                 items[i] = item;
+                break;
+            }
+        }
+    }
+
+    public void addComment(Comment comment, String clientId){
+        for (Item item:
+             items) {
+            if(item != null && item.getClientId().equals(clientId)){
+                item.addComment(comment);
                 break;
             }
         }
