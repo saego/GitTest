@@ -153,10 +153,16 @@ public class TrackerTest {
         Comment[]comments = new Comment[3];
         comments[0] = new Comment("comment 1");
         comments[1] = new Comment("comment 2");
-        for (Comment comment:
-             comments) {
-            tracker.addComment(comment, itemstest[0].getClientId());
-        }
+        comments[2] = new Comment("comment 3");
+        tracker.addComment(comments[0], itemstest[0].getClientId());
+        tracker.addComment(comments[1], itemstest[0].getClientId());
+        tracker.addComment(comments[2], itemstest[2].getClientId());
         assertArrayEquals(tracker.getAll(), itemstest);
+    }
+
+    public Item[] getWithoutNull(Item []getAllItems){
+        int lengthArrWithoutNull = 0;
+
+        itemsWitoutNull;
     }
 }

@@ -11,17 +11,35 @@ import java.util.Random;
  */
 public class Tracker {
     private Item[] items = new Item[1];
-    private int position = 0;
+   // private int position = 0;
     private static final Random RN = new Random();
 
     public Item addClient(Item item) {
-        item.setClientId(this.generateClientId());
+    /*    item.setClientId(this.generateClientId());
         if (position >= items.length) {
             Item[] itemsTemp = new Item[items.length + 1];
             System.arraycopy(items, 0, itemsTemp, 0, items.length);
             items = itemsTemp;
         }
-        this.items[position++] = item;
+        this.items[position++] = item;*/
+        for (int i = 0; i < items.length; i++){
+            if(items[i] == null){
+                item.setClientId(this.generateClientId());
+                items[i] = item;
+                break;
+            }
+        }
+        int itemsArrLength = 0;
+        for (Item item1 : items) {
+            if (item1 != null) {
+                itemsArrLength++;
+            }
+        }
+        if(itemsArrLength == items.length){
+            Item []itemsTemp = new Item[items.length + 1];
+            System.arraycopy(items, 0, itemsTemp, 0, items.length);
+            items = itemsTemp;
+        }
         return item;
     }
 
@@ -38,11 +56,11 @@ public class Tracker {
     }
 
     public Item[] getAll() {
-        Item[] res = new Item[position];
+        /*Item[] res = new Item[];
         for (int i = 0; i != this.position; i++) {
             res[i] = items[i];
-        }
-        return res;
+        } */
+        return items;
     }
 
     String generateClientId() {
