@@ -70,13 +70,33 @@ public class ItemTest {
 
     @Test
     public void testAddComment() throws Exception {
-        Comment [] comments = new Comment[3];
+        Comment [] comments = new Comment[2];
         comments[0] = new Comment("first comment");
         comments[1] = new Comment("second comment");
         for(Comment commentars:
                 comments){
             item.addComment(commentars);
         }
-        assertArrayEquals(item.getComments(), comments);
+        assertArrayEquals(getCommentsWithoutNull(item.getComments()), comments);
+    }
+
+    public Comment[] getCommentsWithoutNull(Comment []comments){
+        int lenthCommentWithoutNull = 0;
+        for (Comment comment:
+             comments) {
+            if(comment != null){
+                lenthCommentWithoutNull++;
+            }
+        }
+        Comment []commentsWithoutNull = new Comment[lenthCommentWithoutNull];
+        int temp = 0;
+        for (Comment comment:
+             comments) {
+            if(comment != null){
+                commentsWithoutNull[temp] = comment;
+                temp++;
+            }
+        }
+        return commentsWithoutNull;
     }
 }
