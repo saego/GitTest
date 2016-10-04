@@ -58,13 +58,14 @@ public class Item {
             }
         }
         int commArrayLength = 0;
-        for(int i = 0; i < comments.length; i++){
-            if(comments[i] != null){
+        for (Comment comment1 : comments) {
+            if (comment1 != null) {
                 commArrayLength++;
             }
         }
         if(commArrayLength == comments.length){
             Comment []tempComments = new Comment[comments.length + 1];
+            System.arraycopy(comments, 0, tempComments, 0, comments.length);
             comments = tempComments;
         }
         return comment;

@@ -70,7 +70,7 @@ public class ItemTest {
 
     @Test
     public void testAddComment() throws Exception {
-        Comment [] comments = new Comment[2];
+        Comment [] comments = new Comment[3];
         comments[0] = new Comment("first comment");
         comments[1] = new Comment("second comment");
         for(Comment commentars:
