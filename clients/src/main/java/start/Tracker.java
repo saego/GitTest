@@ -15,13 +15,7 @@ public class Tracker {
     private static final Random RN = new Random();
 
     public Item addClient(Item item) {
-    /*    item.setClientId(this.generateClientId());
-        if (position >= items.length) {
-            Item[] itemsTemp = new Item[items.length + 1];
-            System.arraycopy(items, 0, itemsTemp, 0, items.length);
-            items = itemsTemp;
-        }
-        this.items[position++] = item;*/
+
         for (int i = 0; i < items.length; i++){
             if(items[i] == null){
                 item.setClientId(this.generateClientId());
@@ -56,10 +50,7 @@ public class Tracker {
     }
 
     public Item[] getAll() {
-        /*Item[] res = new Item[];
-        for (int i = 0; i != this.position; i++) {
-            res[i] = items[i];
-        } */
+
         return items;
     }
 

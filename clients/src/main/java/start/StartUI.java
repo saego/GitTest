@@ -23,7 +23,8 @@ public class StartUI {
         items[4] = new Item("Mike", 5, "description 5");
         items[5] = new Item("Johnathan", 6, "description 6");
 
-            System.out.println("                                        ______/Add clients and show all clients/______");
+            System.out.println("                                       " +
+                    " ______/Add clients and show all clients/______");
             for (Item item:
                  items) {
                 tracker.addClient(item);
