@@ -58,7 +58,7 @@ public class Tracker {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
-    public Item[] findByName(String clientName) {
+    /*public Item[] findByName(String clientName) {
         int quantity = 0;
         for (Item item :
                 items) {
@@ -107,7 +107,7 @@ public class Tracker {
             }
         }
         return res;
-    }
+    }*/
 
     public void remove(String clientId) {
         for (int i = 0; i < items.length; i++) {

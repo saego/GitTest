@@ -42,9 +42,27 @@ public class StartUI {
                     System.out.println("*-*-*");
                 }
             }
+            System.out.println("                                       " +
+                    " ______/*End of table*/______");
+            System.out.println();
         }
 
         private void searchClients(){
+
+            System.out.println("                                       " +
+                    " ______/Search client by Id/______");
+            String clientId = tracker.getAll()[3].getClientId();
+            System.out.println();
+            System.out.println("________* Look what I've found *________");
+            System.out.println();
+            System.out.println("Client Id: " + tracker.findById(clientId).getClientId()
+                    + "   Client name: " + tracker.findById(clientId).getName()
+                    + "   Date add: " + tracker.findById(clientId).getDateAdd()
+                    + "   Description: " + tracker.findById(clientId).getDescription());
+            System.out.println("*-*-*");
+            System.out.println("                                       " +
+                    " ______/*End of table*/______");
+            System.out.println();
 
         }
 }
