@@ -2,12 +2,17 @@ package start;
 
 import moduls.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  Created by ${Ruslan} on 04.10.16.
 
  */
 public class StartUI {
     private Tracker tracker = new Tracker();
+    private Date date = new Date();
+    private SimpleDateFormat myFormat = new SimpleDateFormat("dd.MM.yy hh:mm");
     public static void main(String[] args) {
         StartUI start = new StartUI();
         start.addClients();
@@ -19,12 +24,12 @@ public class StartUI {
         private void addClients(){
 
             Item[] items = new Item[6];
-        items[0] = new Item("Oxana", 1, "description 1");
-        items[1] = new Item("Owen", 2, "description 2");
-        items[2] = new Item("Mike", 3, "description 3");
-        items[3] = new Item("Nick", 4, "description 4");
-        items[4] = new Item("Mike", 5, "description 5");
-        items[5] = new Item("Johnathan", 6, "description 6");
+        items[0] = new Item("Oxana", date.getTime(), "description 1");
+        items[1] = new Item("Owen", date.getTime(), "description 2");
+        items[2] = new Item("Mike", date.getTime(), "description 3");
+        items[3] = new Item("Nick", date.getTime(), "description 4");
+        items[4] = new Item("Mike", date.getTime(), "description 5");
+        items[5] = new Item("Johnathan", date.getTime(), "description 6");
 
             System.out.println("                                       " +
                     " ______/Add clients and show all clients/______");
@@ -40,7 +45,7 @@ public class StartUI {
                 if(trackerItems != null){
                     System.out.println("Client Id: " + trackerItems.getClientId()
                             + "   Client name: " + trackerItems.getName()
-                            + "   Date add: " + trackerItems.getDateAdd()
+                            + "   Date add: " + myFormat.format(trackerItems.getDateAdd())
                             + "   Description: " + trackerItems.getDescription());
                     System.out.println("*-*-*");
                 }
@@ -82,7 +87,7 @@ public class StartUI {
                 if(trackerItems != null){
                     System.out.println("Client Id: " + trackerItems.getClientId()
                             + "   Client name: " + trackerItems.getName()
-                            + "   Date add: " + trackerItems.getDateAdd()
+                            + "   Date add: " + myFormat.format(trackerItems.getDateAdd())
                             + "   Description: " + trackerItems.getDescription());
                     System.out.println("*-*-*");
                 }
@@ -117,7 +122,7 @@ public class StartUI {
                 if(trackerItems != null){
                     System.out.println("Client Id: " + trackerItems.getClientId()
                             + "   Client name: " + trackerItems.getName()
-                            + "   Date add: " + trackerItems.getDateAdd()
+                            + "   Date add: " + myFormat.format(trackerItems.getDateAdd())
                             + "   Description: " + trackerItems.getDescription());
                     for (Comment comment :
                             trackerItems.getComments()) {
@@ -142,7 +147,7 @@ public class StartUI {
             System.out.println("________* Look what I've done *________");
             System.out.println();
             String newName = "Mike";
-            long newDate = 12;
+            long newDate = date.getTime();
             String newDescription = "description 12";
             Item newItem = new Item(newName, newDate, newDescription);
             newItem.setClientId(clientId);
@@ -152,7 +157,7 @@ public class StartUI {
                 if(trackerItems != null){
                     System.out.println("Client Id: " + trackerItems.getClientId()
                             + "   Client name: " + trackerItems.getName()
-                            + "   Date add: " + trackerItems.getDateAdd()
+                            + "   Date add: " + myFormat.format(trackerItems.getDateAdd())
                             + "   Description: " + trackerItems.getDescription());
                     System.out.println("*-*-*");
                 }
