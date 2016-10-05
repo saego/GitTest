@@ -7,7 +7,7 @@ import moduls.*;
 
  */
 public class StartUI {
-    Tracker tracker = new Tracker();
+    private Tracker tracker = new Tracker();
     public static void main(String[] args) {
         StartUI start = new StartUI();
         start.addClients();
@@ -94,17 +94,18 @@ public class StartUI {
 
         private void addComments(){
 
-            Comment []comments = new Comment[4];
+            Comment []comments = new Comment[5];
             comments[0] = new Comment("comment 1");
             comments[1] = new Comment("comment 2");
             comments[2] = new Comment("comment 3");
             comments[3] = new Comment("comment 4");
+            comments[4] = new Comment("comment 5");
 
             tracker.addComment(comments[0], tracker.getAll()[3].getClientId());
             tracker.addComment(comments[1], tracker.getAll()[3].getClientId());
             tracker.addComment(comments[2], tracker.getAll()[1].getClientId());
             tracker.addComment(comments[3], tracker.getAll()[0].getClientId());
-            //tracker.addComment(comments[4], tracker.getAll()[0].getClientId());
+            tracker.addComment(comments[4], tracker.getAll()[0].getClientId());
 
             System.out.println("                                       " +
                     " ______/Add comments/______");
@@ -118,17 +119,12 @@ public class StartUI {
                             + "   Client name: " + trackerItems.getName()
                             + "   Date add: " + trackerItems.getDateAdd()
                             + "   Description: " + trackerItems.getDescription());
-
-                //}
-               // if(trackerItems.getComments() != null) { //там взагалі може не бути об"єкта!!!!!!!!!!!!!!!!!
-                    //System.out.print("Comments: ");
                     for (Comment comment :
                             trackerItems.getComments()) {
                         if (comment != null) {
                             System.out.println(" - " + comment.getComment());
                         }
                     }
-                //}
                     System.out.println("*-*-*");
                 }
 

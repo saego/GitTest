@@ -5,7 +5,7 @@ package moduls;
 
  */
 public class Comment {
-    String comment;
+    private String comment;
 
     public Comment(String comment) {
         this.comment = comment;
@@ -16,7 +16,7 @@ public class Comment {
     }
 
 
-    public void setComment(String comment) {
+    void setComment(String comment) {
         this.comment = comment;
     }
 }

@@ -9,12 +9,12 @@ import java.util.Random;
  Created by ${Ruslan} on 19.09.16.
 
  */
-public class Tracker {
+class Tracker {
     private Item[] items = new Item[1];
    // private int position = 0;
     private static final Random RN = new Random();
 
-    public Item addClient(Item item) {
+    Item addClient(Item item) {
 
         for (int i = 0; i < items.length; i++){
             if(items[i] == null){
@@ -37,7 +37,7 @@ public class Tracker {
         return item;
     }
 
-    public Item findById(String clientId) {
+    Item findById(String clientId) {
         Item res = null;
         for (Item item :
                 items) {
@@ -49,12 +49,12 @@ public class Tracker {
         return res;
     }
 
-    public Item[] getAll() {
+    Item[] getAll() {
 
         return items;
     }
 
-    String generateClientId() {
+    private String generateClientId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
@@ -109,7 +109,7 @@ public class Tracker {
         return res;
     }*/
 
-    public void remove(String clientId) {
+    void remove(String clientId) {
         for (int i = 0; i < items.length; i++) {
             if (items[i].getClientId().equals(clientId)) {
                 items[i] = null;
@@ -118,7 +118,7 @@ public class Tracker {
         }
     }
 
-    public void rename(Item item) {
+    void rename(Item item) {
         for (int i = 0; i < items.length; i++) {
             if (items[i].getClientId().equals(item.getClientId())) {
                 items[i] = item;
@@ -127,7 +127,7 @@ public class Tracker {
         }
     }
 
-    public void addComment(Comment comment, String clientId){
+    void addComment(Comment comment, String clientId){
         for (Item item:
              items) {
             if(item != null && item.getClientId().equals(clientId)){
