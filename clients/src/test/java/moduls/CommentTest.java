@@ -11,7 +11,11 @@ import static org.junit.Assert.*;
  */
 public class CommentTest {
     private String comm = "some comments";
-    private Comment comment = new Comment(comm);
+    private Comment comment;
+
+    public CommentTest() {
+        comment = new Comment(comm);
+    }
 
     @Test
     public void testGetComment() throws Exception {
