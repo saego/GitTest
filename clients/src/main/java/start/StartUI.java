@@ -14,6 +14,7 @@ public class StartUI {
         start.searchClients();
         start.removeClients();
         start.updateClient();
+        start.addComments();
     }
         private void addClients(){
 
@@ -85,6 +86,52 @@ public class StartUI {
                             + "   Description: " + trackerItems.getDescription());
                     System.out.println("*-*-*");
                 }
+            }
+            System.out.println("                                       " +
+                    " ______/*End of table*/______");
+            System.out.println();
+        }
+
+        private void addComments(){
+
+            Comment []comments = new Comment[4];
+            comments[0] = new Comment("comment 1");
+            comments[1] = new Comment("comment 2");
+            comments[2] = new Comment("comment 3");
+            comments[3] = new Comment("comment 4");
+
+            tracker.addComment(comments[0], tracker.getAll()[3].getClientId());
+            tracker.addComment(comments[1], tracker.getAll()[3].getClientId());
+            tracker.addComment(comments[2], tracker.getAll()[1].getClientId());
+            tracker.addComment(comments[3], tracker.getAll()[0].getClientId());
+            //tracker.addComment(comments[4], tracker.getAll()[0].getClientId());
+
+            System.out.println("                                       " +
+                    " ______/Add comments/______");
+            System.out.println();
+            System.out.println("________* Look what I've done *________");
+            System.out.println();
+            for (Item trackerItems:
+                    tracker.getAll()) {
+                if(trackerItems != null){
+                    System.out.println("Client Id: " + trackerItems.getClientId()
+                            + "   Client name: " + trackerItems.getName()
+                            + "   Date add: " + trackerItems.getDateAdd()
+                            + "   Description: " + trackerItems.getDescription());
+
+                //}
+               // if(trackerItems.getComments() != null) { //там взагалі може не бути об"єкта!!!!!!!!!!!!!!!!!
+                    //System.out.print("Comments: ");
+                    for (Comment comment :
+                            trackerItems.getComments()) {
+                        if (comment != null) {
+                            System.out.println(" - " + comment.getComment());
+                        }
+                    }
+                //}
+                    System.out.println("*-*-*");
+                }
+
             }
             System.out.println("                                       " +
                     " ______/*End of table*/______");

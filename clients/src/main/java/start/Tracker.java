@@ -24,7 +24,7 @@ public class Tracker {
             }
         }
         int itemsArrLength = 0;
-        for (Item item1 : items) {
+        for (Item item1 : this.items) {
             if (item1 != null) {
                 itemsArrLength++;
             }
