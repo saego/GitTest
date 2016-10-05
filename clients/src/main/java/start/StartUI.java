@@ -12,6 +12,8 @@ public class StartUI {
         StartUI start = new StartUI();
         start.addClients();
         start.searchClients();
+        start.removeClients();
+        start.updateClient();
     }
         private void addClients(){
 
@@ -60,6 +62,58 @@ public class StartUI {
                     + "   Date add: " + tracker.findById(clientId).getDateAdd()
                     + "   Description: " + tracker.findById(clientId).getDescription());
             System.out.println("*-*-*");
+            System.out.println("                                       " +
+                    " ______/*End of table*/______");
+            System.out.println();
+        }
+
+        private void removeClients(){
+
+            System.out.println("                                       " +
+                    " ______/Remove client by Id/______");
+            String clientId = tracker.getAll()[4].getClientId();
+            System.out.println();
+            System.out.println("________* Look what I've done *________");
+            System.out.println();
+            tracker.remove(clientId);
+            for (Item trackerItems:
+                    tracker.getAll()) {
+                if(trackerItems != null){
+                    System.out.println("Client Id: " + trackerItems.getClientId()
+                            + "   Client name: " + trackerItems.getName()
+                            + "   Date add: " + trackerItems.getDateAdd()
+                            + "   Description: " + trackerItems.getDescription());
+                    System.out.println("*-*-*");
+                }
+            }
+            System.out.println("                                       " +
+                    " ______/*End of table*/______");
+            System.out.println();
+        }
+
+        private void updateClient(){
+            System.out.println("                                       " +
+                    " ______/Update client by Id/______");
+            String clientId = tracker.getAll()[2].getClientId();
+            System.out.println();
+            System.out.println("________* Look what I've done *________");
+            System.out.println();
+            String newName = "Mike";
+            long newDate = 12;
+            String newDescription = "description 12";
+            Item newItem = new Item(newName, newDate, newDescription);
+            newItem.setClientId(clientId);
+            tracker.rename(newItem);
+            for (Item trackerItems:
+                    tracker.getAll()) {
+                if(trackerItems != null){
+                    System.out.println("Client Id: " + trackerItems.getClientId()
+                            + "   Client name: " + trackerItems.getName()
+                            + "   Date add: " + trackerItems.getDateAdd()
+                            + "   Description: " + trackerItems.getDescription());
+                    System.out.println("*-*-*");
+                }
+            }
             System.out.println("                                       " +
                     " ______/*End of table*/______");
             System.out.println();

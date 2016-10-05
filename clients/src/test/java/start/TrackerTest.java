@@ -51,7 +51,7 @@ public class TrackerTest {
         assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
     }
 
-    @Test
+   /* @Test
     public void testFindByName() throws Exception {
         Item[] itemstest = new Item[3];
         itemstest[0] = new Item("Roma", 123, "repair irons");
@@ -105,7 +105,7 @@ public class TrackerTest {
         }
         itemstest = check;
         assertArrayEquals(tracker.findByDescription("repair iron"), itemstest);
-    }
+    }*/
 
     @Test
     public void testRemove() throws Exception {
