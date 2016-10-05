@@ -11,10 +11,10 @@ import static org.junit.Assert.assertThat;
 
  */
 public class ItemTest {
-    String clientName = "Viktor";
-    long dateAdd = 32;
-    String description = "repair my TV pls";
-    Item item = new Item(clientName, dateAdd, description);
+    private String clientName = "Viktor";
+    private long dateAdd = 32;
+    private String description = "repair my TV pls";
+    private Item item = new Item(clientName, dateAdd, description);
     //String comm = "my comment";
     //Comment comment = new Comment(comm);
 
@@ -80,7 +80,7 @@ public class ItemTest {
         assertArrayEquals(getCommentsWithoutNull(item.getComments()), comments);
     }
 
-    public Comment[] getCommentsWithoutNull(Comment []comments){
+    private Comment[] getCommentsWithoutNull(Comment[] comments){
         int lenthCommentWithoutNull = 0;
         for (Comment comment:
              comments) {

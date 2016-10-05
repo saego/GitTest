@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
  */
 public class TrackerTest {
-    Tracker tracker = new Tracker();
+    private Tracker tracker = new Tracker();
 
     @Test
     public void testAddClient() throws Exception {
@@ -169,7 +169,7 @@ public class TrackerTest {
         assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
     }
 
-    public Item[] getWithoutNull(Item []getAllItems){
+    private Item[] getWithoutNull(Item[] getAllItems){
         int lengthArrWithoutNull = 0;
         for (Item getAllItem:
              getAllItems) {
