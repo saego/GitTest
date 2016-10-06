@@ -1,5 +1,7 @@
 package moduls;
 
+import java.text.SimpleDateFormat;
+
 /**
  Created by ${Ruslan} on 19.09.16.
 
@@ -9,6 +11,7 @@ public class Item {
     private long dateAdd;
     private String description;
     private String clientId;
+    private SimpleDateFormat myFormat = new SimpleDateFormat("dd.MM.yy hh:mm");
     private Comment []comments = new Comment[1];
 
     public Item(String name, long dateAdd, String description) {
@@ -75,7 +78,12 @@ public class Item {
         return comments;
     }
 
+    @Override
     public String toString(){
 
+        return "Client Id: " + getClientId()
+                + "   Client name: " + getName()
+                + "   Date add: " + myFormat.format(getDateAdd())
+                + "   Description: " + getDescription();
     }
 }

@@ -1,8 +1,8 @@
 package start;
 
-import moduls.*;
+import moduls.Comment;
+import moduls.Item;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -12,7 +12,7 @@ import java.util.Date;
 public class StartUI {
     private Tracker tracker = new Tracker();
     private Date date = new Date();
-    private SimpleDateFormat myFormat = new SimpleDateFormat("dd.MM.yy hh:mm");
+
     public static void main(String[] args) {
         StartUI start = new StartUI();
         start.addClients();
@@ -43,10 +43,7 @@ public class StartUI {
             for (Item trackerItems:
                  tracker.getAll()) {
                 if(trackerItems != null){
-                    System.out.println("Client Id: " + trackerItems.getClientId()
-                            + "   Client name: " + trackerItems.getName()
-                            + "   Date add: " + myFormat.format(trackerItems.getDateAdd())
-                            + "   Description: " + trackerItems.getDescription());
+                    System.out.println(trackerItems.toString());
                     System.out.println("*-*-*");
                 }
             }
@@ -63,10 +60,7 @@ public class StartUI {
             System.out.println();
             System.out.println("________* Look what I've found *________");
             System.out.println();
-            System.out.println("Client Id: " + tracker.findById(clientId).getClientId()
-                    + "   Client name: " + tracker.findById(clientId).getName()
-                    + "   Date add: " + tracker.findById(clientId).getDateAdd()
-                    + "   Description: " + tracker.findById(clientId).getDescription());
+            System.out.println(tracker.findById(clientId).toString());
             System.out.println("*-*-*");
             System.out.println("                                       " +
                     " ______/*End of table*/______");
@@ -85,10 +79,7 @@ public class StartUI {
             for (Item trackerItems:
                     tracker.getAll()) {
                 if(trackerItems != null){
-                    System.out.println("Client Id: " + trackerItems.getClientId()
-                            + "   Client name: " + trackerItems.getName()
-                            + "   Date add: " + myFormat.format(trackerItems.getDateAdd())
-                            + "   Description: " + trackerItems.getDescription());
+                    System.out.println(trackerItems.toString());
                     System.out.println("*-*-*");
                 }
             }
@@ -120,10 +111,7 @@ public class StartUI {
             for (Item trackerItems:
                     tracker.getAll()) {
                 if(trackerItems != null){
-                    System.out.println("Client Id: " + trackerItems.getClientId()
-                            + "   Client name: " + trackerItems.getName()
-                            + "   Date add: " + myFormat.format(trackerItems.getDateAdd())
-                            + "   Description: " + trackerItems.getDescription());
+                    System.out.println(trackerItems.toString());
                     for (Comment comment :
                             trackerItems.getComments()) {
                         if (comment != null) {
@@ -155,10 +143,7 @@ public class StartUI {
             for (Item trackerItems:
                     tracker.getAll()) {
                 if(trackerItems != null){
-                    System.out.println("Client Id: " + trackerItems.getClientId()
-                            + "   Client name: " + trackerItems.getName()
-                            + "   Date add: " + myFormat.format(trackerItems.getDateAdd())
-                            + "   Description: " + trackerItems.getDescription());
+                    System.out.println(trackerItems.toString());
                     System.out.println("*-*-*");
                 }
             }
