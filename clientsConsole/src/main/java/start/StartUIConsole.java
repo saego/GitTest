@@ -29,7 +29,7 @@ public class StartUIConsole {
     }
     public class InnerMenu{
         private Tracker tracker = new Tracker();
-        private Date date = new Date();
+       // private Date date = new Date();
         public Scanner scanner = new Scanner(System.in);
 
         public void process(){
