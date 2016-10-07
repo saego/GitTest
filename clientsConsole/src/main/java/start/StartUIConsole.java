@@ -53,6 +53,9 @@ public class StartUIConsole {
             else if(key.equals("6")){
                 addComment();
             }
+            else{
+                menu();
+            }
         }
 
         public void menu(){
