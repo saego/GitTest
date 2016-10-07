@@ -15,10 +15,11 @@ public class StartUIConsole {
 
     private void title(){
         System.out.println("Hello user!");
+        System.out.println();
     }
 
     private void start(){
-        innerMenu.menu();
+        innerMenu.process();
     }
 
     public static void main(String []args){
@@ -30,6 +31,29 @@ public class StartUIConsole {
         private Tracker tracker = new Tracker();
         private Date date = new Date();
         public Scanner scanner = new Scanner(System.in);
+
+        public void process(){
+            System.out.println("Input key (1, 2, 3, 4, 5, 6, 7)");
+            String key = scanner.next();
+            if(key.equals("1")){
+                add();
+            }
+            else if(key.equals("2")){
+                show();
+            }
+            else if(key.equals("3")){
+                update();
+            }
+            else if(key.equals("4")){
+                search();
+            }
+            else if(key.equals("5")){
+                remove();
+            }
+            else if(key.equals("6")){
+                addComment();
+            }
+        }
 
         public void menu(){
             System.out.println("***MENU***");
@@ -50,6 +74,26 @@ public class StartUIConsole {
         }
 
         public void add(){
+
+        }
+
+        public void show(){
+
+        }
+
+        public void update(){
+
+        }
+
+        public void search(){
+
+        }
+
+        public void remove(){
+
+        }
+
+        public void addComment(){
 
         }
     }
