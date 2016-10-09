@@ -1,6 +1,6 @@
 package start;
 
-import com.sun.demo.jvmti.hprof.Tracker;
+import moduls.Item;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -27,12 +27,12 @@ public class StartUIConsole {
         startUIConsole.title();
         startUIConsole.start();
     }
-    public class InnerMenu{
+    private class InnerMenu{
         private Tracker tracker = new Tracker();
-       // private Date date = new Date();
-        public Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        public void process(){
+        void process(){
+            menu();
             System.out.println("Input key (1, 2, 3, 4, 5, 6, 7)");
             String key = scanner.next();
             if(key.equals("1")){
@@ -58,7 +58,7 @@ public class StartUIConsole {
             }
         }
 
-        public void menu(){
+        void menu(){
             System.out.println("***MENU***");
             System.out.println();
             System.out.println("1: Add new client");
@@ -76,28 +76,44 @@ public class StartUIConsole {
             System.out.println("7: Exit");
         }
 
-        public void add(){
-
+        void add(){
+            System.out.println("__You are going to add new application!__");
+            System.out.println("Please input client's name");
+            String name = scanner.next();
+            System.out.println("Please input description");
+            String description = scanner.next();
+            Date date = new Date();
+            Item item = new Item(name, date.getTime(), description);
+            tracker.addClient(item);
         }
 
-        public void show(){
-
+        void show(){
+            System.out.println("__All applications__");
+            for (Item getItem:
+                 tracker.getAll()) {
+                if(getItem != null){
+                    System.out.println("***Applications list***");
+                    System.out.println();
+                    System.out.println(getItem.toString());
+                    System.out.println("_______________");
+                }
+            }
         }
 
-        public void update(){
-
+        void update(){
+            System.out.println("__You are going to update application by client's Id__");
         }
 
-        public void search(){
-
+        void search(){
+            System.out.println("__You are looking for application by Id__");
         }
 
-        public void remove(){
-
+        void remove(){
+            System.out.println("__You are giong to remove application by Id__");
         }
 
-        public void addComment(){
-
+        void addComment(){
+            System.out.println("__You are going to add new comment to application__");
         }
     }
 }
