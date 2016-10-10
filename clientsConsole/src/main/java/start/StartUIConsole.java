@@ -33,29 +33,29 @@ public class StartUIConsole {
         Scanner scanner = new Scanner(System.in);
 
         void process(){
-            menu();
-            System.out.println("Input key (1, 2, 3, 4, 5, 6, 7)");
-            String key = scanner.next();
-            if(key.equals("1")){
-                add();
-            }
-            else if(key.equals("2")){
-                show();
-            }
-            else if(key.equals("3")){
-                update();
-            }
-            else if(key.equals("4")){
-                search();
-            }
-            else if(key.equals("5")){
-                remove();
-            }
-            else if(key.equals("6")){
-                addComment();
-            }
-            else{
+            boolean flag1 = false;
+            while (!flag1) {
                 menu();
+                System.out.println("Input key (1, 2, 3, 4, 5, 6, 7)");
+                String key = scanner.next();
+                if (key.equals("1")) {
+                    add();
+                } else if (key.equals("2")) {
+                    show();
+                } else if (key.equals("3")) {
+                    update();
+                } else if (key.equals("4")) {
+                    search();
+                } else if (key.equals("5")) {
+                    remove();
+                } else if (key.equals("6")) {
+                    addComment();
+                } else if(key.equals("7")){
+                    flag1 = true;
+                }
+                else{
+                    System.out.println("Invalid key! Try again");
+                }
             }
         }
 
@@ -90,10 +90,11 @@ public class StartUIConsole {
 
         void show(){
             System.out.println("__All applications__");
+            System.out.println("***Applications list***");
             for (Item getItem:
                  tracker.getAll()) {
                 if(getItem != null){
-                    System.out.println("***Applications list***");
+
                     System.out.println();
                     System.out.println(getItem.toString());
                     System.out.println("_______________");
