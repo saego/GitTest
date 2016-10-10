@@ -102,6 +102,7 @@ public class StartUIConsole {
 
         void update(){
             System.out.println("__You are going to update application by client's Id__");
+            System.out.println("Input new name");
         }
 
         void search(){
