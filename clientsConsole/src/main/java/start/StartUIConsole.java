@@ -53,8 +53,10 @@ public class StartUIConsole {
                     addComment();
                 } else if(key.equals("7")){
                     searchByName();
+                }else if(key.equals("8")){
+                    searchByDescription();
                 }
-                else if(key.equals("8")){
+                else if(key.equals("9")){
                     flag1 = true;
                 }
                 else{
@@ -87,7 +89,10 @@ public class StartUIConsole {
             System.out.println("7: Search application by client's name");
             System.out.println("---------------------------");
             System.out.println();
-            System.out.println("8: Exit");
+            System.out.println("8: Search application by description");
+            System.out.println("---------------------------");
+            System.out.println();
+            System.out.println("9: Exit");
             System.out.println("-------");
         }
 
@@ -174,6 +179,18 @@ public class StartUIConsole {
             }
             if (!flag2){
                 System.out.println("No mutches found");
+            }
+        }
+
+        void searchByDescription(){
+            System.out.println();
+            System.out.println("Input key for search description");
+            String keyDescription = scanner.next();
+            for (Item item:
+                 tracker.getAll()) {
+                if(item.getDescription().equals(keyDescription)){
+                    System.out.println(item.toString());
+                }
             }
         }
     }
