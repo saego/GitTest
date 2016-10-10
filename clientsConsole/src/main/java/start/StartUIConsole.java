@@ -36,6 +36,7 @@ public class StartUIConsole {
             boolean flag1 = false;
             while (!flag1) {
                 menu();
+                System.out.println();
                 System.out.println("Input key (1, 2, 3, 4, 5, 6, 7)");
                 String key = scanner.next();
                 if (key.equals("1")) {
@@ -63,18 +64,25 @@ public class StartUIConsole {
             System.out.println("***MENU***");
             System.out.println();
             System.out.println("1: Add new client");
+            System.out.println("-------------------");
             System.out.println();
             System.out.println("2: Show all clients");
+            System.out.println("-------------------");
             System.out.println();
             System.out.println("3: Update client");
+            System.out.println("----------------");
             System.out.println();
             System.out.println("4: Search client by Id");
+            System.out.println("----------------------");
             System.out.println();
             System.out.println("5: Remove client by Id");
+            System.out.println("----------------------");
             System.out.println();
             System.out.println("6: Add comment by client Id");
+            System.out.println("---------------------------");
             System.out.println();
             System.out.println("7: Exit");
+            System.out.println("-------");
         }
 
         void add(){
