@@ -186,11 +186,16 @@ public class StartUIConsole {
             System.out.println();
             System.out.println("Input key for search description");
             String keyDescription = scanner.next();
+            boolean flag3 = false;
             for (Item item:
                  tracker.getAll()) {
-                if(item.getDescription().equals(keyDescription)){
+                if(item.getDescription().contains(keyDescription)){
                     System.out.println(item.toString());
+                    flag3 = true;
                 }
+            }
+            if(!flag3){
+                System.out.println("No mutches found");
             }
         }
     }

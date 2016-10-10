@@ -39,8 +39,8 @@
       <file leaf-file-name="StartUIConsole.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUIConsole.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59160304">
-              <caret line="58" column="37" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.8206107">
+              <caret line="194" column="17" selection-start-line="194" selection-start-column="17" selection-end-line="194" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -723,7 +723,13 @@
       <option name="project" value="LOCAL" />
       <updated>1476106140833</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="10/10 16/39  menu!!!">
+      <created>1476106754583</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1476106754583</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -798,7 +804,8 @@
     <MESSAGE value="10/10 13/03  menu!!!" />
     <MESSAGE value="10/10 16/02  menu!!!" />
     <MESSAGE value="10/10 16/28  menu!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="10/10 16/28  menu!!!" />
+    <MESSAGE value="10/10 16/39  menu!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="10/10 16/39  menu!!!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -917,8 +924,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUIConsole.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59160304">
-          <caret line="58" column="37" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.8206107">
+          <caret line="194" column="17" selection-start-line="194" selection-start-column="17" selection-end-line="194" selection-end-column="17" />
           <folding />
         </state>
       </provider>
