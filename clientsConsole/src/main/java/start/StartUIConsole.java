@@ -52,6 +52,9 @@ public class StartUIConsole {
                 } else if (key.equals("6")) {
                     addComment();
                 } else if(key.equals("7")){
+                    searchByName();
+                }
+                else if(key.equals("8")){
                     flag1 = true;
                 }
                 else{
@@ -63,25 +66,28 @@ public class StartUIConsole {
         void menu(){
             System.out.println("***MENU***");
             System.out.println();
-            System.out.println("1: Add new client");
+            System.out.println("1: Add new application");
             System.out.println("-------------------");
             System.out.println();
-            System.out.println("2: Show all clients");
+            System.out.println("2: Show all applications");
             System.out.println("-------------------");
             System.out.println();
-            System.out.println("3: Update client");
+            System.out.println("3: Update application");
             System.out.println("----------------");
             System.out.println();
-            System.out.println("4: Search client by Id");
+            System.out.println("4: Search application by Id");
             System.out.println("----------------------");
             System.out.println();
-            System.out.println("5: Remove client by Id");
+            System.out.println("5: Remove application by Id");
             System.out.println("----------------------");
             System.out.println();
             System.out.println("6: Add comment by client Id");
             System.out.println("---------------------------");
             System.out.println();
-            System.out.println("7: Exit");
+            System.out.println("7: Search application by client's name");
+            System.out.println("---------------------------");
+            System.out.println();
+            System.out.println("8: Exit");
             System.out.println("-------");
         }
 
@@ -98,7 +104,7 @@ public class StartUIConsole {
 
         void show(){
             System.out.println("__All applications__");
-            System.out.println("***Applications list***");
+            //System.out.println("***Applications list***");
             for (Item getItem:
                  tracker.getAll()) {
                 if(getItem != null){
@@ -152,6 +158,23 @@ public class StartUIConsole {
             System.out.println("Input client'c Id to add comment");
             String id = scanner.next();
             tracker.addComment(comment, id);
+        }
+
+        void searchByName(){
+            System.out.println();
+            System.out.println("Input client name, you are looking for");
+            String clientSearchName = scanner.next();
+            boolean flag2 = false;
+            for (Item item:
+                 tracker.getAll()) {
+                if(item.getName().equals(clientSearchName)){
+                    System.out.println(item.toString());
+                    flag2 = true;
+                }
+            }
+            if (!flag2){
+                System.out.println("No mutches found");
+            }
         }
     }
 }
