@@ -53,13 +53,11 @@ public class StartUIConsole {
                     addComment();
                 } else if(key.equals("7")){
                     searchByName();
-                }else if(key.equals("8")){
+                } else if(key.equals("8")){
                     searchByDescription();
-                }
-                else if(key.equals("9")){
+                } else if(key.equals("9")){
                     flag1 = true;
-                }
-                else{
+                } else{
                     System.out.println("Invalid key! Try again");
                 }
             }
@@ -169,15 +167,15 @@ public class StartUIConsole {
             System.out.println();
             System.out.println("Input client name, you are looking for");
             String clientSearchName = scanner.next();
-            boolean flag2 = false;
-            for (Item item:
+            boolean flag2 = true;
+            for (Item getItem:
                  tracker.getAll()) {
-                if(item.getName().equals(clientSearchName)){
-                    System.out.println(item.toString());
-                    flag2 = true;
+                if(getItem != null && getItem.getName().equals(clientSearchName)){
+                    System.out.println(getItem.toString());
+                    flag2 = false;
                 }
             }
-            if (!flag2){
+            if (flag2){
                 System.out.println("No mutches found");
             }
         }
@@ -189,7 +187,7 @@ public class StartUIConsole {
             boolean flag3 = false;
             for (Item item:
                  tracker.getAll()) {
-                if(item.getDescription().contains(keyDescription)){
+                if(item != null && item.getDescription().contains(keyDescription)){
                     System.out.println(item.toString());
                     flag3 = true;
                 }
