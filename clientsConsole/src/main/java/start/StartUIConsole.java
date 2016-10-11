@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class StartUIConsole {
 
-    private InnerMenu innerMenu = new InnerMenu();
+    public InnerMenu innerMenu = new InnerMenu();
 
     private void title(){
         System.out.println("Hello user!");
@@ -28,7 +28,7 @@ public class StartUIConsole {
         startUIConsole.title();
         startUIConsole.start();
     }
-    private class InnerMenu{
+    public class InnerMenu{
         private Tracker tracker = new Tracker();
         Scanner scanner = new Scanner(System.in);
 
@@ -52,9 +52,15 @@ public class StartUIConsole {
                 } else if (key.equals("6")) {
                     addComment();
                 } else if(key.equals("7")){
-                    searchByName();
+                    System.out.println();
+                    System.out.println("Input client name, you are looking for");
+                    String clientSearchName = scanner.next();
+                    searchByName(clientSearchName);
                 } else if(key.equals("8")){
-                    searchByDescription();
+                    System.out.println();
+                    System.out.println("Input key for search description");
+                    String keyDescription = scanner.next();
+                    searchByDescription(keyDescription);
                 } else if(key.equals("9")){
                     flag1 = true;
                 } else{
@@ -163,10 +169,10 @@ public class StartUIConsole {
             tracker.addComment(comment, id);
         }
 
-        void searchByName(){
-            System.out.println();
-            System.out.println("Input client name, you are looking for");
-            String clientSearchName = scanner.next();
+        public void searchByName(String  clientSearchName){
+            //System.out.println();
+            //System.out.println("Input client name, you are looking for");
+            //String clientSearchName = scanner.next();
             boolean flag2 = true;
             for (Item getItem:
                  tracker.getAll()) {
@@ -180,18 +186,17 @@ public class StartUIConsole {
             }
         }
 
-        void searchByDescription(){
-            System.out.println();
-            System.out.println("Input key for search description");
-            String keyDescription = scanner.next();
+        void searchByDescription(String keyDescription){
+            //System.out.println();
+            //System.out.println("Input key for search description");
+            //String keyDescription = scanner.next();
             boolean flag3 = false;
             for (Item item:
-                 tracker.getAll()) {
-                if(item != null && item.getDescription().contains(keyDescription)){
+                 tracker.getAll())
+                if (item != null && item.getDescription().contains(keyDescription)) {
                     System.out.println(item.toString());
                     flag3 = true;
                 }
-            }
             if(!flag3){
                 System.out.println("No mutches found");
             }
