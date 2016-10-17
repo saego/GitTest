@@ -96,8 +96,8 @@ public class Item {
 
         if (dateAdd != item.dateAdd) return false;
         if (!name.equals(item.name)) return false;
-        if (!description.equals(item.description)) return false;
-        return clientId.equals(item.clientId);
+        if (description.equals(item.description)) if (clientId.equals(item.clientId)) return true;
+        return false;
 
     }
 
