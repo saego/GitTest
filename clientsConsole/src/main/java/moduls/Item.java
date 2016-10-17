@@ -86,4 +86,27 @@ public class Item {
                 + "   Date add: " + myFormat.format(getDateAdd())
                 + "   Description: " + getDescription();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        if (dateAdd != item.dateAdd) return false;
+        if (!name.equals(item.name)) return false;
+        if (!description.equals(item.description)) return false;
+        return clientId.equals(item.clientId);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + (int) (dateAdd ^ (dateAdd >>> 32));
+        result = 31 * result + description.hashCode();
+        result = 31 * result + clientId.hashCode();
+        return result;
+    }
 }
