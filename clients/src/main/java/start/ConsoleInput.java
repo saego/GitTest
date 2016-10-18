@@ -10,7 +10,7 @@ import java.util.Scanner;
  Created by ${Ruslan} on 07.10.16.
 
  */
-public class StartUIConsole implements Input {
+public class ConsoleInput implements Input {
 
     //public InnerMenu innerMenu = new InnerMenu();
 
@@ -24,9 +24,9 @@ public class StartUIConsole implements Input {
     }
 
     public static void main(String []args){
-        StartUIConsole startUIConsole = new StartUIConsole();
-        startUIConsole.title();
-        startUIConsole.start();
+        ConsoleInput consoleInput = new ConsoleInput();
+        consoleInput.title();
+        consoleInput.start();
     }
 
 
