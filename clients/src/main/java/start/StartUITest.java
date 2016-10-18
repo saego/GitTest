@@ -28,20 +28,13 @@ public class StartUITest {
         new StartUITest(input).start();
     }
     private Tracker tracker = new Tracker();
-    //Scanner scanner = new Scanner(System.in);
-
-  /*  public String input.inputData(String question) {
-        System.out.println(question);
-        return scanner.next();
-    }*/
 
     void process(){
         boolean flag1 = false;
         while (!flag1) {
             menu();
             System.out.println();
-            //System.out.println("Input key (1, 2, 3, 4, 5, 6, 7)");
-            //String key = scanner.next();
+
             String key = input.inputData("Input key (1, 2, 3, 4, 5, 6, 7, 8, 9)");
             if (key.equals("1")) {
                 add();
@@ -57,14 +50,10 @@ public class StartUITest {
                 addComment();
             } else if(key.equals("7")){
                 System.out.println();
-                //System.out.println("Input client name, you are looking for");
-                //String clientSearchName = scanner.next();
                 String clientSearchName = input.inputData("Input client name, you are looking for");
                 searchByName(clientSearchName);
             } else if(key.equals("8")){
                 System.out.println();
-                //System.out.println("Input key for search description");
-                //String keyDescription = scanner.next();
                 String keyDescription = input.inputData("Input key for search description");
                 searchByDescription(keyDescription);
             } else if(key.equals("9")){
@@ -75,7 +64,6 @@ public class StartUITest {
         }
     }
 
-    // public void input.inputData(){}
 
     void menu(){
         System.out.println("***MENU***");
@@ -110,11 +98,7 @@ public class StartUITest {
 
     void add(){
         System.out.println("__You are going to add new application!__");
-        //System.out.println("Please input client's name");
-        //String name = scanner.next();
         String name = input.inputData("Please input client's name");
-        //System.out.println("Please input description");
-        //String description = scanner.next();
         String description = input.inputData("Please input description");
         Date date = new Date();
         Item item = new Item(name, date.getTime(), description);
@@ -123,7 +107,6 @@ public class StartUITest {
 
     void show(){
         System.out.println("__All applications__");
-        //System.out.println("***Applications list***");
         for (Item getItem:
                 tracker.getAll()) {
             if(getItem != null){
@@ -143,14 +126,8 @@ public class StartUITest {
 
     void update(){
         System.out.println("__You are going to update application by client's Id__");
-        //System.out.println("Input new name");
-        //String  newName = scanner.next();
         String newName = input.inputData("Input new name");
-        //System.out.println("Input client's Id");
-        //String id = scanner.next();
         String id = input.inputData("Input client's Id");
-        //System.out.println("Input new description");
-        //String newDescription = scanner.next();
         String newDescription = input.inputData("Input new description");
         Date date = new Date();
         Item item = new Item(newName, date.getTime(), newDescription);
@@ -160,36 +137,26 @@ public class StartUITest {
 
     void search(){
         System.out.println("__You are looking for application by Id__");
-        //System.out.println("Input client's Id");
-        //String id = scanner.next();
         String id = input.inputData("Input client's Id");
         System.out.println(tracker.findById(id).toString());
     }
 
     void remove(){
         System.out.println("__You are giong to remove application by Id__");
-        //System.out.println("Inpit client's Id");
-        //String id = scanner.next();
         String id = input.inputData("Input client's Id");
         tracker.remove(id);
     }
 
     void addComment(){
         System.out.println("__You are going to add new comment to application__");
-        //System.out.println("Input comment");
-        //String commentary = scanner.next();
         String commentary = input.inputData("Input comment");
         Comment comment = new Comment(commentary);
-        //System.out.println("Input client'c Id to add comment");
-        //String id = scanner.next();
         String id = input.inputData("Input client'c Id to add comment");
         tracker.addComment(comment, id);
     }
 
     public void searchByName(String  clientSearchName) {
         System.out.println();
-        //System.out.println("Input client name, you are looking for");
-        //String clientSearchName = scanner.next();
         boolean flag2 = false;
         for (Item getItem :
                 tracker.getAll())
@@ -211,8 +178,6 @@ public class StartUITest {
 
     void searchByDescription(String keyDescription){
         System.out.println();
-        //System.out.println("Input key for search description");
-        //String keyDescription = scanner.next();
         boolean flag3 = false;
         for (Item item:
                 tracker.getAll())

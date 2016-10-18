@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="983d5425-6064-424c-93df-0152958c8567" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/start/StartUI.java" afterPath="$PROJECT_DIR$/src/main/java/start/StartUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/start/StartUITest.java" afterPath="$PROJECT_DIR$/src/main/java/start/StartUITest.java" />
     </list>
     <ignored path="clients.iws" />
@@ -24,7 +25,7 @@
     <favorites_list name="clients" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5885372">
+    <splitter split-orientation="horizontal" split-proportion="0.46666667">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="ConsoleInput.java" pinned="false" current-in-tab="false">
@@ -40,8 +41,8 @@
           <file leaf-file-name="StartUITest.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUITest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="3.0550964">
-                  <caret line="216" column="23" selection-start-line="216" selection-start-column="23" selection-end-line="216" selection-end-column="23" />
+                <state vertical-scroll-proportion="0.55509645">
+                  <caret line="182" column="0" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#216#217#0" expanded="true" />
@@ -57,7 +58,7 @@
             <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUI.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="240" column="4" selection-start-line="240" selection-start-column="4" selection-end-line="240" selection-end-column="4" />
+                  <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -67,7 +68,7 @@
             <entry file="file://$PROJECT_DIR$/src/main/java/start/StubInput.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+                  <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
                   <folding />
                 </state>
               </provider>
@@ -80,8 +81,8 @@
           <file leaf-file-name="StartUI.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUI.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.3278237">
-                  <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
+                <state vertical-scroll-proportion="4.6363635">
+                  <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#208#209#0" expanded="true" />
@@ -116,8 +117,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/start/ConsoleInput.java" />
-        <option value="$PROJECT_DIR$/src/main/java/start/StartUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/start/StartUITest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/start/StartUI.java" />
       </list>
     </option>
   </component>
@@ -583,7 +584,13 @@
       <option name="project" value="LOCAL" />
       <updated>1476795390687</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="18/10 16/26 console &amp; stub">
+      <created>1476797190234</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1476797190234</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -620,7 +627,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="18/10 15/09 console &amp; stub" />
     <MESSAGE value="18/10 15/56 console &amp; stub" />
-    <option name="LAST_COMMIT_MESSAGE" value="18/10 15/56 console &amp; stub" />
+    <MESSAGE value="18/10 16/26 console &amp; stub" />
+    <option name="LAST_COMMIT_MESSAGE" value="18/10 16/26 console &amp; stub" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -635,15 +643,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/start/StubInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#208#209#0" expanded="true" />
+            <element signature="e#242#243#0" expanded="true" />
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -655,24 +661,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUI.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/start/StubInput.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="240" column="4" selection-start-line="240" selection-start-column="4" selection-end-line="240" selection-end-column="4" />
+          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUITest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.0550964">
-          <caret line="216" column="23" selection-start-line="216" selection-start-column="23" selection-end-line="216" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.55509645">
+          <caret line="182" column="0" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#216#217#0" expanded="true" />
             <element signature="e#250#251#0" expanded="true" />
             <element signature="e#269#270#0" expanded="true" />
             <element signature="e#294#295#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.6363635">
+          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#208#209#0" expanded="true" />
+            <element signature="e#242#243#0" expanded="true" />
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
           </folding>
         </state>
       </provider>
