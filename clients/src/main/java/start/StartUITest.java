@@ -23,7 +23,7 @@ public class StartUITest {
     public static void main(String []args){
         Input input = new StubInput(new String[] {
                 "1", "Name1", "desc1", "1", "Name2", "desc2", "1", "Name3", "desc3", "1", "Name4", "desc4",
-                "2", "7", "Name3", "8", "4", "2", "9"
+                "2", "7", "Name3", "8", "4", "2", "5", "007", "6", "comment", "009", "2",  "6", "comment1", "009", "2", "9"
         });
         new StartUITest(input).start();
     }
@@ -143,6 +143,7 @@ public class StartUITest {
 
     private void remove(){
         System.out.println("__You are giong to remove application by Id__");
+        tracker.getAll()[2].setClientId("007");//temporary setId
         String id = input.inputData("Input client's Id");
         tracker.remove(id);
     }
@@ -152,6 +153,7 @@ public class StartUITest {
         String commentary = input.inputData("Input comment");
         Comment comment = new Comment(commentary);
         String id = input.inputData("Input client'c Id to add comment");
+        tracker.getAll()[1].setClientId("009");
         tracker.addComment(comment, id);
     }
 

@@ -6,9 +6,9 @@ import java.util.Scanner;
  Created by ${Ruslan} on 07.10.16.
 
  */
-public class ConsoleInput implements Input {
+class ConsoleInput implements Input {
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public String inputData(String question) {
         System.out.println(question);
