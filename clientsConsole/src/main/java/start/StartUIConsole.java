@@ -47,7 +47,7 @@ public class StartUIConsole implements Input {
                 System.out.println();
                 //System.out.println("Input key (1, 2, 3, 4, 5, 6, 7)");
                 //String key = scanner.next();
-                String key = inputData("Input key (1, 2, 3, 4, 5, 6, 7)");
+                String key = inputData("Input key (1, 2, 3, 4, 5, 6, 7, 8, 9)");
                 if (key.equals("1")) {
                     add();
                 } else if (key.equals("2")) {
@@ -68,8 +68,9 @@ public class StartUIConsole implements Input {
                     searchByName(clientSearchName);
                 } else if(key.equals("8")){
                     System.out.println();
-                    System.out.println("Input key for search description");
-                    String keyDescription = scanner.next();
+                    //System.out.println("Input key for search description");
+                    //String keyDescription = scanner.next();
+                    String keyDescription = inputData("Input key for search description");
                     searchByDescription(keyDescription);
                 } else if(key.equals("9")){
                     flag1 = true;
@@ -114,10 +115,12 @@ public class StartUIConsole implements Input {
 
         void add(){
             System.out.println("__You are going to add new application!__");
-            System.out.println("Please input client's name");
-            String name = scanner.next();
-            System.out.println("Please input description");
-            String description = scanner.next();
+            //System.out.println("Please input client's name");
+            //String name = scanner.next();
+            String name = inputData("Please input client's name");
+            //System.out.println("Please input description");
+            //String description = scanner.next();
+            String description = inputData("Please input description");
             Date date = new Date();
             Item item = new Item(name, date.getTime(), description);
             tracker.addClient(item);
@@ -145,12 +148,15 @@ public class StartUIConsole implements Input {
 
         void update(){
             System.out.println("__You are going to update application by client's Id__");
-            System.out.println("Input new name");
-            String  newName = scanner.next();
-            System.out.println("Input client's Id");
-            String id = scanner.next();
-            System.out.println("Input new description");
-            String newDescription = scanner.next();
+            //System.out.println("Input new name");
+            //String  newName = scanner.next();
+            String newName = inputData("Input new name");
+            //System.out.println("Input client's Id");
+            //String id = scanner.next();
+            String id = inputData("Input client's Id");
+            //System.out.println("Input new description");
+            //String newDescription = scanner.next();
+            String newDescription = inputData("Input new description");
             Date date = new Date();
             Item item = new Item(newName, date.getTime(), newDescription);
             item.setClientId(id);
@@ -159,42 +165,52 @@ public class StartUIConsole implements Input {
 
         void search(){
             System.out.println("__You are looking for application by Id__");
-            System.out.println("Input client's Id");
-            String id = scanner.next();
+            //System.out.println("Input client's Id");
+            //String id = scanner.next();
+            String id = inputData("Input client's Id");
             System.out.println(tracker.findById(id).toString());
         }
 
         void remove(){
             System.out.println("__You are giong to remove application by Id__");
-            System.out.println("Inpit client's Id");
-            String id = scanner.next();
+            //System.out.println("Inpit client's Id");
+            //String id = scanner.next();
+            String id = inputData("Input client's Id");
             tracker.remove(id);
         }
 
         void addComment(){
             System.out.println("__You are going to add new comment to application__");
-            System.out.println("Input comment");
-            String commentary = scanner.next();
+            //System.out.println("Input comment");
+            //String commentary = scanner.next();
+            String commentary = inputData("Input comment");
             Comment comment = new Comment(commentary);
-            System.out.println("Input client'c Id to add comment");
-            String id = scanner.next();
+            //System.out.println("Input client'c Id to add comment");
+            //String id = scanner.next();
+            String id = inputData("Input client'c Id to add comment");
             tracker.addComment(comment, id);
         }
 
-        public void searchByName(String  clientSearchName){
+        public void searchByName(String  clientSearchName) {
             //System.out.println();
             //System.out.println("Input client name, you are looking for");
             //String clientSearchName = scanner.next();
             boolean flag2 = true;
-            for (Item getItem:
-                 tracker.getAll()) {
-                if(getItem != null && getItem.getName().equals(clientSearchName)){
+            for (Item getItem :
+                    tracker.getAll()) {
+                if (getItem != null && getItem.getName().equals(clientSearchName)) {
                     System.out.println(getItem.toString());
-                    flag2 = false;
+                    for (Comment comment :
+                            getItem.getComments()) {
+                        if (comment != null) {
+                            System.out.println("-" + comment.getComment());
+                        }
+                        flag2 = false;
+                    }
                 }
-            }
-            if (flag2){
-                System.out.println("No mutches found");
+                if (flag2) {
+                    System.out.println("No mutches found");
+                }
             }
         }
 
@@ -207,6 +223,11 @@ public class StartUIConsole implements Input {
                  tracker.getAll())
                 if (item != null && item.getDescription().contains(keyDescription)) {
                     System.out.println(item.toString());
+                    for (Comment comment:
+                            item.getComments()){
+                        if(comment != null) {
+                            System.out.println("-" + comment.getComment());
+                        }
                     flag3 = true;
                 }
             if(!flag3){
@@ -214,4 +235,4 @@ public class StartUIConsole implements Input {
             }
         }
     }
-//}
+}
