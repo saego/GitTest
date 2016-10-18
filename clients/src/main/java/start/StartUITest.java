@@ -10,13 +10,13 @@ import java.util.Date;
 
  */
 public class StartUITest {
-    public Input input;
+    private Input input;
 
-    public StartUITest(Input input) {
+    private StartUITest(Input input) {
         this.input = input;
     }
 
-    void start(){
+    private void start(){
         process();
     }
 
@@ -29,7 +29,7 @@ public class StartUITest {
     }
     private Tracker tracker = new Tracker();
 
-    void process(){
+    private void process(){
         boolean flag1 = false;
         while (!flag1) {
             menu();
@@ -65,7 +65,7 @@ public class StartUITest {
     }
 
 
-    void menu(){
+    private void menu(){
         System.out.println("***MENU***");
         System.out.println();
         System.out.println("1: Add new application");
@@ -96,7 +96,7 @@ public class StartUITest {
         System.out.println("-------");
     }
 
-    void add(){
+    private void add(){
         System.out.println("__You are going to add new application!__");
         String name = input.inputData("Please input client's name");
         String description = input.inputData("Please input description");
@@ -105,7 +105,7 @@ public class StartUITest {
         tracker.addClient(item);
     }
 
-    void show(){
+    private void show(){
         System.out.println("__All applications__");
         for (Item getItem:
                 tracker.getAll()) {
@@ -124,7 +124,7 @@ public class StartUITest {
         }
     }
 
-    void update(){
+    private void update(){
         System.out.println("__You are going to update application by client's Id__");
         String newName = input.inputData("Input new name");
         String id = input.inputData("Input client's Id");
@@ -135,19 +135,19 @@ public class StartUITest {
         tracker.rename(item);
     }
 
-    void search(){
+    private void search(){
         System.out.println("__You are looking for application by Id__");
         String id = input.inputData("Input client's Id");
         System.out.println(tracker.findById(id).toString());
     }
 
-    void remove(){
+    private void remove(){
         System.out.println("__You are giong to remove application by Id__");
         String id = input.inputData("Input client's Id");
         tracker.remove(id);
     }
 
-    void addComment(){
+    private void addComment(){
         System.out.println("__You are going to add new comment to application__");
         String commentary = input.inputData("Input comment");
         Comment comment = new Comment(commentary);
@@ -155,7 +155,7 @@ public class StartUITest {
         tracker.addComment(comment, id);
     }
 
-    public void searchByName(String  clientSearchName) {
+    private void searchByName(String clientSearchName) {
         System.out.println();
         boolean flag2 = false;
         for (Item getItem :
@@ -176,7 +176,7 @@ public class StartUITest {
 
     }
 
-    void searchByDescription(String keyDescription){
+    private void searchByDescription(String keyDescription){
         System.out.println();
         boolean flag3 = false;
         for (Item item:
