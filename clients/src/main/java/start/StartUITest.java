@@ -21,7 +21,10 @@ public class StartUITest {
     }
 
     public static void main(String []args){
-        Input input = new StubInput(new String[] {"1", "Ruslan", "desc", "2", "9"});
+        Input input = new StubInput(new String[] {
+                "1", "Name1", "desc1", "1", "Name2", "desc2", "1", "Name3", "desc3", "1", "Name4", "desc4",
+                "2", "7", "Name3", "8", "4", "2", "9"
+        });
         new StartUITest(input).start();
     }
     private Tracker tracker = new Tracker();
@@ -187,9 +190,9 @@ public class StartUITest {
         System.out.println();
         //System.out.println("Input client name, you are looking for");
         //String clientSearchName = scanner.next();
-        boolean flag2 = true;
+        boolean flag2 = false;
         for (Item getItem :
-                tracker.getAll()) {
+                tracker.getAll())
             if (getItem != null && getItem.getName().equals(clientSearchName)) {
                 System.out.println(getItem.toString());
                 for (Comment comment :
@@ -197,13 +200,13 @@ public class StartUITest {
                     if (comment != null) {
                         System.out.println("-" + comment.getComment());
                     }
-                    flag2 = false;
+                    flag2 = true;
+                }
+                if (!flag2) {
+                System.out.println("No mutches found");
                 }
             }
-            if (flag2) {
-                System.out.println("No mutches found");
-            }
-        }
+
     }
 
     void searchByDescription(String keyDescription){
