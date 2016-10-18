@@ -1,9 +1,5 @@
 package start;
 
-import moduls.Comment;
-import moduls.Item;
-
-import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -12,8 +8,15 @@ import java.util.Scanner;
  */
 public class ConsoleInput implements Input {
 
-    //public InnerMenu innerMenu = new InnerMenu();
+    Scanner scanner = new Scanner(System.in);
 
+    public String inputData(String question) {
+        System.out.println(question);
+        return scanner.next();
+    }
+}
+    //public InnerMenu innerMenu = new InnerMenu();
+/*
     private void title(){
         System.out.println("Hello user!");
         System.out.println();
@@ -236,3 +239,4 @@ public class ConsoleInput implements Input {
         }
     }
 }
+*/
