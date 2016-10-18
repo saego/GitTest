@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="983d5425-6064-424c-93df-0152958c8567" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/start/ConsoleInput.java" afterPath="$PROJECT_DIR$/src/main/java/start/ConsoleInput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/start/StartUITest.java" afterPath="$PROJECT_DIR$/src/main/java/start/StartUITest.java" />
     </list>
     <ignored path="clients.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StartUITest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StartUITest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUITest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="114" column="55" selection-start-line="114" selection-start-column="55" selection-end-line="114" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#279#280#0" expanded="true" />
@@ -70,7 +70,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StubInput.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StubInput.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/start/StubInput.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
@@ -102,8 +102,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/start/StartUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/start/Input.java" />
-        <option value="$PROJECT_DIR$/src/main/java/start/StartUITest.java" />
         <option value="$PROJECT_DIR$/src/main/java/start/ConsoleInput.java" />
+        <option value="$PROJECT_DIR$/src/main/java/start/StartUITest.java" />
       </list>
     </option>
   </component>
@@ -590,7 +590,14 @@
       <option name="project" value="LOCAL" />
       <updated>1476815913839</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="18/10 21/41 console &amp; stub">
+      <created>1476816093716</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1476816093716</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -641,7 +648,8 @@
     <MESSAGE value="18/10 21/02 console &amp; stub" />
     <MESSAGE value="18/10 21/34 console &amp; stub" />
     <MESSAGE value="18/10 21/38 console &amp; stub" />
-    <option name="LAST_COMMIT_MESSAGE" value="18/10 21/38 console &amp; stub" />
+    <MESSAGE value="18/10 21/41 console &amp; stub" />
+    <option name="LAST_COMMIT_MESSAGE" value="18/10 21/41 console &amp; stub" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -716,18 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUITest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#279#280#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="530">
@@ -743,6 +739,18 @@
         <state relative-caret-position="85">
           <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/start/StartUITest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="114" column="55" selection-start-line="114" selection-start-column="55" selection-end-line="114" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#279#280#0" expanded="true" />
+            <element signature="e#304#305#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

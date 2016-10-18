@@ -153,7 +153,7 @@ public class StartUITest {
         String commentary = input.inputData("Input comment");
         Comment comment = new Comment(commentary);
         String id = input.inputData("Input client'c Id to add comment");
-        tracker.getAll()[1].setClientId("009");
+        tracker.getAll()[1].setClientId("009");//temporary setId
         tracker.addComment(comment, id);
     }
 
