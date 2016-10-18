@@ -10,9 +10,9 @@ import java.util.Scanner;
  Created by ${Ruslan} on 07.10.16.
 
  */
-public class StartUIConsole {
+public class StartUIConsole implements Input {
 
-    public InnerMenu innerMenu = new InnerMenu();
+    //public InnerMenu innerMenu = new InnerMenu();
 
     private void title(){
         System.out.println("Hello user!");
@@ -20,7 +20,7 @@ public class StartUIConsole {
     }
 
     private void start(){
-        innerMenu.process();
+        process();
     }
 
     public static void main(String []args){
@@ -28,17 +28,26 @@ public class StartUIConsole {
         startUIConsole.title();
         startUIConsole.start();
     }
-    public class InnerMenu{
+
+
+
+//    public class InnerMenu{
         private Tracker tracker = new Tracker();
         Scanner scanner = new Scanner(System.in);
+
+        public String inputData(String question) {
+            System.out.println(question);
+            return scanner.next();
+        }
 
         void process(){
             boolean flag1 = false;
             while (!flag1) {
                 menu();
                 System.out.println();
-                System.out.println("Input key (1, 2, 3, 4, 5, 6, 7)");
-                String key = scanner.next();
+                //System.out.println("Input key (1, 2, 3, 4, 5, 6, 7)");
+                //String key = scanner.next();
+                String key = inputData("Input key (1, 2, 3, 4, 5, 6, 7)");
                 if (key.equals("1")) {
                     add();
                 } else if (key.equals("2")) {
@@ -53,8 +62,9 @@ public class StartUIConsole {
                     addComment();
                 } else if(key.equals("7")){
                     System.out.println();
-                    System.out.println("Input client name, you are looking for");
-                    String clientSearchName = scanner.next();
+                    //System.out.println("Input client name, you are looking for");
+                    //String clientSearchName = scanner.next();
+                    String clientSearchName = inputData("Input client name, you are looking for");
                     searchByName(clientSearchName);
                 } else if(key.equals("8")){
                     System.out.println();
@@ -68,6 +78,8 @@ public class StartUIConsole {
                 }
             }
         }
+
+       // public void inputData(){}
 
         void menu(){
             System.out.println("***MENU***");
@@ -202,4 +214,4 @@ public class StartUIConsole {
             }
         }
     }
-}
+//}
