@@ -17,7 +17,10 @@ public class StartUI {
     }
 
     private void start(){
-        process();
+    //    process();
+        Tracker tracker = new Tracker();
+        MenuTracker menuTracker = new MenuTracker(this.input, tracker);
+        menuTracker.fillAction();
     }
 
     public static void main(String []args){
@@ -28,7 +31,7 @@ public class StartUI {
 
 
 
-    private Tracker tracker = new Tracker();
+    /*private Tracker tracker = new Tracker();
 
     private void process(){
         boolean flag1 = false;
@@ -194,5 +197,5 @@ public class StartUI {
                     System.out.println("No mutches found");
                 }
             }
-    }
+    }*/
 }

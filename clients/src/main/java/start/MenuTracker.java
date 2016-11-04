@@ -12,15 +12,23 @@ public class MenuTracker {
 
     private Input input;
     private Tracker tracker;
-    private UserAction []actions = new UserAction[8];
+    private UserAction []actions = new UserAction[9];
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
-    public void init(){
-
+    public void fillAction(){
+        this.actions[0] = this.new AddItem();
+        this.actions[1] = this.new ShowItems();
+        this.actions[2] = this.new Update();
+        this.actions[3] = this.new SearchById();
+        this.actions[4] = this.new Remove();
+        this.actions[5] = this.new AddComment();
+        this.actions[6] = this.new SearchItemByName();
+        this.actions[7] = this.new SearchByDescription();
+        this.actions[8] = this.new Exit();
     }
 
     private class AddItem implements UserAction{
@@ -77,8 +85,8 @@ public class MenuTracker {
         }
 
         public void execute(Input input, Tracker tracker){
-            String newName = input.inputData("Input new name");
             String id = input.inputData("Input client's Id");
+            String newName = input.inputData("Input new name");
             String newDescription = input.inputData("Input new description");
             Date date = new Date();
             Item item = new Item(newName, date.getTime(), newDescription);
@@ -205,6 +213,19 @@ public class MenuTracker {
 
         public String info() {
             return String.format("%s. %s", this.key(), "Searching Item by description");
+        }
+    }
+    private class Exit implements UserAction{
+
+        public int key(){
+            return 8;
+        }
+
+        public void execute(Input input, Tracker tracker){
+        }
+
+        public String info(){
+            return String.format("%s. %s", this.key(), "Exit");
         }
     }
 }
