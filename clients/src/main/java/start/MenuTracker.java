@@ -30,6 +30,17 @@ public class MenuTracker {
         this.actions[7] = this.new SearchByDescription();
         this.actions[8] = this.new Exit();
     }
+    public void select(int key){
+        this.actions[key].execute(this.input, this.tracker);
+    }
+    public void show(){
+        for (UserAction action:
+                this.actions){
+            if (action != null){
+                System.out.println(action.info());
+            }
+        }
+    }
 
     private class AddItem implements UserAction{
 
