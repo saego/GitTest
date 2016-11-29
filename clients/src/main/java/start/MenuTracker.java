@@ -56,7 +56,7 @@ public class MenuTracker {
         }
 
         public String info(){
-            return String.format("%s. %s", this.key(), "Adding new item");
+            return String.format("%s. %s", this.key() + 1, "Adding new item");
         }
     }
 
@@ -85,7 +85,7 @@ public class MenuTracker {
         }
 
         public String info(){
-            return String.format("%s. %s", this.key(), "Showing all items");
+            return String.format("%s. %s", this.key() + 1, "Showing all items");
         }
     }
 
@@ -106,7 +106,7 @@ public class MenuTracker {
         }
 
         public String info(){
-            return String.format("%s. %s", this.key(), "Updating Item by id");
+            return String.format("%s. %s", this.key() + 1, "Updating Item by id");
         }
     }
 
@@ -122,7 +122,7 @@ public class MenuTracker {
         }
 
         public String info(){
-            return String.format("%s. %s", this.key(), "Searching Item by id");
+            return String.format("%s. %s", this.key() + 1, "Searching Item by id");
         }
     }
 
@@ -138,7 +138,7 @@ public class MenuTracker {
         }
 
         public String info(){
-            return String.format("%s. %s", this.key(), "Removing Item by id");
+            return String.format("%s. %s", this.key() + 1, "Removing Item by id");
         }
     }
 
@@ -156,7 +156,7 @@ public class MenuTracker {
         }
 
         public String info() {
-            return String.format("%s. %s", this.key(), "Adding comments to Item by id");
+            return String.format("%s. %s", this.key() + 1, "Adding comments to Item by id");
         }
     }
 
@@ -190,7 +190,7 @@ public class MenuTracker {
         }
 
         public String info() {
-            return String.format("%s. %s", this.key(), "Searching Item by name");
+            return String.format("%s. %s", this.key() +  1, "Searching Item by name");
         }
     }
 
@@ -223,7 +223,7 @@ public class MenuTracker {
         }
 
         public String info() {
-            return String.format("%s. %s", this.key(), "Searching Item by description");
+            return String.format("%s. %s", this.key() + 1, "Searching Item by description");
         }
     }
     private class Exit implements UserAction{
@@ -236,7 +236,7 @@ public class MenuTracker {
         }
 
         public String info(){
-            return String.format("%s. %s", this.key(), "Exit");
+            return String.format("%s. %s", this.key() + 1, "Exit");
         }
     }
 }

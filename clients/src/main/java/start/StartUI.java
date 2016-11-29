@@ -21,10 +21,13 @@ public class StartUI {
         Tracker tracker = new Tracker();
         MenuTracker menuTracker = new MenuTracker(this.input, tracker);
         menuTracker.fillAction();
-        menuTracker.show();
-        int key = Integer.valueOf(input.inputData("Select: "));
-        menuTracker.select(key);
-
+        int key;
+        do {
+            menuTracker.show();
+            key = Integer.valueOf(input.inputData("Select: ")) - 1;
+            menuTracker.select(key);
+        }
+        while (key != 8);
     }
 
     public static void main(String []args){
