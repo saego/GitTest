@@ -22,7 +22,9 @@ public class StartUI {
         MenuTracker menuTracker = new MenuTracker(this.input, tracker);
         menuTracker.fillAction();
         menuTracker.show();
-        int key = input.inputData("Select: ");
+        int key = Integer.valueOf(input.inputData("Select: "));
+        menuTracker.select(key);
+
     }
 
     public static void main(String []args){
