@@ -18,7 +18,9 @@ public class StartUITest {
         this.input = input;
         this.tracker = new Tracker();
         this.tracker.addClient(new Item("Name0", new Date().getTime(), "desc0"));
+        this.tracker.addClient(new Item("Name00", new Date().getTime(), "desc00"));
         this.tracker.getAll()[0].setClientId("1234");
+        this.tracker.getAll()[1].setClientId("12345");
     }
 
     private void start() {
@@ -38,7 +40,8 @@ public class StartUITest {
                 "1", "Name1", "desc1", "2", "1", "Name2", "desc2", "2",
                 "1", "Name3", "desc3", "1", "Name4", "desc4",
                 "2", "3", "1234", "NewName0", "NewDesc0", "2",
-                "4", "1234", "5", "comment0", "1234", "2", "9"
+                "4", "1234", "5", "1234", "2", "6", "comment00","12345","2",
+                "7", "Name3","8", "desc00", "2", "9"
         });
         new StartUITest(input).start();
     }
