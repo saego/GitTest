@@ -6,20 +6,20 @@ import moduls.Item;
 import java.util.Date;
 
 /**
- * Created by Ruslan on 25.10.2016.
+  Created by Ruslan on 25.10.2016.
  */
-public class MenuTracker {
+class MenuTracker {
 
     private Input input;
     private Tracker tracker;
     private UserAction []actions = new UserAction[9];
 
-    public MenuTracker(Input input, Tracker tracker) {
+    MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
-    public void fillAction(){
+    void fillAction(){
         this.actions[0] = this.new AddItem();
         this.actions[1] = this.new ShowItems();
         this.actions[2] = this.new Update();
@@ -30,10 +30,10 @@ public class MenuTracker {
         this.actions[7] = this.new SearchByDescription();
         this.actions[8] = this.new Exit();
     }
-    public void select(int key){
+    void select(int key){
         this.actions[key].execute(this.input, this.tracker);
     }
-    public void show(){
+    void show(){
         for (UserAction action:
                 this.actions){
             if (action != null){

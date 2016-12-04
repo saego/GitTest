@@ -8,7 +8,7 @@ public class StubInput implements Input{
     private String []answers;
     private int position = 0;
 
-    public StubInput(String[] answers) {
+    StubInput(String[] answers) {
         this.answers = answers;
     }
 

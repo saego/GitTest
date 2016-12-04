@@ -1,9 +1,10 @@
 package start;
 
-import moduls.Comment;
 import moduls.Item;
 
 import java.util.Date;
+
+import static java.lang.Integer.valueOf;
 
 /**
  Created by ${Ruslan} on 18.10.16.
@@ -11,25 +12,40 @@ import java.util.Date;
  */
 public class StartUITest {
     private Input input;
+    private Tracker tracker;
 
     private StartUITest(Input input) {
         this.input = input;
+        this.tracker = new Tracker();
+        this.tracker.addClient(new Item("Name0", new Date().getTime(), "desc0"));
+        this.tracker.getAll()[0].setClientId("1234");
     }
 
-    private void start(){
-        process();
+    private void start() {
+        MenuTracker menuTracker = new MenuTracker(this.input, this.tracker);
+        menuTracker.fillAction();
+        int key;
+        do {
+            menuTracker.show();
+            key = valueOf(input.inputData("Select")) - 1;
+            menuTracker.select(key);
+        }
+        while (key != 8);
     }
 
-    public static void main(String []args){
-        Input input = new StubInput(new String[] {
-                "1", "Name1", "desc1", "1", "Name2", "desc2", "1", "Name3", "desc3", "1", "Name4", "desc4",
-                "2", "7", "Name3", "8", "4", "2", "5", "007", "6", "comment", "009", "2",  "6", "comment1", "009", "2", "9"
+    public static void main(String[] args) {
+        Input input = new StubInput(new String[]{
+                "1", "Name1", "desc1", "2", "1", "Name2", "desc2", "2",
+                "1", "Name3", "desc3", "1", "Name4", "desc4",
+                "2", "3", "1234", "NewName0", "NewDesc0", "2",
+                "4", "1234", "5", "comment0", "1234", "2", "9"
         });
         new StartUITest(input).start();
     }
-    private Tracker tracker = new Tracker();
+}
+    //private Tracker tracker = new Tracker();
 
-    private void process(){
+    /*private void process(){
         boolean flag1 = false;
         while (!flag1) {
             menu();
@@ -198,4 +214,4 @@ public class StartUITest {
             }
     }
 }
-
+*/
