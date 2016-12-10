@@ -183,10 +183,10 @@ class MenuTracker {
                         flag2 = false;
                     }
                 }
+            }
                 if (flag2) {
                     System.out.println("No mutches found");
                 }
-            }
         }
 
         public String info() {
@@ -205,21 +205,22 @@ class MenuTracker {
             //searchByDescription(keyDescription);
             System.out.println();
             boolean flag3 = false;
-            for (Item item:
-                    tracker.getAll())
+            for (Item item :
+                    tracker.getAll()) {
                 if (item != null && item.getDescription().contains(keyDescription)) {
                     System.out.println(item.toString());
-                    for (Comment comment:
-                            item.getComments()){
-                        if(comment != null) {
+                    for (Comment comment :
+                            item.getComments()) {
+                        if (comment != null) {
                             System.out.println("-" + comment.getComment());
                         }
                         flag3 = true;
                     }
-                    if(!flag3){
+                }
+            }
+                if (!flag3) {
                         System.out.println("No mutches found");
                     }
-                }
         }
 
         public String info() {
