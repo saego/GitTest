@@ -6,4 +6,5 @@ package start;
  */
 interface Input {
     String inputData(String question);
+    int inputData(String question, int []range);
 }

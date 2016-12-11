@@ -14,4 +14,8 @@ class ConsoleInput implements Input {
         System.out.println(question);
         return scanner.next();
     }
+
+    public int inputData(String question, int[] range) {
+        return 0;
+    }
 }
