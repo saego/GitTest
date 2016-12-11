@@ -1,7 +1,7 @@
 package Templates;
 
 /**
- * Created by Ruslan on 11.12.2016.
+  Created by Ruslan on 11.12.2016.
  */
 public class CopyAction extends TemplateAction{
     public CopyAction(String name) {

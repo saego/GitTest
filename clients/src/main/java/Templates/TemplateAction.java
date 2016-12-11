@@ -4,7 +4,7 @@ package Templates;
   Created by Ruslan on 11.12.2016.
  */
 public abstract class TemplateAction {
-    public TemplateAction(String name){
+    TemplateAction(String name){
 
     }
     void start(){

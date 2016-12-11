@@ -1,7 +1,7 @@
 package start;
 
 /**
- * Created by Ruslan on 25.10.2016.
+  Created by Ruslan on 25.10.2016.
  */
 public interface UserAction {
     int key();
