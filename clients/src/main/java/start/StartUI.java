@@ -6,6 +6,7 @@ package start;
  */
 public class StartUI {
     private Input input;
+    private int []range = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
 
     private StartUI(Input input) {
         this.input = input;
@@ -19,14 +20,14 @@ public class StartUI {
         int key;
         do {
             menuTracker.show();
-            key = Integer.valueOf(input.inputData("Select: ")) - 1;
+            key = this.input.inputData("Select: ", range) - 1;
             menuTracker.select(key);
         }
         while (key != 8);
     }
 
     public static void main(String []args){
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         new StartUI(input).start();
     }
 

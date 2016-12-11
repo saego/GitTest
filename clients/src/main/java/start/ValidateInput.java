@@ -9,10 +9,16 @@ public class ValidateInput extends ConsoleInput{
         int value = -1;
         do {
             try {
-                value = super.inputData(question, []range);
+                value = super.inputData(question, range);
                 invalid = false;
             }
-        }
+            catch (MenuOutException moe){
+                System.out.println("Select in range");
+            }
+            catch (NumberFormatException nfe){
+                System.out.println("Incorrect format of number");
+            }
+        }while (invalid);
         return value;
     }
 }

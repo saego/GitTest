@@ -15,7 +15,22 @@ class ConsoleInput implements Input {
         return scanner.next();
     }
 
-    public int inputData(String question, int[] range) {
-        return 0;
+    public int inputData(String question, int[] range) throws MenuOutException{
+        int key = Integer.valueOf(this.inputData(question));
+        boolean exist = false;
+        for (int value:
+             range) {
+            if(value == key){
+                exist = true;
+                break;
+            }
+        }
+        //return exist ? key: -1;
+        if (exist){
+            return key;
+        }
+        else {
+            throw new MenuOutException("Out of range");
+        }
     }
 }
