@@ -30,6 +30,10 @@ class MenuTracker {
         this.actions[7] = this.new SearchByDescription();
         this.actions[8] = this.new Exit();
     }
+   // public void addaction(){
+    //    this.actions[position ]
+    //}
+
     void select(int key){
         this.actions[key].execute(this.input, this.tracker);
     }
@@ -42,8 +46,10 @@ class MenuTracker {
         }
     }
 
-    private class AddItem implements UserAction{
-
+    private class AddItem extends InfoAction{
+        AddItem(){
+            super("Adding new Item");
+        }
         public int key(){
             return 0;
         }
@@ -55,12 +61,15 @@ class MenuTracker {
             tracker.addClient(new Item(name, date.getTime(), description));
         }
 
-        public String info(){
-            return String.format("%s. %s", this.key() + 1, "Adding new item");
-        }
+        //public String info(){
+        //    return String.format("%s. %s", this.key() + 1, "Adding new item");
+        //}
     }
 
-    private class ShowItems implements UserAction{
+    private class ShowItems extends InfoAction{
+        ShowItems() {
+            super("Showing all items");
+        }
 
         public int key(){
             return 1;
@@ -84,12 +93,16 @@ class MenuTracker {
             }
         }
 
-        public String info(){
-            return String.format("%s. %s", this.key() + 1, "Showing all items");
+     //   public String info(){
+            //return String.format("%s. %s", this.key() + 1, "Showing all items");
         }
-    }
+    //}
 
-    private class Update implements UserAction{
+    private class Update extends InfoAction{
+
+        Update() {
+            super("Updating Item by id");
+        }
 
         public int key(){
             return 2;
@@ -105,12 +118,16 @@ class MenuTracker {
             tracker.rename(item);
         }
 
-        public String info(){
-            return String.format("%s. %s", this.key() + 1, "Updating Item by id");
-        }
+        //public String info(){
+        //    return String.format("%s. %s", this.key() + 1, "Updating Item by id");
+        //}
     }
 
-    private class SearchById implements UserAction{
+    private class SearchById extends InfoAction{
+
+        SearchById() {
+            super("Searching Item by id");
+        }
 
         public int key(){
             return 3;
@@ -121,12 +138,16 @@ class MenuTracker {
             System.out.println(tracker.findById(id).toString());
         }
 
-        public String info(){
-            return String.format("%s. %s", this.key() + 1, "Searching Item by id");
-        }
+        //public String info(){
+        //    return String.format("%s. %s", this.key() + 1, "Searching Item by id");
+        //}
     }
 
-    private class Remove implements UserAction{
+    private class Remove extends InfoAction{
+
+        Remove() {
+            super("Removing Item by id");
+        }
 
         public int key(){
             return 4;
@@ -137,12 +158,16 @@ class MenuTracker {
             tracker.remove(id);
         }
 
-        public String info(){
-            return String.format("%s. %s", this.key() + 1, "Removing Item by id");
-        }
+        //public String info(){
+        //    return String.format("%s. %s", this.key() + 1, "Removing Item by id");
+        //}
     }
 
-    private class AddComment implements UserAction{
+    private class AddComment extends InfoAction{
+
+        AddComment() {
+            super("Adding comments to Item by id");
+        }
 
         public int key() {
             return 5;
@@ -155,12 +180,16 @@ class MenuTracker {
             tracker.addComment(comment, id);
         }
 
-        public String info() {
-            return String.format("%s. %s", this.key() + 1, "Adding comments to Item by id");
-        }
+        //public String info() {
+         //   return String.format("%s. %s", this.key() + 1, "Adding comments to Item by id");
+        //}
     }
 
-    private class SearchItemByName implements UserAction{
+    private class SearchItemByName extends InfoAction{
+
+        SearchItemByName() {
+            super("Searching Item by name");
+        }
 
         public int key() {
             return 6;
@@ -189,12 +218,16 @@ class MenuTracker {
                 }
         }
 
-        public String info() {
-            return String.format("%s. %s", this.key() +  1, "Searching Item by name");
-        }
+        //public String info() {
+        //    return String.format("%s. %s", this.key() +  1, "Searching Item by name");
+        //}
     }
 
-    private class SearchByDescription implements UserAction{
+    private class SearchByDescription extends InfoAction{
+
+        SearchByDescription() {
+            super("Searching Item by description");
+        }
 
         public int key() {
             return 7;
@@ -223,11 +256,15 @@ class MenuTracker {
                     }
         }
 
-        public String info() {
-            return String.format("%s. %s", this.key() + 1, "Searching Item by description");
-        }
+        //public String info() {
+        //    return String.format("%s. %s", this.key() + 1, "Searching Item by description");
+        //}
     }
-    private class Exit implements UserAction{
+    private class Exit extends InfoAction{
+
+        Exit() {
+            super("Exit");
+        }
 
         public int key(){
             return 8;
@@ -236,8 +273,8 @@ class MenuTracker {
         public void execute(Input input, Tracker tracker){
         }
 
-        public String info(){
-            return String.format("%s. %s", this.key() + 1, "Exit");
-        }
+        //public String info(){
+        //    return String.format("%s. %s", this.key() + 1, "Exit");
+        //}
     }
 }

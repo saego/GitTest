@@ -20,7 +20,7 @@ public class StartUI {
         int key;
         do {
             menuTracker.show();
-            key = this.input.inputData("Select: ", range) - 1;
+            key = this.input.inputData("Select: ", range);
             menuTracker.select(key);
         }
         while (key != 8);
