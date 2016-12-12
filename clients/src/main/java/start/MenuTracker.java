@@ -30,9 +30,6 @@ class MenuTracker {
         this.actions[7] = this.new SearchByDescription();
         this.actions[8] = this.new Exit();
     }
-   // public void addaction(){
-    //    this.actions[position ]
-    //}
 
     void select(int key){
         this.actions[key].execute(this.input, this.tracker);
@@ -44,6 +41,15 @@ class MenuTracker {
                 System.out.println(action.info());
             }
         }
+    }
+    int []getAllActions(){
+        int []actionsQuantity = new int[this.actions.length];
+        int i = 0;
+        for(int n = 0; n < actionsQuantity.length; n++){
+            actionsQuantity[n] = i;
+            i = i +1;
+        }
+        return actionsQuantity;
     }
 
     private class AddItem extends InfoAction{
@@ -61,9 +67,7 @@ class MenuTracker {
             tracker.addClient(new Item(name, date.getTime(), description));
         }
 
-        //public String info(){
-        //    return String.format("%s. %s", this.key() + 1, "Adding new item");
-        //}
+
     }
 
     private class ShowItems extends InfoAction{
@@ -93,10 +97,7 @@ class MenuTracker {
             }
         }
 
-     //   public String info(){
-            //return String.format("%s. %s", this.key() + 1, "Showing all items");
-        }
-    //}
+    }
 
     private class Update extends InfoAction{
 
@@ -118,9 +119,6 @@ class MenuTracker {
             tracker.rename(item);
         }
 
-        //public String info(){
-        //    return String.format("%s. %s", this.key() + 1, "Updating Item by id");
-        //}
     }
 
     private class SearchById extends InfoAction{
@@ -138,9 +136,6 @@ class MenuTracker {
             System.out.println(tracker.findById(id).toString());
         }
 
-        //public String info(){
-        //    return String.format("%s. %s", this.key() + 1, "Searching Item by id");
-        //}
     }
 
     private class Remove extends InfoAction{
@@ -158,9 +153,6 @@ class MenuTracker {
             tracker.remove(id);
         }
 
-        //public String info(){
-        //    return String.format("%s. %s", this.key() + 1, "Removing Item by id");
-        //}
     }
 
     private class AddComment extends InfoAction{
@@ -180,9 +172,6 @@ class MenuTracker {
             tracker.addComment(comment, id);
         }
 
-        //public String info() {
-         //   return String.format("%s. %s", this.key() + 1, "Adding comments to Item by id");
-        //}
     }
 
     private class SearchItemByName extends InfoAction{
@@ -197,7 +186,6 @@ class MenuTracker {
 
         public void execute(Input input, Tracker tracker) {
             String clientSearchName = input.inputData("Input client name, you are looking for");
-           // searchByName(clientSearchName);
             System.out.println();
             boolean flag2 = true;
             for (Item getItem :
@@ -218,9 +206,6 @@ class MenuTracker {
                 }
         }
 
-        //public String info() {
-        //    return String.format("%s. %s", this.key() +  1, "Searching Item by name");
-        //}
     }
 
     private class SearchByDescription extends InfoAction{
@@ -235,7 +220,6 @@ class MenuTracker {
 
         public void execute(Input input, Tracker tracker) {
             String keyDescription = input.inputData("Input key for search description");
-            //searchByDescription(keyDescription);
             System.out.println();
             boolean flag3 = false;
             for (Item item :
@@ -256,9 +240,6 @@ class MenuTracker {
                     }
         }
 
-        //public String info() {
-        //    return String.format("%s. %s", this.key() + 1, "Searching Item by description");
-        //}
     }
     private class Exit extends InfoAction{
 
@@ -273,8 +254,5 @@ class MenuTracker {
         public void execute(Input input, Tracker tracker){
         }
 
-        //public String info(){
-        //    return String.format("%s. %s", this.key() + 1, "Exit");
-        //}
     }
 }
