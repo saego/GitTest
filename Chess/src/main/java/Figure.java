@@ -11,4 +11,8 @@ public abstract class Figure {
         this.colour = colour;
         this.cell = cell;
     }
+
+    public String getColour() {
+        return colour;
+    }
 }
