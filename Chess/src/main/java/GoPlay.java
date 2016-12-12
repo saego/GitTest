@@ -10,8 +10,8 @@ public class GoPlay {
         for (Figure figur:
              chessBoard.getFigures()) {
             if (figur != null){
-                System.out.println("Figure:" + figur.getClass().getName() + " Сolour:" + figur.getColour() +
-                " Horizontal position:" + figur.cell.getPositionH() + " Vertical position:" + figur.cell.getPositionV());
+                System.out.println("Figure:" + figur.getClass().getName() + " Сolour:" + figur.getColour());
+                System.out.println(" Horizontal position:" + figur.cell.getPositionH() + " Vertical position:" + figur.cell.getPositionV());
             }
         }
     }
