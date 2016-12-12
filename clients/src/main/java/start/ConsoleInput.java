@@ -9,12 +9,12 @@ import java.util.Scanner;
 class ConsoleInput implements Input {
 
     private Scanner scanner = new Scanner(System.in);
-
+//question for choose key from keyboard
     public String inputData(String question) {
         System.out.println(question);
         return scanner.next();
     }
-
+//overriding question in range of actions
     public int inputData(String question, int[] range) throws MenuOutException{
         int key = Integer.valueOf(this.inputData(question));
         boolean exist = false;
@@ -25,7 +25,6 @@ class ConsoleInput implements Input {
                 break;
             }
         }
-        //return exist ? key: -1;
         if (exist){
             return key;
         }

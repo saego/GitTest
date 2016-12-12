@@ -18,7 +18,7 @@ class MenuTracker {
         this.input = input;
         this.tracker = tracker;
     }
-
+//menu actions
     void fillAction(){
         this.actions[0] = this.new AddItem();
         this.actions[1] = this.new ShowItems();
@@ -30,7 +30,7 @@ class MenuTracker {
         this.actions[7] = this.new SearchByDescription();
         this.actions[8] = this.new Exit();
     }
-
+//selection menu
     void select(int key){
         this.actions[key].execute(this.input, this.tracker);
     }
@@ -42,6 +42,7 @@ class MenuTracker {
             }
         }
     }
+//getting quantity of actions
     int []getAllActions(){
         int []actionsQuantity = new int[this.actions.length];
         int i = 0;
@@ -51,7 +52,7 @@ class MenuTracker {
         }
         return actionsQuantity;
     }
-
+//adding new task
     private class AddItem extends InfoAction{
         AddItem(){
             super("Adding new Item");
@@ -67,9 +68,8 @@ class MenuTracker {
             tracker.addClient(new Item(name, date.getTime(), description));
         }
 
-
     }
-
+//showing all tasks
     private class ShowItems extends InfoAction{
         ShowItems() {
             super("Showing all items");
@@ -96,9 +96,8 @@ class MenuTracker {
                 }
             }
         }
-
     }
-
+//updating task by id
     private class Update extends InfoAction{
 
         Update() {
@@ -120,7 +119,7 @@ class MenuTracker {
         }
 
     }
-
+//searching task by id
     private class SearchById extends InfoAction{
 
         SearchById() {
@@ -137,7 +136,7 @@ class MenuTracker {
         }
 
     }
-
+//removing task by id
     private class Remove extends InfoAction{
 
         Remove() {
@@ -154,7 +153,7 @@ class MenuTracker {
         }
 
     }
-
+//aading comments to task by id
     private class AddComment extends InfoAction{
 
         AddComment() {
@@ -173,7 +172,7 @@ class MenuTracker {
         }
 
     }
-
+//searching task by name
     private class SearchItemByName extends InfoAction{
 
         SearchItemByName() {
@@ -207,7 +206,7 @@ class MenuTracker {
         }
 
     }
-
+//searching task by description
     private class SearchByDescription extends InfoAction{
 
         SearchByDescription() {
@@ -241,6 +240,7 @@ class MenuTracker {
         }
 
     }
+//Exit key
     private class Exit extends InfoAction{
 
         Exit() {

@@ -1,10 +1,11 @@
 package start;
 
 /**
- * Created by Ruslan on 11.12.2016.
+  Created by Ruslan on 11.12.2016.
  */
-public class MenuOutException extends RuntimeException{
-    public MenuOutException(String msg){
+class MenuOutException extends RuntimeException{
+    //exception key out of range
+    MenuOutException(String msg){
         super(msg);
     }
 }
