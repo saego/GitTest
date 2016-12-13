@@ -1,18 +1,35 @@
+import java.util.Arrays;
+
 /**
  Created by ${Ruslan} on 12.12.16.
  */
 public class GoPlay {
     public static void main(String []args){
         ChessBoard chessBoard = new ChessBoard();
-        chessBoard.addFigure(new Bishop("red", new Cell(1, 3)));
-        chessBoard.addFigure(new Bishop("black", new Cell(6, 2)));
+        chessBoard.addFigure(new Bishop("red", new Cell(4, 4)));
+        chessBoard.addFigure(new Bishop("black", new Cell(2, 4)));
         System.out.println("Figures on the board: ");
-        for (Figure figur:
+        for (Figure figure:
              chessBoard.getFigures()) {
-            if (figur != null){
-                System.out.println("Figure:" + figur.getClass().getName() + " Сolour:" + figur.getColour());
-                System.out.println(" Horizontal position:" + figur.cell.getPositionH() + " Vertical position:" + figur.cell.getPositionV());
+            if (figure != null){
+                System.out.println("Figure:" + figure.getClass().getName() + " Сolour:" + figure.getColour());
+                System.out.println("Horizontal position:" + figure.position.getPositionH() + " Vertical position:" + figure.position.getPositionV());
+                System.out.println("_________________________");
+                Cell pointDestination = new Cell(5,5);
+                if (!figure.mayIGoDest(pointDestination)){
+                    System.out.println("Move is possible");
+                    Cell []way = figure.way(pointDestination);
+                    for (Cell pointWay:
+                         way) {
+
+                    System.out.println("H: " + pointWay.getPositionH() + " V:" + pointWay.getPositionV());
+                    }
+                }
+                else System.out.println("Can't move to this location");
+                System.out.println("_________________________");
             }
         }
+
+
     }
 }

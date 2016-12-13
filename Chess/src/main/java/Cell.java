@@ -6,9 +6,9 @@ public class Cell {
     int positionV;
     int positionH;
 //constructor
-    public Cell(int positionV, int positionH) {
-        this.positionV = positionV;
+    public Cell(int positionH, int positionV) {
         this.positionH = positionH;
+        this.positionV = positionV;
     }
 //get vertical position
     public int getPositionV() {

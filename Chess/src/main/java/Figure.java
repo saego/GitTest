@@ -4,15 +4,18 @@
 public abstract class Figure {
 //variables
     String colour;
-    Cell cell;
+    Cell position;
 //constructor
 
-    public Figure(String colour, Cell cell) {
+    Figure(String colour, Cell cell) {
         this.colour = colour;
-        this.cell = cell;
+        this.position = cell;
     }
 
-    public String getColour() {
+    String getColour() {
         return colour;
     }
+
+    public abstract boolean mayIGoDest(Cell newPoint);
+    public abstract Cell[] way(Cell Point);
 }

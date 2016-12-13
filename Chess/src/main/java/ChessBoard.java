@@ -17,4 +17,6 @@ public class ChessBoard {
     public Figure[] getFigures(){
         return this.figures;
     }
+
+
 }
