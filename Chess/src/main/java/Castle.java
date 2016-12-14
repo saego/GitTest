@@ -4,7 +4,7 @@ import static java.lang.Math.abs;
  Created by ${Ruslan} on 14.12.16.
  */
 public class Castle extends Figure {
-    public Castle(String colour, Cell cell) {
+    Castle(String colour, Cell cell) {
         super(colour, cell);
     }
 
