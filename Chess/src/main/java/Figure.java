@@ -1,9 +1,9 @@
 /**
- * Created by ${Ruslan} on 12.12.16.
+ Created by ${Ruslan} on 12.12.16.
  */
 public abstract class Figure {
 //variables
-    String colour;
+private String colour;
     Cell position;
 //constructor
 

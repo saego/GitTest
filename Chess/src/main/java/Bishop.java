@@ -17,31 +17,24 @@ public class Bishop extends Figure{
     }
 
     public Cell[] way(Cell newPosition){
-        int pointQuantity, k, b, v;
+        int pointQuantity, b, v;
         int i = 0;
+        int k = -1;
+        int t = -1;
         if (((newPosition.getPositionH() > this.position.getPositionH()) & (newPosition.getPositionV() > this.position.getPositionV())) |
                 ((newPosition.getPositionH() < this.position.getPositionH()) & (newPosition.getPositionV() < this.position.getPositionV()))){
             k = 1;
-        }
-        else {
-            k = -1;
         }
         pointQuantity = abs(this.position.getPositionH() - newPosition.getPositionH());
         Cell []wayPoints = new Cell[pointQuantity];
         b = this.position.getPositionV() - k * this.position.getPositionH();
         if (this.position.getPositionH() < newPosition.getPositionH()) {
-            for (int h = this.position.getPositionH() + 1; h <= newPosition.getPositionH(); h++) {
-                v = k * h + b;
-                wayPoints[i] = new Cell(h, v);
-                i++;
-            }
+            t = 1;
         }
-        else {
-            for (int h = this.position.getPositionH() - 1; h >= newPosition.getPositionH(); h--) {
-                v = k * h + b;
-                wayPoints[i] = new Cell(h, v);
-                i++;
-            }
+        for (int h = this.position.getPositionH() + t; h != newPosition.getPositionH() + t; h = h + t){
+            v = k * h + b;
+            wayPoints[i] = new Cell(h, v);
+            i++;
         }
         return wayPoints;
     }

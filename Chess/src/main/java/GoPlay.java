@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  Created by ${Ruslan} on 12.12.16.
  */
@@ -15,7 +13,7 @@ public class GoPlay {
                 System.out.println("Figure:" + figure.getClass().getName() + " Сolour:" + figure.getColour());
                 System.out.println("Horizontal position:" + figure.position.getPositionH() + " Vertical position:" + figure.position.getPositionV());
                 System.out.println("_________________________");
-                Cell pointDestination = new Cell(7,1);
+                Cell pointDestination = new Cell(8,8);
                 if (!figure.mayIGoDest(pointDestination)){
                     System.out.println("Move is possible");
                     Cell []way = figure.way(pointDestination);
