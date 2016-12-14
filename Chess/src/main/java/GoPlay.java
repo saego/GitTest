@@ -15,7 +15,7 @@ public class GoPlay {
                 System.out.println("Figure:" + figure.getClass().getName() + " Сolour:" + figure.getColour());
                 System.out.println("Horizontal position:" + figure.position.getPositionH() + " Vertical position:" + figure.position.getPositionV());
                 System.out.println("_________________________");
-                Cell pointDestination = new Cell(3,3);
+                Cell pointDestination = new Cell(7,1);
                 if (!figure.mayIGoDest(pointDestination)){
                     System.out.println("Move is possible");
                     Cell []way = figure.way(pointDestination);

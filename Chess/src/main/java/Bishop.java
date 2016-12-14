@@ -17,39 +17,32 @@ public class Bishop extends Figure{
     }
 
     public Cell[] way(Cell newPosition){
-            int pointQuantity = 0;
-            //int v = this.position.getPositionV();
-            if (newPosition.getPositionH() > this.position.getPositionH()){
-                for (int h = this.position.getPositionH() + 1; h <= newPosition.getPositionH(); h++){
-                    pointQuantity++;
-                }
-            }
-            else {
-                for (int h = this.position.getPositionH() - 1; h >= newPosition.getPositionH(); h--){
-                    pointQuantity++;
-                }
-                //Cell []wayPoints = new Cell[pointQuantity];
-            }
-
-            Cell []wayPoints = new Cell[pointQuantity];
-            int i =0;
-
-        if (newPosition.getPositionH() > this.position.getPositionH()){
-            for (int h = this.position.getPositionH() + 1; h <= newPosition.getPositionH(); h++){
-                int v = h - this.position.getPositionH() + this.position.getPositionV();
+        int pointQuantity, k, b, v;
+        int i = 0;
+        if (((newPosition.getPositionH() > this.position.getPositionH()) & (newPosition.getPositionV() > this.position.getPositionV())) |
+                ((newPosition.getPositionH() < this.position.getPositionH()) & (newPosition.getPositionV() < this.position.getPositionV()))){
+            k = 1;
+        }
+        else {
+            k = -1;
+        }
+        pointQuantity = abs(this.position.getPositionH() - newPosition.getPositionH());
+        Cell []wayPoints = new Cell[pointQuantity];
+        b = this.position.getPositionV() - k * this.position.getPositionH();
+        if (this.position.getPositionH() < newPosition.getPositionH()) {
+            for (int h = this.position.getPositionH() + 1; h <= newPosition.getPositionH(); h++) {
+                v = k * h + b;
                 wayPoints[i] = new Cell(h, v);
                 i++;
             }
         }
         else {
-            for (int h = this.position.getPositionH() - 1; h >= newPosition.getPositionH(); h--){
-                int v = h - this.position.getPositionH() + this.position.getPositionV();
+            for (int h = this.position.getPositionH() - 1; h >= newPosition.getPositionH(); h--) {
+                v = k * h + b;
                 wayPoints[i] = new Cell(h, v);
                 i++;
             }
-            //Cell []wayPoints = new Cell[pointQuantity];
         }
-
         return wayPoints;
     }
 }
