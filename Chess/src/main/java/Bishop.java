@@ -4,10 +4,12 @@ import static java.lang.Math.abs;
  Created by ${Ruslan} on 12.12.16.
  */
 public class Bishop extends Figure{
+//constructor
     Bishop(String colour, Cell cell) {
         super(colour, cell);
     }
 //return invalid if figure can't get to this position
+    @Override
     public boolean mayIGoDest(Cell newPosition){
         boolean invalid = true;
         if (abs(this.position.getPositionH() - newPosition.getPositionH()) == abs(this.position.getPositionV() - newPosition.getPositionV())){
@@ -16,6 +18,7 @@ public class Bishop extends Figure{
         return invalid;
     }
 //return way of figure to get to new position
+    @Override
     public Cell[] way(Cell newPosition){
         int pointQuantity, b, v;
         int i = 0;

@@ -4,8 +4,9 @@
 public class GoPlay {
     public static void main(String []args){
         ChessBoard chessBoard = new ChessBoard();
-        chessBoard.addFigure(new Bishop("red", new Cell(4, 4)));
+        chessBoard.addFigure(new Bishop("white", new Cell(4, 4)));
         chessBoard.addFigure(new Bishop("black", new Cell(2, 4)));
+        chessBoard.addFigure(new Castle("white", new Cell(5, 4)));
         System.out.println("Figures on the board: ");
         for (Figure figure:
              chessBoard.getFigures()) {
@@ -13,7 +14,7 @@ public class GoPlay {
                 System.out.println("Figure:" + figure.getClass().getName() + " Сolour:" + figure.getColour());
                 System.out.println("Horizontal position:" + figure.position.getPositionH() + " Vertical position:" + figure.position.getPositionV());
                 System.out.println("_________________________");
-                Cell pointDestination = new Cell(8,8);
+                Cell pointDestination = new Cell(5,8);
                 if (!figure.mayIGoDest(pointDestination)){
                     System.out.println("Move is possible");
                     Cell []way = figure.way(pointDestination);
