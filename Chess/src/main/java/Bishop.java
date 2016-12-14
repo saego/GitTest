@@ -7,7 +7,7 @@ public class Bishop extends Figure{
     Bishop(String colour, Cell cell) {
         super(colour, cell);
     }
-
+//return invalid if figure can't get to this position
     public boolean mayIGoDest(Cell newPosition){
         boolean invalid = true;
         if (abs(this.position.getPositionH() - newPosition.getPositionH()) == abs(this.position.getPositionV() - newPosition.getPositionV())){
@@ -15,7 +15,7 @@ public class Bishop extends Figure{
         }
         return invalid;
     }
-
+//return way of figure to get to new position
     public Cell[] way(Cell newPosition){
         int pointQuantity, b, v;
         int i = 0;
