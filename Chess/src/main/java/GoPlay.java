@@ -14,7 +14,7 @@ public class GoPlay {
                 System.out.println("Figure:" + figure.getClass().getName() + " Сolour:" + figure.getColour());
                 System.out.println("Horizontal position:" + figure.position.getPositionH() + " Vertical position:" + figure.position.getPositionV());
                 System.out.println("_________________________");
-                Cell pointDestination = new Cell(5,8);
+                Cell pointDestination = new Cell(5, 8);
                 if (!figure.mayIGoDest(pointDestination)){
                     System.out.println("Move is possible");
                     Cell []way = figure.way(pointDestination);
@@ -28,6 +28,9 @@ public class GoPlay {
                 System.out.println("_________________________");
             }
         }
+        Cell source = new Cell(5, 3);
+        Cell pointDestination = new Cell(3, 3);
+        System.out.println(chessBoard.move(source, pointDestination));
 
 
     }

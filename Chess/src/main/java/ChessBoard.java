@@ -19,7 +19,10 @@ Figure addFigure(Figure figure){
     }
 
     public boolean move (Cell source, Cell destination){
-
-        return true;
+        boolean res = false;
+        if(source.equals(destination)){
+            res= true;
+        }
+        return res;
     }
 }
