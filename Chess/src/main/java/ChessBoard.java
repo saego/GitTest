@@ -57,6 +57,7 @@ Figure addFigure(Figure figure){
                 }
 
             }
+            currentFigure.clone(destination);
         }
         return isThereFigure;
     }

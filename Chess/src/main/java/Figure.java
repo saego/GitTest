@@ -15,7 +15,9 @@ private String colour;
     String getColour() {
         return colour;
     }
-
+    public void clone(Cell destination){
+        this.position = destination;
+    }
     public abstract boolean mayIGoDest(Cell newPoint);
     public abstract Cell[] way(Cell NewPosition);
 }
