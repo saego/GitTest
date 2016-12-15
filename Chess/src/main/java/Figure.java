@@ -17,5 +17,5 @@ private String colour;
     }
 
     public abstract boolean mayIGoDest(Cell newPoint);
-    public abstract Cell[] way(Cell Point);
+    public abstract Cell[] way(Cell NewPosition);
 }

@@ -18,29 +18,47 @@ Figure addFigure(Figure figure){
         return this.figures;
     }
 
-    public boolean move (Cell source, Cell destination){
+    boolean move(Cell source, Cell destination){
         boolean isNewCellEmpty = true;
         boolean isThereFigure = false;
+        Figure currentFigure = null;
         //lookong for figure on current position
         for (Figure fig:
-                figures) {
+                getFigures()) {
             if (fig.position.equals(source)){
-                Figure currentFigure = fig;
+                currentFigure = fig;
                 isThereFigure = true;
                 break;
             }
         }
         if (!isThereFigure){
-            System.out.println("No figure on this position!");
+            System.out.println("There's no figure on this cell!");
         }
-        //check if Destination cell is empty
-        for (Figure fig:
-             figures) {
-            if (fig.position.equals(destination)){
-            isNewCellEmpty = false;
-            break;
+        else {
+            //check if Destination cell is empty
+            for (Figure fig :
+                    getFigures()) {
+                if (fig.position.equals(destination)) {
+                    isNewCellEmpty = false;
+                    break;
+                }
+            }
+            if (!isNewCellEmpty){
+                System.out.println("There is figure on destination cell");
+            }
+            for (Cell way:
+                 currentFigure.way(destination)) {
+                for (Figure fig:
+                     getFigures()) {
+                   if (fig.position.equals(way)){
+                    System.out.println("There is figure on way");
+                    break;
+                   }
+                }
+
             }
         }
         return isThereFigure;
     }
 }
+
