@@ -18,5 +18,8 @@ Figure addFigure(Figure figure){
         return this.figures;
     }
 
+    public boolean move (Cell source, Cell destination){
 
+        return true;
+    }
 }
