@@ -19,10 +19,28 @@ Figure addFigure(Figure figure){
     }
 
     public boolean move (Cell source, Cell destination){
-        boolean res = false;
-        if(source.equals(destination)){
-            res= true;
+        boolean isNewCellEmpty = true;
+        boolean isThereFigure = false;
+        //lookong for figure on current position
+        for (Figure fig:
+                figures) {
+            if (fig.position.equals(source)){
+                Figure currentFigure = fig;
+                isThereFigure = true;
+                break;
+            }
         }
-        return res;
+        if (!isThereFigure){
+            System.out.println("No figure on this position!");
+        }
+        //check if Destination cell is empty
+        for (Figure fig:
+             figures) {
+            if (fig.position.equals(destination)){
+            isNewCellEmpty = false;
+            break;
+            }
+        }
+        return isThereFigure;
     }
 }
