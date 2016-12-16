@@ -20,12 +20,14 @@ Figure addFigure(Figure figure){
 
     boolean move(Cell source, Cell destination){
         boolean isNewCellEmpty = true;
+        boolean isFigureOnWay = false;
         boolean isThereFigure = false;
+        boolean isAllOk = false;
         Figure currentFigure = null;
-        //lookong for figure on current position
+        //looking for figure on current position
         for (Figure fig:
-                getFigures()) {
-            if (fig.position.equals(source)){
+                this.figures) {
+            if (fig != null && fig.position.equals(source)){
                 currentFigure = fig;
                 isThereFigure = true;
                 break;
@@ -38,7 +40,7 @@ Figure addFigure(Figure figure){
             //check if Destination cell is empty
             for (Figure fig :
                     getFigures()) {
-                if (fig.position.equals(destination)) {
+                if (fig != null && fig.position.equals(destination)) {
                     isNewCellEmpty = false;
                     break;
                 }
@@ -46,20 +48,33 @@ Figure addFigure(Figure figure){
             if (!isNewCellEmpty){
                 System.out.println("There is figure on destination cell");
             }
-            for (Cell way:
-                 currentFigure.way(destination)) {
-                for (Figure fig:
-                     getFigures()) {
-                   if (fig.position.equals(way)){
-                    System.out.println("There is figure on way");
-                    break;
-                   }
+            else {
+                if(!currentFigure.mayIGoDest(destination)) {
+                    for (Cell way :
+                            currentFigure.way(destination)) {
+                        for (Figure fig :
+                                getFigures()) {
+                            if (fig != null && fig.position.equals(way)) {
+                                isFigureOnWay = true;
+                                System.out.println("There is figure on way");
+                                break;
+                            }
+                            if (isFigureOnWay) {
+                                break;
+                            }
+                        }
+                    }
+                    if (!isFigureOnWay) {
+                        currentFigure.clone(destination);
+                        isAllOk = true;
+                    }
                 }
-
+                else{
+                    System.out.println("Can't move in this direction");
+                }
             }
-            currentFigure.clone(destination);
         }
-        return isThereFigure;
+        return isAllOk;
     }
 }
 
