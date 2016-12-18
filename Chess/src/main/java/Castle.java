@@ -8,7 +8,7 @@ public class Castle extends Figure {
         super(colour, cell);
     }
 
-    @Override
+/*    @Override
     public boolean mayIGoDest(Cell newPosition) {
         boolean invalid = true;
         if (((newPosition.getPositionH() == this.position.getPositionH()) & (newPosition.getPositionV() != this.position.getPositionV())) ||
@@ -16,40 +16,48 @@ public class Castle extends Figure {
             invalid = false;
         }
         return invalid;
-    }
+    }*/
 
     @Override
-    public Cell[] way(Cell newPosition) {
-        // we go by H
-        int b = this.position.getPositionV();
-        int start = this.position.getPositionH();
-        int end  = newPosition.getPositionH();
-        int k = -1;
-        int pointQuantity;
-        int i = 0;
-        boolean xWay = true;
-        pointQuantity = abs(start - end);
-        //if true we go by V
-        if (this.position.getPositionH() == newPosition.getPositionH()){
-            b = this.position.getPositionH();
-            start = this.position.getPositionV();
-            end = newPosition.getPositionV();
-            xWay = false;
+    public Cell[] way(Cell newPosition) throws ImposibleToMove {
+        boolean invalid = true;
+        if (((newPosition.getPositionH() == this.position.getPositionH()) & (newPosition.getPositionV() != this.position.getPositionV())) ||
+                ((newPosition.getPositionH() != this.position.getPositionH()) & (newPosition.getPositionV() == this.position.getPositionV()))) {
+            invalid = false;
+        }
+        if (invalid) {
+            throw new ImposibleToMove("Bishop can't move this way");
+        } else {
+            // we go by H
+            int b = this.position.getPositionV();
+            int start = this.position.getPositionH();
+            int end = newPosition.getPositionH();
+            int k = -1;
+            int pointQuantity;
+            int i = 0;
+            boolean xWay = true;
             pointQuantity = abs(start - end);
-        }
-        if (start < end){
-            k = 1;
-        }
-        Cell []wayPoints = new Cell[pointQuantity];
-        for (int t = start + k; t != end + k; t = t + k){
-            if (xWay){
-                wayPoints[i] = new Cell(t, b);
+            //if true we go by V
+            if (this.position.getPositionH() == newPosition.getPositionH()) {
+                b = this.position.getPositionH();
+                start = this.position.getPositionV();
+                end = newPosition.getPositionV();
+                xWay = false;
+                pointQuantity = abs(start - end);
             }
-            else {
-                wayPoints[i] = new Cell(b, t);
+            if (start < end) {
+                k = 1;
             }
-            i++;
+            Cell[] wayPoints = new Cell[pointQuantity];
+            for (int t = start + k; t != end + k; t = t + k) {
+                if (xWay) {
+                    wayPoints[i] = new Cell(t, b);
+                } else {
+                    wayPoints[i] = new Cell(b, t);
+                }
+                i++;
+            }
+            return wayPoints;
         }
-        return wayPoints;
     }
 }

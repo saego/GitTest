@@ -18,6 +18,6 @@ private String colour;
     void clone(Cell destination){
         this.position = destination;
     }
-    public abstract boolean mayIGoDest(Cell newPoint);
-    public abstract Cell[] way(Cell NewPosition);
+    //public abstract boolean mayIGoDest(Cell newPoint);
+    public abstract Cell[] way(Cell NewPosition) throws ImposibleToMove;
 }
