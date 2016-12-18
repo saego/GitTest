@@ -5,7 +5,7 @@ public class GoPlay {
     public static void main(String[] args) {
         ChessBoard chessBoard = new ChessBoard();
         chessBoard.addFigure(new Bishop("white", new Cell(4, 4)));
-        chessBoard.addFigure(new Bishop("black", new Cell(3, 4)));
+        chessBoard.addFigure(new Bishop("black", new Cell(5, 3)));
         chessBoard.addFigure(new Castle("white", new Cell(5, 4)));
         System.out.println("Figures on the board: ");
         for (Figure figure :
@@ -17,17 +17,28 @@ public class GoPlay {
             }
         }
         System.out.println("MOVING!");
-        Cell source = new Cell(3, 4);
-        Cell pointDestination = new Cell(6, 1);
-        chessBoard.move(source, pointDestination);
+        Cell source = new Cell(4, 4);
+        Cell pointDestination = new Cell(7, 1);
+        try {
+            chessBoard.move(source, pointDestination);
         for (Figure figure :
                 chessBoard.getFigures()) {
             if (figure != null) {
-                System.out.println("Figure:" + figure.getClass().getName() + " Сolour:" + figure.getColour());
-                System.out.println("Horizontal position:" + figure.position.getPositionH() + " Vertical position:" + figure.position.getPositionV());
+                System.out.println("Figure :" + figure.getClass().getName() + " Сolour :" + figure.getColour());
+                System.out.println("Horizontal position :" + figure.position.getPositionH() + " Vertical position :" + figure.position.getPositionV());
                 System.out.println("_________________________");
 
             }
+        }
+        }
+        catch (ImpossibleToMoveException my){
+            System.out.println("Error :" + my);
+        }
+        catch (FigureWasNotFoundException my){
+            System.out.println("Error :" + my);
+        }
+        catch (OccupiedWayException my){
+            System.out.println("Error :" + my);
         }
     }
 }

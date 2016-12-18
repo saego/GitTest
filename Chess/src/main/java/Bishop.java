@@ -9,25 +9,15 @@ public class Bishop extends Figure {
         super(colour, cell);
     }
 
-    //return invalid if figure can't get to this position
-    /*@Override
-    public boolean mayIGoDest(Cell newPosition){
-        boolean invalid = true;
-        if (abs(this.position.getPositionH() - newPosition.getPositionH()) == abs(this.position.getPositionV() - newPosition.getPositionV())){
-            invalid = false;
-        }
-        return invalid;
-    }*/
-//return way of figure to get to new position
     @Override
-    public Cell[] way(Cell newPosition) throws ImposibleToMove {
+    public Cell[] way(Cell newPosition) throws ImpossibleToMoveException {
 
         boolean invalid = true;
         if (abs(this.position.getPositionH() - newPosition.getPositionH()) == abs(this.position.getPositionV() - newPosition.getPositionV())) {
             invalid = false;
         }
         if (invalid) {
-            throw new ImposibleToMove("Bishop can't move this way");
+            throw new ImpossibleToMoveException("Bishop can't move this way !!!");
         } else {
             int pointQuantity, b, v;
             int i = 0;

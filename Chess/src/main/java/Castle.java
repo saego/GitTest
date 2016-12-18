@@ -8,25 +8,16 @@ public class Castle extends Figure {
         super(colour, cell);
     }
 
-/*    @Override
-    public boolean mayIGoDest(Cell newPosition) {
-        boolean invalid = true;
-        if (((newPosition.getPositionH() == this.position.getPositionH()) & (newPosition.getPositionV() != this.position.getPositionV())) ||
-                ((newPosition.getPositionH() != this.position.getPositionH()) & (newPosition.getPositionV() == this.position.getPositionV()))){
-            invalid = false;
-        }
-        return invalid;
-    }*/
 
     @Override
-    public Cell[] way(Cell newPosition) throws ImposibleToMove {
+    public Cell[] way(Cell newPosition) throws ImpossibleToMoveException {
         boolean invalid = true;
         if (((newPosition.getPositionH() == this.position.getPositionH()) & (newPosition.getPositionV() != this.position.getPositionV())) ||
                 ((newPosition.getPositionH() != this.position.getPositionH()) & (newPosition.getPositionV() == this.position.getPositionV()))) {
             invalid = false;
         }
         if (invalid) {
-            throw new ImposibleToMove("Bishop can't move this way");
+            throw new ImpossibleToMoveException("Castle can't move this way !!!");
         } else {
             // we go by H
             int b = this.position.getPositionV();

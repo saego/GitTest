@@ -26,8 +26,7 @@ class Cell {
 
         Cell cell = (Cell) o;
 
-        if (positionV != cell.positionV) return false;
-        return positionH == cell.positionH;
+        return positionV == cell.positionV && positionH == cell.positionH;
     }
 
     @Override
