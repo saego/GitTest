@@ -42,9 +42,9 @@ public class Castle extends Figure {
             Cell[] wayPoints = new Cell[pointQuantity];
             for (int t = start + k; t != end + k; t = t + k) {
                 if (xWay) {
-                    wayPoints[i] = new Cell(t, b);
-                } else {
                     wayPoints[i] = new Cell(b, t);
+                } else {
+                    wayPoints[i] = new Cell(t, b);
                 }
                 i++;
             }

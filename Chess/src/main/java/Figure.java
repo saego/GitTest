@@ -20,5 +20,5 @@ private String colour;
         this.position = destination;
     }
     //public abstract boolean mayIGoDest(Cell newPoint);
-    public abstract Cell[] way(Cell NewPosition) throws ImpossibleToMoveException;
+    public abstract Cell[] way(Cell newPosition) throws ImpossibleToMoveException;
 }

@@ -53,10 +53,12 @@ Figure addFigure(Figure figure){
                         for (Figure fig :
                                 getFigures()) {
                             if (fig != null && fig.position.equals(way)) {
+                               // System.out.println("!!!!!!!!!!!!!!!!!!!");
                                 throw new OccupiedWayException("There is figure on way");
                             }
                         }
                     }
+                //System.out.println("!!!!!!!!!!!!!!!!!!!");
                     currentFigure.clone(destination);
             }
         }
