@@ -9,6 +9,7 @@ public class GoPlay {
         chessBoard.addFigure(new Castle("white", new Cell(5, 4)));
         chessBoard.addFigure(new Queen("black", new Cell(4, 6)));
         chessBoard.addFigure(new Knight("white", new Cell(7, 3)));
+        chessBoard.addFigure(new King("black", new Cell(7, 7)));
         System.out.println("Figures on the board: ");
         for (Figure figure :
                 chessBoard.getFigures()) {
