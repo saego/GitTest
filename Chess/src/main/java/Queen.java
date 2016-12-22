@@ -17,7 +17,7 @@ public class Queen extends Figure{
             invalid = false;
         }
         if (invalid){
-            throw new ImpossibleToMoveException("Queen can't move this way");
+            throw new ImpossibleToMoveException("Queen can't move this way !!!");
         }
         else {
             int b = 0;

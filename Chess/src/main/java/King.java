@@ -15,7 +15,7 @@ public class King extends Figure{
             invalid = false;
         }
         if (invalid){
-            throw new ImpossibleToMoveException("King can't move this way");
+            throw new ImpossibleToMoveException("King can't move this way !!!");
         }
         else {
             int pointQuantity = 1;
