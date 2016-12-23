@@ -10,7 +10,9 @@ public class Pawn extends Figure{
     public Cell[] way(Cell newPosition) throws ImpossibleToMoveException {
         boolean invalid  = true;
         if (((this.position.getPositionV() - newPosition.getPositionV() == 1) && (this.getColour().equals("black"))) ||
-                ((this.position.getPositionV() - newPosition.getPositionV() == -1) && (this.getColour().equals("white")))){
+                ((this.position.getPositionV() - newPosition.getPositionV() == -1) && (this.getColour().equals("white"))) ||
+                ((this.position.getPositionV() - newPosition.getPositionV() == 2) && (this.getColour().equals("black")) && (this.position.getPositionV() == 7)) ||
+                ((this.position.getPositionV() - newPosition.getPositionV() == -2) && (this.getColour().equals("black")) && (this.position.getPositionV() == 2))){
         invalid = false;
         }
         if (invalid){
