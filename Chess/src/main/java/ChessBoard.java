@@ -32,7 +32,6 @@ Figure addFigure(Figure figure){
             }
         }
         if (!isThereFigure){
-            //System.out.println("There's no figure on this cell!");
             throw new FigureWasNotFoundException("There's no figure on this cell!");
         }
         else {
@@ -53,12 +52,10 @@ Figure addFigure(Figure figure){
                         for (Figure fig :
                                 getFigures()) {
                             if (fig != null && fig.position.equals(way)) {
-                               // System.out.println("!!!!!!!!!!!!!!!!!!!");
                                 throw new OccupiedWayException("There is figure on way");
                             }
                         }
                     }
-                //System.out.println("!!!!!!!!!!!!!!!!!!!");
                     currentFigure.clone(destination);
             }
         }
