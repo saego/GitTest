@@ -8,7 +8,7 @@ public class Bishop extends Figure {
     Bishop(String colour, Cell cell) {
         super(colour, cell);
     }
-
+//way of figure
     @Override
     public Cell[] way(Cell newPosition) throws ImpossibleToMoveException {
 

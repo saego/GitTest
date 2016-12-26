@@ -7,7 +7,7 @@ public class King extends Figure{
     King(String colour, Cell cell) {
         super(colour, cell);
     }
-
+    //way of figure
     @Override
     public Cell[] way(Cell newPosition) throws ImpossibleToMoveException {
         boolean invalid  = true;
