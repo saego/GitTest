@@ -1,8 +1,10 @@
+import static java.lang.Math.abs;
+
 /**
     Created by Ruslan on 22.12.2016.
  */
 public class Pawn extends Figure{
-    public Pawn(String colour, Cell cell) {
+    Pawn(String colour, Cell cell) {
         super(colour, cell);
     }
 
@@ -12,17 +14,29 @@ public class Pawn extends Figure{
         if (((this.position.getPositionV() - newPosition.getPositionV() == 1) && (this.getColour().equals("black"))) ||
                 ((this.position.getPositionV() - newPosition.getPositionV() == -1) && (this.getColour().equals("white"))) ||
                 ((this.position.getPositionV() - newPosition.getPositionV() == 2) && (this.getColour().equals("black")) && (this.position.getPositionV() == 7)) ||
-                ((this.position.getPositionV() - newPosition.getPositionV() == -2) && (this.getColour().equals("black")) && (this.position.getPositionV() == 2))){
+                ((this.position.getPositionV() - newPosition.getPositionV() == -2) && (this.getColour().equals("white")) && (this.position.getPositionV() == 2))){
         invalid = false;
         }
         if (invalid){
             throw new ImpossibleToMoveException("Pawn can't move this way !!!");
         }
         else {
-            int pointQuantity = 1;
+            int pointQuantity = abs(newPosition.getPositionV() - this.position.getPositionV());
             Cell []wayPoints = new Cell[pointQuantity];
-            wayPoints[0] = new Cell(newPosition.getPositionH(), newPosition.getPositionV());
+            int start = this.position.getPositionV();
+            int end = newPosition.getPositionV();
+            int k = 1;
+            int i = 0;
+            if (this.position.getPositionV() > newPosition.getPositionV()){
+                k = -1;
+            }
+            for (int n = start + k; n != end + k; n = n + k) {
+                wayPoints[i] = new Cell(this.position.getPositionH(), n);
+                i++;
+            }
         return wayPoints;
         }
     }
+
+
 }
