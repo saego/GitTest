@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
  */
 public class Stream {
     public static void main(String []args){
-        BufferedReader br = new BufferedReader(new InputStream in);
+        //BufferedReader br = new BufferedReader(new InputStream in);
+        public boolean isNumber(InputStream in){
+
+        }
     }
 }
