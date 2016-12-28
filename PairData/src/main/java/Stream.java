@@ -9,13 +9,18 @@ import java.io.InputStreamReader;
 class Stream {
         boolean isNumber(InputStream in) throws IOException{
             boolean isDivByTwo = false;
+            try {
                 BufferedReader br = new BufferedReader(new InputStreamReader(in));
                 String val = br.readLine();
                 System.out.println(val);
-                 if (Integer.valueOf(val) % 2 == 0){
-                   isDivByTwo = true;
+                if (Integer.valueOf(val) % 2 == 0) {
+                    isDivByTwo = true;
+                }
+                System.out.println(isDivByTwo);
             }
-                    System.out.println(isDivByTwo);
-            return isDivByTwo;
+            catch (NumberFormatException io){
+                System.out.println("Not correct format of number");
+            }
+                return isDivByTwo;
         }
 }
