@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class StreamTest {
     @org.junit.Test
     public void isNumber() throws Exception {
-    ByteArrayInputStream testStream = new ByteArrayInputStream("12 28".getBytes());
+    ByteArrayInputStream testStream = new ByteArrayInputStream("12 15".getBytes());
         Stream stream = new Stream();
         //stream.isNumber(testStream);
         assertThat(stream.isNumber(testStream), is(true));

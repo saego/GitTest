@@ -6,15 +6,20 @@ import java.io.InputStreamReader;
 /**
  Created by ${Ruslan} on 26.12.16.
  */
-public class Stream {
-        public boolean isNumber(InputStream in) throws IOException{
+class Stream {
+        boolean isNumber(InputStream in) throws IOException{
             boolean isDivByTwo = false;
                 BufferedReader br = new BufferedReader(new InputStreamReader(in));
                 String val = br.readLine();
                 System.out.println(val);
-                if (Integer.valueOf(val) % 2 == 0){
-                    isDivByTwo = true;
-                }
+             //   String []res = val.split(" ");
+            //for (String r:
+            //     res) {
+                 if (Integer.valueOf(val) % 2 == 0){
+                   isDivByTwo = true;
+            }
+                    System.out.println(isDivByTwo);
+                //}
             return isDivByTwo;
         }
 }
