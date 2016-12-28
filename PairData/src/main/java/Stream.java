@@ -12,14 +12,10 @@ class Stream {
                 BufferedReader br = new BufferedReader(new InputStreamReader(in));
                 String val = br.readLine();
                 System.out.println(val);
-             //   String []res = val.split(" ");
-            //for (String r:
-            //     res) {
                  if (Integer.valueOf(val) % 2 == 0){
                    isDivByTwo = true;
             }
                     System.out.println(isDivByTwo);
-                //}
             return isDivByTwo;
         }
 }
