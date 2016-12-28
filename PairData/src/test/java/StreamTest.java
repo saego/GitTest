@@ -11,7 +11,6 @@ public class StreamTest {
     public void isNumber() throws Exception {
     ByteArrayInputStream testStream = new ByteArrayInputStream("12".getBytes());
         Stream stream = new Stream();
-        //stream.isNumber(testStream);
         assertThat(stream.isNumber(testStream), is(true));
     }
 
