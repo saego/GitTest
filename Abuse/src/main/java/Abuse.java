@@ -8,6 +8,7 @@ class Abuse {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         OutputStreamWriter ow = new OutputStreamWriter(out);
         String line = br.readLine();
+        System.out.println(line);
         String []words = line.split(" ");
         for (String word:
              words) {

@@ -1,3 +1,4 @@
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -7,6 +8,6 @@ public class Main {
     public static void main(String []args) throws IOException {
         Abuse abuse = new Abuse();
         String []wordToDel = new String[]{"abuse"};
-        abuse.dropAbuses(System.in, System.out, wordToDel);
+        abuse.dropAbuses(System.in, FileOutputStream(), wordToDel);
     }
 }
