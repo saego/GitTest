@@ -8,14 +8,24 @@ class Abuse {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         OutputStreamWriter ow = new OutputStreamWriter(out);
         String line = br.readLine();
-        System.out.println(line);
         String []words = line.split(" ");
         for (String word:
              words) {
-            if (!word.equals(abuse[0])){
-                ow.write(word);
+        boolean n = false;
+            for (String ab:
+                 abuse) {
+                if (word.equals(ab)){
+                    n = true;
+                    break;
+                }
             }
+                if(!n) {
+                    ow.write(word);
+                    ow.write(" ");
+                }
         }
+        br.close();
+        ow.close();
     }
 }
 
