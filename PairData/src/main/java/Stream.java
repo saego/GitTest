@@ -9,8 +9,7 @@ import java.io.InputStreamReader;
 class Stream {
         boolean isNumber(InputStream in) throws IOException{
             boolean isDivByTwo = false;
-            try {
-                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(in))){
                 String val = br.readLine();
                 System.out.println(val);
                 if (Integer.valueOf(val) % 2 == 0) {
@@ -18,8 +17,8 @@ class Stream {
                 }
                 System.out.println(isDivByTwo);
             }
-            catch (NumberFormatException io){
-                System.out.println("Not correct format of number");
+            catch (Exception io){
+                System.out.println(io.getMessage());
             }
                 return isDivByTwo;
         }

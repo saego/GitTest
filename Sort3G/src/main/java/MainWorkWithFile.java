@@ -4,7 +4,7 @@ import java.io.IOException;
  Created by ${Ruslan} on 03.01.17.
  */
 public class MainWorkWithFile {
-        static WorkWithFile worker;
+        private static WorkWithFile worker;
     public static void main(String []args) throws IOException {
         worker = new WorkWithFile("test.txt");
         worker.write("Give me the reason \n" +
