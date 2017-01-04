@@ -18,5 +18,6 @@ public class Sort3G implements SortFile {
             rows[i] = br.readLine().length();
             i++;
         }
+        bw.newLine();
     }
 }
