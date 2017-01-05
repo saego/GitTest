@@ -19,7 +19,6 @@ public class Sort3GOutSort implements SortFile {
 
         //створюємо тимчасовий файл
         File tmp1 = new File("tmp1.txt");
-        File tmp2 = destination;
         //записуємо найдовший рядок в файлі джерела останнім в тимчасовому файлі
         String line;
         String min, max;
@@ -46,12 +45,12 @@ public class Sort3GOutSort implements SortFile {
         File src, dst;
         for (int k = 1; k <= rows; k++) {
             if (k % 2 == 0){
-                src = tmp2;
+                src = destination;
                 dst = tmp1;
             }
             else {
                 src = tmp1;
-                dst = tmp2;
+                dst = destination;
             }
             BufferedReader br2 = new BufferedReader(new FileReader(src));
             buffer = br2.readLine();
@@ -72,9 +71,12 @@ public class Sort3GOutSort implements SortFile {
             bw2.close();
             br2.close();
             System.out.println(k);
-            //k++;
         }
+        //виводимо кількість рядків
         System.out.println(rows + "rows");
-
+        //видаляємо тимчасовий файл
+        if (tmp1.delete()) {
+            System.out.println("File was deleted");
+        }
     }
 }
