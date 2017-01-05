@@ -7,8 +7,6 @@ public class Sort3GOutSort implements SortFile {
 
     public void sort(File source, File destination) throws IOException {
 
-//        BufferedWriter bw = new BufferedWriter(new FileWriter(destination));
-
         //рахуємо кількість рядків
         int rows = 0;
         try(BufferedReader br = new BufferedReader(new FileReader(source))) {
@@ -70,7 +68,7 @@ public class Sort3GOutSort implements SortFile {
             bw2.write(buffer);
             bw2.close();
             br2.close();
-            System.out.println(k);
+            System.out.println("///////////////--------------------" + k + "////////-------");
         }
         //виводимо кількість рядків
         System.out.println(rows + "rows");
