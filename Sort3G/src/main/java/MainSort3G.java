@@ -12,6 +12,6 @@ public class MainSort3G {
         File source = new File("test.txt");
         sort.sort(source, new File("testRes.txt"));
         SortFile sortRand = new Sort3GRandomAccessFile();
-        sortRand.sort(source, new File("testResRand"));
+        sortRand.sort(source, new File("testResRand.txt"));
     }
 }

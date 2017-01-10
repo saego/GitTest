@@ -13,6 +13,15 @@ public class Sort3GRandomAccessFile implements SortFile {
                 rows++;
             }
         }
-        System.out.println("Rows randFiwle" + rows);
+        System.out.println("________________________________________________");
+        System.out.println("Rows randFile  " + rows);
+
+        String line;
+        try(RandomAccessFile rafR = new RandomAccessFile(source, "r"); RandomAccessFile rafWR = new RandomAccessFile(destination, "rw")){
+            while ((line = rafR.readLine()) != null){
+                rafWR.write(line.getBytes());
+                //rafWR.
+            }
+        }
     }
 }
