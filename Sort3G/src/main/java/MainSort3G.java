@@ -1,7 +1,5 @@
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  Created by ${Ruslan} on 04.01.17.
