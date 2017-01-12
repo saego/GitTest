@@ -36,16 +36,16 @@ public class Sort3GRandomAccessFile implements SortFile {
             name = "temp".concat(String.valueOf(count).concat(".txt"));
         }
         rafr.close();
-
+        String []files = fileNames.split(" ");
+/*
         //пробуємо вивести імена файлів з відповідною довжиною рядків кожного з них
 
-        String []files = fileNames.split(" ");
         for (int n = 0; n < quantityRows; n++){
             System.out.println("_____________________");
             System.out.println("File name: " + files[n] + "Length: " + rowsLength[n]);
             System.out.println("_____________________");
         }
-
+*/
         //сортування массивів методом бульбашки
 
         int mov = 0;
@@ -67,7 +67,7 @@ public class Sort3GRandomAccessFile implements SortFile {
             }
             mov++;
         }
-
+/*
         //пробуємо вивести відсортовані назви файлів
 
         System.out.println("Sorted files: ");
@@ -76,7 +76,7 @@ public class Sort3GRandomAccessFile implements SortFile {
             System.out.println("File name: " + files[n] + "Length: " + rowsLength[n]);
             System.out.println("_____________________");
         }
-
+*/
         //пробуємо записати в вихідний файл
 
         for (int i1 = 0; i1 < files.length; i1++) {
