@@ -1,18 +1,15 @@
-import java.io.*;
-import java.util.Arrays;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
 /**
  Created by ${Ruslan} on 04.01.17.
  */
 public class Sort3GRandomAccessFile implements SortFile {
 
-    private RandomAccessFile rafr;
-    private RandomAccessFile rafw;
-    private RandomAccessFile rafTmp1;
-
     public void sort(File source, File destination) throws IOException {
-        this.rafr = new RandomAccessFile(source, "r");
-        this.rafw = new RandomAccessFile(destination, "rw");
+        RandomAccessFile rafr = new RandomAccessFile(source, "r");
+        RandomAccessFile rafw = new RandomAccessFile(destination, "rw");
         int quantityRows = 0;
         while (rafr.readLine() != null){
             quantityRows++;
@@ -20,7 +17,7 @@ public class Sort3GRandomAccessFile implements SortFile {
         rafr.close();
         System.out.println("Rows : " + quantityRows);
 
-        this.rafr = new RandomAccessFile(source, "r");
+        rafr = new RandomAccessFile(source, "r");
         int count = 1;
         String name = "temp1.txt";
         String line, fileNames;
@@ -28,7 +25,7 @@ public class Sort3GRandomAccessFile implements SortFile {
         int []rowsLength = new int[quantityRows];
         int i = 0;
         while ((line = rafr.readLine()) != null){
-            this.rafTmp1 = new RandomAccessFile(name, "rw");
+            RandomAccessFile rafTmp1 = new RandomAccessFile(name, "rw");
             rafTmp1.writeBytes(String.format("%s", line));
                 rowsLength[i] = line.length();
                 i++;
@@ -38,48 +35,66 @@ public class Sort3GRandomAccessFile implements SortFile {
             count++;
             name = "temp".concat(String.valueOf(count).concat(".txt"));
         }
+        rafr.close();
+
+        //пробуємо вивести імена файлів з відповідною довжиною рядків кожного з них
+
         String []files = fileNames.split(" ");
         for (int n = 0; n < quantityRows; n++){
             System.out.println("_____________________");
             System.out.println("File name: " + files[n] + "Length: " + rowsLength[n]);
             System.out.println("_____________________");
         }
-        for (int n = 0; n < quantityRows; n++){
-            System.out.println("_____________________");
-            System.out.println("Length: " + sort(rowsLength)[n]);
-            System.out.println("_____________________");
-        }
-    }
-    //рекурсивная функция сортировки частей массива
-    private static String[] sort(int[] arr, String[] arrS){
-        if(arr.length < 2) return arrS;
-        int m = arr.length / 2;
-        int[] arr1 = Arrays.copyOfRange(arr, 0, m);
-        int[] arr2 = Arrays.copyOfRange(arr, m, arr.length);
-        String []arr1S = Arrays.copyOfRange(arrS, 0, m);
-        String []arr2S = Arrays.copyOfRange(arrS, m, arr.length);
-        return merge(sort(arr1S), sort(arr2S));
-    }
-    //слияние двух массивов в один отсортированный
-    private static String[] merge(int []arr1, int []arr2, String []arr1S, int []arr2S){
-        int n = arr1.length + arr2.length;
-        int[] arr = new int[n];
-        int i1=0;
-        int i2=0;
-        for(int i=0;i<n;i++){
-            if(i1 == arr1.length){
-                arr[i] = arr2[i2++];
-            }else if(i2 == arr2.length){
-                arr[i] = arr1[i1++];
-            }else{
-                if(arr1[i1] < arr2[i2]){
-                    arr[i] = arr1[i1++];
-                }else{
-                    arr[i] = arr2[i2++];
+
+        //сортування массивів методом бульбашки
+
+        int mov = 0;
+        int temp;
+        String tempS;
+        boolean flagRemoved = true;
+        while (flagRemoved){
+            flagRemoved = false;
+            for (int k = 0; k < rowsLength.length - 1 - mov; k++){
+                if (rowsLength[k] > rowsLength[k + 1]){
+                    temp = rowsLength[k + 1];
+                    tempS = files[k + 1];
+                    rowsLength[k + 1] = rowsLength[k];
+                    files[k + 1] = files[k];
+                    rowsLength[k] = temp;
+                    files[k] = tempS;
+                    flagRemoved = true;
                 }
             }
+            mov++;
         }
-        return arr;
-    }
 
+        //пробуємо вивести відсортовані назви файлів
+
+        System.out.println("Sorted files: ");
+        for (int n = 0; n < quantityRows; n++){
+            System.out.println("_____________________");
+            System.out.println("File name: " + files[n] + "Length: " + rowsLength[n]);
+            System.out.println("_____________________");
+        }
+
+        //пробуємо записати в вихідний файл
+
+        for (int i1 = 0; i1 < files.length; i1++) {
+            String file = files[i1];
+            RandomAccessFile rafMulti = new RandomAccessFile(file, "r");
+            if (i1 != (files.length - 1)) {
+                rafw.writeBytes(rafMulti.readLine().concat(System.lineSeparator()));
+            }
+            else {
+                rafw.writeBytes(rafMulti.readLine());
+                rafw.close();
+            }
+            //видаляємо тимчасові файли
+
+            File f = new File(file);
+            if(f.delete())
+                System.out.println(" - " + file  + " was deleted!");
+            //rafw.writeBytes(System.lineSeparator());
+        }
+    }
 }
