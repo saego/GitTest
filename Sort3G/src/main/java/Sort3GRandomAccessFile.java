@@ -82,19 +82,17 @@ public class Sort3GRandomAccessFile implements SortFile {
         for (int i1 = 0; i1 < files.length; i1++) {
             String file = files[i1];
             RandomAccessFile rafMulti = new RandomAccessFile(file, "r");
-            if (i1 != (files.length - 1)) {
-                rafw.writeBytes(rafMulti.readLine().concat(System.lineSeparator()));
+            if (i1 !=  0) {
+                rafw.writeBytes(System.lineSeparator());
             }
-            else {
-                rafw.writeBytes(rafMulti.readLine());
-                rafw.close();
-            }
+            rafw.writeBytes(rafMulti.readLine());
+
             //видаляємо тимчасові файли
 
             File f = new File(file);
-            if(f.delete())
-                System.out.println(" - " + file  + " was deleted!");
-            //rafw.writeBytes(System.lineSeparator());
+            if (f.delete())
+                System.out.println(" - " + file + " was deleted!");
         }
+            rafw.close();
     }
 }
