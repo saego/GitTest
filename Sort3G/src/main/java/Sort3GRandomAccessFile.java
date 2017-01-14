@@ -8,16 +8,19 @@ import java.io.RandomAccessFile;
 public class Sort3GRandomAccessFile implements SortFile {
 
     public void sort(File source, File destination) throws IOException {
-        RandomAccessFile rafr = new RandomAccessFile(source, "r");
         RandomAccessFile rafw = new RandomAccessFile(destination, "rw");
         int quantityRows = 0;
-        while (rafr.readLine() != null){
-            quantityRows++;
+        try (RandomAccessFile rafr = new RandomAccessFile(source, "r")){
+            while (rafr.readLine() != null){
+                quantityRows++;
+            }
         }
-        rafr.close();
+        catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
         System.out.println("Rows : " + quantityRows);
 
-        rafr = new RandomAccessFile(source, "r");
+        RandomAccessFile rafr = new RandomAccessFile(source, "r");
         int count = 1;
         String name = "temp1.txt";
         String line, fileNames;
