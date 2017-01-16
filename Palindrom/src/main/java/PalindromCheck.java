@@ -9,27 +9,27 @@ import java.io.InputStreamReader;
 class PalindromCheck {
     boolean isPalindrom(InputStream input) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(input));
-        String word;
+        String originWord, word;
             boolean palindrom = true;
-        word = br.readLine();
+        originWord = br.readLine();
         br.close();
-        word = word.toLowerCase();
-        String []letters = word.split("");
+        word = originWord.toLowerCase();
+        char []letters = word.toCharArray();
         if (letters.length != 5){
             throw new Not5LettersException("Please enter word which consists of 5 letters!");
         }
         else {
             for (int i = 0; i != (letters.length/2 + 1); i++){
-                if (!letters[i].equals(letters[letters.length - 1 - i])){
+                if (letters[i]  != (letters[letters.length - 1 - i])){
                     palindrom = false;
                     break;
                 }
             }
             if (palindrom){
-                System.out.println(word + "  -  Is palindrom");
+                System.out.println(originWord + "  -  Is palindrom");
             }
             else {
-                System.out.println(word + "  -  Isn't palindrom");
+                System.out.println(originWord + "  -  Isn't palindrom");
             }
         }
     return palindrom;
