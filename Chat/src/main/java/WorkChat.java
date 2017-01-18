@@ -6,28 +6,34 @@ import java.io.*;
 class WorkChat {
 
     void chatting(File fileAnswers, File logs, InputStream input, OutputStream output) throws IOException {
+            String lineAsk, lineAnswer;
+            BufferedReader bufferedReader;
+            BufferedWriter bufferedWriter;
         try(
             RandomAccessFile rafr = new RandomAccessFile(fileAnswers, "r");
             RandomAccessFile rafrw = new RandomAccessFile(logs, "rw")
-            //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(input));
-            //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(output))
         ) {
-            String lineAsk, lineAnswer;
-            //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(input));
-            //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(output));
-            do {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(input));
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(output));
+            do
+            {
+//зчитуємо з консолі питання
+                bufferedReader = new BufferedReader(new InputStreamReader(input));
                 lineAsk = bufferedReader.readLine();
-                bufferedReader.close();
+//записуємо в лог-файл питання
                 rafrw.writeBytes(lineAsk.concat(System.lineSeparator()));
-                lineAnswer = rafr.readLine();
-                bufferedWriter.write(lineAnswer);
-                bufferedWriter.newLine();
-                bufferedWriter.close();
-                rafrw.writeBytes(lineAnswer.concat(System.lineSeparator()));
+//зчитуємо відповідь з файла відповідей
+                if(!lineAsk.equals("stop")) {
+                    lineAnswer = rafr.readLine();
+//записуємо в лог-файл відповідь
+                    rafrw.writeBytes(lineAnswer.concat(System.lineSeparator()));
+//записуємо відповідь в консоль
+                    bufferedWriter = new BufferedWriter(new OutputStreamWriter(output));
+                    bufferedWriter.write(lineAnswer);
+                    System.out.println(lineAnswer);
+                    bufferedWriter.newLine();
+                }
             }
             while (!lineAsk.equals("stop"));
+            rafrw.close();
         }
         catch (IOException ex){
             System.out.println(ex.getMessage());
