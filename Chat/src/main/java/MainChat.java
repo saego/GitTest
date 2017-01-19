@@ -11,7 +11,7 @@ public class MainChat {
     File answers = new File("answers.txt");
     File logs = new File("logs.txt");
     try {
-        System.out.println("Start chatting :");
+        System.out.println("Start chatting :)");
         chat.chatting(answers, logs, System.in);
     }
     catch (IOException ex){
