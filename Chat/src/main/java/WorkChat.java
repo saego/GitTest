@@ -7,7 +7,7 @@ class WorkChat {
 
     void chatting(File fileAnswers, File logs, InputStream input) throws IOException {
             BufferedReader bufferedReader;
-            int []positions;
+            long []positions;
             int n = 0, rowsQuantity =0;
             try(RandomAccessFile rafr00 = new RandomAccessFile(fileAnswers, "r")){
                 while (rafr00.readLine() != null){
@@ -17,13 +17,13 @@ class WorkChat {
             catch (IOException ex){
                 System.out.println(ex.getMessage());
             }
-            positions = new int[rowsQuantity];
+            positions = new long[rowsQuantity];
 //формуємо массив позицій початків рядків
         try (RandomAccessFile rafr0 = new RandomAccessFile(fileAnswers, "r")){
             do {
                 long m = rafr0.getFilePointer();
                 if (n != rowsQuantity - 1){
-                positions[n] = (int)m;
+                positions[n] = m;
                 n++;
                 }
             }
@@ -47,10 +47,10 @@ class WorkChat {
                 String user = "User     : ";
                 bufferedWriter.write(user.concat(lineAsk));
 //зчитуємо відповідь з файла відповідей
-                if (!lineAsk.equals("stop"))
+                if (!lineAsk.toLowerCase().equals("stop"))
                     bufferedWriter.newLine();
-                if(!lineAsk.equals("stop") && !lineAsk.equals("pause")) {
-                    rafr.seek((long)positions[(int) (Math.random() * (positions.length - 1))]);
+                if(!lineAsk.toLowerCase().equals("stop") && !lineAsk.toLowerCase().equals("pause")) {
+                    rafr.seek(positions[(int) (Math.random() * (positions.length - 1))]);
                     String lineAnswer = rafr.readLine();
 //записуємо в лог-файл відповідь
                     String computer = "Computer : ";
@@ -59,7 +59,7 @@ class WorkChat {
                     System.out.println(computer.concat(lineAnswer));
                 }
             }
-            while (!lineAsk.equals("stop"));
+            while (!lineAsk.toLowerCase().equals("stop"));
         }
         catch (IOException ex){
             System.out.println(ex.getMessage());
