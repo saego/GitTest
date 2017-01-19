@@ -11,7 +11,7 @@ class WorkChat {
             //BufferedWriter bufferedWriter;
         try(
             RandomAccessFile rafr = new RandomAccessFile(fileAnswers, "r");
-            RandomAccessFile rafrw = new RandomAccessFile(logs, "rw")
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logs))
         ) {
             do
             {
@@ -19,12 +19,13 @@ class WorkChat {
                 bufferedReader = new BufferedReader(new InputStreamReader(input));
                 lineAsk = bufferedReader.readLine();
 //записуємо в лог-файл питання
-                rafrw.writeBytes(lineAsk.concat(System.lineSeparator()));
+                bufferedWriter.write(lineAsk);
 //зчитуємо відповідь з файла відповідей
                 if(!lineAsk.equals("stop")) {
+                    bufferedWriter.newLine();
                     lineAnswer = rafr.readLine();
 //записуємо в лог-файл відповідь
-                    rafrw.writeBytes(lineAnswer.concat(System.lineSeparator()));
+                    bufferedWriter.write(lineAnswer.concat(System.lineSeparator()));
 //записуємо відповідь в консоль
                     //bufferedWriter = new BufferedWriter(new OutputStreamWriter(output));
                     //bufferedWriter.write(lineAnswer);
@@ -33,7 +34,6 @@ class WorkChat {
                 }
             }
             while (!lineAsk.equals("stop"));
-            rafrw.close();
         }
         catch (IOException ex){
             System.out.println(ex.getMessage());
