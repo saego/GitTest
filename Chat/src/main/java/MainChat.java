@@ -12,7 +12,7 @@ public class MainChat {
     File logs = new File("logs.txt");
     try {
         System.out.println("Start chatting :");
-        chat.chatting(answers, logs, System.in, System.out);
+        chat.chatting(answers, logs, System.in);
     }
     catch (IOException ex){
         System.out.println(ex.getMessage());

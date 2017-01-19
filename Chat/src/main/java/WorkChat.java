@@ -5,10 +5,10 @@ import java.io.*;
  */
 class WorkChat {
 
-    void chatting(File fileAnswers, File logs, InputStream input, OutputStream output) throws IOException {
+    void chatting(File fileAnswers, File logs, InputStream input) throws IOException {
             String lineAsk, lineAnswer;
             BufferedReader bufferedReader;
-            BufferedWriter bufferedWriter;
+            //BufferedWriter bufferedWriter;
         try(
             RandomAccessFile rafr = new RandomAccessFile(fileAnswers, "r");
             RandomAccessFile rafrw = new RandomAccessFile(logs, "rw")
@@ -26,10 +26,10 @@ class WorkChat {
 //записуємо в лог-файл відповідь
                     rafrw.writeBytes(lineAnswer.concat(System.lineSeparator()));
 //записуємо відповідь в консоль
-                    bufferedWriter = new BufferedWriter(new OutputStreamWriter(output));
-                    bufferedWriter.write(lineAnswer);
+                    //bufferedWriter = new BufferedWriter(new OutputStreamWriter(output));
+                    //bufferedWriter.write(lineAnswer);
                     System.out.println(lineAnswer);
-                    bufferedWriter.newLine();
+                    //bufferedWriter.newLine();
                 }
             }
             while (!lineAsk.equals("stop"));
