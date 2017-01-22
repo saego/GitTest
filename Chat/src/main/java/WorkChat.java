@@ -38,6 +38,7 @@ class WorkChat {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logs))
         ) {
             String lineAsk;
+            boolean contin = true;
             do
             {
 //зчитуємо з консолі питання
@@ -46,17 +47,25 @@ class WorkChat {
 //записуємо в лог-файл питання
                 String user = "User     : ";
                 bufferedWriter.write(user.concat(lineAsk));
+                    if (!lineAsk.toLowerCase().equals("stop"))
+                        bufferedWriter.newLine();
+                if (lineAsk.toLowerCase().equals("continue")){
+                    contin = true;
+                }
+                if (lineAsk.toLowerCase().equals("pause")){
+                    contin = false;
+                }
+                if (contin) {
 //зчитуємо відповідь з файла відповідей
-                if (!lineAsk.toLowerCase().equals("stop"))
-                    bufferedWriter.newLine();
-                if(!lineAsk.toLowerCase().equals("stop") && !lineAsk.toLowerCase().equals("pause")) {
-                    rafr.seek(positions[(int) (Math.random() * (positions.length - 1))]);
-                    String lineAnswer = rafr.readLine();
+                    if(!lineAsk.toLowerCase().equals("stop") && !lineAsk.toLowerCase().equals("pause") && !lineAsk.toLowerCase().equals("continue")) {
+                        rafr.seek(positions[(int) (Math.random() * (positions.length - 1))]);
+                        String lineAnswer = rafr.readLine();
 //записуємо в лог-файл відповідь
-                    String computer = "Computer : ";
-                    bufferedWriter.write(computer.concat(lineAnswer).concat(System.lineSeparator()));
+                        String computer = "Computer : ";
+                        bufferedWriter.write(computer.concat(lineAnswer).concat(System.lineSeparator()));
 //записуємо відповідь в консоль
-                    System.out.println(computer.concat(lineAnswer));
+                        System.out.println(computer.concat(lineAnswer));
+                    }
                 }
             }
             while (!lineAsk.toLowerCase().equals("stop"));
