@@ -14,7 +14,7 @@ public class Server {
     public static void main(String []args){
         int port = 3000;
         try {
-            ServerSocket serverSocket = new ServerSocket(port);
+            ServerSocket serverSocket = new ServerSocket(port);//
             System.out.println("Waiting for server connection...");
             Socket socket = serverSocket.accept();
             System.out.println("We've got connection");
