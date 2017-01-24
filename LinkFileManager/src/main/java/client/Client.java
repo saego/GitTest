@@ -1,6 +1,9 @@
 package client;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -16,7 +19,14 @@ public class Client {
             System.out.println("Connection to server...");
             Socket socket = new Socket(inetAddress, port);
 
-            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+            //DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+            DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+            String word = bufferedReader.readLine();
+            dataOutputStream.writeUTF(word);
+            dataOutputStream.flush();
         }
         catch (Exception x){
             x.printStackTrace();
