@@ -16,13 +16,13 @@ public class Server {
         ServerSocket ss = new ServerSocket(port);
         System.out.println("Waiting for connection...");
         Socket socket = ss.accept();
-        System.out.println("Accept connetion!");
+        System.out.println("Accept connection!");
 
         DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
         //DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
         String word = dataInputStream.readUTF();
-        System.out.println(word);
+        System.out.println("Message from client: " + word);
         }
         catch (Exception x){
         x.printStackTrace();
