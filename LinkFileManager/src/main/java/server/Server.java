@@ -28,4 +28,8 @@ public class Server {
         x.printStackTrace();
         }
     }
+    public void showDirectoryList(){
+
+        }
+
 }

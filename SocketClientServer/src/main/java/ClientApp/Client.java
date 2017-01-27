@@ -10,8 +10,8 @@ import java.net.Socket;
  */
 public class Client {
     public static void main(String []args) {
-        int serverPort = 3000;
-        String internetAdress = "127.0.0.1";
+        int serverPort = 5000;
+        String internetAdress = "192.168.1.13";
         try {
             InetAddress inetAddress = InetAddress.getByName(internetAdress);
             System.out.println("Connecting to server...");
