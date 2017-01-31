@@ -109,7 +109,7 @@ public class MenuClient {
 
     private class Exit extends InfoAction{
 
-        public Exit() {
+        Exit() {
             super("Exit");
         }
 
