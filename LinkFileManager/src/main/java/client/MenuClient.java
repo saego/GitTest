@@ -6,7 +6,7 @@ package client;
 public class MenuClient {
     private Input input;
     private Client client;
-    private ClientAction []actions = new ClientAction[4];
+    private ClientAction []actions = new ClientAction[5];
 
     public MenuClient(Input input, Client client) {
         this.input = input;
@@ -19,6 +19,7 @@ public class MenuClient {
         this.actions[1] = this.new DownloadFile();
         this.actions[2] = this.new SendFile();
         this.actions[3] = this.new ExitFolder();
+        this.actions[4] = this.new Exit();
     }
 
     //selection menu
@@ -101,6 +102,21 @@ public class MenuClient {
         public int key() {
             return 3;
         }
+        public void execute(Input input, Client client) {
+
+        }
+    }
+
+    private class Exit extends InfoAction{
+
+        public Exit() {
+            super("Exit");
+        }
+
+        public int key() {
+            return 4;
+        }
+
         public void execute(Input input, Client client) {
 
         }
