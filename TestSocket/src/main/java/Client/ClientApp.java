@@ -24,6 +24,18 @@ public class ClientApp {
             DataInputStream in = new DataInputStream(inputStream);
             DataOutputStream out = new DataOutputStream(outputStream);
 
+            String folderName = "Dir";
+            out.writeUTF(folderName);
+            out.flush();
+
+            int numbersFile = in.readInt();
+            String[] filesServer = new String[numbersFile];
+            for (String fileServer:
+                 filesServer) {
+                fileServer = in.readUTF();
+                System.out.println(fileServer);
+            }
+
         }
         catch (Exception e){
             e.printStackTrace();
