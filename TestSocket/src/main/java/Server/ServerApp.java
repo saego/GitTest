@@ -22,17 +22,20 @@ public class ServerApp {
             DataInputStream in = new DataInputStream(inputStream);
             DataOutputStream out = new DataOutputStream(outputStream);
 
+            out.writeUTF("Dir");
             String folderName = in.readUTF();
-
+            out.flush();
 
             ServerApp serverApp = new ServerApp();
             File file = new File(folderName);
             assert (serverApp.getList(file) != null);
-            out.write(serverApp.getList(file).length);
+            out.writeUTF(String.valueOf(serverApp.getList(file).length));
             for (String filename:
                     serverApp.getList(file)) {
+                System.out.println(filename);
                 out.writeUTF(filename);
             }
+            System.out.println(serverApp.getList(file).length);
 
         }
         catch (Exception e){

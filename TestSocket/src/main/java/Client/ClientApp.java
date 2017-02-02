@@ -1,9 +1,6 @@
 package Client;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -24,17 +21,37 @@ public class ClientApp {
             DataInputStream in = new DataInputStream(inputStream);
             DataOutputStream out = new DataOutputStream(outputStream);
 
-            String folderName = "Dir";
-            out.writeUTF(folderName);
-            out.flush();
-
-            int numbersFile = in.readInt();
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String task = in.readUTF();
+            //System.out.println(task);
+            out.writeUTF(task);
+            //out.flush();
+            int numbersFile = Integer.parseInt(in.readUTF());
+            System.out.println("Files on server:  " + numbersFile);
             String[] filesServer = new String[numbersFile];
-            for (String fileServer:
-                 filesServer) {
+            for (String fileServer :
+                    filesServer) {
                 fileServer = in.readUTF();
-                System.out.println(fileServer);
+                System.out.println("..." + fileServer);
             }
+            while (!task.toLowerCase().equals("exit")){
+                System.out.println("send task");
+                task = br.readLine();
+                out.writeUTF(task);
+                out.flush();
+
+                numbersFile = Integer.parseInt(in.readUTF());
+                System.out.println("Files on server:  " + numbersFile);
+                filesServer = new String[numbersFile];
+                for (String fileServer :
+                        filesServer) {
+                    fileServer = in.readUTF();
+                    System.out.println("..." + fileServer);
+                }
+            }
+            //while (!(task = br.readLine()).toLowerCase().equals("exit"));
+            br.close();
+
 
         }
         catch (Exception e){
