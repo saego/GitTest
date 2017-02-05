@@ -21,10 +21,12 @@ public class ServerApp {
             OutputStream outputStream = socket.getOutputStream();
             DataInputStream in = new DataInputStream(inputStream);
             DataOutputStream out = new DataOutputStream(outputStream);
-
+//передаємо назву директорії
             out.writeUTF("Dir");
+//приймаємо назву директорії
             String folderName = in.readUTF();
             out.flush();
+
             while(!folderName.toLowerCase().equals("exit")){
                 ServerApp serverApp = new ServerApp();
                 File file = new File(folderName);

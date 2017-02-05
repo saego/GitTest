@@ -22,19 +22,22 @@ public class ClientApp {
             DataOutputStream out = new DataOutputStream(outputStream);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+//приймаємо назву директорії
             String task = in.readUTF();
             //System.out.println(task);
             out.writeUTF(task);
             out.flush();
+
             int numbersFile = Integer.parseInt(in.readUTF());
             System.out.println("Files on server:  " + numbersFile);
             String[] filesServer = new String[numbersFile];
+
             for (String fileServer :
                     filesServer) {
                 fileServer = in.readUTF();
                 System.out.println("..." + fileServer);
             }
+
             while (!task.toLowerCase().equals("exit")){
                 System.out.println("send task");
                 task = br.readLine();
