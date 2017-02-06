@@ -23,10 +23,12 @@ public class ServerApp {
             DataOutputStream out = new DataOutputStream(outputStream);
 
             boolean flag = true;
+            ServerApp app = new ServerApp();
+            String way, folderName = "Dir";
             while (flag) {
-                String folderName = in.readUTF();
+                way = folderName;
+                folderName = in.readUTF().concat(folderName);
                 if (!folderName.equals("exit")) {
-                    ServerApp app = new ServerApp();
                     String[] list = app.getList(folderName);
                     System.out.println(list.length);
                     out.writeInt(list.length);
@@ -36,7 +38,14 @@ public class ServerApp {
                     out.flush();
                     }
                 } else if (folderName.equals("cd")) {
-
+                    String[] list = app.getList(way);
+                    System.out.println(list.length);
+                    out.writeInt(list.length);
+                    for (String lis :
+                            list) {
+                        out.writeUTF(lis);
+                        out.flush();
+                    }
                 }
                 else {
                     flag = false;
