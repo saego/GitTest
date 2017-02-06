@@ -21,32 +21,38 @@ public class ServerApp {
             OutputStream outputStream = socket.getOutputStream();
             DataInputStream in = new DataInputStream(inputStream);
             DataOutputStream out = new DataOutputStream(outputStream);
-//передаємо назву директорії
-            out.writeUTF("Dir");
-//приймаємо назву директорії
-            String folderName = in.readUTF();
-            out.flush();
 
-            while(!folderName.toLowerCase().equals("exit")){
-                ServerApp serverApp = new ServerApp();
-                File file = new File(folderName);
-                assert (serverApp.getList(file) != null);
-                out.writeUTF(String.valueOf(serverApp.getList(file).length));
-                for (String filename:
-                    serverApp.getList(file)) {
-                    out.writeUTF(filename);
+            boolean flag = true;
+            while (flag) {
+                String folderName = in.readUTF();
+                if (!folderName.equals("exit")) {
+                    ServerApp app = new ServerApp();
+                    String[] list = app.getList(folderName);
+                    System.out.println(list.length);
+                    out.writeInt(list.length);
+                    for (String lis :
+                       list) {
+                     out.writeUTF(lis);
+                    out.flush();
+                    }
+                } else if (folderName.equals("cd")) {
+
                 }
-                out.flush();
+                else {
+                    flag = false;
+                }
             }
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
-    private String []getList(File folder){
-        if (folder.isDirectory()) {
-            return folder.list();
-        }
-        else return null;
+
+    private String []getList(String folder){
+        File file = new File(folder);
+        //if (file.isDirectory()) {
+            return file.list();
+        //}
+        //else return null;
     }
 }

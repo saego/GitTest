@@ -22,40 +22,18 @@ public class ClientApp {
             DataOutputStream out = new DataOutputStream(outputStream);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//приймаємо назву директорії
-            String task = in.readUTF();
-            //System.out.println(task);
-            out.writeUTF(task);
+
+            String folderName = br.readLine();
+            out.writeUTF(folderName);
             out.flush();
-
-            int numbersFile = Integer.parseInt(in.readUTF());
-            System.out.println("Files on server:  " + numbersFile);
-            String[] filesServer = new String[numbersFile];
-
-            for (String fileServer :
-                    filesServer) {
-                fileServer = in.readUTF();
-                System.out.println("..." + fileServer);
+            int length = in.readInt();
+            System.out.println("Length " + length);
+            String []list = new String[length];
+            for (String lis:
+                 list) {
+                lis = in.readUTF();
+                System.out.println("..." + lis);
             }
-
-            while (!task.toLowerCase().equals("exit")){
-                System.out.println("send task");
-                task = br.readLine();
-                out.writeUTF(task);
-                out.flush();
-
-                numbersFile = Integer.parseInt(in.readUTF());
-                System.out.println("Files on server:  " + numbersFile);
-                filesServer = new String[numbersFile];
-                for (String fileServer :
-                        filesServer) {
-                    fileServer = in.readUTF();
-                    System.out.println("..." + fileServer);
-                }
-            }
-            //while (!(task = br.readLine()).toLowerCase().equals("exit"));
-            br.close();
-
 
         }
         catch (Exception e){
