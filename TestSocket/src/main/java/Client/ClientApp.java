@@ -23,36 +23,16 @@ public class ClientApp {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            int length = in.readInt();
-            System.out.println("Length " + length);
-            String []list = new String[length];
-            for (String lis:
-                    list) {
-                lis = in.readUTF();
-                System.out.println("..." + lis);
-            }
-            boolean flag = true;
-            do {
-                String folderName = br.readLine();
-                if (!folderName.equals("exit")) {
-                    out.writeUTF(folderName);
-                    out.flush();
-                    length = in.readInt();
-                    System.out.println("Length " + length);
-                    list = new String[length];
-                    for (String lis :
-                            list) {
-                        lis = in.readUTF();
-                        System.out.println("..." + lis);
-                    }
-                }
-                else{
-                    out.writeUTF(folderName);
-                    flag = false;
-                }
-            }
-            while(flag);
+            String way;
+            way = br.readLine();
+            out.writeUTF(way);
 
+            String []getFiles = new String[in.readInt()];
+            for (String file:
+                 getFiles) {
+                file = in.readUTF();
+                System.out.println("... " + file);
+            }
         }
         catch (Exception e){
             e.printStackTrace();

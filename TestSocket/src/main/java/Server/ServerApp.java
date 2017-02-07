@@ -22,34 +22,14 @@ public class ServerApp {
             DataInputStream in = new DataInputStream(inputStream);
             DataOutputStream out = new DataOutputStream(outputStream);
 
-            boolean flag = true;
             ServerApp app = new ServerApp();
-            String way, folderName = "Dir";
-            while (flag) {
-                way = folderName;
-                folderName = in.readUTF().concat(folderName);
-                if (!folderName.equals("exit")) {
-                    String[] list = app.getList(folderName);
-                    System.out.println(list.length);
-                    out.writeInt(list.length);
-                    for (String lis :
-                       list) {
-                     out.writeUTF(lis);
-                    out.flush();
-                    }
-                } else if (folderName.equals("cd")) {
-                    String[] list = app.getList(way);
-                    System.out.println(list.length);
-                    out.writeInt(list.length);
-                    for (String lis :
-                            list) {
-                        out.writeUTF(lis);
-                        out.flush();
-                    }
-                }
-                else {
-                    flag = false;
-                }
+            String way;
+            way = in.readUTF();
+
+            out.writeInt(app.getList(way).length);
+            for (String file:
+                 app.getList(way)) {
+                out.writeUTF(file);
             }
         }
         catch (Exception e){
