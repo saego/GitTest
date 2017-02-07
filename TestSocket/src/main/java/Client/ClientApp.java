@@ -23,13 +23,31 @@ public class ClientApp {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            String way;
-            way = br.readLine();
-            out.writeUTF(way);
+            //String way;
+            //way = br.readLine();
+            //out.writeUTF(way);
 
             String []getFiles = new String[in.readInt()];
             for (String file:
                  getFiles) {
+                file = in.readUTF();
+                System.out.println("... " + file);
+            }
+            System.out.println("------------------------");
+            System.out.println("input name");
+            out.writeUTF(br.readLine());
+
+            getFiles = new String[in.readInt()];
+            for (String file:
+                    getFiles) {
+                file = in.readUTF();
+                System.out.println("... " + file);
+            }
+            System.out.println("------------------------");
+            System.out.println("Parent list");
+            getFiles = new String[in.readInt()];
+            for (String file:
+                    getFiles) {
                 file = in.readUTF();
                 System.out.println("... " + file);
             }

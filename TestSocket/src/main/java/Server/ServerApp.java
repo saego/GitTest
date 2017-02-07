@@ -24,11 +24,28 @@ public class ServerApp {
 
             ServerApp app = new ServerApp();
             String way;
-            way = in.readUTF();
+            //way = in.readUTF();
+            way = "Dir";
 
             out.writeInt(app.getList(way).length);
             for (String file:
                  app.getList(way)) {
+                out.writeUTF(file);
+            }
+            out.flush();
+
+            way = way.concat("/").concat(in.readUTF());
+            out.writeInt(app.getList(way).length);
+            for (String file:
+                    app.getList(way)) {
+                out.writeUTF(file);
+            }
+            out.flush();
+
+            //way = way.concat("/").concat(in.readUTF());
+            out.writeInt(app.getParentList(way).length);
+            for (String file:
+                    app.getParentList(way)) {
                 out.writeUTF(file);
             }
         }
@@ -39,9 +56,15 @@ public class ServerApp {
 
     private String []getList(String folder){
         File file = new File(folder);
+        //System.out.println(file.getParent());
         //if (file.isDirectory()) {
             return file.list();
         //}
         //else return null;
+    }
+
+    private String []getParentList(String folder){
+        File file = new File(folder);
+        return file.getParentFile().list();
     }
 }
