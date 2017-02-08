@@ -21,50 +21,52 @@ public class ServerApp {
             OutputStream outputStream = socket.getOutputStream();
             DataInputStream in = new DataInputStream(inputStream);
             DataOutputStream out = new DataOutputStream(outputStream);
-
+//variables
             ServerApp app = new ServerApp();
             String way;
-            //way = in.readUTF();
             way = "Dir";
-
-            out.writeInt(app.getList(way).length);
-            for (String file:
-                 app.getList(way)) {
-                out.writeUTF(file);
-            }
+//get root folder list
+            app.getList(way, out);
             out.flush();
-
+//get child folder list
             way = way.concat("/").concat(in.readUTF());
-            out.writeInt(app.getList(way).length);
-            for (String file:
-                    app.getList(way)) {
-                out.writeUTF(file);
-            }
+            app.getList(way, out);
             out.flush();
-
-            //way = way.concat("/").concat(in.readUTF());
-            out.writeInt(app.getParentList(way).length);
-            for (String file:
-                    app.getParentList(way)) {
-                out.writeUTF(file);
-            }
+//back to parent
+            app.getParentList(way, out);
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    private String []getList(String folder){
+    private void getList(String folder, DataOutput out) throws IOException {
         File file = new File(folder);
-        //System.out.println(file.getParent());
-        //if (file.isDirectory()) {
-            return file.list();
-        //}
-        //else return null;
+        String []listFiles = file.list();
+        if (listFiles != null) {
+            out.writeInt(listFiles.length);
+            for (String listFile:
+                    listFiles) {
+                out.writeUTF(listFile);
+            }
+        }
+        else {
+            out.writeInt(0);
+        }
     }
 
-    private String []getParentList(String folder){
+    private void getParentList(String folder, DataOutput out) throws IOException {
         File file = new File(folder);
-        return file.getParentFile().list();
+        String []listFiles = file.getParentFile().list();
+        if (listFiles != null) {
+            out.writeInt(listFiles.length);
+            for (String listFile :
+                    listFiles) {
+                out.writeUTF(listFile);
+            }
+        }
+        else {
+            out.writeInt(0);
+        }
     }
 }

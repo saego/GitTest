@@ -33,24 +33,7 @@ public class ClientApp {
                 file = in.readUTF();
                 System.out.println("... " + file);
             }
-            System.out.println("------------------------");
-            System.out.println("input name");
-            out.writeUTF(br.readLine());
 
-            getFiles = new String[in.readInt()];
-            for (String file:
-                    getFiles) {
-                file = in.readUTF();
-                System.out.println("... " + file);
-            }
-            System.out.println("------------------------");
-            System.out.println("Parent list");
-            getFiles = new String[in.readInt()];
-            for (String file:
-                    getFiles) {
-                file = in.readUTF();
-                System.out.println("... " + file);
-            }
         }
         catch (Exception e){
             e.printStackTrace();
