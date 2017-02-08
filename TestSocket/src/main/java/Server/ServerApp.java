@@ -69,4 +69,23 @@ public class ServerApp {
             out.writeInt(0);
         }
     }
+
+    private void downladFile(String folder, DataOutput out) throws IOException {
+        File file = new File(folder);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line = br.readLine()) != null){
+            out.writeUTF(line);
+        }
+        br.close();
+    }
+
+    private void uploadFile(String folder, DataInput in) throws IOException {
+        File file = new File(folder);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        String line;
+        while ((line = in.readUTF()) != null){
+            bw.write(line);
+        }
+    }
 }
