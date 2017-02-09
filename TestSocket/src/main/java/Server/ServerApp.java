@@ -44,11 +44,13 @@ public class ServerApp {
         File file = new File(folder);
         String []listFiles = file.list();
         if (listFiles != null) {
-            out.writeInt(listFiles.length);
-            for (String listFile:
-                    listFiles) {
-                out.writeUTF(listFile);
+            String list = listFiles[0];
+            if (listFiles.length > 1){
+                for (int i = 1; i < listFiles.length; i++) {
+                    list = list.concat(" ").concat(listFiles[i]);
+                }
             }
+            out.writeUTF(list);
         }
         else {
             out.writeInt(0);
@@ -59,11 +61,13 @@ public class ServerApp {
         File file = new File(folder);
         String []listFiles = file.getParentFile().list();
         if (listFiles != null) {
-            out.writeInt(listFiles.length);
-            for (String listFile :
-                    listFiles) {
-                out.writeUTF(listFile);
+            String list = listFiles[0];
+            if (listFiles.length > 1){
+                for (int i = 1; i < listFiles.length; i++) {
+                    list = list.concat(" ").concat(listFiles[i]);
+                }
             }
+            out.writeUTF(list);
         }
         else {
             out.writeInt(0);
