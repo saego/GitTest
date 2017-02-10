@@ -61,8 +61,16 @@ public class ClientApp {
 //----------------------------------------------------------------------------------------------------------------------
             app.start(in);
 //----------------------------------------------------------------------------------------------------------------------
-            app.enterFolder(br, in, out);
-            app.exitFolder(in);
+            String task;
+            while (!(task = br.readLine()).equals("exit")) {
+                if (task.equals("enter")) {
+                    app.enterFolder(br, in, out);
+                }
+                if (task.equals("exit")) {
+                    app.exitFolder(in);
+                }
+            }
+            out.writeUTF(task);
 
         }
         catch (Exception e){

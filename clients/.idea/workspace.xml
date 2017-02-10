@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7fdf2a5f-e878-4fd9-8556-5fff5ac11627" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TestSocket/src/main/java/Client/ClientApp.java" afterPath="$PROJECT_DIR$/../TestSocket/src/main/java/Client/ClientApp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TestSocket/src/main/java/Server/ServerApp.java" afterPath="$PROJECT_DIR$/../TestSocket/src/main/java/Server/ServerApp.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
