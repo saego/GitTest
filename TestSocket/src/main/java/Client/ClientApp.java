@@ -8,6 +8,8 @@ import java.net.Socket;
  Created by ${Ruslan} on 01.02.17.
  */
 public class ClientApp {
+            String dirName, way;
+            String []files;
     public static void main(String []args){
             int port = 1300;
             String internetAddress = "127.0.0.1";
@@ -22,45 +24,74 @@ public class ClientApp {
             DataOutputStream out = new DataOutputStream(outputStream);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-            String dirName;
+            ClientApp app = new ClientApp();
 //----------------------------------------------------------------------------------------------------------------
             System.out.println("Root Dir");
-            String way = in.readUTF();
-            System.out.println(way);
+            app.way = in.readUTF();
+            System.out.println(app.way);
             System.out.println("List: ");
-            String []files = in.readUTF().split(" ");
+            app.files = in.readUTF().split(" ");
             for (String file:
-                 files) {
+                 app.files) {
                 System.out.println("..." + file);
             }
 //----------------------------------------------------------------------------------------------------------------
-            System.out.println("Input name");
-            dirName = br.readLine();
-            out.writeUTF(dirName);
+            /*System.out.println("Input name");
+            app.dirName = br.readLine();
+            out.writeUTF(app.dirName);
             System.out.println("Current Dir");
-            way = in.readUTF();
-            System.out.println(way);
+            app.way = in.readUTF();
+            System.out.println(app.way);
             System.out.println("List: ");
             files = in.readUTF().split(" ");
             for (String file:
                     files) {
                 System.out.println("..." + file);
-            }
+            }*/
 
-            System.out.println("Parent Dir");
-            way = in.readUTF();
-            System.out.println(way);
+            /*System.out.println("Parent Dir");
+            app.way = in.readUTF();
+            System.out.println(app.way);
             System.out.println("List: ");
             files = in.readUTF().split(" ");
             for (String file:
                     files) {
                 System.out.println("..." + file);
-            }
+            }*/
+
+            app.enterFolder(br, in, out);
+            app.exitFolder(in);
 
         }
         catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void enterFolder(BufferedReader br, DataInput in, DataOutput out) throws IOException {
+        System.out.println("Input name");
+        dirName = br.readLine();
+        out.writeUTF(dirName);
+        System.out.println("Current Dir");
+        way = in.readUTF();
+        System.out.println(way);
+        System.out.println("List: ");
+        files = in.readUTF().split(" ");
+        for (String file:
+                files) {
+            System.out.println("..." + file);
+        }
+    }
+
+    public void exitFolder(DataInput in) throws IOException {
+        System.out.println("Parent Dir");
+        way = in.readUTF();
+        System.out.println(way);
+        System.out.println("List: ");
+        files = in.readUTF().split(" ");
+        for (String file:
+                files) {
+            System.out.println("..." + file);
         }
     }
 }
