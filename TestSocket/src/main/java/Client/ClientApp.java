@@ -23,30 +23,35 @@ public class ClientApp {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            String way;
-            //way = br.readLine();
-            //out.writeUTF(way);
-
-            //String []getFiles = new String[in.readInt()];
-            //for (String file:
-             //    getFiles) {
-               // file = in.readUTF();
-                //System.out.println("... " + file);
-            //}
+            String dirName;
+//----------------------------------------------------------------------------------------------------------------
+            System.out.println("Root Dir");
+            String way = in.readUTF();
+            System.out.println(way);
+            System.out.println("List: ");
             String []files = in.readUTF().split(" ");
             for (String file:
                  files) {
                 System.out.println("..." + file);
             }
-
-            way = br.readLine();
-            out.writeUTF(way);
+//----------------------------------------------------------------------------------------------------------------
+            System.out.println("Input name");
+            dirName = br.readLine();
+            out.writeUTF(dirName);
+            System.out.println("Current Dir");
+            way = in.readUTF();
+            System.out.println(way);
+            System.out.println("List: ");
             files = in.readUTF().split(" ");
             for (String file:
                     files) {
                 System.out.println("..." + file);
             }
 
+            System.out.println("Parent Dir");
+            way = in.readUTF();
+            System.out.println(way);
+            System.out.println("List: ");
             files = in.readUTF().split(" ");
             for (String file:
                     files) {

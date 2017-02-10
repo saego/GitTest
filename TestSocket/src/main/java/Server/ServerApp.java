@@ -8,6 +8,7 @@ import java.net.Socket;
  Created by ${Ruslan} on 01.02.17.
  */
 public class ServerApp {
+    public String dirName, way;
     public static void main(String []args){
         int port = 1300;
         try{
@@ -23,17 +24,21 @@ public class ServerApp {
             DataOutputStream out = new DataOutputStream(outputStream);
 //variables
             ServerApp app = new ServerApp();
-            String way;
-            way = "Dir";
-//get root folder list
-            app.getList(way, out);
+            BufferedReader br = new BufferedReader(new FileReader("ini.txt"));
+            app.dirName = br.readLine();
+            br.close();
+//get root folder list--------------------------------------------------------------------------------------------------
+            app.getList(app.dirName, out);
             out.flush();
+//----------------------------------------------------------------------------------------------------------------------
 //get child folder list
-            way = way.concat("/").concat(in.readUTF());
-            app.getList(way, out);
+            app.way = app.dirName.concat("/").concat(in.readUTF());
+            app.getList(app.way, out);
+            System.out.println(app.way);
             out.flush();
 //back to parent
-            app.getParentList(way, out);
+            app.getParentList(app.way, out);
+            System.out.println(app.way);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -44,6 +49,8 @@ public class ServerApp {
         File file = new File(folder);
         String []listFiles = file.list();
         if (listFiles != null) {
+            way = file.getAbsolutePath();
+            out.writeUTF(way);
             String list = listFiles[0];
             if (listFiles.length > 1){
                 for (int i = 1; i < listFiles.length; i++) {
@@ -61,6 +68,8 @@ public class ServerApp {
         File file = new File(folder);
         String []listFiles = file.getParentFile().list();
         if (listFiles != null) {
+            way = file.getParentFile().getAbsolutePath();
+            out.writeUTF(way);
             String list = listFiles[0];
             if (listFiles.length > 1){
                 for (int i = 1; i < listFiles.length; i++) {
