@@ -8,7 +8,7 @@ import java.net.Socket;
  Created by ${Ruslan} on 01.02.17.
  */
 public class ServerApp {
-    public String dirName, way;
+    private String dirName, way;
     public static void main(String []args){
         int port = 1300;
         try{
