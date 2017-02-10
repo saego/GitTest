@@ -62,15 +62,19 @@ public class ClientApp {
             app.start(in);
 //----------------------------------------------------------------------------------------------------------------------
             String task;
+            System.out.println("Input task: <enter> - open folder, <out> - go to parent folder, <exit> - exit");
             while (!(task = br.readLine()).equals("exit")) {
                 if (task.equals("enter")) {
+                    out.writeInt(1);
                     app.enterFolder(br, in, out);
                 }
-                if (task.equals("exit")) {
+                if (task.equals("out")) {
+                    out.writeInt(2);
                     app.exitFolder(in);
                 }
+                System.out.println("Input next task");
             }
-            out.writeUTF(task);
+            out.writeInt(0);
 
         }
         catch (Exception e){

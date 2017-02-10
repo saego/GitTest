@@ -31,14 +31,29 @@ public class ServerApp {
             app.getList(app.dirName, out);
             out.flush();
 //----------------------------------------------------------------------------------------------------------------------
+            int key;
+            while ((key = in.readInt()) != 0){
+                if (key == 1){
+                    app.way = app.dirName.concat("/").concat(in.readUTF());
+                    app.getList(app.way, out);
+                    System.out.println(app.way);
+                    out.flush();
+                }
+                if (key == 2){
+                    app.getParentList(app.way, out);
+                    System.out.println(app.way);
+                }
+            }
+/*
 //get child folder list
             app.way = app.dirName.concat("/").concat(in.readUTF());
             app.getList(app.way, out);
             System.out.println(app.way);
-            out.flush();
+            out.flush();*/
+/*
 //back to parent
             app.getParentList(app.way, out);
-            System.out.println(app.way);
+            System.out.println(app.way);*/
         }
         catch (Exception e){
             e.printStackTrace();
