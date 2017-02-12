@@ -3,6 +3,8 @@ package Client;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  Created by ${Ruslan} on 01.02.17.
@@ -61,6 +63,10 @@ public class ClientApp {
 //----------------------------------------------------------------------------------------------------------------------
             app.start(in);
 //----------------------------------------------------------------------------------------------------------------------
+            Map<String, Void> keys = new HashMap<String, Void>();
+            keys.put("enter", app.enterFolder(br, in, out));
+            keys.put("out", app.exitFolder(in));
+            keys.put("exit", app.enterFolder(););
             String task;
             System.out.println("Input task: <enter> - open folder, <out> - go to parent folder, <exit> - exit");
             while (!(task = br.readLine()).equals("exit")) {
