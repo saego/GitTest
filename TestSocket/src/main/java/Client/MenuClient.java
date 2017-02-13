@@ -23,5 +23,59 @@ public class MenuClient {
         this.clientAction[key].execute(this.input, this.app);
     }
 
+    //getting quantity of actions
+    int []getAllActions(){
+        int []actionsQuantity = new int[this.clientAction.length];
+        int i = 0;
+        for(int n = 0; n < actionsQuantity.length; n++){
+            actionsQuantity[n] = i;
+            i = i +1;
+        }
+        return actionsQuantity;
+    }
 
+    private class EnterFolder extends InfoAction{
+
+        EnterFolder() {
+            super("Enter folder");
+        }
+
+        public int key() {
+            return 1;
+        }
+
+        public void execute(Input input, ClientApp app){
+
+        }
+    }
+
+    private class ExitFolder extends InfoAction{
+
+        ExitFolder() {
+            super("Exit folder");
+        }
+
+        public int key() {
+            return 2;
+        }
+
+        public void execute(Input input, ClientApp app){
+
+        }
+    }
+
+    private class ExitApp extends InfoAction{
+
+        ExitApp() {
+            super("Exit");
+        }
+
+        public int key() {
+            return 0;
+        }
+
+        public void execute(Input input, ClientApp app){
+
+        }
+    }
 }
