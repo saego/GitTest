@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fdf2a5f-e878-4fd9-8556-5fff5ac11627" name="Default" comment="11/12/2016  20/52 exceptions's finished, abstract finished, warnings">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../TestSocket/src/main/java/Client/InfoAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TestSocket/src/main/java/Client/MenuClient.java" afterPath="$PROJECT_DIR$/../TestSocket/src/main/java/Client/MenuClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="7fdf2a5f-e878-4fd9-8556-5fff5ac11627" name="Default" comment="11/12/2016  20/52 exceptions's finished, abstract finished, warnings" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
