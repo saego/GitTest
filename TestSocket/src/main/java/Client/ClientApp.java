@@ -28,45 +28,13 @@ public class ClientApp {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             ClientApp app = new ClientApp();
 //----------------------------------------------------------------------------------------------------------------
-            /*System.out.println("Root Dir");
-            app.way = in.readUTF();
-            System.out.println(app.way);
-            System.out.println("List: ");
-            app.files = in.readUTF().split(" ");
-            for (String file:
-                 app.files) {
-                System.out.println("..." + file);
-            }*/
-//----------------------------------------------------------------------------------------------------------------
-            /*System.out.println("Input name");
-            app.dirName = br.readLine();
-            out.writeUTF(app.dirName);
-            System.out.println("Current Dir");
-            app.way = in.readUTF();
-            System.out.println(app.way);
-            System.out.println("List: ");
-            files = in.readUTF().split(" ");
-            for (String file:
-                    files) {
-                System.out.println("..." + file);
-            }*/
 
-            /*System.out.println("Parent Dir");
-            app.way = in.readUTF();
-            System.out.println(app.way);
-            System.out.println("List: ");
-            files = in.readUTF().split(" ");
-            for (String file:
-                    files) {
-                System.out.println("..." + file);
-            }*/
-//----------------------------------------------------------------------------------------------------------------------
             app.start(in);
 //----------------------------------------------------------------------------------------------------------------------
-            Map<String, Void> keys = new HashMap<String, Void>();
-            keys.put("enter", app.enterFolder(br, in, out));
-            keys.put("out", app.exitFolder(in));
-            keys.put("exit", app.enterFolder(););
+            Map<String, Integer> keys = new HashMap<String, Integer>();
+            keys.put("enter", 1);
+            keys.put("out", 2);
+            keys.put("exit", 0);
             String task;
             System.out.println("Input task: <enter> - open folder, <out> - go to parent folder, <exit> - exit");
             while (!(task = br.readLine()).equals("exit")) {
