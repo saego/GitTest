@@ -15,8 +15,8 @@ class ConsoleInput implements Input {
         return scanner.next();
     }
 //overriding question in range of actions
-    public int inputData(String question, int[] range) throws MenuOutException{
-        int key = Integer.valueOf(this.inputData(question));
+    public int inputData(String select, int[] range) throws MenuOutException{
+        int key = Integer.valueOf(this.inputData(select));
         boolean exist = false;
         for (int value:
              range) {

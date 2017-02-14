@@ -5,12 +5,12 @@ package start;
  */
 public class ValidateInput extends ConsoleInput{
 //validating key
-    public int inputData(String question, int[] range) {
+    public int inputData(String select, int[] range) {
         boolean invalid = true;
         int value = -1;
         do {
             try {
-                value = super.inputData(question, range);
+                value = super.inputData(select, range);
                 invalid = false;
             }
             catch (MenuOutException moe){

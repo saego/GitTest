@@ -5,6 +5,6 @@ package start;
 
  */
 interface Input {
-    String inputData(String selection);
-    int inputData(String question, int []range);
+    String inputData(String data);
+    int inputData(String selection, int []range);
 }
