@@ -1,5 +1,8 @@
 package Client;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  Created by Saego on 13.02.2017.
  */
@@ -13,69 +16,56 @@ public class MenuClient {
         this.app = app;
     }
 
+    Map<String, ClientAction> actionMap = new HashMap<String, ClientAction>();
     void fillAction(){
-        this.clientAction[0] = this.new EnterFolder();
-        this.clientAction[1] = this.new ExitFolder();
-        this.clientAction[3] = this.new ExitApp();
+        actionMap.put("enter", new EnterFolder());
+        actionMap.put("out", new ExitFolder());
+        actionMap.put("exit", new ExitApp());
     }
 
-    void select(int key){
-        this.clientAction[key].execute(this.input, this.app);
-    }
+    private class EnterFolder implements ClientAction {
 
-    //getting quantity of actions
-    int []getAllActions(){
-        int []actionsQuantity = new int[this.clientAction.length];
-        int i = 0;
-        for(int n = 0; n < actionsQuantity.length; n++){
-            actionsQuantity[n] = i;
-            i = i +1;
-        }
-        return actionsQuantity;
-    }
-
-    private class EnterFolder extends InfoAction{
-
-        EnterFolder() {
-            super("Enter folder");
+        public String command() {
+            return null;
         }
 
-        public int key() {
-            return 1;
+        public void execute(Input input, ClientApp clientApp) {
+
         }
 
-        public void execute(Input input, ClientApp app){
-
+        public String info() {
+            return null;
         }
     }
 
-    private class ExitFolder extends InfoAction{
+    private class ExitFolder implements ClientAction {
 
-        ExitFolder() {
-            super("Exit folder");
+        public String command() {
+            return null;
         }
 
-        public int key() {
-            return 2;
+        public void execute(Input input, ClientApp clientApp) {
+
         }
 
-        public void execute(Input input, ClientApp app){
-
+        public String info() {
+            return null;
         }
     }
 
-    private class ExitApp extends InfoAction{
 
-        ExitApp() {
-            super("Exit");
+    private class ExitApp implements ClientAction {
+
+        public String command() {
+            return null;
         }
 
-        public int key() {
-            return 0;
+        public void execute(Input input, ClientApp clientApp) {
+
         }
 
-        public void execute(Input input, ClientApp app){
-
+        public String info() {
+            return null;
         }
     }
 }
