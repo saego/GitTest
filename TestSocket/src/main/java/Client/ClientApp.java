@@ -31,10 +31,10 @@ public class ClientApp {
 
             app.start(in);
 //----------------------------------------------------------------------------------------------------------------------
-            Map<String, Integer> keys = new HashMap<String, Integer>();
-            keys.put("enter", 1);
-            keys.put("out", 2);
-            keys.put("exit", 0);
+            //Map<String, Integer> keys = new HashMap<String, Integer>();
+            //keys.put("enter", 1);
+            //keys.put("out", 2);
+            //keys.put("exit", 0);
             String task;
             System.out.println("Input task: <enter> - open folder, <out> - go to parent folder, <exit> - exit");
             while (!(task = br.readLine()).equals("exit")) {

@@ -26,11 +26,13 @@ public class MenuClient {
     private class EnterFolder implements ClientAction {
 
         public String command() {
-            return null;
+
+            return "enter";
         }
 
         public void execute(Input input, ClientApp clientApp) {
-
+            String task = input.command("Input command");
+            String dirName = input.dirName("Input Directory name");
         }
 
         public String info() {
@@ -41,11 +43,11 @@ public class MenuClient {
     private class ExitFolder implements ClientAction {
 
         public String command() {
-            return null;
+            return "out";
         }
 
         public void execute(Input input, ClientApp clientApp) {
-
+            String task = input.command("Input command");
         }
 
         public String info() {
@@ -57,7 +59,7 @@ public class MenuClient {
     private class ExitApp implements ClientAction {
 
         public String command() {
-            return null;
+            return "exit";
         }
 
         public void execute(Input input, ClientApp clientApp) {
