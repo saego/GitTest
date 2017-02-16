@@ -56,7 +56,7 @@ public class ClientApp {
         }
     }
 
-    private void enterFolder(BufferedReader br, DataInput in, DataOutput out) throws IOException {
+    public void enterFolder(BufferedReader br, DataInput in, DataOutput out) throws IOException {
         System.out.println("Input name");
         String dirName = br.readLine();
         out.writeUTF(dirName);
