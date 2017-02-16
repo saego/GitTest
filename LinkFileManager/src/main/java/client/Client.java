@@ -1,9 +1,6 @@
 package client;
 
-import java.io.*;
-import java.lang.reflect.Array;
-import java.net.InetAddress;
-import java.net.Socket;
+import java.io.File;
 import java.util.Arrays;
 
 /**
