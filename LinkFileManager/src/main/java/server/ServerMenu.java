@@ -41,7 +41,7 @@ public class ServerMenu {
     private class EnterFolder implements ServerActions{
 
         public String commandName() {
-            return null;
+            return "enter";
         }
 
         public void execute(String value) {
