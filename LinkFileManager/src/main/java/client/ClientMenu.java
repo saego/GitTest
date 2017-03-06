@@ -21,6 +21,7 @@ public class ClientMenu {
     public void fillClientActions(){
         this.clientActionsHashMap.put("enter", new EnterFolder());
         this.clientActionsHashMap.put("back", new BackFile());
+        this.clientActionsHashMap.put("show", new ShowList());
         this.clientActionsHashMap.put("help", new Help());
         this.clientActionsHashMap.put("exit", new ExitApp());
     }
@@ -65,6 +66,16 @@ public class ClientMenu {
     private class ExitApp implements ClientActions {
         public String commandName() {
             return "exit";
+        }
+
+        public void execute(ToDo value) {
+
+        }
+    }
+
+    private class ShowList implements ClientActions {
+        public String commandName() {
+            return "show";
         }
 
         public void execute(ToDo value) {
