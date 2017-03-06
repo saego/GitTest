@@ -3,6 +3,7 @@ package client;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class ClientMenu {
         this.clientActionsHashMap.put("exit", new ExitApp());
     }
 
-    public void select(ToDo toDo){
+    public void select(ToDo toDo) throws IOException {
         if (clientActionsHashMap.containsKey(toDo.getKeyToDo())){
             this.clientActionsHashMap.get(toDo.getKeyToDo()).execute(toDo);
         }
@@ -38,8 +39,11 @@ public class ClientMenu {
             return "enter";
         }
 
-        public void execute(ToDo value) {
-
+        public void execute(ToDo value) throws IOException {
+            out.writeUTF(value.getKeyToDo());
+            out.writeUTF(value.getTarget());
+            way = in.readUTF();
+            System.out.println(way);
         }
     }
 
@@ -48,8 +52,9 @@ public class ClientMenu {
             return "back";
         }
 
-        public void execute(ToDo value) {
-
+        public void execute(ToDo value) throws IOException {
+            out.writeUTF(value.getKeyToDo());
+            way = in.readUTF();
         }
     }
 
@@ -59,7 +64,8 @@ public class ClientMenu {
         }
 
         public void execute(ToDo value) {
-
+            System.out.println("This is help");
+            System.out.println(way);
         }
     }
 
@@ -69,7 +75,7 @@ public class ClientMenu {
         }
 
         public void execute(ToDo value) {
-
+            System.out.println("Exit from app");
         }
     }
 
@@ -78,8 +84,8 @@ public class ClientMenu {
             return "show";
         }
 
-        public void execute(ToDo value) {
-
+        public void execute(ToDo value) throws IOException {
+            out.writeUTF(value.getKeyToDo());
         }
     }
     /*
