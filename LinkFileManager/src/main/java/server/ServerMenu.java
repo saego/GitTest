@@ -29,6 +29,7 @@ public class ServerMenu {
     public void fillServerActions(){
         this.serverActionsHashMap.put("enter", new EnterFolder());
         this.serverActionsHashMap.put("out", new ExitFolder());
+        this.serverActionsHashMap.put("show", new ShowList());
         this.serverActionsHashMap.put("exit", new ExitApp());
     }
 
@@ -52,7 +53,7 @@ public class ServerMenu {
     private class ExitFolder implements ServerActions {
 
         public String commandName() {
-            return null;
+            return "out";
         }
 
         public void execute(String value) {
@@ -63,7 +64,17 @@ public class ServerMenu {
     private class ExitApp implements ServerActions {
 
         public String commandName() {
-            return null;
+            return "exit";
+        }
+
+        public void execute(String value) {
+
+        }
+    }
+
+    private class ShowList implements ServerActions {
+        public String commandName() {
+            return "show";
         }
 
         public void execute(String value) {
