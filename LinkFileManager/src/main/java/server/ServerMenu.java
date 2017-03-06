@@ -50,7 +50,7 @@ public class ServerMenu {
 
         public void execute() throws IOException {
             String addWay = in.readUTF();
-            way = way.concat("/").concat();
+            way = way.concat("/").concat(addWay);
         }
     }
 
