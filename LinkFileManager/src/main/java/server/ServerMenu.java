@@ -2,6 +2,8 @@ package server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +14,9 @@ import java.util.Map;
 @SuppressWarnings("Since15")
 public class ServerMenu {
 
-    private Path path;
-
+    //private Path path;
+    File file = new File("TestDir1");
+    public String way = file.getAbsolutePath();
     private DataInputStream in;
     private DataOutputStream out;
 
@@ -21,7 +24,7 @@ public class ServerMenu {
     private Map<String, ServerActions> serverActionsHashMap = new HashMap<String, ServerActions>();
 
     public ServerMenu(DataOutputStream out, DataInputStream in) {
-        this.path = Paths.get(System.getProperty("pathDir.dir"));
+        //this.path = Paths.get(System.getProperty("pathDir.dir"));
         this.in = in;
         this.out = out;
     }
@@ -33,9 +36,9 @@ public class ServerMenu {
         this.serverActionsHashMap.put("exit", new ExitApp());
     }
 
-    public void choose(String command, String param){
+    public void choose(String command, String param) throws IOException {
         if (serverActionsHashMap.containsKey(command)){
-            this.serverActionsHashMap.get(command).execute(param);
+            this.serverActionsHashMap.get(command).execute();
         }
     }
 
@@ -45,8 +48,9 @@ public class ServerMenu {
             return "enter";
         }
 
-        public void execute(String value) {
-
+        public void execute() throws IOException {
+            String addWay = in.readUTF();
+            way = way.concat("/").concat();
         }
     }
 
@@ -56,7 +60,7 @@ public class ServerMenu {
             return "out";
         }
 
-        public void execute(String value) {
+        public void execute() {
 
         }
     }
@@ -67,7 +71,7 @@ public class ServerMenu {
             return "exit";
         }
 
-        public void execute(String value) {
+        public void execute() {
 
         }
     }
@@ -77,7 +81,7 @@ public class ServerMenu {
             return "show";
         }
 
-        public void execute(String value) {
+        public void execute() {
 
         }
     }
