@@ -36,9 +36,9 @@ public class ServerMenu {
         this.serverActionsHashMap.put("exit", new ExitApp());
     }
 
-    public void choose(String command, String param) throws IOException {
-        if (serverActionsHashMap.containsKey(command)){
-            this.serverActionsHashMap.get(command).execute();
+    public void choose(ToDo toDo) throws IOException {
+        if (serverActionsHashMap.containsKey(toDo.getKeyToDo())){
+            this.serverActionsHashMap.get(toDo.getKeyToDo()).execute(toDo);
         }
     }
 
@@ -48,10 +48,10 @@ public class ServerMenu {
             return "enter";
         }
 
-        public void execute() throws IOException {
-            String addWay = in.readUTF();
-            way = way.concat("/").concat(addWay);
+        public void execute(ToDo value) throws IOException {
+
         }
+
     }
 
     private class ExitFolder implements ServerActions {
@@ -60,7 +60,7 @@ public class ServerMenu {
             return "out";
         }
 
-        public void execute() {
+        public void execute(ToDo value) {
 
         }
     }
@@ -71,7 +71,7 @@ public class ServerMenu {
             return "exit";
         }
 
-        public void execute() {
+        public void execute(ToDo value) {
 
         }
     }
@@ -81,7 +81,7 @@ public class ServerMenu {
             return "show";
         }
 
-        public void execute() {
+        public void execute(ToDo value) {
 
         }
     }

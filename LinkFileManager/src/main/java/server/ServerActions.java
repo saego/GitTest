@@ -9,5 +9,5 @@ public interface ServerActions {
 
     String commandName();
 
-    public void execute() throws IOException;
+    public void execute(ToDo value) throws IOException;
 }
