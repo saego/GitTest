@@ -36,7 +36,7 @@ public class ServerMenu {
         this.serverActionsHashMap.put("exit", new ExitApp());
     }
 
-    public void choose(ToDo toDo) throws IOException {
+    public void select(ToDo toDo) throws IOException {
         if (serverActionsHashMap.containsKey(toDo.getKeyToDo())){
             this.serverActionsHashMap.get(toDo.getKeyToDo()).execute(toDo);
         }
