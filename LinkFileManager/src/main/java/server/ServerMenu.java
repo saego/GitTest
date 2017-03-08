@@ -43,6 +43,9 @@ class ServerMenu {
             this.serverActionsHashMap.get(toDo.getKeyToDo()).execute(toDo);
         }
     }
+    public String getWay(way){
+        return this.way;
+    }
 
     private class EnterFolder implements ServerActions{
 
