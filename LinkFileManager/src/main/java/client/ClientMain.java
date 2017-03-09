@@ -14,6 +14,7 @@ public class ClientMain {
             //connection
             InetAddress inetAddress = InetAddress.getByName(inet);
             Socket socket = new Socket(inetAddress, port);
+            System.out.println("connection good");
         }
         catch (Exception e){
             e.printStackTrace();
