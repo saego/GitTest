@@ -49,7 +49,8 @@ public class ServerMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-
+            way = way.concat("/").concat(value.getTarget());
+            out.writeUTF(way);
         }
 
     }
@@ -60,7 +61,7 @@ public class ServerMenu {
             return "out";
         }
 
-        public void execute(ToDo value) {
+        public void execute(ToDo value) throws IOException {
 
         }
     }
@@ -71,8 +72,8 @@ public class ServerMenu {
             return "exit";
         }
 
-        public void execute(ToDo value) {
-
+        public void execute(ToDo value) throws IOException {
+            out.writeUTF(way);
         }
     }
 

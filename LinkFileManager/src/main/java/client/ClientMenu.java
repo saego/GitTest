@@ -55,6 +55,7 @@ public class ClientMenu {
         public void execute(ToDo value) throws IOException {
             out.writeUTF(value.getKeyToDo());
             way = in.readUTF();
+            System.out.println(way);
         }
     }
 
