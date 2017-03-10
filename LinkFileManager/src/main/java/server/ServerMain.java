@@ -1,6 +1,10 @@
 package server;
 
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -16,6 +20,20 @@ public class ServerMain {
             System.out.println("Waiting for client connection...");
             Socket socket = serverSocket.accept();
             System.out.println("Connection OK");
+
+            //streams
+            InputStream inputStream = socket.getInputStream();
+            OutputStream outputStream = socket.getOutputStream();
+            DataInputStream in = new DataInputStream(inputStream);
+            DataOutputStream out = new DataOutputStream(outputStream);
+
+            ServerMenu server = new ServerMenu(in, out);
+            out.writeUTF(server.way);
+            server.fillServerActions();
+            ToDo toDo = new ToDo();
+            String command = in.readUTF();
+            toDo.whatToDo(command);
+            server.select(toDo);
         }
         catch (Exception e){
             e.printStackTrace();

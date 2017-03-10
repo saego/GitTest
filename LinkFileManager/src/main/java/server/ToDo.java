@@ -3,13 +3,13 @@ package server;
 import java.util.Scanner;
 
 /**
- * Created by Saego on 07.03.2017.
+ Created by Saego on 07.03.2017.
  */
-public class ToDo {
-    String keyToDo;
-    String target;
+class ToDo {
+    private String keyToDo;
+    private String target;
 
-    public void whatToDo(String command){
+    void whatToDo(String command){
         Scanner read = new Scanner(command);
         while (read.hasNext()){
             if (read.hasNext()) {
@@ -19,16 +19,16 @@ public class ToDo {
             if (read.hasNext()) {
                 this.target = read.next();
             } else {
-                this.target = null;
+                this.target = "123";
             }
         }
     }
 
-    public String getKeyToDo() {
+    String getKeyToDo() {
         return this.keyToDo;
     }
 
-    public String getTarget() {
+    String getTarget() {
         return this.target;
     }
 }

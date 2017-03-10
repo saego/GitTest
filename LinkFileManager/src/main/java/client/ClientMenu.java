@@ -2,24 +2,27 @@ package client;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  Created by ${Ruslan} on 23.01.17.
  */
-public class ClientMenu {
-    public String folderName, way;
+class ClientMenu {
+    private String way;
 
     private DataInputStream in;
     private DataOutputStream out;
 
     private Map<String, ClientActions> clientActionsHashMap = new HashMap<String, ClientActions>();
 
-    public void fillClientActions(){
+    ClientMenu(DataInputStream in, DataOutputStream out) {
+        this.in = in;
+        this.out = out;
+    }
+
+    void fillClientActions(){
         this.clientActionsHashMap.put("enter", new EnterFolder());
         this.clientActionsHashMap.put("back", new BackFile());
         this.clientActionsHashMap.put("show", new ShowList());
@@ -27,11 +30,12 @@ public class ClientMenu {
         this.clientActionsHashMap.put("exit", new ExitApp());
     }
 
-    public void select(ToDo toDo) throws IOException {
+    void select(ToDo toDo) throws IOException {
         if (clientActionsHashMap.containsKey(toDo.getKeyToDo())){
             this.clientActionsHashMap.get(toDo.getKeyToDo()).execute(toDo);
         }
     }
+
 
     private class EnterFolder implements ClientActions{
 
@@ -40,8 +44,9 @@ public class ClientMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-            out.writeUTF(value.getKeyToDo());
-            out.writeUTF(value.getTarget());
+            //out.writeUTF(value.getKeyToDo());
+            //out.writeUTF(value.getTarget());
+            System.out.println(value.getTarget());
             way = in.readUTF();
             System.out.println(way);
         }

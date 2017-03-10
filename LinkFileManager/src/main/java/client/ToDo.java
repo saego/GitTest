@@ -10,6 +10,8 @@ public class ToDo {
     private String keyToDo;
     private String target;
 
+
+
     public void whatToDo(String command){
         Scanner read = new Scanner(command);
         while (read.hasNext()) {
@@ -20,7 +22,7 @@ public class ToDo {
             if (read.hasNext()) {
                 this.target = read.next();
             } else {
-                this.target = null;
+                this.target = "123";
             }
         }
     }

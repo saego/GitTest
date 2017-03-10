@@ -4,7 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,31 +11,33 @@ import java.util.Map;
  Created by ${Ruslan} on 23.01.17.
  */
 @SuppressWarnings("Since15")
-public class ServerMenu {
+class ServerMenu {
 
     //private Path path;
     File file = new File("TestDir1");
-    public String way = file.getAbsolutePath();
+    String way = file.getAbsolutePath();
+    String separator = System.getProperty();//separator!!!!!!!!!!!!!!!!!!!!!!!
+
     private DataInputStream in;
     private DataOutputStream out;
 
 
     private Map<String, ServerActions> serverActionsHashMap = new HashMap<String, ServerActions>();
 
-    public ServerMenu(DataOutputStream out, DataInputStream in) {
+    ServerMenu(DataInputStream in, DataOutputStream out) {
         //this.path = Paths.get(System.getProperty("pathDir.dir"));
         this.in = in;
         this.out = out;
     }
 
-    public void fillServerActions(){
+    void fillServerActions(){
         this.serverActionsHashMap.put("enter", new EnterFolder());
         this.serverActionsHashMap.put("out", new ExitFolder());
         this.serverActionsHashMap.put("show", new ShowList());
         this.serverActionsHashMap.put("exit", new ExitApp());
     }
 
-    public void select(ToDo toDo) throws IOException {
+    void select(ToDo toDo) throws IOException {
         if (serverActionsHashMap.containsKey(toDo.getKeyToDo())){
             this.serverActionsHashMap.get(toDo.getKeyToDo()).execute(toDo);
         }
@@ -49,7 +50,9 @@ public class ServerMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-            way = way.concat("/").concat(value.getTarget());
+            System.out.println(value.getTarget());
+            way = way.concat(separator).concat(value.getTarget());
+            System.out.println(way);
             out.writeUTF(way);
         }
 

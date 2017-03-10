@@ -3,11 +3,11 @@ package server;
 import java.io.IOException;
 
 /**
- * Created by Saego on 16.02.2017.
+ Created by Saego on 16.02.2017.
  */
 public interface ServerActions {
 
-    String commandName();
+    //String commandName();
 
-    public void execute(ToDo value) throws IOException;
+    void execute(ToDo value) throws IOException;
 }
