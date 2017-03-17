@@ -36,7 +36,7 @@ class ServerMenu {
     void fillServerActions(){
         this.serverActionsHashMap.put("cd", new EnterFolder());
         this.serverActionsHashMap.put("out", new ExitFolder());
-        this.serverActionsHashMap.put("show", new ShowList());
+        this.serverActionsHashMap.put("list", new ShowList());
         this.serverActionsHashMap.put("exit", new ExitApp());
     }
 
@@ -55,7 +55,9 @@ class ServerMenu {
         public void execute(ToDo value) throws IOException {
             System.out.println(System.getProperty("os.name"));
             newWay = way.concat(separator).concat(value.getTarget());
-            File file = new File(newWay);
+            //if (new File(newWay).exists()) {
+                File file = new File(newWay);
+            //}
             if (file.exists()){
                 out.writeUTF(newWay);
                 way = newWay;
@@ -76,7 +78,17 @@ class ServerMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-
+            File file1 = new File(way);
+            boolean isExist = false;
+            String parent = null;
+            if (file1.getParentFile().exists()){
+                isExist = true;
+                parent = file1.getParent();
+            }
+            out.writeBoolean(isExist);
+            if (isExist){
+                out.writeUTF(parent);
+            }
         }
     }
 
@@ -93,11 +105,38 @@ class ServerMenu {
 
     private class ShowList implements ServerActions {
         public String commandName() {
-            return "show";
+            return "list";
         }
 
-        public void execute(ToDo value) {
-
+        public void execute(ToDo value) throws IOException {
+            File fl = new File(way);
+            boolean isDir;
+            if (fl.isDirectory()) {
+                isDir = true;
+            }
+            else {
+                isDir = false;
+            }
+            out.writeBoolean(isDir);
+            if (isDir) {
+                File[] files = fl.listFiles();
+                int quantity = 0;
+                if (files != null) {
+                    quantity = files.length;
+                }
+                out.writeInt(quantity);
+                if (quantity != 0) {
+                    for (File file1 :
+                            files) {
+                        out.writeUTF(file1.getName());
+                        if (file1.isDirectory()) {
+                            out.writeBoolean(true);
+                        } else {
+                            out.writeBoolean(false);
+                        }
+                    }
+                }
+            }
         }
     }
 }

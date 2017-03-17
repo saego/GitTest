@@ -25,7 +25,7 @@ class ClientMenu {
     void fillClientActions(){
         this.clientActionsHashMap.put("cd", new EnterFolder());
         this.clientActionsHashMap.put("back", new BackFile());
-        this.clientActionsHashMap.put("show", new ShowList());
+        this.clientActionsHashMap.put("list", new ShowList());
         this.clientActionsHashMap.put("help", new Help());
         this.clientActionsHashMap.put("exit", new ExitApp());
     }
@@ -62,9 +62,13 @@ class ClientMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-            out.writeUTF(value.getKeyToDo());
-            way = in.readUTF();
-
+            boolean isExist = in.readBoolean();
+            if (isExist){
+                way = in.readUTF();
+            }
+            else {
+                System.out.println("This is root");
+            }
         }
     }
 
@@ -91,28 +95,36 @@ class ClientMenu {
 
     private class ShowList implements ClientActions {
         public String commandName() {
-            return "show";
+            return "list";
         }
 
         public void execute(ToDo value) throws IOException {
-            out.writeUTF(value.getKeyToDo());
+            boolean isDir = in.readBoolean();
+            if (!isDir){
+                System.out.println("This is file");
+            }
+            else {
+                int quantity = in.readInt();
+                if (quantity == 0) {
+                    System.out.println("Folder is empty");
+                }
+                else {
+                    boolean []isFolder = new boolean[quantity];
+                    String []names = new String[quantity];
+                    for (int i = 0; i < isFolder.length; i++){
+                        names[i] = in.readUTF();
+                        isFolder[i] = in.readBoolean();
+                    }
+                    String type;
+                    for (int n = 0; n < names.length; n++){
+                        type = "<File>";
+                        if (isFolder[n]){
+                            type = "<Folder>";
+                        }
+                        System.out.println("[" + names[n] + "]" + "   " + type);
+                    }
+                }
+            }
         }
     }
-    /*
-    public String enterFolder(String folderName) {
-        File file = new File(folderName);
-        String []fileList = file.list();
-        way = file.getAbsolutePath();
-        String list = Arrays.toString(fileList);
-        return list;
-    }
-
-    public String exitFolder(String folderName){
-        File file = new File(folderName);
-        String []fileList = file.getParentFile().list();
-        way = file.getParentFile().getAbsolutePath();
-        String list = Arrays.deepToString(fileList);
-        return list;
-    }
-    */
 }
