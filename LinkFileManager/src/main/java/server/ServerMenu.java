@@ -52,11 +52,20 @@ class ServerMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-            System.out.println(value.getTarget());
-            System.out.println(separator);
-            way = way.concat(separator).concat(value.getTarget());
-            System.out.println(way);
-            out.writeUTF(way);
+            System.out.println(System.getProperty("os.name"));
+            String newWay = way.concat(separator).concat(value.getTarget());
+            File file = new File(newWay);
+            boolean isExist = true;
+            if (file.exists()){
+                out.writeUTF(newWay);
+                way = newWay;
+                out.writeBoolean(isExist);
+            }
+            else {
+                out.writeUTF(way);
+                isExist = false;
+                out.writeBoolean(isExist);
+            }
         }
 
     }

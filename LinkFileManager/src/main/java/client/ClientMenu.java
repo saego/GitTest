@@ -44,11 +44,15 @@ class ClientMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-            //out.writeUTF(value.getKeyToDo());
-            //out.writeUTF(value.getTarget());
-            System.out.println(value.getTarget());
             way = in.readUTF();
-            System.out.println(way);
+            boolean isExist = in.readBoolean();
+            if (isExist) {
+                System.out.println(way);
+            }
+            else {
+                System.out.println("File doesn't exist");
+                System.out.println(way);
+            }
         }
     }
 
@@ -60,7 +64,7 @@ class ClientMenu {
         public void execute(ToDo value) throws IOException {
             out.writeUTF(value.getKeyToDo());
             way = in.readUTF();
-            System.out.println(way);
+
         }
     }
 

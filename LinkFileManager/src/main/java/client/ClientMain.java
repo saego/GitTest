@@ -25,7 +25,7 @@ public class ClientMain {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
             ClientMenu client = new ClientMenu(in, out);
-            System.out.println("way  " + in.readUTF());
+            System.out.println(in.readUTF());
             ToDo toDo = new ToDo();
             client.fillClientActions();
             String command = br.readLine();
