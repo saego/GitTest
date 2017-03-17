@@ -28,7 +28,7 @@ public class ServerMain {
             DataOutputStream out = new DataOutputStream(outputStream);
 
             ServerMenu server = new ServerMenu(in, out);
-            out.writeUTF(server.way);
+            out.writeUTF(String.valueOf(server.way));
             server.fillServerActions();
             ToDo toDo = new ToDo();
             String command = in.readUTF();

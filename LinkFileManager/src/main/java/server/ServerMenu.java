@@ -1,5 +1,6 @@
 package server;
 
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -16,7 +17,8 @@ class ServerMenu {
     //private Path path;
     File file = new File("TestDir1");
     String way = file.getAbsolutePath();
-    String separator = System.getProperty();//separator!!!!!!!!!!!!!!!!!!!!!!!
+    private String separator = System.getProperty("file.separator");
+    //String separator = "rr";
 
     private DataInputStream in;
     private DataOutputStream out;
@@ -51,6 +53,7 @@ class ServerMenu {
 
         public void execute(ToDo value) throws IOException {
             System.out.println(value.getTarget());
+            System.out.println(separator);
             way = way.concat(separator).concat(value.getTarget());
             System.out.println(way);
             out.writeUTF(way);
