@@ -23,7 +23,7 @@ class ClientMenu {
     }
 
     void fillClientActions(){
-        this.clientActionsHashMap.put("enter", new EnterFolder());
+        this.clientActionsHashMap.put("cd", new EnterFolder());
         this.clientActionsHashMap.put("back", new BackFile());
         this.clientActionsHashMap.put("show", new ShowList());
         this.clientActionsHashMap.put("help", new Help());
@@ -40,7 +40,7 @@ class ClientMenu {
     private class EnterFolder implements ClientActions{
 
         public String commandName() {
-            return "enter";
+            return "cd";
         }
 
         public void execute(ToDo value) throws IOException {

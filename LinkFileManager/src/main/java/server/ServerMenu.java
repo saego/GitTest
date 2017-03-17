@@ -17,6 +17,7 @@ class ServerMenu {
     //private Path path;
     File file = new File("TestDir1");
     String way = file.getAbsolutePath();
+    String newWay;
     private String separator = System.getProperty("file.separator");
     //String separator = "rr";
 
@@ -33,7 +34,7 @@ class ServerMenu {
     }
 
     void fillServerActions(){
-        this.serverActionsHashMap.put("enter", new EnterFolder());
+        this.serverActionsHashMap.put("cd", new EnterFolder());
         this.serverActionsHashMap.put("out", new ExitFolder());
         this.serverActionsHashMap.put("show", new ShowList());
         this.serverActionsHashMap.put("exit", new ExitApp());
@@ -48,23 +49,21 @@ class ServerMenu {
     private class EnterFolder implements ServerActions{
 
         public String commandName() {
-            return "enter";
+            return "cd";
         }
 
         public void execute(ToDo value) throws IOException {
             System.out.println(System.getProperty("os.name"));
-            String newWay = way.concat(separator).concat(value.getTarget());
+            newWay = way.concat(separator).concat(value.getTarget());
             File file = new File(newWay);
-            boolean isExist = true;
             if (file.exists()){
                 out.writeUTF(newWay);
                 way = newWay;
-                out.writeBoolean(isExist);
+                out.writeBoolean(true);
             }
             else {
                 out.writeUTF(way);
-                isExist = false;
-                out.writeBoolean(isExist);
+                out.writeBoolean(false);
             }
         }
 
@@ -88,7 +87,7 @@ class ServerMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-            out.writeUTF(way);
+
         }
     }
 
