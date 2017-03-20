@@ -28,12 +28,16 @@ public class ServerMain {
             DataOutputStream out = new DataOutputStream(outputStream);
 
             ServerMenu server = new ServerMenu(in, out);
-            out.writeUTF(String.valueOf(server.way));
-            server.fillServerActions();
-            ToDo toDo = new ToDo();
-            String command = in.readUTF();
-            toDo.whatToDo(command);
-            server.select(toDo);
+            String command;
+                out.writeUTF(String.valueOf(server.way));
+            do {
+                server.fillServerActions();
+                ToDo toDo = new ToDo();
+                command = in.readUTF();
+                toDo.whatToDo(command);
+                server.select(toDo);
+            }
+            while (!command.equals("exit"));
         }
         catch (Exception e){
             e.printStackTrace();

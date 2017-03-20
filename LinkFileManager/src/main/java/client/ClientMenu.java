@@ -63,12 +63,11 @@ class ClientMenu {
 
         public void execute(ToDo value) throws IOException {
             boolean isExist = in.readBoolean();
-            if (isExist){
-                way = in.readUTF();
-            }
-            else {
+            if (!isExist){
                 System.out.println("This is root");
             }
+            way = in.readUTF();
+            System.out.println(way);
         }
     }
 
@@ -115,16 +114,18 @@ class ClientMenu {
                         names[i] = in.readUTF();
                         isFolder[i] = in.readBoolean();
                     }
-                    String type;
                     for (int n = 0; n < names.length; n++){
-                        type = "<File>";
                         if (isFolder[n]){
-                            type = "<Folder>";
+                            System.out.println("[" + names[n] + "]");
                         }
-                        System.out.println("[" + names[n] + "]" + "   " + type);
+                        else {
+                            System.out.println(names[n]);
+                        }
                     }
                 }
             }
+            way = in.readUTF();
+            System.out.println(way);
         }
     }
 }
