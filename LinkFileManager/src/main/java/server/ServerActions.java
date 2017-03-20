@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public interface ServerActions {
 
-    //String commandName();
+    String commandName();
 
     void execute(ToDo value) throws IOException;
 }
