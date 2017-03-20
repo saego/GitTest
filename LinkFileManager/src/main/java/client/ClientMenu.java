@@ -100,7 +100,7 @@ class ClientMenu {
 
     private class ShowList implements ClientActions {
         public String commandName() {
-            return "list";
+            return "list - Show directories inside folder";
         }
 
         public void execute(ToDo value) throws IOException {
