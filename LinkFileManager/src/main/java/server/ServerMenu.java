@@ -11,22 +11,22 @@ import java.util.Map;
 @SuppressWarnings("Since15")
 class ServerMenu {
 
-    //private Path path;
-    File file = new File("TestDir1");
+    private File file = new File("TestDir1");
     String way = file.getAbsolutePath();
-    String newWay, root = way;
+    private String newWay, root = way;
+    private int bufferFile = 128;
+    private int divTail, sends;
     private String separator = System.getProperty("file.separator");
-    //String separator = "rr";
 
-    private DataInputStream in;
+    //private DataInputStream in;
     private DataOutputStream out;
 
 
     private Map<String, ServerActions> serverActionsHashMap = new HashMap<String, ServerActions>();
 
-    ServerMenu(DataInputStream in, DataOutputStream out) {
+    ServerMenu(DataOutputStream out) {
         //this.path = Paths.get(System.getProperty("pathDir.dir"));
-        this.in = in;
+      //  this.in = in;
         this.out = out;
     }
 
@@ -43,9 +43,9 @@ class ServerMenu {
             this.serverActionsHashMap.get(toDo.getKeyToDo()).execute(toDo);
         }
     }
-    public String getWay(way){
-        return this.way;
-    }
+//    public String getWay(){
+//        return this.way;
+//    }
 
     private class EnterFolder implements ServerActions{
 
@@ -56,9 +56,7 @@ class ServerMenu {
         public void execute(ToDo value) throws IOException {
             System.out.println(System.getProperty("os.name"));
             newWay = way.concat(separator).concat(value.getTarget());
-            //if (new File(newWay).exists()) {
                 File file = new File(newWay);
-            //}
             if (file.exists()){
                 out.writeUTF(newWay);
                 way = newWay;
@@ -113,12 +111,7 @@ class ServerMenu {
         public void execute(ToDo value) throws IOException {
             File fl = new File(way);
             boolean isDir;
-            if (fl.isDirectory()) {
-                isDir = true;
-            }
-            else {
-                isDir = false;
-            }
+            isDir = fl.isDirectory();
             out.writeBoolean(isDir);
             if (isDir) {
                 File[] files = fl.listFiles();
@@ -149,9 +142,30 @@ class ServerMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-            File file = new File(way);
-            FileInputStream fis = new FileInputStream(file);
-            int fileSize = fis.available();
+            newWay = way.concat(separator).concat(value.getTarget());
+            boolean isExist = false;
+            if (new File(newWay).exists()){
+                isExist = true;
+            }
+            out.writeBoolean(isExist);
+            File file = new File(newWay);
+            boolean isFolder = false;
+            if (file.isDirectory()){
+                isFolder = true;
+            }
+            out.writeBoolean(isFolder);
+            if (isFolder) {
+                FileInputStream fis = new FileInputStream(file);
+                int fileSize = fis.available();
+                out.writeInt(fileSize);
+                if (fileSize > bufferFile){
+                    divTail = fileSize % bufferFile;
+                    sends = (fileSize - divTail) / bufferFile;
+                    out.writeInt(sends);
+                    out.writeInt(divTail);
+
+                }
+            }
         }
     }
 }
