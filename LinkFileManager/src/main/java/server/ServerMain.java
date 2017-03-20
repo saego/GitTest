@@ -9,7 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by Saego on 09.03.2017.
+ Created by Saego on 09.03.2017.
  */
 public class ServerMain {
     public static void main(String []args){

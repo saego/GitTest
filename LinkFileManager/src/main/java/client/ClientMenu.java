@@ -1,7 +1,6 @@
 package client;
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,13 +12,13 @@ class ClientMenu {
     private String way;
 
     private DataInputStream in;
-    private DataOutputStream out;
+    //private DataOutputStream out;
 
     private Map<String, ClientActions> clientActionsHashMap = new HashMap<String, ClientActions>();
 
-    ClientMenu(DataInputStream in, DataOutputStream out) {
+    ClientMenu(DataInputStream in) {
         this.in = in;
-        this.out = out;
+        //this.out = out;
     }
 
     void fillClientActions(){
@@ -34,13 +33,17 @@ class ClientMenu {
         if (clientActionsHashMap.containsKey(toDo.getKeyToDo())){
             this.clientActionsHashMap.get(toDo.getKeyToDo()).execute(toDo);
         }
+        else {
+            System.out.println("Invalid key!");
+            this.clientActionsHashMap.get("help").execute(toDo);
+        }
     }
 
 
     private class EnterFolder implements ClientActions{
 
         public String commandName() {
-            return "cd";
+            return "cd - Enter folder";
         }
 
         public void execute(ToDo value) throws IOException {
@@ -58,7 +61,7 @@ class ClientMenu {
 
     private class BackFile implements ClientActions {
         public String commandName() {
-            return "back";
+            return "back - Back to parent folder";
         }
 
         public void execute(ToDo value) throws IOException {
@@ -73,18 +76,21 @@ class ClientMenu {
 
     private class Help implements ClientActions {
         public String commandName() {
-            return "help";
+            return "help - help for commands";
         }
 
         public void execute(ToDo value) {
-            System.out.println("This is help");
-            System.out.println(way);
+            System.out.println("This is help:");
+            for (Map.Entry<String, ClientActions> clientAct:
+                 clientActionsHashMap.entrySet()) {
+                System.out.println(clientAct.getValue().commandName());
+            }
         }
     }
 
     private class ExitApp implements ClientActions {
         public String commandName() {
-            return "exit";
+            return "exit - Exit from App";
         }
 
         public void execute(ToDo value) {
