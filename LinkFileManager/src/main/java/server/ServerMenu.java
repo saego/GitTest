@@ -159,8 +159,8 @@ class ServerMenu {
                 }
                 out.writeBoolean(isFolder);
                 if (!isFolder) {
-                    FileInputStream fis = new FileInputStream(file);
-                    int fileSize = fis.available();
+                    //File fl = new File(file);
+                    int fileSize = (int) file.length();
                     out.writeInt(fileSize);
                     if (fileSize > bufferFile) {
                         divTail = fileSize % bufferFile;
@@ -168,11 +168,33 @@ class ServerMenu {
                         out.writeInt(bufferFile);
                         out.writeInt(sends);
                         out.writeInt(divTail);
-
+                        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
+                            for (int i = 0; i < sends; i++){
+                                byte []buffer = new byte[bufferFile];
+                                bis.read(buffer, 0, bufferFile);
+                                out.write(buffer, 0, bufferFile);
+                            }
+                            if (divTail != 0){
+                                byte []tailBuffer = new byte[divTail];
+                                bis.read(tailBuffer, 0, divTail);
+                                out.write(tailBuffer, 0, divTail);
+                            }
+                        }
+                        catch (Exception ex){
+                            ex.printStackTrace();
+                        }
                     }
                     else {
                         bufferFile = fileSize;
                         out.writeInt(bufferFile);
+                        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
+                                byte []buffer = new byte[bufferFile];
+                                bis.read(buffer, 0, bufferFile);
+                                out.write(buffer, 0, bufferFile);
+                        }
+                        catch (Exception ex){
+                            ex.printStackTrace();
+                        }
                     }
                 }
             }
