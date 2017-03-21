@@ -138,10 +138,12 @@ class ClientMenu {
 
     private class Download implements ClientActions {
         public String commandName() {
-            return "download - Download file from server";
+            return "download <file name> - Download file from server";
         }
 
         public void execute(ToDo value) throws IOException {
+            File userF = new File(userFolder);
+            userF.exists();
             boolean isExits = in.readBoolean();
             way = in.readUTF();
             System.out.println(way);
@@ -149,16 +151,18 @@ class ClientMenu {
                 boolean isFolder = in.readBoolean();
                 if (!isFolder){
                     int fileSize = in.readInt();
-                    System.out.println("FileSize" + fileSize);
+                    System.out.println("FileSize: " + fileSize + " bytes");
                     int bufferFile = in.readInt();
-                    System.out.println("BufferSize" + bufferFile);
+                    //System.out.println("BufferSize" + bufferFile);
                     String loadFileName = value.getTarget();
-                    File file = new File(userFolder.concat(System.getProperty("file.separator")).concat(loadFileName));
+                    String separator = System.getProperty("file.separator");
+                    String createDownUp = userF.getAbsolutePath().concat(separator).concat(loadFileName);
+                    File file = new File(createDownUp);
                     if (fileSize > bufferFile){
                         int sends = in.readInt();
                         int divTale = in.readInt();
-                        System.out.println("Quantity of sends" + sends);
-                        System.out.println("Tale's size" + divTale);
+                        //System.out.println("Quantity of sends" + sends);
+                        //System.out.println("Tale's size" + divTale);
                         try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
                             byte []buffer = new byte[bufferFile];
                             for (int i = 0; i < sends; i++){
