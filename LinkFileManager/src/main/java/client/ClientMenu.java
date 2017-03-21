@@ -27,6 +27,7 @@ class ClientMenu {
         this.clientActionsHashMap.put("list", new ShowList());
         this.clientActionsHashMap.put("help", new Help());
         this.clientActionsHashMap.put("exit", new ExitApp());
+        this.clientActionsHashMap.put("download", new Download());
     }
 
     void select(ToDo toDo) throws IOException {
@@ -43,7 +44,7 @@ class ClientMenu {
     private class EnterFolder implements ClientActions{
 
         public String commandName() {
-            return "cd - Enter folder";
+            return "cd <folder name> - Enter folder";
         }
 
         public void execute(ToDo value) throws IOException {
@@ -132,6 +133,34 @@ class ClientMenu {
             }
             way = in.readUTF();
             System.out.println(way);
+        }
+    }
+
+    private class Download implements ClientActions {
+        public String commandName() {
+            return "download - Download file from server";
+        }
+
+        public void execute(ToDo value) throws IOException {
+            boolean isExits = in.readBoolean();
+            way = in.readUTF();
+            System.out.println(way);
+            if (isExits){
+                boolean isFolder = in.readBoolean();
+                if (!isFolder){
+                    int fileSize = in.readInt();
+                    System.out.println(fileSize);
+                    int bufferFile = in.readInt();
+                    System.out.println(bufferFile);
+                    if (fileSize > bufferFile){
+                        int sends = in.readInt();
+                        int divTale = in.readInt();
+                        System.out.println(sends);
+                        System.out.println(divTale);
+                    }
+                    System.out.println("Copy finished!");
+                }
+            }
         }
     }
 }

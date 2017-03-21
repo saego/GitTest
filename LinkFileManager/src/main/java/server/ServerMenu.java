@@ -146,24 +146,34 @@ class ServerMenu {
             boolean isExist = false;
             if (new File(newWay).exists()){
                 isExist = true;
+                way = newWay;
             }
             out.writeBoolean(isExist);
-            File file = new File(newWay);
-            boolean isFolder = false;
-            if (file.isDirectory()){
-                isFolder = true;
-            }
-            out.writeBoolean(isFolder);
-            if (isFolder) {
-                FileInputStream fis = new FileInputStream(file);
-                int fileSize = fis.available();
-                out.writeInt(fileSize);
-                if (fileSize > bufferFile){
-                    divTail = fileSize % bufferFile;
-                    sends = (fileSize - divTail) / bufferFile;
-                    out.writeInt(sends);
-                    out.writeInt(divTail);
+            if (isExist) {
+                out.writeUTF(way);
 
+                File file = new File(way);
+                boolean isFolder = false;
+                if (file.isDirectory()) {
+                    isFolder = true;
+                }
+                out.writeBoolean(isFolder);
+                if (!isFolder) {
+                    FileInputStream fis = new FileInputStream(file);
+                    int fileSize = fis.available();
+                    out.writeInt(fileSize);
+                    if (fileSize > bufferFile) {
+                        divTail = fileSize % bufferFile;
+                        sends = (fileSize - divTail) / bufferFile;
+                        out.writeInt(bufferFile);
+                        out.writeInt(sends);
+                        out.writeInt(divTail);
+
+                    }
+                    else {
+                        bufferFile = fileSize;
+                        out.writeInt(bufferFile);
+                    }
                 }
             }
         }
