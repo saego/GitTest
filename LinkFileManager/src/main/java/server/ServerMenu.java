@@ -159,7 +159,6 @@ class ServerMenu {
                 }
                 out.writeBoolean(isFolder);
                 if (!isFolder) {
-                    //File fl = new File(file);
                     int fileSize = (int) file.length();
                     out.writeInt(fileSize);
                     if (fileSize > bufferFile) {
@@ -169,16 +168,17 @@ class ServerMenu {
                         out.writeInt(sends);
                         out.writeInt(divTail);
                         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
-                            for (int i = 0; i < sends; i++){
                                 byte []buffer = new byte[bufferFile];
-                                bis.read(buffer, 0, bufferFile);
-                                out.write(buffer, 0, bufferFile);
+                            for (int i = 0; i < sends; i++){
+                                bis.read(buffer, 0, buffer.length);
+                                out.write(buffer, 0, buffer.length);
                             }
                             if (divTail != 0){
                                 byte []tailBuffer = new byte[divTail];
-                                bis.read(tailBuffer, 0, divTail);
-                                out.write(tailBuffer, 0, divTail);
+                                bis.read(tailBuffer, 0, tailBuffer.length);
+                                out.write(tailBuffer, 0, tailBuffer.length);
                             }
+                            bis.close();
                         }
                         catch (Exception ex){
                             ex.printStackTrace();
@@ -189,8 +189,8 @@ class ServerMenu {
                         out.writeInt(bufferFile);
                         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
                                 byte []buffer = new byte[bufferFile];
-                                bis.read(buffer, 0, bufferFile);
-                                out.write(buffer, 0, bufferFile);
+                                bis.read(buffer, 0, buffer.length);
+                                out.write(buffer, 0, buffer.length);
                         }
                         catch (Exception ex){
                             ex.printStackTrace();

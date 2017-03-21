@@ -1,7 +1,6 @@
 package client;
 
-import java.io.DataInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +9,7 @@ import java.util.Map;
  */
 class ClientMenu {
     private String way;
+    String userFolder = "User";
 
     private DataInputStream in;
     //private DataOutputStream out;
@@ -149,14 +149,42 @@ class ClientMenu {
                 boolean isFolder = in.readBoolean();
                 if (!isFolder){
                     int fileSize = in.readInt();
-                    System.out.println(fileSize);
+                    System.out.println("FileSize" + fileSize);
                     int bufferFile = in.readInt();
-                    System.out.println(bufferFile);
+                    System.out.println("BufferSize" + bufferFile);
+                    String loadFileName = value.getTarget();
+                    File file = new File(userFolder.concat(System.getProperty("file.separator")).concat(loadFileName));
                     if (fileSize > bufferFile){
                         int sends = in.readInt();
                         int divTale = in.readInt();
-                        System.out.println(sends);
-                        System.out.println(divTale);
+                        System.out.println("Quantity of sends" + sends);
+                        System.out.println("Tale's size" + divTale);
+                        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
+                            byte []buffer = new byte[bufferFile];
+                            for (int i = 0; i < sends; i++){
+                                in.read(buffer, 0, buffer.length);
+                                bos.write(buffer, 0, buffer.length);
+                            }
+                            if (divTale != 0){
+                                byte []tailBuffer = new byte[divTale];
+                                in.read(tailBuffer, 0, tailBuffer.length);
+                                bos.write(tailBuffer, 0, tailBuffer.length);
+                            }
+                            bos.flush();
+                        }
+                        catch (Exception ex){
+                            ex.printStackTrace();
+                        }
+                    }
+                    else {
+                        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
+                            byte []buffer = new byte[bufferFile];
+                            in.read(buffer, 0, buffer.length);
+                            bos.write(buffer, 0, buffer.length);
+                        }
+                        catch (Exception ex){
+                            ex.printStackTrace();
+                        }
                     }
                     System.out.println("Copy finished!");
                 }
