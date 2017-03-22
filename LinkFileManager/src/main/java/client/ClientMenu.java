@@ -162,8 +162,6 @@ class ClientMenu {
                     if (fileSize > bufferFile){
                         sends = in.readInt();
                         divTail = in.readInt();
-                        //System.out.println("Quantity of sends" + sends);
-                        //System.out.println("Tale's size" + divTale);
                         try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
                             byte []buffer = new byte[bufferFile];
                             for (int i = 0; i < sends; i++){
@@ -213,6 +211,7 @@ class ClientMenu {
             System.out.println(createUploadF);
             if (new File(createUploadF).exists()){
                 //System.out.println("Exist");
+                out.writeBoolean(true);
                 boolean isDirectory = false;
                 if (new File(createUploadF).isDirectory()){
                     System.out.println("This is directory");
@@ -225,9 +224,7 @@ class ClientMenu {
                     System.out.println("FileSize: " + fileSize + " bytes");
                     int bufferFile = in.readInt();
                     out.writeInt(fileSize);
-                    boolean oneSent;
                     if (fileSize > bufferFile){
-                        //oneSent = false;
                         out.writeBoolean(false);
                         divTail = fileSize % bufferFile;
                         sends = (fileSize - divTail) / bufferFile;
@@ -252,7 +249,6 @@ class ClientMenu {
                     }
                     else {
                         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
-                            //oneSent = true;
                             out.writeBoolean(true);
                             byte []buffer = new byte[fileSize];
                             bis.read(buffer, 0, buffer.length);
@@ -263,8 +259,10 @@ class ClientMenu {
                         }
                     }
                 }
+                System.out.println("File was uploaded");
             }
             else {
+                out.writeBoolean(false);
                 System.out.println("Doesn't exist");
             }
         }

@@ -210,11 +210,15 @@ class ServerMenu {
         @Override
         public void execute(ToDo value) throws IOException {
             boolean isExist = in.readBoolean();
+            //System.out.println("Is exist" + isExist);
             if (isExist) {
                 boolean isDirectory = in.readBoolean();
+                //System.out.println("Is directory " + isDirectory);
                 if (!isDirectory){
-                    String newFile = way.concat(value.getTarget());
+                    String newFile = way.concat(separator).concat(value.getTarget());
+                    //System.out.println(newFile);
                     File file = new File(newFile);
+                    //System.out.println(file.getAbsolutePath());
                     out.writeInt(bufferFile);
                     int fileSize = in.readInt();
                     boolean oneSent = in.readBoolean();
