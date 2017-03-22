@@ -156,8 +156,8 @@ class ClientMenu {
                     System.out.println("FileSize: " + fileSize + " bytes");
                     int bufferFile = in.readInt();
                     String loadFileName = value.getTarget();
-                    String createDownUp = userF.getAbsolutePath().concat(separator).concat(loadFileName);
-                    File file = new File(createDownUp);
+                    String createDownloadF = userF.getAbsolutePath().concat(separator).concat(loadFileName);
+                    File file = new File(createDownloadF);
                     if (fileSize > bufferFile){
                         int sends = in.readInt();
                         int divTale = in.readInt();
@@ -204,8 +204,18 @@ class ClientMenu {
 
         @Override
         public void execute(ToDo value) throws IOException {
-            if (new File(value.getTarget()).exists()){
+            String uploadFileName = value.getTarget();
+            String createUploadF = userF.getAbsolutePath().concat(separator).concat(uploadFileName);
+            if (new File(createUploadF).exists()){
+                boolean isDirectory = false;
+                if (new File(createUploadF).isDirectory()){
+                    System.out.println("This is directory");
+                    isDirectory = true;
+                }
+                out.writeBoolean(isDirectory);
+                if (isDirectory){
 
+                }
             }
         }
     }

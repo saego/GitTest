@@ -211,7 +211,10 @@ class ServerMenu {
         @Override
         public void execute(ToDo value) throws IOException {
             if (in.readBoolean()) {
+                boolean isDirectory = in.readBoolean();
+                if (!isDirectory){
 
+                }
             }
         }
     }
