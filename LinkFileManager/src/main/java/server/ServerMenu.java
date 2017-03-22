@@ -22,7 +22,7 @@ class ServerMenu {
     private DataOutputStream out;
 
 
-    private Map<String, ServerActions> serverActionsHashMap = new HashMap<String, ServerActions>();
+    private Map<String, ServerActions> serverActionsHashMap = new HashMap<>();
 
     ServerMenu(DataOutputStream out, DataInputStream in) {
         //this.path = Paths.get(System.getProperty("pathDir.dir"));
@@ -220,7 +220,19 @@ class ServerMenu {
                     boolean oneSent = in.readBoolean();
                     if (!oneSent){
                         try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
-
+                            sends = in.readInt();
+                            divTail = in.readInt();
+                            byte []buffer = new byte[bufferFile];
+                            for (int i = 0; i < sends; i++){
+                                in.read(buffer, 0, buffer.length);
+                                bos.write(buffer, 0, buffer.length);
+                            }
+                            if (divTail != 0){
+                                byte []tailBuffer = new byte[divTail];
+                                in.read(tailBuffer, 0, tailBuffer.length);
+                                bos.write(tailBuffer, 0, tailBuffer.length);
+                            }
+                            bos.flush();
                         }
                         catch (Exception ex){
                             ex.printStackTrace();
