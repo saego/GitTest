@@ -194,6 +194,9 @@ class ClientMenu {
                     System.out.println("Copy finished!");
                 }
             }
+            else {
+                System.out.println("File doesn't exist");
+            }
         }
     }
 
@@ -207,7 +210,9 @@ class ClientMenu {
         public void execute(ToDo value) throws IOException {
             String uploadFileName = value.getTarget();
             String createUploadF = userF.getAbsolutePath().concat(separator).concat(uploadFileName);
+            System.out.println(createUploadF);
             if (new File(createUploadF).exists()){
+                //System.out.println("Exist");
                 boolean isDirectory = false;
                 if (new File(createUploadF).isDirectory()){
                     System.out.println("This is directory");
@@ -222,8 +227,8 @@ class ClientMenu {
                     out.writeInt(fileSize);
                     boolean oneSent;
                     if (fileSize > bufferFile){
-                        oneSent = false;
-                        out.writeBoolean(oneSent);
+                        //oneSent = false;
+                        out.writeBoolean(false);
                         divTail = fileSize % bufferFile;
                         sends = (fileSize - divTail) / bufferFile;
                         out.writeInt(sends);
@@ -247,8 +252,8 @@ class ClientMenu {
                     }
                     else {
                         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
-                            oneSent = true;
-                            out.writeBoolean(oneSent);
+                            //oneSent = true;
+                            out.writeBoolean(true);
                             byte []buffer = new byte[fileSize];
                             bis.read(buffer, 0, buffer.length);
                             out.write(buffer, 0, buffer.length);
@@ -258,6 +263,9 @@ class ClientMenu {
                         }
                     }
                 }
+            }
+            else {
+                System.out.println("Doesn't exist");
             }
         }
     }

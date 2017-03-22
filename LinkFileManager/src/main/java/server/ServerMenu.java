@@ -150,9 +150,8 @@ class ServerMenu {
                 way = newWay;
             }
             out.writeBoolean(isExist);
+            out.writeUTF(way);
             if (isExist) {
-                out.writeUTF(way);
-
                 File file = new File(way);
                 boolean isFolder = false;
                 if (file.isDirectory()) {
@@ -214,7 +213,8 @@ class ServerMenu {
             if (isExist) {
                 boolean isDirectory = in.readBoolean();
                 if (!isDirectory){
-                    File file = new File(value.getTarget());
+                    String newFile = way.concat(value.getTarget());
+                    File file = new File(newFile);
                     out.writeInt(bufferFile);
                     int fileSize = in.readInt();
                     boolean oneSent = in.readBoolean();
