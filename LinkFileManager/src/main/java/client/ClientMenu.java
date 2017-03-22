@@ -9,16 +9,19 @@ import java.util.Map;
  */
 class ClientMenu {
     private String way;
-    String userFolder = "User";
+    private String userFolder = "User";
+    private String separator = System.getProperty("file.separator");
 
     private DataInputStream in;
-    //private DataOutputStream out;
+    private DataOutputStream out;
+
+    File userF = new File(userFolder);
 
     private Map<String, ClientActions> clientActionsHashMap = new HashMap<String, ClientActions>();
 
-    ClientMenu(DataInputStream in) {
+    ClientMenu(DataInputStream in, DataOutputStream out) {
         this.in = in;
-        //this.out = out;
+        this.out = out;
     }
 
     void fillClientActions(){
@@ -28,6 +31,7 @@ class ClientMenu {
         this.clientActionsHashMap.put("help", new Help());
         this.clientActionsHashMap.put("exit", new ExitApp());
         this.clientActionsHashMap.put("download", new Download());
+        this.clientActionsHashMap.put("upload", new Upload());
     }
 
     void select(ToDo toDo) throws IOException {
@@ -142,8 +146,6 @@ class ClientMenu {
         }
 
         public void execute(ToDo value) throws IOException {
-            File userF = new File(userFolder);
-            userF.exists();
             boolean isExits = in.readBoolean();
             way = in.readUTF();
             System.out.println(way);
@@ -153,9 +155,7 @@ class ClientMenu {
                     int fileSize = in.readInt();
                     System.out.println("FileSize: " + fileSize + " bytes");
                     int bufferFile = in.readInt();
-                    //System.out.println("BufferSize" + bufferFile);
                     String loadFileName = value.getTarget();
-                    String separator = System.getProperty("file.separator");
                     String createDownUp = userF.getAbsolutePath().concat(separator).concat(loadFileName);
                     File file = new File(createDownUp);
                     if (fileSize > bufferFile){
@@ -192,6 +192,20 @@ class ClientMenu {
                     }
                     System.out.println("Copy finished!");
                 }
+            }
+        }
+    }
+
+    private class Upload implements ClientActions {
+        @Override
+        public String commandName() {
+            return "upload <file name> - Upload file to server";
+        }
+
+        @Override
+        public void execute(ToDo value) throws IOException {
+            if (new File(value.getTarget()).exists()){
+
             }
         }
     }

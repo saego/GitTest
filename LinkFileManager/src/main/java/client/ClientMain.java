@@ -24,7 +24,7 @@ public class ClientMain {
             DataOutputStream out = new DataOutputStream(outputStream);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            ClientMenu client = new ClientMenu(in);
+            ClientMenu client = new ClientMenu(in, out);
             String command;
 
             System.out.println(in.readUTF());

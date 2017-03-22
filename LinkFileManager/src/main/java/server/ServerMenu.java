@@ -18,15 +18,15 @@ class ServerMenu {
     private int divTail, sends;
     private String separator = System.getProperty("file.separator");
 
-    //private DataInputStream in;
+    private DataInputStream in;
     private DataOutputStream out;
 
 
     private Map<String, ServerActions> serverActionsHashMap = new HashMap<String, ServerActions>();
 
-    ServerMenu(DataOutputStream out) {
+    ServerMenu(DataOutputStream out, DataInputStream in) {
         //this.path = Paths.get(System.getProperty("pathDir.dir"));
-      //  this.in = in;
+        this.in = in;
         this.out = out;
     }
 
@@ -36,6 +36,7 @@ class ServerMenu {
         this.serverActionsHashMap.put("list", new ShowList());
         this.serverActionsHashMap.put("exit", new ExitApp());
         this.serverActionsHashMap.put("download", new Download());
+        this.serverActionsHashMap.put("upload", new Upload());
     }
 
     void select(ToDo toDo) throws IOException {
@@ -197,6 +198,20 @@ class ServerMenu {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private class Upload implements ServerActions {
+        @Override
+        public String commandName() {
+            return "upload";
+        }
+
+        @Override
+        public void execute(ToDo value) throws IOException {
+            if (in.readBoolean()) {
+
             }
         }
     }
