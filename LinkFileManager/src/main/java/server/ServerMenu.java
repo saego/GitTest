@@ -186,10 +186,10 @@ class ServerMenu {
                         }
                     }
                     else {
-                        bufferFile = fileSize;
-                        out.writeInt(bufferFile);
+                        //bufferFile = fileSize;
+                        out.writeInt(fileSize);
                         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
-                                byte []buffer = new byte[bufferFile];
+                                byte []buffer = new byte[fileSize];
                                 bis.read(buffer, 0, buffer.length);
                                 out.write(buffer, 0, buffer.length);
                         }
@@ -210,10 +210,33 @@ class ServerMenu {
 
         @Override
         public void execute(ToDo value) throws IOException {
-            if (in.readBoolean()) {
+            boolean isExist = in.readBoolean();
+            if (isExist) {
                 boolean isDirectory = in.readBoolean();
                 if (!isDirectory){
+                    File file = new File(value.getTarget());
+                    out.writeInt(bufferFile);
+                    int fileSize = in.readInt();
+                    boolean oneSent = in.readBoolean();
+                    if (!oneSent){
+                        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
 
+                        }
+                        catch (Exception ex){
+                            ex.printStackTrace();
+                        }
+                    }
+                    else {
+                        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
+                            byte []buffer = new byte[fileSize];
+                            in.read(buffer, 0, buffer.length);
+                            bos.write(buffer, 0, buffer.length);
+                            bos.flush();
+                        }
+                        catch (Exception ex){
+                            ex.printStackTrace();
+                        }
+                    }
                 }
             }
         }
