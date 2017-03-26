@@ -1,19 +1,26 @@
 package server;
 
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Properties;
 
 /**
  Created by Saego on 09.03.2017.
  */
 public class ServerMain {
     public static void main(String []args){
-        int port = 1920;
+        Properties properties = new Properties();
+        FileInputStream fis;
+        try{
+            fis = new FileInputStream("property.ini");
+            properties.load(fis);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        int port = Integer.parseInt(properties.getProperty("stream.port"));
         try {
             //connection parameters
             ServerSocket serverSocket = new ServerSocket(port);

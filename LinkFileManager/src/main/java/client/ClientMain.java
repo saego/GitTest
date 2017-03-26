@@ -3,14 +3,26 @@ package client;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Properties;
 
 /**
  Created by Saego on 09.03.2017.
  */
 public class ClientMain {
     public static void main(String []args){
-        int port = 1920;
-        String inet = "127.0.0.1";
+        Properties properties = new Properties();
+        FileInputStream fis;
+        try {
+            fis = new FileInputStream("property.ini");
+            properties.load(fis);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+            int port = Integer.parseInt(properties.getProperty("stream.port"));
+            String inet = properties.getProperty("stream.inetAddress");
+        //int port = 1920;
+        //String inet = "127.0.0.1";
         try {
             //connection
             InetAddress inetAddress = InetAddress.getByName(inet);
