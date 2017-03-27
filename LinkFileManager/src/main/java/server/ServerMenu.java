@@ -12,8 +12,7 @@ import java.util.Map;
 class ServerMenu {
 
     private File file = new File("TestDir1");
-    String way = file.getAbsolutePath();
-    private String newWay, root = way;
+    //private String servFolder;
     private int bufferFile = 128;
     private int divTail, sends;
     private String separator = System.getProperty("file.separator");
@@ -25,10 +24,12 @@ class ServerMenu {
     private Map<String, ServerActions> serverActionsHashMap = new HashMap<>();
 
     ServerMenu(DataOutputStream out, DataInputStream in) {
-        //this.path = Paths.get(System.getProperty("pathDir.dir"));
         this.in = in;
         this.out = out;
     }
+   // private File file = new File(servFolder);
+    String way = file.getAbsolutePath();
+    private String newWay, root = way;
 
     void fillServerActions(){
         this.serverActionsHashMap.put("cd", new EnterFolder());

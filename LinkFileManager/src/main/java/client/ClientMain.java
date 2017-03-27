@@ -20,12 +20,13 @@ public class ClientMain {
             ex.printStackTrace();
         }
             int port = Integer.parseInt(properties.getProperty("stream.port"));
-            String inet = properties.getProperty("stream.inetAddress");
+            String iNet = properties.getProperty("stream.inetAddress");
+            //String userFolder = properties.getProperty("stream.clientFolder");
         //int port = 1920;
         //String inet = "127.0.0.1";
         try {
             //connection
-            InetAddress inetAddress = InetAddress.getByName(inet);
+            InetAddress inetAddress = InetAddress.getByName(iNet);
             Socket socket = new Socket(inetAddress, port);
             System.out.println("connection good");
 

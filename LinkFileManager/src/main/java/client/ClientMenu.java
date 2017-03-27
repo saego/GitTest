@@ -9,21 +9,23 @@ import java.util.Map;
  */
 class ClientMenu {
     private String way;
-    private String userFolder = "User";
+    private File userF = new File("User");
     private String separator = System.getProperty("file.separator");
     private int sends, divTail;
 
     private DataInputStream in;
     private DataOutputStream out;
 
-    private File userF = new File(userFolder);
 
     private Map<String, ClientActions> clientActionsHashMap = new HashMap<>();
 
     ClientMenu(DataInputStream in, DataOutputStream out) {
         this.in = in;
         this.out = out;
+        //userF = userFolder;
     }
+
+    //private File userF = new File(userFolder != null ? userFolder : "User");
 
     void fillClientActions(){
         this.clientActionsHashMap.put("cd", new EnterFolder());
