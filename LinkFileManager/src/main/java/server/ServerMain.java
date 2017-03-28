@@ -37,7 +37,10 @@ public class ServerMain {
 
             ServerMenu server = new ServerMenu(out, in);
             String command;
-                out.writeUTF(String.valueOf(server.way));
+            StringBuffer wayChange;
+            wayChange = new StringBuffer(server.way);
+            wayChange.delete(0, server.way.length() - server.file.getName().length());
+                out.writeUTF(String.valueOf(wayChange.toString()));
             do {
                 server.fillServerActions();
                 ToDo toDo = new ToDo();

@@ -11,11 +11,11 @@ import java.util.Map;
 @SuppressWarnings("Since15")
 class ServerMenu {
 
-    private File file = new File("TestDir1");
-    //private String servFolder;
+    File file = new File("TestDir1");
     private int bufferFile = 128;
     private int divTail, sends;
     private String separator = System.getProperty("file.separator");
+    private StringBuffer waySend;
 
     private DataInputStream in;
     private DataOutputStream out;
@@ -27,8 +27,8 @@ class ServerMenu {
         this.in = in;
         this.out = out;
     }
-   // private File file = new File(servFolder);
     String way = file.getAbsolutePath();
+    private int delWay = way.length() - file.getName().length();
     private String newWay, root = way;
 
     void fillServerActions(){
@@ -45,9 +45,6 @@ class ServerMenu {
             this.serverActionsHashMap.get(toDo.getKeyToDo()).execute(toDo);
         }
     }
-//    public String getWay(){
-//        return this.way;
-//    }
 
     private class EnterFolder implements ServerActions{
 
@@ -58,14 +55,18 @@ class ServerMenu {
         public void execute(ToDo value) throws IOException {
             System.out.println(System.getProperty("os.name"));
             newWay = way.concat(separator).concat(value.getTarget());
-                File file = new File(newWay);
+            File file = new File(newWay);
             if (file.exists()){
-                out.writeUTF(newWay);
+                waySend = new StringBuffer(newWay);
+                waySend.delete(0, delWay);
+                out.writeUTF(waySend.toString());
                 way = newWay;
                 out.writeBoolean(true);
             }
             else {
-                out.writeUTF(way);
+                waySend = new StringBuffer(way);
+                waySend.delete(0, delWay);
+                out.writeUTF(waySend.toString());
                 out.writeBoolean(false);
             }
         }
@@ -90,7 +91,9 @@ class ServerMenu {
             if (isExist){
                 way = parent;
             }
-            out.writeUTF(way);
+            waySend = new StringBuffer(way);
+            waySend.delete(0, delWay);
+            out.writeUTF(waySend.toString());
         }
     }
 
@@ -134,7 +137,9 @@ class ServerMenu {
                     }
                 }
             }
-            out.writeUTF(way);
+            waySend = new StringBuffer(way);
+            waySend.delete(0, delWay);
+            out.writeUTF(waySend.toString());
         }
     }
 
@@ -151,7 +156,9 @@ class ServerMenu {
                 way = newWay;
             }
             out.writeBoolean(isExist);
-            out.writeUTF(way);
+            waySend = new StringBuffer(way);
+            waySend.delete(0, delWay);
+            out.writeUTF(waySend.toString());
             if (isExist) {
                 File file = new File(way);
                 boolean isFolder = false;
@@ -186,7 +193,6 @@ class ServerMenu {
                         }
                     }
                     else {
-                        //bufferFile = fileSize;
                         out.writeInt(fileSize);
                         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
                                 byte []buffer = new byte[fileSize];
@@ -211,15 +217,11 @@ class ServerMenu {
         @Override
         public void execute(ToDo value) throws IOException {
             boolean isExist = in.readBoolean();
-            //System.out.println("Is exist" + isExist);
             if (isExist) {
                 boolean isDirectory = in.readBoolean();
-                //System.out.println("Is directory " + isDirectory);
                 if (!isDirectory){
                     String newFile = way.concat(separator).concat(value.getTarget());
-                    //System.out.println(newFile);
                     File file = new File(newFile);
-                    //System.out.println(file.getAbsolutePath());
                     out.writeInt(bufferFile);
                     int fileSize = in.readInt();
                     boolean oneSent = in.readBoolean();
