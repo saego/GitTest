@@ -21,7 +21,7 @@ public class ClientMain {
         }
             int port = Integer.parseInt(properties.getProperty("stream.port"));
             String iNet = properties.getProperty("stream.inetAddress");
-            //String userFolder = properties.getProperty("stream.clientFolder");
+            String userFolder = properties.getProperty("stream.clientFolder");
         //int port = 1920;
         //String inet = "127.0.0.1";
         try {

@@ -211,57 +211,58 @@ class ClientMenu {
             String uploadFileName = value.getTarget();
             String createUploadF = userF.getAbsolutePath().concat(separator).concat(uploadFileName);
             System.out.println(createUploadF);
-            if (new File(createUploadF).exists()){
+            if (new File(createUploadF).exists()) {
                 //System.out.println("Exist");
                 out.writeBoolean(true);
                 boolean isDirectory = false;
-                if (new File(createUploadF).isDirectory()){
+                if (new File(createUploadF).isDirectory()) {
                     System.out.println("This is directory");
                     isDirectory = true;
                 }
                 out.writeBoolean(isDirectory);
-                if (!isDirectory){
-                    File file = new File(createUploadF);
-                    int fileSize = (int) file.length();
-                    System.out.println("FileSize: " + fileSize + " bytes");
-                    int bufferFile = in.readInt();
-                    out.writeInt(fileSize);
-                    if (fileSize > bufferFile){
-                        out.writeBoolean(false);
-                        divTail = fileSize % bufferFile;
-                        sends = (fileSize - divTail) / bufferFile;
-                        out.writeInt(sends);
-                        out.writeInt(divTail);
-                        try(BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
-                            byte[] buffer = new byte[bufferFile];
-                            for (int i = 0; i < sends; i++) {
+                if (in.readBoolean()){
+                    if (!isDirectory) {
+                        File file = new File(createUploadF);
+                        int fileSize = (int) file.length();
+                        System.out.println("FileSize: " + fileSize + " bytes");
+                        int bufferFile = in.readInt();
+                        out.writeInt(fileSize);
+                        if (fileSize > bufferFile) {
+                            out.writeBoolean(false);
+                            divTail = fileSize % bufferFile;
+                            sends = (fileSize - divTail) / bufferFile;
+                            out.writeInt(sends);
+                            out.writeInt(divTail);
+                            try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
+                                byte[] buffer = new byte[bufferFile];
+                                for (int i = 0; i < sends; i++) {
+                                    bis.read(buffer, 0, buffer.length);
+                                    out.write(buffer, 0, buffer.length);
+                                }
+                                if (divTail != 0) {
+                                    byte[] tailBuffer = new byte[divTail];
+                                    bis.read(tailBuffer, 0, tailBuffer.length);
+                                    out.write(tailBuffer, 0, tailBuffer.length);
+                                }
+                                bis.close();
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        } else {
+                            try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
+                                out.writeBoolean(true);
+                                byte[] buffer = new byte[fileSize];
                                 bis.read(buffer, 0, buffer.length);
                                 out.write(buffer, 0, buffer.length);
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
                             }
-                            if (divTail != 0){
-                                byte []tailBuffer = new byte[divTail];
-                                bis.read(tailBuffer, 0, tailBuffer.length);
-                                out.write(tailBuffer, 0, tailBuffer.length);
-                            }
-                            bis.close();
-                        }
-                        catch (Exception ex){
-                            ex.printStackTrace();
                         }
                     }
-                    else {
-                        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
-                            out.writeBoolean(true);
-                            byte []buffer = new byte[fileSize];
-                            bis.read(buffer, 0, buffer.length);
-                            out.write(buffer, 0, buffer.length);
-                        }
-                        catch (Exception ex){
-                            ex.printStackTrace();
-                        }
-                    }
-                }
                 System.out.println("File was uploaded");
+            }else {
+                    System.out.println("Cant save in file, please move to directory");
+            }
             }
             else {
                 out.writeBoolean(false);

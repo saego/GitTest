@@ -220,41 +220,47 @@ class ServerMenu {
             if (isExist) {
                 boolean isDirectory = in.readBoolean();
                 if (!isDirectory){
-                    String newFile = way.concat(separator).concat(value.getTarget());
-                    File file = new File(newFile);
-                    out.writeInt(bufferFile);
-                    int fileSize = in.readInt();
-                    boolean oneSent = in.readBoolean();
-                    if (!oneSent){
-                        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
-                            sends = in.readInt();
-                            divTail = in.readInt();
-                            byte []buffer = new byte[bufferFile];
-                            for (int i = 0; i < sends; i++){
+                    if (new File(way).isDirectory()){
+                        out.writeBoolean(true);
+                        String newFile = way.concat(separator).concat(value.getTarget());
+                        File file = new File(newFile);
+                        out.writeInt(bufferFile);
+                        int fileSize = in.readInt();
+                        boolean oneSent = in.readBoolean();
+                        if (!oneSent){
+                            try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
+                                sends = in.readInt();
+                                divTail = in.readInt();
+                                byte []buffer = new byte[bufferFile];
+                                for (int i = 0; i < sends; i++){
+                                    in.read(buffer, 0, buffer.length);
+                                    bos.write(buffer, 0, buffer.length);
+                                }
+                                if (divTail != 0){
+                                    byte []tailBuffer = new byte[divTail];
+                                    in.read(tailBuffer, 0, tailBuffer.length);
+                                    bos.write(tailBuffer, 0, tailBuffer.length);
+                                }
+                                bos.flush();
+                            }
+                            catch (Exception ex){
+                                ex.printStackTrace();
+                            }
+                        }
+                        else {
+                            try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
+                                byte []buffer = new byte[fileSize];
                                 in.read(buffer, 0, buffer.length);
                                 bos.write(buffer, 0, buffer.length);
+                                bos.flush();
                             }
-                            if (divTail != 0){
-                                byte []tailBuffer = new byte[divTail];
-                                in.read(tailBuffer, 0, tailBuffer.length);
-                                bos.write(tailBuffer, 0, tailBuffer.length);
+                            catch (Exception ex){
+                                ex.printStackTrace();
                             }
-                            bos.flush();
-                        }
-                        catch (Exception ex){
-                            ex.printStackTrace();
                         }
                     }
                     else {
-                        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))){
-                            byte []buffer = new byte[fileSize];
-                            in.read(buffer, 0, buffer.length);
-                            bos.write(buffer, 0, buffer.length);
-                            bos.flush();
-                        }
-                        catch (Exception ex){
-                            ex.printStackTrace();
-                        }
+                        out.writeBoolean(false);
                     }
                 }
             }

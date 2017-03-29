@@ -21,7 +21,7 @@ public class ServerMain {
             ex.printStackTrace();
         }
         int port = Integer.parseInt(properties.getProperty("stream.port"));
-        //String servFolder = properties.getProperty("stream.servFolder");
+        String servFolder = properties.getProperty("stream.servFolder");
         try {
             //connection parameters
             ServerSocket serverSocket = new ServerSocket(port);
