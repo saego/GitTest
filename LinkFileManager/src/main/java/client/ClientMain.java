@@ -20,7 +20,7 @@ public class ClientMain {
             ex.printStackTrace();
         }
             int port = Integer.parseInt(properties.getProperty("stream.port"));
-            String iNet = properties.getProperty("stream.inetAddress");
+            String iNet = properties.getProperty("stream.internetAddress");
             String userFolder = properties.getProperty("stream.clientFolder");
         //int port = 1920;
         //String inet = "127.0.0.1";
@@ -39,6 +39,7 @@ public class ClientMain {
 
             ClientMenu client = new ClientMenu(in, out);
             String command;
+            client.userF = new File(userFolder);
 
             System.out.println(in.readUTF());
             do {

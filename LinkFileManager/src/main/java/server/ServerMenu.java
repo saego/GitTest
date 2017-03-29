@@ -10,12 +10,15 @@ import java.util.Map;
  */
 @SuppressWarnings("Since15")
 class ServerMenu {
-
-    File file = new File("TestDir1");
+    String way;
+    //File file = new File("TestDir1");
+    File file;
     private int bufferFile = 128;
     private int divTail, sends;
     private String separator = System.getProperty("file.separator");
     private StringBuffer waySend;
+    private int delWay;
+    private String newWay, root;
 
     private DataInputStream in;
     private DataOutputStream out;
@@ -27,9 +30,16 @@ class ServerMenu {
         this.in = in;
         this.out = out;
     }
-    String way = file.getAbsolutePath();
-    private int delWay = way.length() - file.getName().length();
-    private String newWay, root = way;
+    //String way = file.getAbsolutePath();
+    //private int delWay = way.length() - file.getName().length();
+    //private String newWay, root = way;
+
+    void initFile(String fileName){
+        file = new File(fileName);
+        way = file.getAbsolutePath();
+        delWay = way.length() - file.getName().length();
+        root = way;
+    }
 
     void fillServerActions(){
         this.serverActionsHashMap.put("cd", new EnterFolder());

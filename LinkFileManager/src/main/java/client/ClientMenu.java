@@ -9,7 +9,8 @@ import java.util.Map;
  */
 class ClientMenu {
     private String way;
-    private File userF = new File("User");
+    //private File userF = new File("User");
+    File userF;
     private String separator = System.getProperty("file.separator");
     private int sends, divTail;
 

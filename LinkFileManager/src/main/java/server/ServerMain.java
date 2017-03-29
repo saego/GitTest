@@ -21,7 +21,7 @@ public class ServerMain {
             ex.printStackTrace();
         }
         int port = Integer.parseInt(properties.getProperty("stream.port"));
-        String servFolder = properties.getProperty("stream.servFolder");
+        String serverFolder = properties.getProperty("stream.serverFolder");
         try {
             //connection parameters
             ServerSocket serverSocket = new ServerSocket(port);
@@ -35,7 +35,10 @@ public class ServerMain {
             DataInputStream in = new DataInputStream(inputStream);
             DataOutputStream out = new DataOutputStream(outputStream);
 
+            System.out.println(serverFolder);
             ServerMenu server = new ServerMenu(out, in);
+            //server.fileName = serverFolder;
+            server.initFile(serverFolder);
             String command;
             StringBuffer wayChange;
             wayChange = new StringBuffer(server.way);
