@@ -38,13 +38,16 @@ public class ClientMain {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
             ClientMenu client = new ClientMenu(in, out);
+            //Console console = System.console();
             String command;
             client.userF = new File(userFolder);
-
+            //String way = in.readUTF();
+            //console.printf("ROOT: %s \n", way);
             System.out.println(in.readUTF());
             do {
                 ToDo toDo = new ToDo();
                 client.fillClientActions();
+                //command = console.readLine("Input command");
                 command = br.readLine();
                 out.writeUTF(command);
                 toDo.whatToDo(command);
