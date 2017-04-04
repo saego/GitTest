@@ -35,7 +35,7 @@ public class ServerMain {
             DataInputStream in = new DataInputStream(inputStream);
             DataOutputStream out = new DataOutputStream(outputStream);
 
-            System.out.println(serverFolder);
+            //System.out.println(serverFolder);
             ServerMenu server = new ServerMenu(out, in);
             //server.fileName = serverFolder;
             server.initFile(serverFolder);
