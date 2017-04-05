@@ -14,5 +14,15 @@ public class Server {
         Socket socket = new ServerSocket(port).accept();
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String ask;
+        do{
+            System.out.println("Waiting ...");
+            ask = br.readLine();
+            if ("hello".equals(ask)){
+                pw.println("Hello, I'm Oracle");
+                pw.println();
+            }
+        }
+        while ("exit".equals(ask));
     }
 }
