@@ -10,19 +10,23 @@ import java.util.Properties;
  */
 public class Server {
 
-    public void loadConfig(){
-
-    }
-
-    public static void main(String []args) throws IOException {
-        int port;
-        Properties properties = new Properties();
+        private static int port;
+        private Properties properties = new Properties();
+    private void loadConfig() throws IOException {
         File propFile = new File("src\\main\\resources\\app.properties");
 
         try (FileInputStream fileInputStream = new FileInputStream(propFile)){
-            properties.load(fileInputStream);
+            this.properties.load(fileInputStream);
             port = Integer.parseInt(properties.getProperty("port"));
         }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static void main(String []args) throws IOException {
+        Server server = new Server();
+        server.loadConfig();
 
         Socket socket = new ServerSocket(port).accept();
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
