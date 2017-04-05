@@ -1,18 +1,24 @@
 package Server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Properties;
 
 /**
  Created by Saego on 29.03.2017.
  */
 public class Server {
     public static void main(String []args) throws IOException {
-        int port = 1248;
+        int port;
+        Properties properties = new Properties();
+        File propFile = new File("src\\main\\resources\\app.properties");
+
+        try (FileInputStream fileInputStream = new FileInputStream(propFile)){
+            properties.load(fileInputStream);
+            port = Integer.parseInt(properties.getProperty("port"));
+        }
+
         Socket socket = new ServerSocket(port).accept();
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));

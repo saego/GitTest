@@ -1,11 +1,9 @@
 package Client;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -13,8 +11,21 @@ import java.util.Scanner;
  */
 public class Client {
     public static void main(String []args) throws IOException {
-        int port  = 1248;
-        String internetAddress = "127.0.0.1";
+
+        int port = 0;
+        String internetAddress = null;
+        final Properties properties = new Properties();
+
+        File propFile = new File("src\\main\\resources\\app.properties");
+        try (FileInputStream fileInputStream = new FileInputStream(propFile)){
+            properties.load(fileInputStream);
+            port = Integer.parseInt(properties.getProperty("port"));
+            internetAddress = properties.getProperty("ip");
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+
         Socket socket = new Socket(InetAddress.getByName(internetAddress), port);
         Scanner console = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
