@@ -21,8 +21,10 @@ public class Client {
         do {
             ask = console.next();
             pw.println(ask);
+            System.out.println(br.readLine());
+            System.out.println(br.readLine());
 
         }
-        while ()
+        while (!"exit".equals(ask));
     }
 }

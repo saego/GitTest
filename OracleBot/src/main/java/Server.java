@@ -22,7 +22,11 @@ public class Server {
                 pw.println("Hello, I'm Oracle");
                 pw.println();
             }
+            else {
+                pw.println("Bye");
+                pw.println();
+            }
         }
-        while ("exit".equals(ask));
+        while (!"exit".equals(ask));
     }
 }
