@@ -9,6 +9,11 @@ import java.util.Properties;
  Created by Saego on 29.03.2017.
  */
 public class Server {
+
+    public void loadConfig(){
+
+    }
+
     public static void main(String []args) throws IOException {
         int port;
         Properties properties = new Properties();

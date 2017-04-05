@@ -14,6 +14,7 @@ public class Client {
     public void loadConfig(){
 
     }
+
     public static void main(String []args) throws IOException {
 
         int port = 0;
