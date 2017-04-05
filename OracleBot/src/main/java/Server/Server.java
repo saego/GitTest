@@ -22,6 +22,8 @@ public class Server {
         Socket socket = new ServerSocket(port).accept();
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+
         String ask;
         do{
             System.out.println("Waiting ...");

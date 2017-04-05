@@ -10,6 +10,10 @@ import java.util.Scanner;
  Created by Saego on 29.03.2017.
  */
 public class Client {
+
+    public void loadConfig(){
+
+    }
     public static void main(String []args) throws IOException {
 
         int port = 0;
@@ -30,6 +34,8 @@ public class Client {
         Scanner console = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+
         String ask;
         do {
             ask = console.next();
