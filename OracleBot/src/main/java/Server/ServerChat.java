@@ -1,28 +1,27 @@
 package Server;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
 
 /**
- * Created by Ruslan on 05.04.2017.
+ Created by Saego on 05.04.2017.
  */
-public class ServerChat {
+class ServerChat {
     //String ask;
     //BufferedReader br;
     //PrintWriter pw;
 
-    public ServerChat() {
+    ServerChat() {
        // this.ask = ask;
         //this.br = br;
         //this.pw = pw;
     }
 
 
-    public void chatting(){
+    void chatting(){
         File fileAnswers = new File("src\\main\\resources\\botAnswers.ini");
         Properties properties = new Properties();
         FileInputStream fis;
@@ -34,12 +33,13 @@ public class ServerChat {
             ex.printStackTrace();
         }
         Enumeration keys = properties.keys();
-
+        ArrayList<String> list = new ArrayList<>();
         while (keys.hasMoreElements()){
-            String str = (String) keys.nextElement();
-            System.out.println(str);
-            System.out.println(properties.get(str));
+            list.add((String) keys.nextElement());
         }
-
+        for (String aList : list) {
+            System.out.println(aList);
+        }
     }
 }
+
