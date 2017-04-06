@@ -31,14 +31,14 @@ public class Server {
         Socket socket = new ServerSocket(port).accept();
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        ServerChat serverChat = new ServerChat();
+        ServerChat serverChat = new ServerChat(pw);
         String ask;
         do{
             System.out.println("Waiting ...");
             ask = br.readLine();
-                serverChat.answer(serverChat.getKey(ask, serverChat.chatting()));
-                pw.println();
+            serverChat.answer(serverChat.getKey(ask, serverChat.chatting()));
+            //pw.println();
         }
-        while (!"exit".equals(ask)||!"bye".equals(ask));
+        while (!"exit".equals(ask)|!"bye".equals(ask));
     }
 }

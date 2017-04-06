@@ -11,25 +11,23 @@ import java.util.Properties;
  Created by Saego on 05.04.2017.
  */
 class ServerChat {
-    //String ask;
-    //BufferedReader br;
-    PrintWriter pw;
+    private PrintWriter pw;
 
-        ArrayList<String> list = new ArrayList<>();
-        String key;
-    ServerChat() {
+        private ArrayList<String> list = new ArrayList<>();
+        private String key;
+    ServerChat(PrintWriter pw) {
        // this.ask = ask;
         //this.br = br;
         this.pw = pw;
     }
 
 
-        File fileAnswers = new File("src\\main\\resources\\botAnswers.ini");
-        Properties properties = new Properties();
-        FileInputStream fis;
-    public ArrayList <String> chatting(){
+        private File fileAnswers = new File("src\\main\\resources\\botAnswers.ini");
+        private Properties properties = new Properties();
+
+    ArrayList <String> chatting(){
         try {
-            fis = new FileInputStream(fileAnswers);
+            FileInputStream fis = new FileInputStream(fileAnswers);
             properties.load(fis);
         }
         catch (Exception ex){
@@ -39,14 +37,10 @@ class ServerChat {
         while (keys.hasMoreElements()){
             list.add((String) keys.nextElement());
         }
-        //for (String aList : list) {
-        //    System.out.println(aList);
-        //}
         return list;
     }
 
-    public String getKey(String ask, ArrayList<String> list){
-        //StringBuffer sbAsk = new StringBuffer(ask.subSequence(0, ask.length()));
+    String getKey(String ask, ArrayList<String> list){
         for (String listKey:
              list) {
             if (ask.contains(listKey)){
@@ -57,9 +51,10 @@ class ServerChat {
         return key;
     }
 
-    public void answer(String key){
-        //System.out.println(properties.getProperty(key));
-        pw.println(properties.getProperty(key));
+    void answer(String key){
+        String answer = properties.getProperty(key);
+        System.out.println(answer);
+        pw.println(answer);
     }
 }
 

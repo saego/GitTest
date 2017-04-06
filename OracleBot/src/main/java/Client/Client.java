@@ -35,15 +35,13 @@ public class Client {
         Scanner console = new Scanner(System.in);
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
+        ClientChat clientChat = new ClientChat(br);
         String ask;
         do {
             ask = console.next();
             pw.println(ask);
-            System.out.println(br.readLine());
-            System.out.println(br.readLine());
-
+            clientChat.chatting();
         }
-        while (!"exit".equals(ask));
+        while (!"exit".equals(ask)|!"bye".equals(ask));
     }
 }
