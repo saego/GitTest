@@ -31,7 +31,8 @@ public class Server {
         Socket socket = new ServerSocket(port).accept();
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
+        ServerChat serverChat = new ServerChat();
+        serverChat.chatting();
 
         String ask;
         do{

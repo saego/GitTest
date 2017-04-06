@@ -21,9 +21,7 @@ public class ClientChat {
     }
 
     public void chatting() throws IOException {
-    //    pw.println(ask);
         while ((answer = br.readLine()) != null) {
-            //answer = br.readLine();
             System.out.println(answer);
         }
 
