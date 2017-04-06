@@ -38,10 +38,10 @@ public class Client {
         ClientChat clientChat = new ClientChat(br);
         String ask;
         do {
-            ask = console.next();
+            ask = console.nextLine();
             pw.println(ask);
             clientChat.chatting();
         }
-        while (!"exit".equals(ask)|!"bye".equals(ask));
+        while (!"exit".equals(ask));
     }
 }

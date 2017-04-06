@@ -39,6 +39,6 @@ public class Server {
             serverChat.answer(serverChat.getKey(ask, serverChat.chatting()));
             //pw.println();
         }
-        while (!"exit".equals(ask)|!"bye".equals(ask));
+        while (!"exit".equals(ask));
     }
 }
