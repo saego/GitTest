@@ -32,21 +32,13 @@ public class Server {
         PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         ServerChat serverChat = new ServerChat();
-        serverChat.chatting();
-
         String ask;
         do{
             System.out.println("Waiting ...");
             ask = br.readLine();
-            if ("hello".equals(ask)){
-                pw.println("Hello, I'm Oracle");
+                serverChat.answer(serverChat.getKey(ask, serverChat.chatting()));
                 pw.println();
-            }
-            else {
-                pw.println("Bye");
-                pw.println();
-            }
         }
-        while (!"exit".equals(ask));
+        while (!"exit".equals(ask)||!"bye".equals(ask));
     }
 }
