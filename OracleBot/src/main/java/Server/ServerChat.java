@@ -16,8 +16,6 @@ class ServerChat {
         private ArrayList<String> list = new ArrayList<>();
         private String key;
     ServerChat(PrintWriter pw) {
-       // this.ask = ask;
-        //this.br = br;
         this.pw = pw;
     }
 
@@ -47,6 +45,9 @@ class ServerChat {
                 key = listKey;
                 break;
             }
+        }
+        if (key == null){
+            key = "NotFound";
         }
         return key;
     }

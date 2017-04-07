@@ -42,6 +42,6 @@ public class Client {
             pw.println(ask);
             clientChat.chatting();
         }
-        while (!"exit".equals(ask));
+        while (!"exit".equals(ask)&&!"bye".equals(ask));
     }
 }
