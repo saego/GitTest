@@ -43,6 +43,5 @@ public class Client {
             clientChat.chatting();
         }
         while (!"exit".equals(ask)&&!"bye".equals(ask));
-        while (!"exit".equals(ask)&&!"bye".equals(ask));
     }
 }

@@ -37,7 +37,6 @@ public class Server {
             System.out.println("Waiting ...");
             ask = br.readLine();
             serverChat.answer(serverChat.getKey(ask, serverChat.chatting()));
-            //pw.println();
         }
         while (!"exit".equals(ask)&&!"bye".equals(ask));
     }
