@@ -56,6 +56,7 @@ class ServerChat {
         String answer = properties.getProperty(key);
         System.out.println(answer);
         pw.println(answer);
+        pw.println("null");
     }
 }
 

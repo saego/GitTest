@@ -14,7 +14,11 @@ class ClientChat {
     }
 
     void chatting() throws IOException {
-        String answer = br.readLine();
+        String answer;
+        answer = br.readLine();
+        while (!answer.equals("null")){
         System.out.println(answer);
+        answer = br.readLine();
+        }
     }
 }
