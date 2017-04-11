@@ -24,7 +24,7 @@ public class LThread implements Runnable{
     public static void main(String []args){
         System.out.println("Main stream started");
         LThread lThread = new LThread();
-        new Thread(lThread, "Inner thread").start();
+        new Thread(lThread, "Inner").start();
         try {
             Thread.sleep(1500);
             lThread.disable();
