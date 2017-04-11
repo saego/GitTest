@@ -17,8 +17,9 @@ class ClientChat {
         String answer;
         answer = br.readLine();
         while (!answer.equals("null")){
-        System.out.println(answer);
-        answer = br.readLine();
+            System.out.println(answer);
+            answer = br.readLine();
         }
+        System.out.println(br.readLine());
     }
 }

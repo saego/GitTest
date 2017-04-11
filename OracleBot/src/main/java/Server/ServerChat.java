@@ -41,7 +41,7 @@ class ServerChat {
     String getKey(String ask, ArrayList<String> list){
         for (String listKey:
              list) {
-            if (ask.contains(listKey)){
+            if (ask.toLowerCase().contains(listKey)){
                 key = listKey;
                 break;
             }
@@ -54,9 +54,12 @@ class ServerChat {
 
     void answer(String key){
         String answer = properties.getProperty(key);
+        System.out.println(key);
         System.out.println(answer);
+        this.key = null;
         pw.println(answer);
         pw.println("null");
+        pw.println();
     }
 }
 
