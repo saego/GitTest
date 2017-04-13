@@ -13,14 +13,12 @@ public class Searcher {
         this.extension = extension;
     }
 
-
     private boolean isExist(){
         File sDirectory;
         return (sDirectory = new File(this.searchDirectory)).exists() && sDirectory.isDirectory();
     }
 
     private void fileWalker(File file){
-        //File file = new File(this.searchDirectory);
         File []folders = file.listFiles();
         assert folders != null;
         for (File folder:
@@ -29,7 +27,7 @@ public class Searcher {
                 fileWalker(folder);
             }
             else {
-                System.out.printf("File: [%s]", folder.getAbsolutePath());
+                System.out.printf("File: [%s]\n", folder.getAbsolutePath());
             }
         }
     }
