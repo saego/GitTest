@@ -1,2 +1,2 @@
-D:\Java Examples\RepositBasic\RepositBasic\FileSearcher\ttt\fff.txt
-D:\Java Examples\RepositBasic\RepositBasic\FileSearcher\ttt\rrr\sss\fff.txt
+Found files:
+C:\Users\user\IdeaProjects\RepositBasic\FileSearcher\ttt\nnn\ccc.txt

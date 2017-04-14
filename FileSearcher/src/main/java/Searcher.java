@@ -18,6 +18,7 @@ public class Searcher {
 
     private boolean isExist(){
         File sDirectory;
+        pw.println("Found files:");
         return (sDirectory = new File(this.searchDirectory)).exists() && sDirectory.isDirectory();
     }
 
