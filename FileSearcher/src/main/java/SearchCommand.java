@@ -7,7 +7,7 @@ public class SearchCommand {
     private String key;
     private String value;
 
-    private void readCommand(String command){
+    public void readCommand(String command){
         Scanner scanner = new Scanner(command);
         while (scanner.hasNext()){
             if (scanner.hasNext()){

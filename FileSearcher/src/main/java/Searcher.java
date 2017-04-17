@@ -40,8 +40,8 @@ public class Searcher {
         }
     }
 
-    private void compareFullName(SearchCommand value, File file) throws IOException {
-        Pattern pattern = Pattern.compile(".+\\." + value.getValue());
+    private void compare(String value, File file) throws IOException {
+        Pattern pattern = Pattern.compile(value);
         Matcher matcher = pattern.matcher(file.getName());
         //boolean found = Pattern.matches(file.getName(), name);
         if (matcher.matches()){
@@ -75,9 +75,11 @@ public class Searcher {
         String directory = scanner.nextLine();
         System.out.println("Input key and type of key");
         String extension = scanner.nextLine();
+        SearchCommand command = new SearchCommand();
+        command.readCommand(extension);
         Searcher searcher = new Searcher(directory, extension);
         if (searcher.isExist()){
-            searcher.fileWalker(new File(directory));
+            searcher.fileWalker(new File(directory), command);
         }
         else {
             System.out.println("Directory wasn't found");
@@ -86,7 +88,7 @@ public class Searcher {
 
     private class FilterByName implements Filter {
         public void filterKey(SearchCommand key) {
-
+            extension = "^" + key.getValue();
         }
 
         public String commandName() {
@@ -96,7 +98,7 @@ public class Searcher {
 
     private class FilterByExtend implements Filter {
         public void filterKey(SearchCommand key) {
-
+            extension = ".+\\." + key.getValue();
         }
 
         public String commandName() {
@@ -106,7 +108,7 @@ public class Searcher {
 
     private class FilterByFullCompare implements Filter {
         public void filterKey(SearchCommand key) {
-
+            extension = "^" + key.getValue() + "$";
         }
 
         public String commandName() {
