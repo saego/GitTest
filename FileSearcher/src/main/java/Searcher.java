@@ -10,13 +10,14 @@ import java.util.regex.Pattern;
  */
 public class Searcher {
     private String searchDirectory;
+    private SearchCommand searchCommand;
     private String extension;
     private File target = new File("SearchResult.txt");
     private PrintWriter pw = new PrintWriter(new FileWriter(target));
 
-    private Searcher(String searchDirectory, String extension) throws IOException {
+    private Searcher(String searchDirectory, SearchCommand searchCommand) throws IOException {
         this.searchDirectory = searchDirectory;
-        this.extension = extension;
+        this.searchCommand = searchCommand;
     }
 
     private boolean isExist(){
@@ -25,23 +26,24 @@ public class Searcher {
         return (sDirectory = new File(this.searchDirectory)).exists() && sDirectory.isDirectory();
     }
 
-    private void fileWalker(File file, SearchCommand command) throws IOException {
+    private void fileWalker(File file, SearchCommand searchCommand) throws IOException {
         File []folders = file.listFiles();
         assert folders != null;
         for (File folder:
              folders) {
             if (folder.isDirectory()){
-                fileWalker(folder, command);
+                fileWalker(folder, searchCommand);
             }
             else {
                 fillActions();
-                chooseFilter(command);
+                chooseFilter(searchCommand);
+                compare(folder);
             }
         }
     }
 
-    private void compare(String value, File file) throws IOException {
-        Pattern pattern = Pattern.compile(value);
+    private void compare(File file) throws IOException {
+        Pattern pattern = Pattern.compile(extension);
         Matcher matcher = pattern.matcher(file.getName());
         //boolean found = Pattern.matches(file.getName(), name);
         if (matcher.matches()){
@@ -52,37 +54,20 @@ public class Searcher {
     }
 
     private Map <String, Filter> filterActions = new HashMap<String, Filter>();
-    public void fillActions(){
+    private void fillActions(){
         this.filterActions.put("N", new FilterByName());
         this.filterActions.put("E", new FilterByExtend());
         this.filterActions.put("F", new FilterByFullCompare());
         this.filterActions.put("help", new Help());
     }
 
-    public void chooseFilter(SearchCommand command){
+    private void chooseFilter(SearchCommand command){
         if (filterActions.containsKey(command.getKey())){
             this.filterActions.get(command.getKey()).filterKey(command);
         }
         else {
             System.out.println("Error input");
             this.filterActions.get("help").filterKey(command);
-        }
-    }
-
-    public static void main(String []args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Input directory");
-        String directory = scanner.nextLine();
-        System.out.println("Input key and type of key");
-        String extension = scanner.nextLine();
-        SearchCommand command = new SearchCommand();
-        command.readCommand(extension);
-        Searcher searcher = new Searcher(directory, extension);
-        if (searcher.isExist()){
-            searcher.fileWalker(new File(directory), command);
-        }
-        else {
-            System.out.println("Directory wasn't found");
         }
     }
 
@@ -118,11 +103,31 @@ public class Searcher {
 
     private class Help implements Filter {
         public void filterKey(SearchCommand key) {
-
+            System.out.println("Help");
         }
 
         public String commandName() {
             return "HELP";
         }
     }
+    public static void main(String []args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input directory");
+        String directory = scanner.nextLine();
+        System.out.println("Input key and type of key");
+        String command = scanner.nextLine();
+
+        SearchCommand searchCommand = new SearchCommand();
+        searchCommand.readCommand(command);
+
+        Searcher searcher = new Searcher(directory, searchCommand);
+        if (searcher.isExist()){
+            searcher.fileWalker(new File(directory), searchCommand);
+            //searcher.compare();
+        }
+        else {
+            System.out.println("Directory wasn't found");
+        }
+    }
+
 }
