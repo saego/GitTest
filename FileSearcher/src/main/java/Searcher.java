@@ -26,17 +26,17 @@ public class Searcher {
         return (sDirectory = new File(this.searchDirectory)).exists() && sDirectory.isDirectory();
     }
 
-    private void fileWalker(File file, SearchCommand searchCommand) throws IOException {
+    private void fileWalker(File file) throws IOException {
         File []folders = file.listFiles();
         assert folders != null;
+        //fillActions();
+        //chooseFilter(searchCommand);
         for (File folder:
              folders) {
             if (folder.isDirectory()){
-                fileWalker(folder, searchCommand);
+                fileWalker(folder);
             }
             else {
-                fillActions();
-                chooseFilter(searchCommand);
                 compare(folder);
             }
         }
@@ -45,7 +45,6 @@ public class Searcher {
     private void compare(File file) throws IOException {
         Pattern pattern = Pattern.compile(extension);
         Matcher matcher = pattern.matcher(file.getName());
-        //boolean found = Pattern.matches(file.getName(), name);
         if (matcher.matches()){
             pw.println(file.getAbsolutePath());
             System.out.printf("File: [%s]\n", file.getAbsolutePath());
@@ -67,7 +66,7 @@ public class Searcher {
         }
         else {
             System.out.println("Error input");
-            this.filterActions.get("help").filterKey(command);
+            //this.filterActions.get("help").filterKey(command);
         }
     }
 
@@ -83,7 +82,9 @@ public class Searcher {
 
     private class FilterByExtend implements Filter {
         public void filterKey(SearchCommand key) {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             extension = ".+\\." + key.getValue();
+            System.out.println(extension);
         }
 
         public String commandName() {
@@ -122,7 +123,9 @@ public class Searcher {
 
         Searcher searcher = new Searcher(directory, searchCommand);
         if (searcher.isExist()){
-            searcher.fileWalker(new File(directory), searchCommand);
+            searcher.fillActions();
+            searcher.chooseFilter(searchCommand);
+            searcher.fileWalker(new File(directory));
             //searcher.compare();
         }
         else {

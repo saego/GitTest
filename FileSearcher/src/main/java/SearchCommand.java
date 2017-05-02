@@ -3,11 +3,11 @@ import java.util.Scanner;
 /**
  Created by Saego on 17.04.2017.
  */
-public class SearchCommand {
+class SearchCommand {
     private String key;
     private String value;
 
-    public void readCommand(String command){
+    void readCommand(String command){
         Scanner scanner = new Scanner(command);
         while (scanner.hasNext()){
             if (scanner.hasNext()){
@@ -17,13 +17,15 @@ public class SearchCommand {
                 this.value = scanner.next();
             }
         }
+        //System.out.println(key);
+        //System.out.println(value);
     }
 
-    public String getKey() {
+    String getKey() {
         return this.key;
     }
 
-    public String getValue() {
+    String getValue() {
         return this.value;
     }
 }
