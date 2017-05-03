@@ -29,15 +29,15 @@ public class Searcher {
     private void fileWalker(File file) throws IOException {
         File []folders = file.listFiles();
         assert folders != null;
-        //fillActions();
-        //chooseFilter(searchCommand);
         for (File folder:
              folders) {
             if (folder.isDirectory()){
                 fileWalker(folder);
             }
             else {
-                compare(folder);
+                if (extension != null) {
+                    compare(folder);
+                }
             }
         }
     }
@@ -82,7 +82,7 @@ public class Searcher {
 
     private class FilterByExtend implements Filter {
         public void filterKey(SearchCommand key) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             extension = ".+\\." + key.getValue();
             System.out.println(extension);
         }
@@ -104,7 +104,13 @@ public class Searcher {
 
     private class Help implements Filter {
         public void filterKey(SearchCommand key) {
-            System.out.println("Help");
+            System.out.println("______________Help____________________");
+            System.out.println();
+            for (Map.Entry<String, Filter> filters:
+                 filterActions.entrySet()) {
+                System.out.print(filters.getKey() + "   -   ");
+                System.out.println(filters.getValue().commandName());
+            }
         }
 
         public String commandName() {
@@ -113,23 +119,34 @@ public class Searcher {
     }
     public static void main(String []args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Input directory");
-        String directory = scanner.nextLine();
-        System.out.println("Input key and type of key");
-        String command = scanner.nextLine();
+        boolean exit = false;
+        String quit;
+        while (!exit) {
+            System.out.println("Input directory");
+            String directory = scanner.nextLine();
+            System.out.println("Input key and type of key");
+            String command = scanner.nextLine();
 
-        SearchCommand searchCommand = new SearchCommand();
-        searchCommand.readCommand(command);
+            SearchCommand searchCommand = new SearchCommand();
+            searchCommand.readCommand(command);
 
-        Searcher searcher = new Searcher(directory, searchCommand);
-        if (searcher.isExist()){
-            searcher.fillActions();
-            searcher.chooseFilter(searchCommand);
-            searcher.fileWalker(new File(directory));
-            //searcher.compare();
-        }
-        else {
-            System.out.println("Directory wasn't found");
+            Searcher searcher = new Searcher(directory, searchCommand);
+            if (searcher.isExist()) {
+                searcher.fillActions();
+                searcher.chooseFilter(searchCommand);
+                searcher.fileWalker(new File(directory));
+                //searcher.compare();
+            } else {
+                System.out.println("Directory wasn't found");
+            }
+            do {
+                System.out.println("Do you want to exit? (Y/N)");
+                quit = scanner.nextLine();
+            }
+            while (!quit.equals("y") && !quit.equals("n"));
+            if (quit.toLowerCase().equals("y")) {
+                exit = true;
+            }
         }
     }
 

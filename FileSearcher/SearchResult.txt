@@ -1,3 +1,0 @@
-Found files:
-D:\Java Examples\RepositBasic\RepositBasic\FileSearcher\ttt\bbb\ppp.com
-D:\Java Examples\RepositBasic\RepositBasic\FileSearcher\ttt\nnn\bbb\tnm.com
