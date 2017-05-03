@@ -65,14 +65,14 @@ public class Searcher {
             this.filterActions.get(command.getKey()).filterKey(command);
         }
         else {
-            System.out.println("Error input");
-            //this.filterActions.get("help").filterKey(command);
+            System.out.println("Error input!!!!");
+            this.filterActions.get("help").filterKey(command);
         }
     }
 
     private class FilterByName implements Filter {
         public void filterKey(SearchCommand key) {
-            extension = "^" + key.getValue();
+            extension = "^" + key.getValue() + "\\.(\\w*)";
         }
 
         public String commandName() {
@@ -82,9 +82,7 @@ public class Searcher {
 
     private class FilterByExtend implements Filter {
         public void filterKey(SearchCommand key) {
-            //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             extension = ".+\\." + key.getValue();
-            System.out.println(extension);
         }
 
         public String commandName() {
@@ -139,6 +137,7 @@ public class Searcher {
             } else {
                 System.out.println("Directory wasn't found");
             }
+            searcher.extension = null;
             do {
                 System.out.println("Do you want to exit? (Y/N)");
                 quit = scanner.nextLine();

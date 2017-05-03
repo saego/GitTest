@@ -1,0 +1,3 @@
+Found files:
+C:\Users\user\IdeaProjects\RepositBasic\FileSearcher\ttt\nnn\ggg.cmd
+C:\Users\user\IdeaProjects\RepositBasic\FileSearcher\ttt\rrr\sss\ggg.txt
