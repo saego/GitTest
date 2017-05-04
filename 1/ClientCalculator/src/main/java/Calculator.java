@@ -1,7 +1,7 @@
 /**
  *Created by Saego on 04.05.2017.
  */
-public class Calculator {
+class Calculator {
     /**
      * Result of calculation value.
      */
@@ -12,7 +12,7 @@ public class Calculator {
      * @param first - first param.
      * @param second - second param.
      */
-    public void add(double first, double second){
+    void add(double first, double second){
         this.result = first + second;
     }
 
@@ -21,7 +21,7 @@ public class Calculator {
      * @param first - first param.
      * @param second - second param.
      */
-    public void multiply(double first, double second){
+    void multiply(double first, double second){
         this.result = first * second;
     }
 
@@ -30,7 +30,7 @@ public class Calculator {
      * @param first - first param.
      * @param second - second param.
      */
-    public void div(double first, double second){
+    void div(double first, double second){
         this.result = first / second;
     }
 
@@ -39,7 +39,7 @@ public class Calculator {
      * @param first - first param.
      * @param second - second param.
      */
-    public void sub(double first, double second){
+    void sub(double first, double second){
         this.result = first - second;
     }
 
@@ -47,7 +47,7 @@ public class Calculator {
      * Get result of calculating.
      * @return - result of calculating.
      */
-    public double getResult() {
+    double getResult() {
         return result;
     }
 
