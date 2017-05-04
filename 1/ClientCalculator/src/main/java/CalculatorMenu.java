@@ -17,6 +17,22 @@ public class CalculatorMenu {
      * Map of calculate actions.
      */
     Map<String, Action> actionMap = new HashMap<String, Action>();
+    /**
+     * Using result as a first param.
+     */
+    boolean useResult = false;
+    /**
+     * First value of calculation.
+     */
+    double firstValue;
+    /**
+     * Second value of calculation.
+     */
+    double secondValue;
+    /**
+     * Result of calculation.
+     */
+    double result;
 
     /**
      * Initialization keys of actions.
@@ -38,6 +54,10 @@ public class CalculatorMenu {
         this.calculator = calculator;
     }
 
+    /**
+     * Choose operation from map.
+     * @param answer - type of operation.
+     */
     public void chooseOperation(String answer){
         if (this.actionMap.containsKey(answer)){
             this.actionMap.get(answer).execute();
@@ -46,6 +66,22 @@ public class CalculatorMenu {
             System.out.println("Invalid operation!");
         }
     }
+
+    public double getFirst(){
+        if (useResult){
+            this.firstValue = this.result;
+        }
+        else {
+            this.firstValue = Double.parseDouble(input.ask("Input first value"));
+        }
+        return this.firstValue;
+    }
+
+    public double getSecond(){
+        this.secondValue = Double.parseDouble(input.ask("Input second value"));
+        return this.secondValue;
+    }
+
     /**
      * Addition.
      */
@@ -70,7 +106,8 @@ public class CalculatorMenu {
          * Do action.
          */
         public void execute() {
-
+            calculator.add(firstValue, secondValue);
+            result = calculator.getResult();
         }
     }
 
@@ -98,7 +135,8 @@ public class CalculatorMenu {
          * Do action.
          */
         public void execute() {
-
+            calculator.sub(firstValue, secondValue);
+            result = calculator.getResult();
         }
     }
 
@@ -126,7 +164,8 @@ public class CalculatorMenu {
          * Do action.
          */
         public void execute() {
-
+            calculator.multiply(firstValue, secondValue);
+            result = calculator.getResult();
         }
     }
 
@@ -154,7 +193,8 @@ public class CalculatorMenu {
          * Do action.
          */
         public void execute() {
-
+            calculator.div(firstValue, secondValue);
+            result = calculator.getResult();
         }
     }
 }
