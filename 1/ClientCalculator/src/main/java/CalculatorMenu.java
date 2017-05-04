@@ -33,6 +33,10 @@ public class CalculatorMenu {
      * Result of calculation.
      */
     double result;
+    /**
+     * Operator of calculation.
+     */
+    String operator;
 
     /**
      * Initialization keys of actions.
@@ -67,6 +71,10 @@ public class CalculatorMenu {
         }
     }
 
+    /**
+     * Get first value of calculation.
+     * @return - first value.
+     */
     public double getFirst(){
         if (useResult){
             this.firstValue = this.result;
@@ -77,9 +85,22 @@ public class CalculatorMenu {
         return this.firstValue;
     }
 
+    /**
+     * Get second value of calculation
+     * @return - second value.
+     */
     public double getSecond(){
         this.secondValue = Double.parseDouble(input.ask("Input second value"));
         return this.secondValue;
+    }
+
+    /**
+     * Get operator of calculation.
+     * @return - operator.
+     */
+    public String getOperator(){
+        this.operator = input.ask("Input operator");
+        return this.operator;
     }
 
     /**
@@ -99,7 +120,7 @@ public class CalculatorMenu {
          * @return - info about current action.
          */
         public String actionInfo() {
-            return String.format(" %s math operation", actionName());
+            return String.format(" %s math operation", this.actionName());
         }
 
         /**
@@ -128,7 +149,7 @@ public class CalculatorMenu {
          * @return - info about current action.
          */
         public String actionInfo() {
-            return String.format(" %s math operation", actionName());
+            return String.format(" %s math operation", this.actionName());
         }
 
         /**
@@ -157,7 +178,7 @@ public class CalculatorMenu {
          * @return - info about current action.
          */
         public String actionInfo() {
-            return String.format(" %s math operation", actionName());
+            return String.format(" %s math operation", this.actionName());
         }
 
         /**
@@ -186,7 +207,7 @@ public class CalculatorMenu {
          * @return - info about current action.
          */
         public String actionInfo() {
-            return String.format(" %s math operation", actionName());
+            return String.format(" %s math operation", this.actionName());
         }
 
         /**
