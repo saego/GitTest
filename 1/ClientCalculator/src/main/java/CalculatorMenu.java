@@ -16,27 +16,27 @@ public class CalculatorMenu {
     /**
      * Map of calculate actions.
      */
-    Map<String, Action> actionMap = new HashMap<String, Action>();
+    private Map<String, Action> actionMap = new HashMap<String, Action>();
     /**
      * Using result as a first param.
      */
-    boolean useResult = false;
+    private boolean useResult = false;
     /**
      * First value of calculation.
      */
-    double firstValue;
+    private double firstValue;
     /**
      * Second value of calculation.
      */
-    double secondValue;
+    private double secondValue;
     /**
      * Result of calculation.
      */
-    double result;
+    private double result;
     /**
      * Operator of calculation.
      */
-    String operator;
+    private String operator;
 
     /**
      * Initialization keys of actions.
@@ -46,6 +46,7 @@ public class CalculatorMenu {
         actionMap.put("-", new Sub());
         actionMap.put("*", new Multipl());
         actionMap.put("/", new Divide());
+        actionMap.put("ur", new UseResult());
     }
 
     /**
@@ -112,7 +113,7 @@ public class CalculatorMenu {
          * @return - name.
          */
         public String actionName() {
-            return "Adding";
+            return "+";
         }
 
         /**
@@ -120,7 +121,7 @@ public class CalculatorMenu {
          * @return - info about current action.
          */
         public String actionInfo() {
-            return String.format(" %s math operation", this.actionName());
+            return String.format(" %s Adding math operation", this.actionName());
         }
 
         /**
@@ -141,7 +142,7 @@ public class CalculatorMenu {
           * @return - name.
          */
         public String actionName() {
-            return "Subtracting";
+            return "-";
         }
 
         /**
@@ -149,7 +150,7 @@ public class CalculatorMenu {
          * @return - info about current action.
          */
         public String actionInfo() {
-            return String.format(" %s math operation", this.actionName());
+            return String.format(" %s Subtracting math operation", this.actionName());
         }
 
         /**
@@ -170,7 +171,7 @@ public class CalculatorMenu {
          * @return - name.
          */
         public String actionName() {
-            return "Multiplying";
+            return "*";
         }
 
         /**
@@ -178,7 +179,7 @@ public class CalculatorMenu {
          * @return - info about current action.
          */
         public String actionInfo() {
-            return String.format(" %s math operation", this.actionName());
+            return String.format(" %s Multiplying math operation", this.actionName());
         }
 
         /**
@@ -199,7 +200,7 @@ public class CalculatorMenu {
          * @return - name.
          */
         public String actionName() {
-            return "Dividing";
+            return "/";
         }
 
         /**
@@ -207,7 +208,7 @@ public class CalculatorMenu {
          * @return - info about current action.
          */
         public String actionInfo() {
-            return String.format(" %s math operation", this.actionName());
+            return String.format(" %s Dividing math operation", this.actionName());
         }
 
         /**
@@ -216,6 +217,34 @@ public class CalculatorMenu {
         public void execute() {
             calculator.div(firstValue, secondValue);
             result = calculator.getResult();
+        }
+    }
+
+    /**
+     * If use previous result as a fist parameter.
+     */
+    private class UseResult implements Action {
+        /**
+         * Action.
+         * @return - name.
+         */
+        public String actionName() {
+            return null;
+        }
+
+        /**
+         * Action.
+         * @return - info about current action.
+         */
+        public String actionInfo() {
+            return null;
+        }
+
+        /**
+         * Do action.
+         */
+        public void execute() {
+            useResult = true;
         }
     }
 }
