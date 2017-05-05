@@ -47,6 +47,7 @@ public class CalculatorMenu {
         actionMap.put("*", new Multipl());
         actionMap.put("/", new Divide());
         actionMap.put("ur", new UseResult());
+        actionMap.put("help", new Help());
     }
 
     /**
@@ -229,7 +230,7 @@ public class CalculatorMenu {
          * @return - name.
          */
         public String actionName() {
-            return null;
+            return "ur";
         }
 
         /**
@@ -237,7 +238,7 @@ public class CalculatorMenu {
          * @return - info about current action.
          */
         public String actionInfo() {
-            return null;
+            return String.format(" %s If you want to use last result as a first operand", this.actionName());
         }
 
         /**
@@ -245,6 +246,34 @@ public class CalculatorMenu {
          */
         public void execute() {
             useResult = true;
+        }
+    }
+
+    /**
+     * Help message.
+     */
+    private class Help implements Action {
+        /**
+         * Action.
+          * @return - name.
+         */
+        public String actionName() {
+            return "help";
+        }
+
+        /**
+         * Action.
+         * @return - info about current action.
+         */
+        public String actionInfo() {
+            return String.format(" %s Help keys", this.actionName());
+        }
+
+        /**
+         * Do action.
+         */
+        public void execute() {
+
         }
     }
 }
