@@ -277,7 +277,11 @@ class CalculatorMenu {
          * Do action.
          */
         public void execute() {
-            System.out.println("help");
+            //System.out.println("help");
+            for (Map.Entry<String, Action> act:
+                 actionMap.entrySet()) {
+                System.out.println(act.getValue().actionInfo());
+            }
         }
     }
 }

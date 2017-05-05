@@ -13,5 +13,6 @@ public class CalculatorMain {
         calculatorMenu.getSecond();
         calculatorMenu.chooseOperation(operator);
         System.out.println(" = " + calculatorMenu.getResult());
+        calculatorMenu.chooseOperation(calculatorMenu.getOperator());
     }
 }
