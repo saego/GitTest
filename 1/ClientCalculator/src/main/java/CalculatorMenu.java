@@ -4,7 +4,7 @@ import java.util.Map;
 /**
  *Created by Saego on 04.05.2017.
  */
-public class CalculatorMenu {
+class CalculatorMenu {
     /**
      * Input method.
      */
@@ -41,7 +41,7 @@ public class CalculatorMenu {
     /**
      * Initialization keys of actions.
      */
-    public void fillCalcActions(){
+    void fillCalcActions(){
         actionMap.put("+", new Add());
         actionMap.put("-", new Sub());
         actionMap.put("*", new Multipl());
@@ -55,7 +55,7 @@ public class CalculatorMenu {
      * @param input - input method.
      * @param calculator - calculator.
      */
-    public CalculatorMenu(Input input, Calculator calculator) {
+    CalculatorMenu(Input input, Calculator calculator) {
         this.input = input;
         this.calculator = calculator;
     }
@@ -64,7 +64,7 @@ public class CalculatorMenu {
      * Choose operation from map.
      * @param answer - type of operation.
      */
-    public void chooseOperation(String answer){
+    void chooseOperation(String answer){
         if (this.actionMap.containsKey(answer)){
             this.actionMap.get(answer).execute();
         }
@@ -77,7 +77,7 @@ public class CalculatorMenu {
      * Get first value of calculation.
      * @return - first value.
      */
-    public double getFirst(){
+    double getFirst(){
         if (useResult){
             this.firstValue = this.result;
         }
@@ -91,7 +91,7 @@ public class CalculatorMenu {
      * Get second value of calculation
      * @return - second value.
      */
-    public double getSecond(){
+    double getSecond(){
         this.secondValue = Double.parseDouble(input.ask("Input second value"));
         return this.secondValue;
     }
@@ -100,9 +100,13 @@ public class CalculatorMenu {
      * Get operator of calculation.
      * @return - operator.
      */
-    public String getOperator(){
+    String getOperator(){
         this.operator = input.ask("Input operator");
         return this.operator;
+    }
+
+    double getResult(){
+        return this.result;
     }
 
     /**
@@ -273,7 +277,7 @@ public class CalculatorMenu {
          * Do action.
          */
         public void execute() {
-
+            System.out.println("help");
         }
     }
 }
