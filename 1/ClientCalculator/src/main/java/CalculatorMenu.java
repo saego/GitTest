@@ -33,6 +33,7 @@ class CalculatorMenu {
      * Result of calculation.
      */
     private double result;
+    private String operator;
 
     /**
      * Initialization keys of actions.
@@ -93,7 +94,7 @@ class CalculatorMenu {
      * Question if use result as first data
      */
     void ifUseResAsFirstData(){
-        useResult = input.ask("Save result").equals("y");
+        useResult = input.ask("Save result ? y/n").toLowerCase().equals("y");
     }
     /**
      * Get second value of calculation
@@ -102,6 +103,10 @@ class CalculatorMenu {
     void getSecond(){
         try {
             this.secondValue = Double.parseDouble(input.ask("Input second value"));
+            if (operator.equals("/") && this.secondValue == 0){
+                System.out.println("Division by zero!");
+                getSecond();
+            }
         }
         catch (NumberFormatException ex){
             System.out.println("Incorrect number format!");
@@ -117,7 +122,7 @@ class CalculatorMenu {
         /*
       Operator of calculation.
      */
-        String operator = null;
+        operator = null;
         boolean getOperatorFlag = false;
         while (!getOperatorFlag) {
             operator = input.ask("Input operator");

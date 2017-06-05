@@ -16,7 +16,7 @@ public class CalculatorMain {
             calculatorMenu.chooseOperation(operator);
             System.out.println(" = " + calculatorMenu.getResult());
             //System.out.println("Exit? y/n");
-            exit = input.ask("Exit? y/n").equals("y");
+            exit = input.ask("Exit? y/n").toLowerCase().equals("y");
             if (!exit) {
                 calculatorMenu.ifUseResAsFirstData();
             }
