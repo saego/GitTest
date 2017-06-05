@@ -8,11 +8,19 @@ public class CalculatorMain {
         Input input = new ConsoleInput();
         CalculatorMenu calculatorMenu = new CalculatorMenu(input, calculator);
         calculatorMenu.fillCalcActions();
-        calculatorMenu.getFirst();
-        String operator = calculatorMenu.getOperator();
-        calculatorMenu.getSecond();
-        calculatorMenu.chooseOperation(operator);
-        System.out.println(" = " + calculatorMenu.getResult());
-        calculatorMenu.chooseOperation(calculatorMenu.getOperator());
+        boolean exit = false;
+        while (!exit) {
+            calculatorMenu.getFirst();
+            String operator = calculatorMenu.getOperator();
+            calculatorMenu.getSecond();
+            calculatorMenu.chooseOperation(operator);
+            System.out.println(" = " + calculatorMenu.getResult());
+            //System.out.println("Exit? y/n");
+            exit = input.ask("Exit? y/n").equals("y");
+            if (!exit) {
+                calculatorMenu.ifUseResAsFirstData();
+            }
+        }
+        //calculatorMenu.chooseOperation(calculatorMenu.getOperator());
     }
 }

@@ -33,10 +33,6 @@ class CalculatorMenu {
      * Result of calculation.
      */
     private double result;
-    /**
-     * Operator of calculation.
-     */
-    private String operator;
 
     /**
      * Initialization keys of actions.
@@ -77,23 +73,28 @@ class CalculatorMenu {
      * Get first value of calculation.
      * @return - first value.
      */
-    double getFirst(){
+    void getFirst(){
         if (useResult){
             this.firstValue = this.result;
+            System.out.println("First value: " + this.firstValue );
         }
         else {
             this.firstValue = Double.parseDouble(input.ask("Input first value"));
         }
-        return this.firstValue;
     }
 
+    /**
+     * Question if use result as first data
+     */
+    void ifUseResAsFirstData(){
+        useResult = input.ask("Save result").equals("y");
+    }
     /**
      * Get second value of calculation
      * @return - second value.
      */
-    double getSecond(){
+    void getSecond(){
         this.secondValue = Double.parseDouble(input.ask("Input second value"));
-        return this.secondValue;
     }
 
     /**
@@ -101,8 +102,10 @@ class CalculatorMenu {
      * @return - operator.
      */
     String getOperator(){
-        this.operator = input.ask("Input operator");
-        return this.operator;
+        /*
+      Operator of calculation.
+     */
+        return input.ask("Input operator");
     }
 
     double getResult(){
