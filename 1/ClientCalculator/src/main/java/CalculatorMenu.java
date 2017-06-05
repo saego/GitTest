@@ -42,8 +42,8 @@ class CalculatorMenu {
         actionMap.put("-", new Sub());
         actionMap.put("*", new Multipl());
         actionMap.put("/", new Divide());
-        actionMap.put("ur", new UseResult());
-        actionMap.put("help", new Help());
+        //actionMap.put("ur", new UseResult());
+        //actionMap.put("help", new Help());
     }
 
     /**
@@ -79,7 +79,13 @@ class CalculatorMenu {
             System.out.println("First value: " + this.firstValue );
         }
         else {
+            try {
             this.firstValue = Double.parseDouble(input.ask("Input first value"));
+            }
+            catch (NumberFormatException ex){
+                System.out.println("Incorrect number format!");
+                getFirst();
+            }
         }
     }
 
@@ -94,7 +100,13 @@ class CalculatorMenu {
      * @return - second value.
      */
     void getSecond(){
-        this.secondValue = Double.parseDouble(input.ask("Input second value"));
+        try {
+            this.secondValue = Double.parseDouble(input.ask("Input second value"));
+        }
+        catch (NumberFormatException ex){
+            System.out.println("Incorrect number format!");
+            getSecond();
+        }
     }
 
     /**
@@ -105,7 +117,19 @@ class CalculatorMenu {
         /*
       Operator of calculation.
      */
-        return input.ask("Input operator");
+        String operator = null;
+        boolean getOperatorFlag = false;
+        while (!getOperatorFlag) {
+            operator = input.ask("Input operator");
+            for (Map.Entry<String, Action> action :
+                    actionMap.entrySet()) {
+                if (action.getKey().equals(operator)) {
+                    getOperatorFlag = true;
+                    break;
+                }
+            }
+        }
+        return operator;
     }
 
     double getResult(){
@@ -228,15 +252,15 @@ class CalculatorMenu {
         }
     }
 
-    /**
+    /*/**
      * If use previous result as a fist parameter.
      */
-    private class UseResult implements Action {
+/*    private class UseResult implements Action {
         /**
          * Action.
          * @return - name.
          */
-        public String actionName() {
+ /*       public String actionName() {
             return "ur";
         }
 
@@ -244,14 +268,14 @@ class CalculatorMenu {
          * Action.
          * @return - info about current action.
          */
-        public String actionInfo() {
+/*        public String actionInfo() {
             return String.format(" %s If you want to use last result as a first operand", this.actionName());
         }
 
         /**
          * Do action.
          */
-        public void execute() {
+  /*      public void execute() {
             useResult = true;
         }
     }
@@ -259,12 +283,12 @@ class CalculatorMenu {
     /**
      * Help message.
      */
-    private class Help implements Action {
+/*    private class Help implements Action {
         /**
          * Action.
           * @return - name.
          */
-        public String actionName() {
+  /*      public String actionName() {
             return "help";
         }
 
@@ -272,19 +296,19 @@ class CalculatorMenu {
          * Action.
          * @return - info about current action.
          */
-        public String actionInfo() {
+    /*    public String actionInfo() {
             return String.format(" %s Help keys", this.actionName());
         }
 
         /**
          * Do action.
          */
-        public void execute() {
+  /*      public void execute() {
             //System.out.println("help");
             for (Map.Entry<String, Action> act:
                  actionMap.entrySet()) {
                 System.out.println(act.getValue().actionInfo());
             }
         }
-    }
+    }*/
 }
