@@ -25,27 +25,27 @@ public class MainEfficiency {
 
         time = productivity.addElement(linkedList, amount);
         System.out.println("LinkedList");
-        System.out.println("Time add = " + time + " [ms]");
+        System.out.println("Time add = " + time + " [mks]");
 
         time = productivity.addElement(arrayList, amount);
         System.out.println("ArrayList");
-        System.out.println("Time add = " + time + " [ms]");
+        System.out.println("Time add = " + time + " [mks]");
 
         time = productivity.addElement(treeSet, amount);
         System.out.println("TreeSet");
-        System.out.println("Time add = " + time + " [ms]");
+        System.out.println("Time add = " + time + " [mks]");
 
         time = productivity.removeElement(linkedList, amount / DIV);
         System.out.println("LinkedList");
-        System.out.println("Time remove = " + time + " [ms]");
+        System.out.println("Time remove = " + time + " [mks]");
 
         time = productivity.removeElement(arrayList, amount / DIV);
         System.out.println("ArrayList");
-        System.out.println("Time remove = " + time + " [ms]");
+        System.out.println("Time remove = " + time + " [mks]");
 
         time = productivity.removeElement(treeSet, amount / DIV);
         System.out.println("TreeSet");
-        System.out.println("Time remove = " + time + " [ms]");
+        System.out.println("Time remove = " + time + " [mks]");
     }
 
     public static void main(String []args){

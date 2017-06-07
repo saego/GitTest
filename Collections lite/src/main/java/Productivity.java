@@ -21,7 +21,7 @@ class Productivity {
             collection.add(TEXT + i);
         }
         endTime = System.nanoTime();
-        return (long) ((endTime - beginTime) /pow(10, 6));
+        return (long) ((endTime - beginTime) /pow(10, 3));
     }
 
     /**
