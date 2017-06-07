@@ -32,14 +32,14 @@ class Productivity {
      */
     long removeElement(Collection<String> collection, int amount){
         Iterator<String> iterator = collection.iterator();
-        beginTime = System.currentTimeMillis();
+        beginTime = System.nanoTime();
         for (int i = 0; i < amount; i++){
             if (iterator.hasNext()) {
                 iterator.next();
                 iterator.remove();
             }
         }
-        endTime = System.currentTimeMillis();
-        return (long) ((endTime - beginTime) / pow(10, 6));
+        endTime = System.nanoTime();
+        return (long) ((endTime - beginTime) / pow(10, 3));
     }
 }

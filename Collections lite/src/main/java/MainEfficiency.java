@@ -20,7 +20,7 @@ public class MainEfficiency {
     }
 
     private void start(){
-        int amount = 500000;
+        int amount = 50000;
         long time;
 
         time = productivity.addElement(linkedList, amount);
