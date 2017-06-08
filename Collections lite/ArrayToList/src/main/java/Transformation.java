@@ -22,6 +22,12 @@ class Transformation {
         return list;
     }
 
+    /**
+     *
+     * @param list - input list.
+     * @param rows - quantity of rows in array.
+     * @return - array[][].
+     */
     int[][] toArray(List<Integer> list, int rows) {
         int columns = (int) ceil(((float)list.size()/rows));
         int[][] array = new int[rows][columns];
