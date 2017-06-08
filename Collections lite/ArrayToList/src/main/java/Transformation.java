@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static java.lang.Math.*;
@@ -51,6 +52,16 @@ class Transformation {
             }
         }
         return array;
+    }
 
+    public List<Integer> converter(List<int[]> listArrs){
+        List<Integer> finList = new ArrayList<Integer>();
+        Iterator<int[]> iterator = listArrs.iterator();
+        for (Integer element:
+             finList) {
+            int[] arr = iterator.next();
+
+        }
+        return finList;
     }
 }
