@@ -1,8 +1,7 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import static java.lang.Math.*;
+import static java.lang.Math.ceil;
 
 /**
  Created by Saego on 07.06.2017.
@@ -54,13 +53,13 @@ class Transformation {
         return array;
     }
 
-    public List<Integer> converter(List<int[]> listArrs){
+    List<Integer> converter(List<int[]> listAars){
         List<Integer> finList = new ArrayList<Integer>();
-        Iterator<int[]> iterator = listArrs.iterator();
-        for (Integer element:
-             finList) {
-            int[] arr = iterator.next();
-
+        for (int[] arr : listAars) {
+            for (int a :
+                    arr) {
+                finList.add(a);
+            }
         }
         return finList;
     }

@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,8 @@ public class TransformationTest {
     private List<Integer> integerList = new ArrayList<Integer>();
     private int [][]array = {{2, 4, 6},{4, 7, 12}};
     private int [][]array1 = {{2, 4, 6},{4, 7, 12}, {22, 0, 0}};
+    private int []a = {2, 4, 6, 12, 66};
+    private int []b = {23455, 13, 222, 567};
     private Transformation transformation = new Transformation();
 
 
@@ -40,5 +44,20 @@ public class TransformationTest {
         assertThat(transformation.toArray(integerList, rows), is(array1));
     }
 
-
+    @Test
+    public void converter() throws Exception {
+        List<int[]> arrList = new ArrayList<int[]>();
+        arrList.add(a);
+        arrList.add(b);
+        List<Integer> test = new ArrayList<Integer>();
+        for (int i:
+             a) {
+            test.add(i);
+        }
+        for (int j:
+             b) {
+            test.add(j);
+        }
+        assertThat(transformation.converter(arrList), is(test));
+    }
 }
