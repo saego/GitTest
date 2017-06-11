@@ -1,6 +1,9 @@
 package moduls;
 
+//import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  Created by ${Ruslan} on 19.09.16.
@@ -12,7 +15,7 @@ public class Item {
     private String description;
     private String clientId;
     private SimpleDateFormat myFormat = new SimpleDateFormat("dd.MM.yy hh:mm");
-    private Comment []comments = new Comment[1];
+    private List<Comment> comments = new ArrayList<Comment> ();
 
     public Item(String name, long dateAdd, String description) {
         this.name = name;
@@ -37,7 +40,7 @@ public class Item {
         return name;
     }
 
-    public long getDateAdd() {
+    long getDateAdd() {
         return dateAdd;
     }
 
@@ -53,13 +56,13 @@ public class Item {
         return clientId;
     }
 
-    public Comment addComment(Comment comment){
-        for(int i = 0; i < comments.length; i++){
-            if(comments[i] == null){
-                comments[i] = comment;
-                break;
-            }
-        }
+    public void addComment(Comment comment){
+        //for(int i = 0; i < comments.size(); i++){
+          //  if(comments[i] == null){
+                comments.add(comment);
+     //           break;
+     //       }
+     /*   }
         int commArrayLength = 0;
         for (Comment comment1 : comments) {
             if (comment1 != null) {
@@ -70,11 +73,10 @@ public class Item {
             Comment []tempComments = new Comment[comments.length + 1];
             System.arraycopy(comments, 0, tempComments, 0, comments.length);
             comments = tempComments;
-        }
-        return comment;
+        }*/
     }
 
-    public Comment[] getComments(){
+    public List<Comment> getComments(){
         return comments;
     }
 

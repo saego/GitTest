@@ -77,7 +77,7 @@ public class ItemTest {
                 comments){
             item.addComment(commentars);
         }
-        assertArrayEquals(getCommentsWithoutNull(item.getComments()), comments);
+        assertThat(getCommentsWithoutNull(item.getComments()), comments);
     }
 
     private Comment[] getCommentsWithoutNull(Comment[] comments){

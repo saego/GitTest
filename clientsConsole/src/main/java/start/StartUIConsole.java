@@ -33,14 +33,14 @@ public class StartUIConsole implements Input {
 
 //    public class InnerMenu{
         private Tracker tracker = new Tracker();
-        Scanner scanner = new Scanner(System.in);
+        private Scanner scanner = new Scanner(System.in);
 
         public String inputData(String question) {
             System.out.println(question);
             return scanner.next();
         }
 
-        void process(){
+        private void process(){
             boolean flag1 = false;
             while (!flag1) {
                 menu();
@@ -82,7 +82,7 @@ public class StartUIConsole implements Input {
 
        // public void inputData(){}
 
-        void menu(){
+        private void menu(){
             System.out.println("***MENU***");
             System.out.println();
             System.out.println("1: Add new application");
@@ -113,7 +113,7 @@ public class StartUIConsole implements Input {
             System.out.println("-------");
         }
 
-        void add(){
+        private void add(){
             System.out.println("__You are going to add new application!__");
             //System.out.println("Please input client's name");
             //String name = scanner.next();
@@ -126,7 +126,7 @@ public class StartUIConsole implements Input {
             tracker.addClient(item);
         }
 
-        void show(){
+        private void show(){
             System.out.println("__All applications__");
             //System.out.println("***Applications list***");
             for (Item getItem:
@@ -146,7 +146,7 @@ public class StartUIConsole implements Input {
             }
         }
 
-        void update(){
+        private void update(){
             System.out.println("__You are going to update application by client's Id__");
             //System.out.println("Input new name");
             //String  newName = scanner.next();
@@ -163,7 +163,7 @@ public class StartUIConsole implements Input {
             tracker.rename(item);
         }
 
-        void search(){
+        private void search(){
             System.out.println("__You are looking for application by Id__");
             //System.out.println("Input client's Id");
             //String id = scanner.next();
@@ -171,7 +171,7 @@ public class StartUIConsole implements Input {
             System.out.println(tracker.findById(id).toString());
         }
 
-        void remove(){
+        private void remove(){
             System.out.println("__You are giong to remove application by Id__");
             //System.out.println("Inpit client's Id");
             //String id = scanner.next();
@@ -179,7 +179,7 @@ public class StartUIConsole implements Input {
             tracker.remove(id);
         }
 
-        void addComment(){
+        private void addComment(){
             System.out.println("__You are going to add new comment to application__");
             //System.out.println("Input comment");
             //String commentary = scanner.next();
@@ -191,7 +191,7 @@ public class StartUIConsole implements Input {
             tracker.addComment(comment, id);
         }
 
-        public void searchByName(String  clientSearchName) {
+        private void searchByName(String clientSearchName) {
             System.out.println();
             //System.out.println("Input client name, you are looking for");
             //String clientSearchName = scanner.next();
@@ -214,7 +214,7 @@ public class StartUIConsole implements Input {
             }
         }
 
-        void searchByDescription(String keyDescription){
+        private void searchByDescription(String keyDescription){
             //System.out.println();
             //System.out.println("Input key for search description");
             //String keyDescription = scanner.next();
