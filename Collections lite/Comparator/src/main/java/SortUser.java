@@ -35,7 +35,29 @@ class SortUser{
                     }
                 }
         );
-
      return usr;
+    }
+
+    List<User> sortWith2Comparators(List<User> users){
+        Comparator<User> myComp = new Sort1().thenComparing(new Sort2());
+        List<User> usr = new ArrayList<User>(users);
+        usr.sort(myComp);
+        return usr;
+    }
+
+}
+
+class Sort1 implements Comparator<User>{
+
+    @Override
+    public int compare(User o1, User o2) {
+        return o1.getName().compareTo(o2.getName());
+    }
+}
+class Sort2 implements Comparator<User>{
+
+    @Override
+    public int compare(User o1, User o2) {
+        return o1.getAge().compareTo(o2.getAge());
     }
 }

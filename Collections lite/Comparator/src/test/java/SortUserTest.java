@@ -60,4 +60,25 @@ public class SortUserTest {
         );
     assertThat(sortUser.sortByAllFields(users), is(testUsers2));
     }
+
+    @Test
+    public void sortWith2Comparators() throws Exception {
+        users.addAll(
+                Arrays.asList(
+                        new User("Athena", 14),
+                        new User("Roman", 45),
+                        new User("Johnathan", 4),
+                        new User("Roman", 12)
+                )
+        );
+        testUsers2.addAll(
+                Arrays.asList(
+                        new User("Athena", 14),
+                        new User("Johnathan", 4),
+                        new User("Roman", 12),
+                        new User("Roman", 45)
+                )
+        );
+        assertThat(sortUser.sortWith2Comparators(users), is(testUsers2));
+    }
 }
