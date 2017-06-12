@@ -48,7 +48,7 @@ public class TrackerTest {
                 itemstest) {
             tracker.addClient(itemtest);
         }
-        assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
+        assertArrayEquals(tracker.getAll().toArray(), itemstest);
     }
 
    /* @Test
@@ -128,7 +128,7 @@ public class TrackerTest {
             }
         }
         itemstest = itemstest1;
-        assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
+        assertArrayEquals(tracker.getAll().toArray(), itemstest);
     }
 
     @Test
@@ -145,7 +145,7 @@ public class TrackerTest {
         itemstest[1].setDateAdd(321);
         itemstest[1].setDescription("broken lamp");
         tracker.rename(itemstest[1]);
-        assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
+        assertArrayEquals(tracker.getAll().toArray(), itemstest);
 
     }
 
@@ -166,25 +166,7 @@ public class TrackerTest {
         tracker.addComment(comments[0], itemstest[0].getClientId());
         tracker.addComment(comments[1], itemstest[0].getClientId());
         tracker.addComment(comments[2], itemstest[2].getClientId());
-        assertArrayEquals(getWithoutNull(tracker.getAll()), itemstest);
+        assertArrayEquals(tracker.getAll().toArray(), itemstest);
     }
 
-    private Item[] getWithoutNull(Item[] getAllItems){
-        int lengthArrWithoutNull = 0;
-        for (Item getAllItem:
-             getAllItems) {
-            if(getAllItem != null){
-                lengthArrWithoutNull++;
-            }
-        }
-        Item[] itemsWitoutNull = new Item[lengthArrWithoutNull];
-        int temp = 0;
-        for (Item getAllItem : getAllItems) {
-            if (getAllItem != null) {
-                itemsWitoutNull[temp] = getAllItem;
-                temp++;
-            }
-        }
-        return itemsWitoutNull;
-    }
 }

@@ -34,7 +34,7 @@ public class StartUIConsole implements Input {
 
         public String inputData(String question) {
             System.out.println(question);
-            return scanner.next();
+            return scanner.nextLine();
         }
 
         private void process(){
@@ -196,7 +196,7 @@ public class StartUIConsole implements Input {
                     flag3 = true;
                 }
             if(!flag3){
-                System.out.println("No mutches found");
+                System.out.println("No matches found");
             }
         }
     }

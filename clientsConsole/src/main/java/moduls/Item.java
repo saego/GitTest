@@ -1,6 +1,5 @@
 package moduls;
 
-//import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,23 +56,7 @@ public class Item {
     }
 
     public void addComment(Comment comment){
-        //for(int i = 0; i < comments.size(); i++){
-          //  if(comments[i] == null){
                 comments.add(comment);
-     //           break;
-     //       }
-     /*   }
-        int commArrayLength = 0;
-        for (Comment comment1 : comments) {
-            if (comment1 != null) {
-                commArrayLength++;
-            }
-        }
-        if(commArrayLength == comments.length){
-            Comment []tempComments = new Comment[comments.length + 1];
-            System.arraycopy(comments, 0, tempComments, 0, comments.length);
-            comments = tempComments;
-        }*/
     }
 
     public List<Comment> getComments(){
