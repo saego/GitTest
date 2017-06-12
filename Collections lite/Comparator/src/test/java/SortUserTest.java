@@ -14,7 +14,7 @@ public class SortUserTest {
     private List<User> testUsers = new ArrayList<User>();
 
     /**
-     * Test unsorted list to sortet by name length.
+     * Test unsorted list to sorted by name length.
      * @throws Exception
      */
     @org.junit.Test
