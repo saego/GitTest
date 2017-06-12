@@ -21,4 +21,21 @@ class SortUser{
         );
         return usr;
     }
+
+    List<User> sortByAllFields(List<User> users){
+        List<User> usr = new ArrayList<User>(users);
+        usr.sort(
+                new Comparator<User>() {
+                    @Override
+                    public int compare(User o1, User o2) {
+                        int result = o1.getName().compareTo(o2.getName());
+                        if (result != 0) return result;
+                        result = o1.getAge().compareTo(o2.getAge());
+                        return result;
+                    }
+                }
+        );
+
+     return usr;
+    }
 }
