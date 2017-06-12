@@ -2,8 +2,10 @@ package moduls;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -70,33 +72,14 @@ public class ItemTest {
 
     @Test
     public void testAddComment() throws Exception {
-        Comment [] comments = new Comment[2];
-        comments[0] = new Comment("first comment");
-        comments[1] = new Comment("second comment");
-        for(Comment commentars:
+        List<Comment> comments = new ArrayList<Comment>();
+        comments.add(new Comment("first comment"));
+        comments.add(new Comment("second comment"));
+        for(Comment commentary:
                 comments){
-            item.addComment(commentars);
+            item.addComment(commentary);
         }
-        assertThat(getCommentsWithoutNull(item.getComments()), comments);
+        assertThat(item.getComments(), is(comments));
     }
 
-    private Comment[] getCommentsWithoutNull(Comment[] comments){
-        int lenthCommentWithoutNull = 0;
-        for (Comment comment:
-             comments) {
-            if(comment != null){
-                lenthCommentWithoutNull++;
-            }
-        }
-        Comment []commentsWithoutNull = new Comment[lenthCommentWithoutNull];
-        int temp = 0;
-        for (Comment comment:
-             comments) {
-            if(comment != null){
-                commentsWithoutNull[temp] = comment;
-                temp++;
-            }
-        }
-        return commentsWithoutNull;
-    }
 }
