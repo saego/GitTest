@@ -12,8 +12,6 @@ import java.util.Scanner;
  */
 public class StartUIConsole implements Input {
 
-    //public InnerMenu innerMenu = new InnerMenu();
-
     private void title(){
         System.out.println("Hello user!");
         System.out.println();
