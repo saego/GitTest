@@ -22,6 +22,11 @@ class SortUser{
         return usr;
     }
 
+    /**
+     * Sorting by name and age.
+     * @param users - input unsorted list.
+     * @return - sorted list.
+     */
     List<User> sortByAllFields(List<User> users){
         List<User> usr = new ArrayList<User>(users);
         usr.sort(
@@ -38,6 +43,11 @@ class SortUser{
      return usr;
     }
 
+    /**
+     * Sorting by two comparators.
+     * @param users - input unsorted list.
+     * @return - sorted list.
+     */
     List<User> sortWith2Comparators(List<User> users){
         Comparator<User> myComp = new Sort1().thenComparing(new Sort2());
         List<User> usr = new ArrayList<User>(users);
@@ -47,6 +57,9 @@ class SortUser{
 
 }
 
+/**
+ * Comparator by name.
+ */
 class Sort1 implements Comparator<User>{
 
     @Override
@@ -54,6 +67,10 @@ class Sort1 implements Comparator<User>{
         return o1.getName().compareTo(o2.getName());
     }
 }
+
+/**
+ * Comparator by age.
+ */
 class Sort2 implements Comparator<User>{
 
     @Override
