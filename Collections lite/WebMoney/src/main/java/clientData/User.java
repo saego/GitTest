@@ -1,3 +1,5 @@
+package clientData;
+
 /**
  Created by Saego on 12.06.2017.
  */
@@ -47,7 +49,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "clientData.User{" +
                 "name='" + name + '\'' +
                 ", passport=" + passport +
                 '}';

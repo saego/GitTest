@@ -1,3 +1,5 @@
+package clientData;
+
 /**
  Created by Saego on 12.06.2017.
  */
@@ -43,7 +45,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" +
+        return "clientData.Account{" +
                 "moneyValue=" + moneyValue +
                 ", requisites=" + requisites +
                 '}';

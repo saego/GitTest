@@ -1,3 +1,5 @@
+package clientData;
+
 /**
  Created by Saego on 12.06.2017.
  */
@@ -20,7 +22,7 @@ public class Passport {
 
     @Override
     public String toString() {
-        return "Passport{" +
+        return "clientData.Passport{" +
                 "serial='" + serial + '\'' +
                 ", number=" + number +
                 '}';
