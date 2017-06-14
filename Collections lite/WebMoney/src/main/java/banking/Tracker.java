@@ -14,4 +14,7 @@ class Tracker {
 
     public Map<User, List<Account>> userListMap = new HashMap<User, List<Account>>();
 
+    public void addClient(User user, List<Account> accounts){
+        userListMap.put(user, accounts);
+    }
 }

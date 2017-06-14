@@ -20,6 +20,7 @@ public class TrackerMenu {
 
     public void initMenu(){
         operations.put("add client", new AddClient());
+        operations.put("Show client's list", new Show());
         operations.put("add account to client", new AddAccount());
         operations.put("remove client", new RemoveClient());
         operations.put("remove account", new RemoveAccount());
@@ -80,6 +81,16 @@ public class TrackerMenu {
     private class RenameClient implements Actions {
         public String actionName() {
             return "Change client's name or passport";
+        }
+
+        public void execute(String data) {
+
+        }
+    }
+
+    private class Show implements Actions {
+        public String actionName() {
+            return "List of clients";
         }
 
         public void execute(String data) {
