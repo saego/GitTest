@@ -35,6 +35,10 @@ class Tracker {
         this.userListMap.get(user).remove(account);
     }
 
+    public List<Account> clientAccounts(User user){
+        return this.userListMap.get(user);
+    }
+
     public boolean transferMoney(User sourceUsr, Account sourceAcc, User destinationUsr, Account destinationAcc, int amountOfTransfer){
         boolean resultOfTransfer = false;
         if (this.userListMap.get(sourceUsr).contains(sourceAcc) && this.userListMap.get(destinationUsr).contains(destinationAcc)) {
