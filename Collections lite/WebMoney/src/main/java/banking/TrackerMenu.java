@@ -28,7 +28,7 @@ public class TrackerMenu {
 
     private class AddClient implements Actions {
         public String actionName() {
-            return null;
+            return "Add client name and passport";
         }
 
         public void execute(String data) {
@@ -38,7 +38,7 @@ public class TrackerMenu {
 
     private class AddAccount implements Actions {
         public String actionName() {
-            return null;
+            return "Add new finance account to client";
         }
 
         public void execute(String data) {
@@ -48,7 +48,7 @@ public class TrackerMenu {
 
     private class RemoveClient implements Actions {
         public String actionName() {
-            return null;
+            return "Remove client by name";
         }
 
         public void execute(String data) {
@@ -58,7 +58,7 @@ public class TrackerMenu {
 
     private class RemoveAccount implements Actions {
         public String actionName() {
-            return null;
+            return "Remove account by #";
         }
 
         public void execute(String data) {
@@ -68,7 +68,7 @@ public class TrackerMenu {
 
     private class TransferMoney implements Actions {
         public String actionName() {
-            return null;
+            return "Transfer money";
         }
 
         public void execute(String data) {
