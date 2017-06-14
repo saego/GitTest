@@ -23,7 +23,8 @@ public class TrackerMenu {
         operations.put("add account to client", new AddAccount());
         operations.put("remove client", new RemoveClient());
         operations.put("remove account", new RemoveAccount());
-        operations.put("tranfer money", new TransferMoney());
+        operations.put("transfer money", new TransferMoney());
+        operations.put("rename client", new RenameClient());
     }
 
     private class AddClient implements Actions {
@@ -69,6 +70,16 @@ public class TrackerMenu {
     private class TransferMoney implements Actions {
         public String actionName() {
             return "Transfer money";
+        }
+
+        public void execute(String data) {
+
+        }
+    }
+
+    private class RenameClient implements Actions {
+        public String actionName() {
+            return "Change client's name or passport";
         }
 
         public void execute(String data) {
