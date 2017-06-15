@@ -1,12 +1,10 @@
 package banking;
 
 import clientData.Account;
+import clientData.Passport;
 import clientData.User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  *Created by Saego on 13.06.2017.
@@ -23,7 +21,7 @@ class Tracker {
         return this.userListMap;
     }
 
-    public void addAccount(User user, Account account){
+    void addAccount(User user, Account account){
         this.userListMap.get(user).add(account);
     }
 
@@ -53,5 +51,17 @@ class Tracker {
             }
         }
         return resultOfTransfer;
+    }
+
+    User getUsrByPassport(Passport passport){
+        User user = null;
+        for (Map.Entry<User, List<Account>> usr:
+             this.userListMap.entrySet()) {
+            if (usr.getKey().getPassport().equals(passport)){
+                user = usr.getKey();
+                break;
+            }
+        }            
+        return user;
     }
 }

@@ -1,10 +1,12 @@
 package banking;
 
+import clientData.Account;
 import clientData.Passport;
 import clientData.User;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  *Created by Saego on 13.06.2017.
@@ -75,7 +77,18 @@ public class TrackerMenu {
          * @param data -
          */
         public void execute(String data) {
-
+            String passportSerial = input.ask("Input passport serial");
+            Integer passportNumber = Integer.valueOf(input.ask("Input passport number"));
+            Passport passport = new Passport(passportSerial, passportNumber);
+            User user = tracker.getUsrByPassport(passport);
+            if (user == null){
+                System.out.println("Client not found");
+            }
+            else {
+                Integer money = Integer.valueOf(input.ask("Input money value"));
+                long requisites = System.currentTimeMillis()/100;
+                tracker.addAccount(user, new Account(money, requisites));
+            }
         }
     }
 

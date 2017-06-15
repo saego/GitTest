@@ -7,7 +7,7 @@ public class Account {
     private Integer moneyValue;
     private Integer requisites;
 
-    public Account(Integer moneyValue, Integer requisites) {
+    public Account(Integer moneyValue, long requisites) {
         this.moneyValue = moneyValue;
         this.requisites = requisites;
     }
