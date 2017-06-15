@@ -25,7 +25,7 @@ class Tracker {
         this.userListMap.get(user).add(account);
     }
 
-    public void removeClient(User user){
+    void removeClient(User user){
         this.userListMap.remove(user);
     }
 
@@ -63,5 +63,12 @@ class Tracker {
             }
         }            
         return user;
+    }
+
+    Account getAccountByRequisites(long reqisite){
+        for (Map.Entry<User, List<Account>> usr:
+             this.userListMap.entrySet()) {
+            if (usr.)///hz treba robyty na svizhu holovu
+        }
     }
 }

@@ -5,7 +5,7 @@ package clientData;
  */
 public class Account {
     private Integer moneyValue;
-    private Integer requisites;
+    private long requisites;
 
     public Account(Integer moneyValue, long requisites) {
         this.moneyValue = moneyValue;
@@ -20,7 +20,7 @@ public class Account {
         this.moneyValue = moneyValue;
     }
 
-    public Integer getRequisites() {
+    public long getRequisites() {
         return requisites;
     }
 
@@ -35,19 +35,14 @@ public class Account {
 
         Account account = (Account) o;
 
-        return requisites != null ? requisites.equals(account.requisites) : account.requisites == null;
+        if (requisites != account.requisites) return false;
+        return moneyValue != null ? moneyValue.equals(account.moneyValue) : account.moneyValue == null;
     }
 
     @Override
     public int hashCode() {
-        return requisites != null ? requisites.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return "clientData.Account{" +
-                "moneyValue=" + moneyValue +
-                ", requisites=" + requisites +
-                '}';
+        int result = moneyValue != null ? moneyValue.hashCode() : 0;
+        result = 31 * result + (int) (requisites ^ (requisites >>> 32));
+        return result;
     }
 }

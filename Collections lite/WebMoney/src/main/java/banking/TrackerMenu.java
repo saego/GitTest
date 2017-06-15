@@ -74,7 +74,7 @@ public class TrackerMenu {
 
         /**
          * Adding new account to client action.
-         * @param data -
+         * @param data - passport data.
          */
         public void execute(String data) {
             String passportSerial = input.ask("Input passport serial");
@@ -98,7 +98,10 @@ public class TrackerMenu {
         }
 
         public void execute(String data) {
-
+            String serial = input.ask("Input passport serial");
+            Integer number = Integer.valueOf(input.ask("Input passport number"));
+            User user = tracker.getUsrByPassport(new Passport(serial, number));
+            tracker.removeClient(user);
         }
     }
 
@@ -108,6 +111,7 @@ public class TrackerMenu {
         }
 
         public void execute(String data) {
+            long requisites = Long.parseLong(input.ask("Input requisites"));
 
         }
     }
