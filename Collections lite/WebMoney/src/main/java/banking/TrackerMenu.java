@@ -1,5 +1,8 @@
 package banking;
 
+import clientData.Passport;
+import clientData.User;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +21,9 @@ public class TrackerMenu {
 
     private Map<String, Actions> operations = new HashMap<String, Actions>();
 
+    /**
+     * Initialisation map of actions by key-words.
+     */
     public void initMenu(){
         operations.put("add client", new AddClient());
         operations.put("Show client's list", new Show());
@@ -28,21 +34,46 @@ public class TrackerMenu {
         operations.put("rename client", new RenameClient());
     }
 
+    /**
+     * Add new client inner class.
+     */
     private class AddClient implements Actions {
+        /**
+         * Name of Action.
+         * @return - name for menu.
+         */
         public String actionName() {
             return "Add client name and passport";
         }
 
+        /**
+         * Adding new client action.
+         * @param data - client name, passport.
+         */
         public void execute(String data) {
-            
+            String usrName = input.ask("Client name");
+            String passportSerial = input.ask("Input passport serial");
+            Integer passportNumber = Integer.valueOf(input.ask("Input passport number"));
+            tracker.addClient(new User(usrName, new Passport(passportSerial, passportNumber)));
         }
     }
 
+    /**
+     * Add new account to client inner class.
+     */
     private class AddAccount implements Actions {
+        /**
+         * Name of action.
+         * @return - name for menu.
+         */
         public String actionName() {
             return "Add new finance account to client";
         }
 
+        /**
+         * Adding new account to client action.
+         * @param data -
+         */
         public void execute(String data) {
 
         }
