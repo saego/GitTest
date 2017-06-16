@@ -29,7 +29,7 @@ class Tracker {
         this.userListMap.remove(user);
     }
 
-    public void removeAccount(User user, Account account){
+    void removeAccount(User user, Account account){
         this.userListMap.get(user).remove(account);
     }
 
@@ -65,10 +65,16 @@ class Tracker {
         return user;
     }
 
-    Account getAccountByRequisites(long reqisite){
-        for (Map.Entry<User, List<Account>> usr:
-             this.userListMap.entrySet()) {
-            if (usr.)///hz treba robyty na svizhu holovu
+    Account getAccount(User user, long requisites){
+        Account account = null;
+        List<Account> accounts = this.userListMap.get(user);
+        for (Account acc:
+             accounts) {
+            if (acc.getRequisites() == requisites){
+                account = acc;
+                break;
+            }
         }
+        return account;
     }
 }

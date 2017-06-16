@@ -112,7 +112,10 @@ public class TrackerMenu {
 
         public void execute(String data) {
             long requisites = Long.parseLong(input.ask("Input requisites"));
-
+            String serial = input.ask("Input passport serial");
+            Integer number = Integer.valueOf(input.ask("Input passport number"));
+            User user = tracker.getUsrByPassport(new Passport(serial, number));
+            tracker.removeAccount(user, tracker.getAccount(user, requisites));
         }
     }
 
