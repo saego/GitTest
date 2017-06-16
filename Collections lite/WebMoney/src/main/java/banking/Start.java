@@ -8,6 +8,7 @@ public class Start {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         TrackerMenu trackerMenu = new TrackerMenu(input, tracker);
+
         trackerMenu.initMenu();
         trackerMenu.start();
     }

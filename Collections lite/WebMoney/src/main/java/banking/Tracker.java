@@ -33,7 +33,7 @@ class Tracker {
         this.userListMap.get(user).remove(account);
     }
 
-    public List<Account> clientAccounts(User user){
+    List<Account> clientAccounts(User user){
         return this.userListMap.get(user);
     }
 

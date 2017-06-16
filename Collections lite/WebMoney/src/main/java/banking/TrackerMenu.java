@@ -5,14 +5,12 @@ import clientData.Passport;
 import clientData.User;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /**
  *Created by Saego on 13.06.2017.
  */
-public class TrackerMenu {
+class TrackerMenu {
 
     private Input input;
     private Tracker tracker;
@@ -50,7 +48,11 @@ public class TrackerMenu {
 
     void start(){
         this.operations.get("help").execute();
-        chooseKey(input.ask("Input key please"));
+        String key = input.ask("Input key please");
+        while (!key.equals("Exit")){
+        chooseKey(key);
+        key = input.ask("Input key please");
+        }
     }
     /**
      * Add new client inner class.
@@ -161,7 +163,7 @@ public class TrackerMenu {
         public void execute() {
             for (User client:
                  tracker.getAllClients()) {
-                System.out.printf("%s client", client);
+                System.out.printf("%s client%n", client);
             }
         }
     }

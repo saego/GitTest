@@ -22,7 +22,7 @@ public class Passport {
 
     @Override
     public String toString() {
-        return "clientData.Passport{" +
+        return "Passport{" +
                 "serial='" + serial + '\'' +
                 ", number=" + number +
                 '}';
