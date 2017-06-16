@@ -29,6 +29,7 @@ public class TrackerMenu {
     public void initMenu(){
         operations.put("add client", new AddClient());
         operations.put("Show client's list", new Show());
+        operations.put("Show client accounts", new ShowAccounts());
         operations.put("add account to client", new AddAccount());
         operations.put("remove client", new RemoveClient());
         operations.put("remove account", new RemoveAccount());
@@ -145,7 +146,28 @@ public class TrackerMenu {
         }
 
         public void execute(String data) {
+            for (User client:
+                 tracker.getAllClients()) {
+                System.out.printf("%s client", client);
+            }
+        }
+    }
 
+    private class ShowAccounts implements Actions {
+        public String actionName() {
+            return "Account list";
+        }
+
+        public void execute(String data) {
+            String serial = input.ask("Input passport serial");
+            Integer number = Integer.valueOf(input.ask("Input passport number"));
+            User user = tracker.getUsrByPassport(new Passport(serial, number));
+            if (user != null){
+                for (Account account:
+                     tracker.clientAccounts(user)) {
+                    System.out.printf("%s account - %s", user, account);
+                }
+            }
         }
     }
 }

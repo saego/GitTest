@@ -17,8 +17,8 @@ class Tracker {
         userListMap.put(user, new ArrayList<Account>());
     }
 
-    public Map<User, List<Account>> getAllClients(){
-        return this.userListMap;
+    Set<User> getAllClients(){
+        return this.userListMap.keySet();
     }
 
     void addAccount(User user, Account account){
