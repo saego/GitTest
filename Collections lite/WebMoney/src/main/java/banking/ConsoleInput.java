@@ -10,7 +10,8 @@ public class ConsoleInput implements Input{
     private Scanner scanner = new Scanner(System.in);
 
     public String ask(String whatToDo) {
-        System.out.printf("Choose action, %s", whatToDo);
-        return scanner.next();
+        System.out.println("_____________________________________________________________________");
+        System.out.printf("%s%n", whatToDo);
+        return scanner.nextLine();
     }
 }

@@ -5,5 +5,5 @@ package banking;
  */
 public interface Actions {
     String actionName();
-    void execute(String data);
+    void execute();
 }

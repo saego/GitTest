@@ -5,6 +5,7 @@ import clientData.Passport;
 import clientData.User;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -16,7 +17,7 @@ public class TrackerMenu {
     private Input input;
     private Tracker tracker;
 
-    public TrackerMenu(Input input, Tracker tracker) {
+    TrackerMenu(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
@@ -26,7 +27,7 @@ public class TrackerMenu {
     /**
      * Initialisation map of actions by key-words.
      */
-    public void initMenu(){
+    void initMenu(){
         operations.put("add client", new AddClient());
         operations.put("Show client's list", new Show());
         operations.put("Show client accounts", new ShowAccounts());
@@ -35,8 +36,22 @@ public class TrackerMenu {
         operations.put("remove account", new RemoveAccount());
         operations.put("transfer money", new TransferMoney());
         operations.put("rename client", new RenameClient());
+        operations.put("help", new Help());
     }
 
+    private void chooseKey(String key){
+        if (this.operations.containsKey(key)){
+            this.operations.get(key).execute();
+        }
+        else {
+            System.out.println("Error input!");
+        }
+    }
+
+    void start(){
+        this.operations.get("help").execute();
+        chooseKey(input.ask("Input key please"));
+    }
     /**
      * Add new client inner class.
      */
@@ -51,9 +66,8 @@ public class TrackerMenu {
 
         /**
          * Adding new client action.
-         * @param data - client name, passport.
          */
-        public void execute(String data) {
+        public void execute() {
             String usrName = input.ask("Client name");
             String passportSerial = input.ask("Input passport serial");
             Integer passportNumber = Integer.valueOf(input.ask("Input passport number"));
@@ -75,9 +89,8 @@ public class TrackerMenu {
 
         /**
          * Adding new account to client action.
-         * @param data - passport data.
          */
-        public void execute(String data) {
+        public void execute() {
             String passportSerial = input.ask("Input passport serial");
             Integer passportNumber = Integer.valueOf(input.ask("Input passport number"));
             Passport passport = new Passport(passportSerial, passportNumber);
@@ -98,7 +111,7 @@ public class TrackerMenu {
             return "Remove client by name";
         }
 
-        public void execute(String data) {
+        public void execute() {
             String serial = input.ask("Input passport serial");
             Integer number = Integer.valueOf(input.ask("Input passport number"));
             User user = tracker.getUsrByPassport(new Passport(serial, number));
@@ -111,7 +124,7 @@ public class TrackerMenu {
             return "Remove account by #";
         }
 
-        public void execute(String data) {
+        public void execute() {
             long requisites = Long.parseLong(input.ask("Input requisites"));
             String serial = input.ask("Input passport serial");
             Integer number = Integer.valueOf(input.ask("Input passport number"));
@@ -125,7 +138,7 @@ public class TrackerMenu {
             return "Transfer money";
         }
 
-        public void execute(String data) {
+        public void execute() {
 
         }
     }
@@ -135,7 +148,7 @@ public class TrackerMenu {
             return "Change client's name or passport";
         }
 
-        public void execute(String data) {
+        public void execute() {
 
         }
     }
@@ -145,7 +158,7 @@ public class TrackerMenu {
             return "List of clients";
         }
 
-        public void execute(String data) {
+        public void execute() {
             for (User client:
                  tracker.getAllClients()) {
                 System.out.printf("%s client", client);
@@ -158,7 +171,7 @@ public class TrackerMenu {
             return "Account list";
         }
 
-        public void execute(String data) {
+        public void execute() {
             String serial = input.ask("Input passport serial");
             Integer number = Integer.valueOf(input.ask("Input passport number"));
             User user = tracker.getUsrByPassport(new Passport(serial, number));
@@ -167,6 +180,21 @@ public class TrackerMenu {
                      tracker.clientAccounts(user)) {
                     System.out.printf("%s account - %s", user, account);
                 }
+            }
+        }
+    }
+
+    private class Help implements Actions {
+        public String actionName() {
+            return "Hot keys";
+        }
+
+        public void execute() {
+                System.out.println("_____________________________________________________________________");
+            for (Map.Entry<String, Actions> act:
+                 operations.entrySet()) {
+                System.out.printf("|%22s| - %42s|%n", act.getKey(), act.getValue().actionName());
+                System.out.println("---------------------------------------------------------------------");
             }
         }
     }
