@@ -151,7 +151,14 @@ class TrackerMenu {
         }
 
         public void execute() {
-
+            String name = input.ask("Input client name you want to change");
+            String passportSerial = input.ask("Input client passport seial you want to change");
+            Integer passportNumber = Integer.valueOf(input.ask("Input client passport number you want to change"));
+            User user = new User(name, new Passport(passportSerial, passportNumber));
+            name = input.ask("Input new name");
+            passportSerial = input.ask("Input new passport serial");
+            passportNumber = Integer.valueOf(input.ask("Input new passport number"));
+            tracker.updateUser(user, new User(name, new Passport(passportSerial, passportNumber)));
         }
     }
 
@@ -163,7 +170,7 @@ class TrackerMenu {
         public void execute() {
             for (User client:
                  tracker.getAllClients()) {
-                System.out.printf("%s client%n", client);
+                System.out.printf("%s%n", client);
             }
         }
     }

@@ -77,4 +77,14 @@ class Tracker {
         }
         return account;
     }
+
+    public void updateUser(User user, User newUser){
+        for (Map.Entry<User, List<Account>> user1:
+             this.userListMap.entrySet()) {
+            if (user1.getKey().equals(user)){
+                user1.getKey().setName(newUser.getName());
+                user1.getKey().setPassport(newUser.getPassport());
+            }
+        }
+    }
 }
