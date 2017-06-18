@@ -24,10 +24,6 @@ public class Account {
         return requisites;
     }
 
-    public void setRequisites(Integer requisites) {
-        this.requisites = requisites;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,8 +31,7 @@ public class Account {
 
         Account account = (Account) o;
 
-        if (requisites != account.requisites) return false;
-        return moneyValue != null ? moneyValue.equals(account.moneyValue) : account.moneyValue == null;
+        return requisites == account.requisites && (moneyValue != null ? moneyValue.equals(account.moneyValue) : account.moneyValue == null);
     }
 
     @Override
@@ -44,5 +39,13 @@ public class Account {
         int result = moneyValue != null ? moneyValue.hashCode() : 0;
         result = 31 * result + (int) (requisites ^ (requisites >>> 32));
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "moneyValue=" + moneyValue +
+                ", requisites=" + requisites +
+                '}';
     }
 }

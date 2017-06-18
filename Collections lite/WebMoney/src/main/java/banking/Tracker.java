@@ -37,7 +37,7 @@ class Tracker {
         return this.userListMap.get(user);
     }
 
-    public boolean transferMoney(User sourceUsr, Account sourceAcc, User destinationUsr, Account destinationAcc, int amountOfTransfer){
+    boolean transferMoney(User sourceUsr, Account sourceAcc, User destinationUsr, Account destinationAcc, int amountOfTransfer){
         boolean resultOfTransfer = false;
         if (this.userListMap.get(sourceUsr).contains(sourceAcc) && this.userListMap.get(destinationUsr).contains(destinationAcc)) {
             if (this.userListMap.get(sourceUsr).get(this.userListMap.get(sourceUsr).indexOf(sourceAcc)).getMoneyValue() >= amountOfTransfer){
@@ -78,7 +78,7 @@ class Tracker {
         return account;
     }
 
-    public void updateUser(User user, User newUser){
+    void updateUser(User user, User newUser){
         for (Map.Entry<User, List<Account>> user1:
              this.userListMap.entrySet()) {
             if (user1.getKey().equals(user)){

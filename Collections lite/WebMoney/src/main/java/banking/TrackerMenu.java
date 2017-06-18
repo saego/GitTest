@@ -26,15 +26,15 @@ class TrackerMenu {
      * Initialisation map of actions by key-words.
      */
     void initMenu(){
-        operations.put("add client", new AddClient());
-        operations.put("Show client's list", new Show());
-        operations.put("Show client accounts", new ShowAccounts());
-        operations.put("add account to client", new AddAccount());
-        operations.put("remove client", new RemoveClient());
-        operations.put("remove account", new RemoveAccount());
-        operations.put("transfer money", new TransferMoney());
-        operations.put("rename client", new RenameClient());
-        operations.put("help", new Help());
+        operations.put("Add client", new AddClient());
+        operations.put("Show client list", new Show());
+        operations.put("Show accounts", new ShowAccounts());
+        operations.put("Add account to client", new AddAccount());
+        operations.put("Remove client", new RemoveClient());
+        operations.put("Remove account", new RemoveAccount());
+        operations.put("Transfer money", new TransferMoney());
+        operations.put("Rename client", new RenameClient());
+        operations.put("Help", new Help());
     }
 
     private void chooseKey(String key){
@@ -47,7 +47,7 @@ class TrackerMenu {
     }
 
     void start(){
-        this.operations.get("help").execute();
+        this.operations.get("Help").execute();
         String key = input.ask("Input key please");
         while (!key.equals("Exit")){
         chooseKey(key);
@@ -141,7 +141,24 @@ class TrackerMenu {
         }
 
         public void execute() {
-
+            String passroptSerialS = input.ask("Input passport serial of source client");
+            Integer passportNumberS = Integer.valueOf(input.ask("Input passport number of source client"));
+            long accountSRequisites = Long.parseLong(input.ask("Input source requisites"));
+            String passportSerialD = input.ask("Input passport serial of destination client");
+            Integer passportNumberD = Integer.valueOf(input.ask("Input number of destination client"));
+            long accountDRequisites = Long.parseLong(input.ask("Input destination requisites"));
+            Integer transfer = Integer.valueOf(input.ask("Input money for transfer"));
+            if (
+            tracker.transferMoney(
+                    tracker.getUsrByPassport(new Passport(passroptSerialS, passportNumberS)),
+                    tracker.getAccount(tracker.getUsrByPassport(new Passport(passroptSerialS, passportNumberS)),accountSRequisites),
+                    tracker.getUsrByPassport(new Passport(passportSerialD, passportNumberD)),
+                    tracker.getAccount(tracker.getUsrByPassport(new Passport(passportSerialD, passportNumberD)), accountDRequisites), transfer
+            )
+                    ){
+                System.out.println("Transfer finished with good result");
+            }
+            else System.out.println("Can't do transfer");
         }
     }
 
@@ -185,9 +202,11 @@ class TrackerMenu {
             Integer number = Integer.valueOf(input.ask("Input passport number"));
             User user = tracker.getUsrByPassport(new Passport(serial, number));
             if (user != null){
+                System.out.printf("%s%n", user);
+                System.out.println("_________________________________________________");
                 for (Account account:
                      tracker.clientAccounts(user)) {
-                    System.out.printf("%s account - %s", user, account);
+                    System.out.printf("|%s32%n|", account);
                 }
             }
         }
