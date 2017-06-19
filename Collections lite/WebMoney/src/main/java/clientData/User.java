@@ -36,8 +36,7 @@ public class User {
 
         User user = (User) o;
 
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        return passport != null ? passport.equals(user.passport) : user.passport == null;
+        return (name != null ? name.equals(user.name) : user.name == null) && (passport != null ? passport.equals(user.passport) : user.passport == null);
     }
 
     @Override

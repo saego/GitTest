@@ -1,4 +1,5 @@
-package clientData;
+import clientData.Passport;
+import clientData.User;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -11,7 +12,7 @@ public class UserTest {
     private String passportSerial = "ER";
     private Integer passportNumber = 1234;
     private User user = new User(name, new Passport(passportSerial, passportNumber));
-    User testUser = new User("Eric", new Passport("ER", 1234));
+
     @org.junit.Test
     public void getName() throws Exception {
         assertThat(user.getName(), is("Eric"));
@@ -24,10 +25,14 @@ public class UserTest {
 
     @org.junit.Test
     public void setName() throws Exception {
+        user.setName("Nick");
+        assertThat(user.getName(), is("Nick"));
     }
 
     @org.junit.Test
     public void setPassport() throws Exception {
+        user.setPassport(new Passport("RE", 234));
+        assertThat(user.getPassport(), is(new Passport("RE", 234)));
     }
 
 }

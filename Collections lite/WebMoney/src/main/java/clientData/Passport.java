@@ -12,14 +12,6 @@ public class Passport {
         this.number = number;
     }
 
-    public String getSerial() {
-        return serial;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
     @Override
     public String toString() {
         return "Passport{" +
@@ -35,8 +27,7 @@ public class Passport {
 
         Passport passport = (Passport) o;
 
-        if (serial != null ? !serial.equals(passport.serial) : passport.serial != null) return false;
-        return number != null ? number.equals(passport.number) : passport.number == null;
+        return (serial != null ? serial.equals(passport.serial) : passport.serial == null) && (number != null ? number.equals(passport.number) : passport.number == null);
     }
 
     @Override
