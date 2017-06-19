@@ -7,8 +7,8 @@ public class Passport {
    private String serial;
    private Integer number;
 
-    public Passport(String seria, Integer number) {
-        this.serial = seria;
+    public Passport(String serial, Integer number) {
+        this.serial = serial;
         this.number = number;
     }
 
@@ -18,6 +18,22 @@ public class Passport {
                 "serial='" + serial + '\'' +
                 ", number=" + number +
                 '}';
+    }
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     @Override
