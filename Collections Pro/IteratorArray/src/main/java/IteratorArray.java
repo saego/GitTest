@@ -5,20 +5,19 @@ import java.util.Iterator;
  */
 public class IteratorArray implements Iterator{
     private int [][] array;
-    private int iterator = 0;
+    private int iteratorI = 0;
+    private int getIteratorJ = 0;
 
     public IteratorArray(int[][] array) {
         this.array = array;
     }
 
+
     public boolean hasNext() {
-        return (array[0].length > iterator) && (array[1].length > iterator);
+        return false;
     }
 
     public Object next() {
-        if (iterator < array[0].length){
-            return array[0][iterator++];
-        }
-        else  ;
+        return null;
     }
 }
