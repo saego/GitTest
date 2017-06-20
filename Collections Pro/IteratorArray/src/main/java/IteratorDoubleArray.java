@@ -14,7 +14,7 @@ public class IteratorDoubleArray implements Iterator{
 
 
     public boolean hasNext() {
-        return (array[iteratorI].length > iteratorJ) && (array.length > iteratorI);
+        return array.length > iteratorI;
     }
 
     public Object next() {

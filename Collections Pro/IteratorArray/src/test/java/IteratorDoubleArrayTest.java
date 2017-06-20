@@ -17,9 +17,10 @@ public class IteratorDoubleArrayTest {
         iteratorDoubleArray.next();
         iteratorDoubleArray.next();
         iteratorDoubleArray.next();
+        assertThat(iteratorDoubleArray.hasNext(), is(true));
         iteratorDoubleArray.next();
-        //assertThat(iteratorDoubleArray.hasNext(), is(false));
-        //assertThat(iteratorDoubleArray.hasNext(), is(false));
+        assertThat(iteratorDoubleArray.hasNext(), is(false));
+        assertThat(iteratorDoubleArray.hasNext(), is(false));
     }
 
     @Test
