@@ -15,10 +15,16 @@ public class IteratorSingleArrayTest {
         iteratorSingleArray.next();
         iteratorSingleArray.next();
         assertThat(iteratorSingleArray.hasNext(), is(false));
+        assertThat(iteratorSingleArray.hasNext(), is(false));
     }
 
     @org.junit.Test
     public void next() throws Exception {
+        IteratorSingleArray it = new IteratorSingleArray(arr);
+        it.next();
+        it.next();
+        int res = (Integer) it.next();
+        assertThat(res, is(3));
     }
 
 }
