@@ -12,7 +12,6 @@ public class IteratorDoubleArray implements Iterator{
         this.array = array;
     }
 
-
     public boolean hasNext() {
         return array.length > iteratorI;
     }

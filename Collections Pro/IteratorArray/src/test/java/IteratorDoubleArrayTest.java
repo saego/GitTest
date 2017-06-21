@@ -9,12 +9,14 @@ import static org.junit.Assert.*;
 public class IteratorDoubleArrayTest {
     private int[][] array = new int[][]{{1, 2, 3}, {4, 5, 6}, {7}};
     private IteratorDoubleArray iteratorDoubleArray = new IteratorDoubleArray(array);
+
     @Test
     public void hasNext() throws Exception {
         iteratorDoubleArray.next();
         iteratorDoubleArray.next();
         assertThat(iteratorDoubleArray.hasNext(), is(true));
         iteratorDoubleArray.next();
+        assertThat(iteratorDoubleArray.hasNext(), is(true));
         iteratorDoubleArray.next();
         iteratorDoubleArray.next();
         assertThat(iteratorDoubleArray.hasNext(), is(true));
@@ -41,6 +43,18 @@ public class IteratorDoubleArrayTest {
         assertThat(res, is(6));
         res =(Integer)iteratorDoubleArray.next();
         assertThat(res, is(7));
+    }
+
+    @Test
+    public void loopTest() {
+        int[] arrayActual = new int[]{1, 2, 3, 4, 5, 6, 7};
+        int[] arrayExpected = new int[7];
+        int index = 0;
+        while(this.iteratorDoubleArray.hasNext()) {
+            arrayExpected[index] = (Integer)this.iteratorDoubleArray.next();
+            index++;
+        }
+        assertThat(arrayActual, is(arrayExpected));
     }
 
 }
