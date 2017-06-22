@@ -4,19 +4,27 @@ import java.util.Iterator;
  */
 public class IteratorEvenNumber implements Iterator{
     private final int[] array;
-    int iter = 0;
+    private int iter = 0;
 
-    public IteratorEvenNumber(int[] array) {
+    IteratorEvenNumber(int[] array) {
         this.array = array;
     }
 
     public boolean hasNext() {
-        return false;
+        boolean result = false;
+        if ((array.length > iter) && ()){
+            result = true;
+        }
+        return result;
     }
 
     public Object next() {
-        if (array[iter] )
-        return null;
+        while (array[iter] %2 != 0){
+            iter++;
+        }
+        Object object = array[iter];
+        iter = iter + 1;
+        return object;
     }
 
     public void remove() {
