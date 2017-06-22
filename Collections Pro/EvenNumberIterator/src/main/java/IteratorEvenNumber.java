@@ -4,7 +4,7 @@ import java.util.Iterator;
  */
 public class IteratorEvenNumber implements Iterator{
     private final int[] array;
-    private int iter = 0;
+    private int ice = 0;
 
     IteratorEvenNumber(int[] array) {
         this.array = array;
@@ -12,19 +12,30 @@ public class IteratorEvenNumber implements Iterator{
 
     public boolean hasNext() {
         boolean result = false;
-        if ((array.length > iter) && ()){
+        if ((array.length > ice) & (checkNextEven())){
             result = true;
         }
         return result;
     }
 
     public Object next() {
-        while (array[iter] %2 != 0){
-            iter++;
+        while (array[ice] % 2 != 0){
+            ice++;
         }
-        Object object = array[iter];
-        iter = iter + 1;
+        Object object = array[ice];
+        ice = ice + 1;
         return object;
+    }
+
+    private boolean checkNextEven(){
+        boolean res = false;
+        for (int i = ice; i < array.length; i++){
+            if (array[i] % 2 == 0){
+                res = true;
+                break;
+            }
+        }
+        return res;
     }
 
     public void remove() {
