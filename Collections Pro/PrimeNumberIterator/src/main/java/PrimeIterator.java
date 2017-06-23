@@ -25,10 +25,10 @@ public class PrimeIterator implements Iterator{
 
     private boolean ifHasNextPrime(){
         boolean result = false;
-        for (int i = iterator; i < array.length; i++){
-            if ((this.checkDivNumbers(array[i])) && array[i] != 1){
+        for (int i = this.iterator; i < this.array.length; i++){
+            if ((this.checkDivNumbers(this.array[i])) && this.array[i] != 1){
                 result = true;
-                iterator = i;
+                this.iterator = i;
                 break;
             }
         }
@@ -36,12 +36,12 @@ public class PrimeIterator implements Iterator{
     }
 
     public boolean hasNext() {
-        return (array.length > iterator) && (ifHasNextPrime());
+        return (this.array.length > this.iterator) && (this.ifHasNextPrime());
     }
 
     public Object next() {
         if (this.ifHasNextPrime()) {
-            return array[iterator++];
+            return this.array[iterator++];
         }
         else throw new IndexOutOfBoundsException();
     }
