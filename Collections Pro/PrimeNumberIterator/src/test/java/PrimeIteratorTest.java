@@ -25,8 +25,13 @@ public class PrimeIteratorTest {
         assertThat((Integer)primeIterator.next(), is(7));
         assertThat((Integer)primeIterator.next(), is(13));
         assertThat((Integer)primeIterator.next(), is(17));
-        //PrimeIterator pi = new PrimeIterator(new int[]{1, 4});
-        //System.out.println(pi.next());
+        PrimeIterator pi = new PrimeIterator(new int[]{1, 4});
+        try {
+        System.out.println(pi.next());
+        }
+        catch (IndexOutOfBoundsException iE){
+            System.out.println("End of array!!!!");
+        }
     }
 
     @Test
