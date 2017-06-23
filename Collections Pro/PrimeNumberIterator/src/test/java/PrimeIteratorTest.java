@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
  *Created by Saego on 23.06.2017.
  */
 public class PrimeIteratorTest {
-    private PrimeIterator primeIterator = new PrimeIterator(new int[]{1, 5, 1, 7, 12, 13, 14, 17});
+    private PrimeIterator primeIterator = new PrimeIterator(new int[]{5, 1, 7, 12, 13, 14, 17});
     @org.junit.Test
     public void hasNext() throws Exception {
         assertThat(primeIterator.hasNext(), is(true));
@@ -25,6 +25,8 @@ public class PrimeIteratorTest {
         assertThat((Integer)primeIterator.next(), is(7));
         assertThat((Integer)primeIterator.next(), is(13));
         assertThat((Integer)primeIterator.next(), is(17));
+        //PrimeIterator pi = new PrimeIterator(new int[]{1, 4});
+        //System.out.println(pi.next());
     }
 
     @Test

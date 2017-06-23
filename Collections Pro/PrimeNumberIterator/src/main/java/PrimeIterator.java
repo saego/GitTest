@@ -12,18 +12,6 @@ public class PrimeIterator implements Iterator{
         this.array = array;
     }
 
-    private boolean ifHasNextPrime(){
-        boolean result = false;
-        for (int i = iterator; i < array.length; i++){
-            if ((checkDivNumbers(array[i])) && array[i] != 1){
-                result = true;
-                iterator = i;
-                break;
-            }
-        }
-        return result;
-    }
-
     private boolean checkDivNumbers(int n){
         boolean tmpRes = true;
         for (int i = 2; i <= n / 2; i++){
@@ -35,13 +23,27 @@ public class PrimeIterator implements Iterator{
         return tmpRes;
     }
 
+    private boolean ifHasNextPrime(){
+        boolean result = false;
+        for (int i = iterator; i < array.length; i++){
+            if ((this.checkDivNumbers(array[i])) && array[i] != 1){
+                result = true;
+                iterator = i;
+                break;
+            }
+        }
+        return result;
+    }
+
     public boolean hasNext() {
         return (array.length > iterator) && (ifHasNextPrime());
     }
 
     public Object next() {
-        ifHasNextPrime();
-        return array[iterator++];
+        if (this.ifHasNextPrime()) {
+            return array[iterator++];
+        }
+        else throw  new IndexOutOfBoundsException();
     }
 
     public void remove() {
