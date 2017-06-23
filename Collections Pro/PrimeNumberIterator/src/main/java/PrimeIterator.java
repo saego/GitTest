@@ -8,14 +8,14 @@ public class PrimeIterator implements Iterator{
     private final int[] array;
     private int iterator = 0;
 
-    public PrimeIterator(int[] array) {
+    PrimeIterator(int[] array) {
         this.array = array;
     }
 
     private boolean ifHasNextPrime(){
         boolean result = false;
         for (int i = iterator; i < array.length; i++){
-            if (checkDivNumbers(array[i])){
+            if ((checkDivNumbers(array[i])) && array[i] != 1){
                 result = true;
                 iterator = i;
                 break;
@@ -36,11 +36,12 @@ public class PrimeIterator implements Iterator{
     }
 
     public boolean hasNext() {
-        return false;
+        return (array.length > iterator) && (ifHasNextPrime());
     }
 
     public Object next() {
-        return null;
+        ifHasNextPrime();
+        return array[iterator++];
     }
 
     public void remove() {
