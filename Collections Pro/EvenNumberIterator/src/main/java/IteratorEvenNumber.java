@@ -10,32 +10,32 @@ public class IteratorEvenNumber implements Iterator{
         this.array = array;
     }
 
+    private boolean checkNextEven(){
+        boolean res = false;
+        for (int i = this.ice; i < this.array.length; i++){
+            if (this.array[i] % 2 == 0){
+                res = true;
+                break;
+            }
+        }
+        return res;
+    }
+
     public boolean hasNext() {
         boolean result = false;
-        if ((array.length > ice) & (checkNextEven())){
+        if ((this.array.length > this.ice) & (this.checkNextEven())){
             result = true;
         }
         return result;
     }
 
     public Object next() {
-        while (array[ice] % 2 != 0){
-            ice++;
+        while (this.array[this.ice] % 2 != 0){
+            this.ice++;
         }
-        Object object = array[ice];
-        ice = ice + 1;
+        Object object = array[this.ice];
+        this.ice = this.ice + 1;
         return object;
-    }
-
-    private boolean checkNextEven(){
-        boolean res = false;
-        for (int i = ice; i < array.length; i++){
-            if (array[i] % 2 == 0){
-                res = true;
-                break;
-            }
-        }
-        return res;
     }
 
     public void remove() {
