@@ -43,7 +43,7 @@ public class PrimeIterator implements Iterator{
         if (this.ifHasNextPrime()) {
             return array[iterator++];
         }
-        else throw  new IndexOutOfBoundsException();
+        else throw new IndexOutOfBoundsException();
     }
 
     public void remove() {
