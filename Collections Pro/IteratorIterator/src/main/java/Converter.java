@@ -3,7 +3,7 @@ import java.util.Iterator;
 /**
  *Created by Saego on 26.06.2017.
  */
-public class Convertor implements IterIter{
+public class Converter implements IterIter{
     public Iterator<Integer> convert(Iterator<Iterator<Integer>> iteratorIterator) {
         return new MyIterator(iteratorIterator);
     }
