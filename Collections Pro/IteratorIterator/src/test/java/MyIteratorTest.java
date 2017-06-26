@@ -17,7 +17,7 @@ public class MyIteratorTest {
 
     @Test
     public void hasNext() throws Exception {
-        List<Integer> list0 = Collections.singletonList(0);
+        List<Integer> list0 = Arrays.asList(0, 0);
         List<Integer> list1 = Arrays.asList(1, 2, 3);
         List<Integer> list2 = Arrays.asList(4, 5);
         Iterator<Integer> iterator0 = list0.iterator();
