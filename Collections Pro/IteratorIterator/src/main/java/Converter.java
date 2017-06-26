@@ -10,7 +10,7 @@ public class Converter implements IterIter{
 
     private class MyIterator implements Iterator<Integer> {
         private final Iterator<Iterator<Integer>> allIterators;
-        private final Iterator<Integer> thisIterator;
+        private Iterator<Integer> thisIterator;
         /**
          * Constructor.
          * @param iteratorIterator - iterators.
@@ -25,14 +25,15 @@ public class Converter implements IterIter{
         }
 
         public Integer next() {
-            Integer result;
+            Integer res;
             if (this.thisIterator.hasNext()){
-                result = this.thisIterator.next();
+                res = this.thisIterator.next();
             }
             else {
-                result = this.allIterators.next().next();
+                this.thisIterator = allIterators.next();
+                res = thisIterator.next();
             }
-            return result;
+            return res;
         }
 
         public void remove() {
