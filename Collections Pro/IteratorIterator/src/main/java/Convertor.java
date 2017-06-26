@@ -21,11 +21,18 @@ public class Convertor implements IterIter{
         }
 
         public boolean hasNext() {
-            return false;
+            return this.thisIterator.hasNext() || this.allIterators.hasNext();
         }
 
         public Integer next() {
-            return null;
+            Integer result;
+            if (this.thisIterator.hasNext()){
+                result = this.thisIterator.next();
+            }
+            else {
+                result = this.allIterators.next().next();
+            }
+            return result;
         }
 
         public void remove() {
