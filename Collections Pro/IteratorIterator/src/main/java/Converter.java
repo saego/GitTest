@@ -13,27 +13,30 @@ public class Converter implements IterIter{
         private Iterator<Integer> thisIterator;
         /**
          * Constructor.
-         * @param iteratorIterator - iterators.
+         * @param iteratorIterator - all iterators.
          */
         MyIterator(Iterator<Iterator<Integer>> iteratorIterator) {
             this.allIterators = iteratorIterator;
             this.thisIterator = iteratorIterator.next();
         }
 
+        /**
+         * If has next in all iterators.
+         * @return - next value, don't move cursor.
+         */
         public boolean hasNext() {
             return this.thisIterator.hasNext() || this.allIterators.hasNext();
         }
 
+        /**
+         * Next value from all iterators.
+         * @return - next, move cursor.
+         */
         public Integer next() {
-            Integer res;
-            if (this.thisIterator.hasNext()){
-                res = this.thisIterator.next();
+            if (!this.thisIterator.hasNext()){
+                this.thisIterator = this.allIterators.next();
             }
-            else {
-                this.thisIterator = allIterators.next();
-                res = thisIterator.next();
-            }
-            return res;
+            return this.thisIterator.next();
         }
 
         public void remove() {
