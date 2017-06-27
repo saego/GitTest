@@ -54,4 +54,16 @@ public class MyIteratorTest {
         assertThat(iterator.next(), is(5));
     }
 
+    @Test
+    public void whileLoop(){
+        Integer[] testArray = new Integer[]{0, 1, 2, 3, 4, 5};
+        Integer[] array = new Integer[6];
+        int i = 0;
+        while (iterator.hasNext()){
+            array[i] = iterator.next();
+            i++;
+        }
+        assertThat(array, is(testArray));
+    }
+
 }
