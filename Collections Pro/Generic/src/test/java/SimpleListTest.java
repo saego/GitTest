@@ -7,12 +7,28 @@ import static org.junit.Assert.assertThat;
  *Created by Saego on 29.06.2017.
  */
 public class SimpleListTest {
+
     private SimpleList<Person> list = new SimpleList<Person>();
+    private SimpleList<Person> testList = new SimpleList<Person>();
+
+    @Test
+    public void add1() throws Exception {
+        this.list.add(new Person("Tom", 57));
+        this.list.add(new Person("Johnathan", 12));
+        this.list.add(new Person("Monica", 33));
+        int position = 1;
+        this.list.add(position, new Person("Jenifer", 29));
+        this.testList.add(new Person("Tom", 57));
+        this.testList.add(new Person("Jenifer", 29));
+        this.testList.add(new Person("Johnathan", 12));
+        this.testList.add(new Person("Monica", 33));
+        assertThat(this.list.getObjects(), is(this.testList.getObjects()));
+    }
 
     @org.junit.Test
     public void add() throws Exception {
-        list.add(new Person("Tom", 57));
-        list.add(new Person("Johnathan", 12));
+        this.list.add(new Person("Tom", 57));
+        this.list.add(new Person("Johnathan", 12));
         assertThat(list.get(0), is(new Person("Tom", 57)));
     }
 

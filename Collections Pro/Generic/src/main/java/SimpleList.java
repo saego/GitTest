@@ -25,6 +25,15 @@ class SimpleList <E> {
         this.objects[index++] = object;
     }
 
+    void add(int position, E object){
+        if (this.objects.length - 1 == index){
+            Object[] tempObjects = new Object[(this.objects.length * 3) / 2 + 1];
+            System.arraycopy(this.objects, 0, tempObjects, 0, this.objects.length);
+            this.objects = tempObjects;
+        }
+        System.arraycopy(this.objects, position - 1, this.objects, position, index + 1 - position);
+        this.objects[position] = object;
+    }
     /**
      * Remove element from collection.
      * @param position - position of element to remove.
@@ -42,6 +51,7 @@ class SimpleList <E> {
             Object[] tempObjects = new Object[this.objects.length - 1];
             System.arraycopy(this.objects, 0, tempObjects, 0, tempObjects.length);
             this.objects = tempObjects;
+            index = index - 1;
         }
     }
 
