@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  *Created by Saego on 27.06.2017.
  */
@@ -98,6 +100,12 @@ class SimpleList <E> {
         return position;
     }
 
+    Object[] getObjects(){
+        Object[] show = new Object[size()];
+        System.arraycopy(this.objects, 0, show, 0, show.length);
+        return show;
+    }
+
     /**
      * Get index of element by value.
      * @param object - value of element to search.
@@ -115,5 +123,27 @@ class SimpleList <E> {
         return pos;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SimpleList<?> that = (SimpleList<?>) o;
+
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        return Arrays.equals(objects, that.objects);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(objects);
+    }
+
+    @Override
+    public String toString() {
+        return "SimpleList{" +
+                "objects=" + Arrays.toString(objects) +
+                '}';
+    }
 }
 

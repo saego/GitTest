@@ -8,6 +8,7 @@ import static org.junit.Assert.assertThat;
  */
 public class SimpleListTest {
     private SimpleList<Person> list = new SimpleList<Person>();
+
     @org.junit.Test
     public void add() throws Exception {
         list.add(new Person("Tom", 57));
@@ -43,6 +44,7 @@ public class SimpleListTest {
         assertThat(list.get(0), is(new Person("Tom", 57)));
     }
 
+    @SuppressWarnings("EmptyTryBlock")
     @Test
     public void sizeTest() throws Exception {
         list.add(new Person("Tom", 57));
@@ -50,15 +52,22 @@ public class SimpleListTest {
         list.add(new Person("Vivian", 33));
         assertThat(list.size(), is(3));
         list.remove(0);
-        System.out.println(list.get(0));
-        System.out.println(list.get(1));
         try {
-        System.out.println(list.get(3));
         }
         catch (Exception ex){
             ex.printStackTrace();
         }
         assertThat(list.size(), is(2));
+    }
+
+    @Test
+    public void foreach(){
+        list.add(new Person("Tom", 57));
+        list.add(new Person("Johnathan", 12));
+        list.add(new Person("Vivian", 33));
+        for (int i = 0; i < list.getObjects().length; i++) {
+            System.out.println(list.getObjects()[i]);
+        }
     }
 
 }
