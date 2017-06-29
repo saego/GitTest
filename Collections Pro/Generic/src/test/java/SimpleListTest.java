@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -39,6 +41,24 @@ public class SimpleListTest {
     public void get() throws Exception {
         list.add(new Person("Tom", 57));
         assertThat(list.get(0), is(new Person("Tom", 57)));
+    }
+
+    @Test
+    public void sizeTest() throws Exception {
+        list.add(new Person("Tom", 57));
+        list.add(new Person("Johnathan", 12));
+        list.add(new Person("Vivian", 33));
+        assertThat(list.size(), is(3));
+        list.remove(0);
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
+        try {
+        System.out.println(list.get(3));
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        assertThat(list.size(), is(2));
     }
 
 }
