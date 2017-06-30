@@ -5,7 +5,7 @@ package Store;
  */
 public interface Store <E extends Base>{
     public void add(E object);
-    public void remove(int position);
+    public void remove(int position) throws Exception;
     public void remove(E object);
     public void set(int position, E object);
     public void set(E object, E newObject);

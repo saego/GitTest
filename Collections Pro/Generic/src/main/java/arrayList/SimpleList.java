@@ -58,6 +58,13 @@ public class SimpleList <E> {
         }
     }
 
+    public void remove(E object){
+        try {
+            remove(getIndexOfObject(object));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Set new value of element.
      * @param position - position of element should be changed.
@@ -83,7 +90,7 @@ public class SimpleList <E> {
             throw new Exception("No such element");
         }
         else {
-            this.objects[position] = newObject;
+            set(position, newObject);
         }
     }
 

@@ -51,9 +51,9 @@ public class Role extends Base {
 
     @Override
     public String toString() {
-        return "Role{" +
-                "id='" + id + '\'' +
-                ", profession='" + profession + '\'' +
-                '}';
+        return "Role" +
+                "id: '" + id + '\'' +
+                ", profession: '" + profession + '\''
+                ;
     }
 }

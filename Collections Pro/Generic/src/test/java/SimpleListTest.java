@@ -63,6 +63,9 @@ public class SimpleListTest {
         int rmvPos = 0;
         list.remove(rmvPos);
         assertThat(list.get(0), is(new Person("Johnathan", 12)));
+        list.remove(new Person("Johnathan", 12));
+        assertThat(list.get(0), is(new Person("Vivian", 33)));
+
     }
 
     @org.junit.Test
