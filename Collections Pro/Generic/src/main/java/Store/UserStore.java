@@ -9,10 +9,27 @@ public class UserStore<E extends Base> implements Store<E>{
 
     private SimpleList<E> usersList = new SimpleList<E>();
 
+    /**
+     * Add new element to end of collection.
+     * @param object - new element.
+     */
     public void add(E object) {
         this.usersList.add(object);
     }
 
+    /**
+     * Add new element to current position of collection.
+     * @param position - position to add.
+     * @param object - new element.
+     */
+    void add(int position, E object){
+        this.usersList.add(position, object);
+    }
+
+    /**
+     * Remove element by position in collection.
+     * @param position - position to remove.
+     */
     public void remove(int position) {
         try {
             this.usersList.remove(position);
@@ -21,6 +38,10 @@ public class UserStore<E extends Base> implements Store<E>{
         }
     }
 
+    /**
+     * Remove element by value.
+     * @param object - value of element to remove.
+     */
     public void remove(E object) {
         this.usersList.remove(object);
     }
@@ -33,6 +54,11 @@ public class UserStore<E extends Base> implements Store<E>{
         }
     }
 
+    /**
+     * Update element by position.
+     * @param object - old value.
+     * @param newObject - new value.
+     */
     public void set(E object, E newObject) {
         try {
             this.usersList.set(object, newObject);
@@ -41,6 +67,10 @@ public class UserStore<E extends Base> implements Store<E>{
         }
     }
 
+    /**
+     * Get list of objects.
+     * @return - list to array.
+     */
     public Object[] getObjects() {
         return this.usersList.getObjects();
     }

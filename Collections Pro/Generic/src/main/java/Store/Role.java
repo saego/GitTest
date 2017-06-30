@@ -7,9 +7,8 @@ public class Role extends Base {
     private String id;
     private String profession;
 
-    public Role(String id, String id1, String profession) {
-        super(id);
-        this.id = id1;
+    public Role(String id, String profession) {
+        this.id = id;
         this.profession = profession;
     }
 

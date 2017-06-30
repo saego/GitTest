@@ -8,15 +8,10 @@ public class User extends Base{
    private String id;
    private int age;
 
-    public User(String id, String name, String id1, int age) {
-        super(id);
+    User(String id, String name, int age) {
         this.name = name;
-        this.id = id1;
+        this.id = id;
         this.age = age;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -24,21 +19,9 @@ public class User extends Base{
         return id;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     @Override
@@ -48,9 +31,7 @@ public class User extends Base{
 
         User user = (User) o;
 
-        if (age != user.age) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        return id != null ? id.equals(user.id) : user.id == null;
+        return age == user.age && (name != null ? name.equals(user.name) : user.name == null) && (id != null ? id.equals(user.id) : user.id == null);
     }
 
     @Override
