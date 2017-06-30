@@ -1,6 +1,6 @@
 package Store;
 
-import arrayList.SimpleList;
+import SimpleList.SimpleList;
 
 /**
  *Created by Saego on 30.06.2017.

@@ -1,4 +1,4 @@
-package arrayList;
+package SimpleList;
 
 import java.util.Arrays;
 
@@ -158,7 +158,7 @@ public class SimpleList <E> {
 
     @Override
     public String toString() {
-        return "arrayList.SimpleList{" +
+        return "SimpleList.SimpleList{" +
                 "objects=" + Arrays.toString(objects) +
                 '}';
     }
