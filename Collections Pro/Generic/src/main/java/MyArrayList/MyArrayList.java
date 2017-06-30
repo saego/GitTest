@@ -41,17 +41,17 @@ public class MyArrayList<T> implements MyIterator<T>{
      * @return - true.
      */
     public boolean add(int position, T element){
-
-        try {
-            ifPositionExist(position);
-        } catch (Exception e) {
-            e.printStackTrace();
+        boolean resultOperation = true;
+        if (!ifPositionExist(position)){
+            resultOperation = false;
         }
-        checkCapacity();
+        else {
+            checkCapacity();
             System.arraycopy(this.elements, position, this.elements, position + 1, index - position);
             this.elements[position] = element;
             index = index + 1;
-        return true;
+        }
+        return resultOperation;
     }
 
     /**
@@ -64,19 +64,19 @@ public class MyArrayList<T> implements MyIterator<T>{
             this.elements = tempElements;
         }
     }
-    private void ifPositionExist(int position) throws Exception {
-        if (position > index){
-            throw new Exception("There is no such position in list");
-        }
+    private boolean ifPositionExist(int position){
+        return position < index;
     }
 
-    public void set(int position, T element){
-        try {
-            ifPositionExist(position);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public boolean set(int position, T element){
+        boolean resultOperation = true;
+        if (!ifPositionExist(position)){
+            resultOperation = false;
         }
-        this.elements[position] = element;
+        else {
+            this.elements[position] = element;
+        }
+        return resultOperation;
     }
 
 }
