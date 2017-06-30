@@ -9,9 +9,10 @@ public class SimpleList <E> {
 
     private Object[] objects;
     private int index = 0;
+    private static final int ARRAY_CAPACITY = 10;
 
     public SimpleList() {
-        this.objects = new Object[10];
+        this.objects = new Object[ARRAY_CAPACITY];
     }
 
     /**
