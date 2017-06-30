@@ -33,6 +33,7 @@ class SimpleList <E> {
         }
         System.arraycopy(this.objects, position - 1, this.objects, position, index + 1 - position);
         this.objects[position] = object;
+        index = index + 1;
     }
     /**
      * Remove element from collection.
