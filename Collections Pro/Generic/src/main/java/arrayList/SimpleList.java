@@ -1,14 +1,16 @@
+package arrayList;
+
 import java.util.Arrays;
 
 /**
  *Created by Saego on 27.06.2017.
  */
-class SimpleList <E> {
+public class SimpleList <E> {
 
     private Object[] objects;
     private int index = 0;
 
-    SimpleList() {
+    public SimpleList() {
         this.objects = new Object[10];
     }
 
@@ -16,7 +18,7 @@ class SimpleList <E> {
      * Add new element to collection.
      * @param object - new element.
      */
-    void add(E object) {
+    public void add(E object) {
         if (index == this.objects.length) {
             Object[] tempObjects = new Object[(this.objects.length * 3) / 2 + 1];
             System.arraycopy(this.objects, 0, tempObjects, 0, this.objects.length);
@@ -25,7 +27,7 @@ class SimpleList <E> {
         this.objects[index++] = object;
     }
 
-    void add(int position, E object){
+    public void add(int position, E object){
         if (this.objects.length - 1 == index){
             Object[] tempObjects = new Object[(this.objects.length * 3) / 2 + 1];
             System.arraycopy(this.objects, 0, tempObjects, 0, this.objects.length);
@@ -40,7 +42,7 @@ class SimpleList <E> {
      * @param position - position of element to remove.
      * @throws Exception - incorrect position.
      */
-    void remove(int position) throws Exception {
+    public void remove(int position) throws Exception {
         if ((position >= this.objects.length) || (this.objects[position] == null)) {
             throw new Exception("No such element");
         } else {
@@ -62,7 +64,7 @@ class SimpleList <E> {
      * @param newObject - new value of element.
      * @throws Exception - if there is no such position.
      */
-    void set(int position, E newObject) throws Exception {
+    public void set(int position, E newObject) throws Exception {
         if ((position >= this.objects.length) || (this.objects[position] == null)) {
             throw new Exception("No such element");
         }
@@ -75,7 +77,7 @@ class SimpleList <E> {
      * @param newObject - new value of element.
      * @throws Exception - if there is no such position.
      */
-    void set(E object, E newObject) throws Exception {
+    public void set(E object, E newObject) throws Exception {
         int position = getIndexOfObject(object);
         if (position == this.objects.length){
             throw new Exception("No such element");
@@ -91,7 +93,7 @@ class SimpleList <E> {
      * @return - element.
      * @throws Exception - if there is no such position.
      */
-    E get(int position) throws Exception {
+    public E get(int position) throws Exception {
         if ((position >= this.objects.length) || (this.objects[position] == null)) {
             throw new Exception("No such element");
         } else {
@@ -103,11 +105,11 @@ class SimpleList <E> {
      * Size of collection.
      * @return - size without null.
      */
-    int size(){
+    public int size(){
         return index;
     }
 
-    Object[] getObjects(){
+    public Object[] getObjects(){
         Object[] show = new Object[size()];
         System.arraycopy(this.objects, 0, show, 0, show.length);
         return show;
@@ -148,7 +150,7 @@ class SimpleList <E> {
 
     @Override
     public String toString() {
-        return "SimpleList{" +
+        return "arrayList.SimpleList{" +
                 "objects=" + Arrays.toString(objects) +
                 '}';
     }
