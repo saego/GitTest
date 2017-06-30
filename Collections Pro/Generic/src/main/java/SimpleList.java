@@ -104,11 +104,7 @@ class SimpleList <E> {
      * @return - size without null.
      */
     int size(){
-        int position = 0;
-        while (this.objects[position] != null){
-            position++;
-        }
-        return position;
+        return index;
     }
 
     Object[] getObjects(){
