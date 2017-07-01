@@ -129,7 +129,7 @@ public class MyArrayList<T> implements MyIterable<T>{
         return new MyIterator(getAllElements());
     }
 
-    private class MyIterator implements Iterator<T> {
+    public class MyIterator implements Iterator<T> {
         Object[] elements;
         int cursor = 0;
 
