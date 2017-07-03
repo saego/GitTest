@@ -33,7 +33,12 @@ public class MyLinkedList<T> implements MyIterable<T>{
 
     public boolean add(int position, T element) {
         Node<T> elementPosition = getNodeByPosition(position);
-        return false;
+        Node<T> elementPrevPosition = elementPosition.prev;
+        Node<T> currentElement = new Node<T>(elementPrevPosition, element, elementPosition);
+        elementPosition.prev = currentElement;
+        elementPrevPosition.next = currentElement;
+        size++;
+        return true;
     }
 
     public T get(int position) throws Exception {
