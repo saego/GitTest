@@ -10,7 +10,7 @@ import java.util.Iterator;
  */
 public class MyLinkedList<T> implements MyIterable<T>{
 
-    public Node<T> first;
+    private Node<T> first;
     private Node<T> last;
     private int size;
 
@@ -18,15 +18,34 @@ public class MyLinkedList<T> implements MyIterable<T>{
     }
 
     public boolean add(T element) {
-        return false;
+        Node<T> lastElement = this.last;
+        Node<T> currentElement = new Node<T>(lastElement, element,null);
+        this.last = currentElement;
+        if (lastElement == null){
+            this.first = currentElement;
+        }
+        else {
+            lastElement.next = currentElement;
+        }
+        size++;
+        return true;
     }
 
     public boolean add(int position, T element) {
+        Node<T> elementPosition = getNodeByPosition(position);
         return false;
     }
 
     public T get(int position) throws Exception {
-        return null;
+        return getNodeByPosition(position).valueOfObject;
+    }
+
+    private Node<T> getNodeByPosition(int position){
+        Node<T> element = this.first;
+        for (int i = 0; i < position; i++){
+            element = element.next;
+        }
+        return element;
     }
 
     public boolean remove(int position) throws Exception {
