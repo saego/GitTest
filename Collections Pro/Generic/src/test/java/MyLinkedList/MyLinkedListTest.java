@@ -1,7 +1,6 @@
 package MyLinkedList;
 
 import SimpleList.Person;
-import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 /**
  Created by Saego on 03.07.2017.
@@ -71,6 +70,12 @@ public class MyLinkedListTest {
         this.persons.add(new Person("Penelopa", 14));
         assertThat(this.persons.get(0), is(new Person("Lisa", 30)));
         assertThat(this.persons.get(2), is(new Person("Kidd", 33)));
+        try {
+        this.persons.get(5);
+        }
+        catch (NullPointerException ex){
+            ex.printStackTrace();
+        }
     }
 
     @Test

@@ -42,7 +42,12 @@ public class MyLinkedList<T> implements MyIterable<T>{
     }
 
     public T get(int position) throws Exception {
-        return getNodeByPosition(position).valueOfObject;
+        if (!checkPositionValid(position)){
+            throw new NullPointerException("No such position");
+        }
+        else {
+            return getNodeByPosition(position).valueOfObject;
+        }
     }
 
     private Node<T> getNodeByPosition(int position){
@@ -53,12 +58,16 @@ public class MyLinkedList<T> implements MyIterable<T>{
         return element;
     }
 
+    private boolean checkPositionValid(int position){
+        return position < size();
+    }
+
     public boolean remove(int position) throws Exception {
         return false;
     }
 
     int size(){
-        return size;
+        return this.size;
     }
 
     @NotNull
