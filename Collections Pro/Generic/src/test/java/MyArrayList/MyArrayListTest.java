@@ -86,10 +86,12 @@ public class MyArrayListTest {
         this.persons.add(new Person("Johnathan", 12));
         this.persons.add(new Person("Roger", 21));
         this.persons.add(new Person("Mia", 34));
-        for (Object person:
-             this.persons.getAllElements()) {
+        System.out.println("--------------------------------------");
+        for (Person person:
+             this.persons) {
             System.out.println(person);
         }
+        System.out.println("--------------------------------------");
         System.out.println(Arrays.toString(this.persons.getAllElements()));
 
         Iterator<Person> iterator = this.persons.iterator();
