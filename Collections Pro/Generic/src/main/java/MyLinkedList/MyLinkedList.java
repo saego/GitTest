@@ -14,7 +14,7 @@ public class MyLinkedList<T> implements MyIterable<T>{
     private Node<T> last;
     private int size;
 
-    public MyLinkedList() {
+    MyLinkedList() {
     }
 
     public boolean add(T element) {
@@ -57,9 +57,13 @@ public class MyLinkedList<T> implements MyIterable<T>{
         return false;
     }
 
+    int size(){
+        return size;
+    }
+
     @NotNull
     public Iterator<T> iterator() {
-        return null;
+        return new MyLinkIterator(this.first, this.size);
     }
 
     /**
@@ -70,10 +74,63 @@ public class MyLinkedList<T> implements MyIterable<T>{
         private T valueOfObject;
         private Node<T> next;
 
-        public Node(Node<T> prev, T valueOfObject, Node<T> next) {
+        Node(Node<T> prev, T valueOfObject, Node<T> next) {
             this.prev = prev;
             this.valueOfObject = valueOfObject;
             this.next = next;
         }
+    }
+
+    private class MyLinkIterator implements Iterator<T> {
+        Node<T> element;
+        Node<T> elementToGet;
+        int size;
+        int index = 0;
+        MyLinkIterator(Node<T> first, int size) {
+            this.size = size;
+            this.element = first;
+        }
+
+        public boolean hasNext() {
+            return this.index < this.size;
+        }
+
+        public T next() {
+            this.elementToGet = this.element;
+            this.element = this.element.next;
+            this.index++;
+            return this.elementToGet.valueOfObject;
+        }
+
+        public void remove() {
+
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MyLinkedList<?> that = (MyLinkedList<?>) o;
+
+        return size == that.size && (first != null ? first.equals(that.first) : that.first == null) && (last != null ? last.equals(that.last) : that.last == null);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = first != null ? first.hashCode() : 0;
+        result = 31 * result + (last != null ? last.hashCode() : 0);
+        result = 31 * result + size;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "First&Last of list{" +
+                "first=" + first.valueOfObject +
+                ", last=" + last.valueOfObject +
+                ", size=" + size +
+                '}';
     }
 }
