@@ -14,9 +14,11 @@ public class MyLinkedList<T> implements MyIterable<T>{
     private Node<T> last;
     private int size;
 
-    MyLinkedList() {
-    }
-
+    /**
+     * Add next element to tail of list.
+     * @param element - value of element.
+     * @return - true if was done.
+     */
     public boolean add(T element) {
         Node<T> lastElement = this.last;
         Node<T> currentElement = new Node<T>(lastElement, element,null);
@@ -31,6 +33,12 @@ public class MyLinkedList<T> implements MyIterable<T>{
         return true;
     }
 
+    /**
+     * Add element on position.
+     * @param position - position to add.
+     * @param element - value of element.
+     * @return - true if was done.
+     */
     public boolean add(int position, T element) {
         boolean resultOfOperation = true;
         if (!checkPositionValid(position)){
@@ -47,6 +55,12 @@ public class MyLinkedList<T> implements MyIterable<T>{
         return resultOfOperation;
     }
 
+    /**
+     * Get element value by position in list.
+     * @param position - position to get.
+     * @return - element value.
+     * @throws Exception - if there is no current position in this list.
+     */
     public T get(int position) throws Exception {
         if (!checkPositionValid(position)){
             throw new NullPointerException("No such position");
@@ -56,6 +70,11 @@ public class MyLinkedList<T> implements MyIterable<T>{
         }
     }
 
+    /**
+     * Get container by position.
+     * @param position - position to get.
+     * @return - container.
+     */
     private Node<T> getNodeByPosition(int position){
         Node<T> element = this.first;
         for (int i = 0; i < position; i++){
@@ -64,6 +83,11 @@ public class MyLinkedList<T> implements MyIterable<T>{
         return element;
     }
 
+    /**
+     * Check if there is such position in list.
+     * @param position -position to look.
+     * @return - boolean.
+     */
     private boolean checkPositionValid(int position){
         return position < size();
     }
@@ -72,6 +96,10 @@ public class MyLinkedList<T> implements MyIterable<T>{
         return false;
     }
 
+    /**
+     * Get capacity of list.
+     * @return - quantity of elements in list.
+     */
     int size(){
         return this.size;
     }
