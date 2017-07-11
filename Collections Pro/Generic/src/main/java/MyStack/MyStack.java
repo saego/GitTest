@@ -9,7 +9,7 @@ import java.util.Iterator;
  */
 public class MyStack<K> implements MyStackIterable<K>{
     private Node<K> tail;
-    int size = 0;
+    private int size = 0;
 
     /**
      * Put element on the top of stack.
@@ -26,7 +26,7 @@ public class MyStack<K> implements MyStackIterable<K>{
      * @return - value of element.
      */
     public K pop() {
-        return this.tail.valueOfObgect;
+        return this.tail.valueOfObject;
     }
 
     /**
@@ -37,7 +37,7 @@ public class MyStack<K> implements MyStackIterable<K>{
         Node<K> currentTopElement = this.tail;
         this.tail = this.tail.prev;
         this.size = this.size - 1;
-        return currentTopElement.valueOfObgect;
+        return currentTopElement.valueOfObject;
     }
 
     /**
@@ -58,29 +58,33 @@ public class MyStack<K> implements MyStackIterable<K>{
      */
     static class Node<K> {
         private Node<K> prev;
-        private K valueOfObgect;
+        private K valueOfObject;
 
         Node(Node<K> prev, K valueOfObject) {
             this.prev = prev;
-            this.valueOfObgect = valueOfObject;
+            this.valueOfObject = valueOfObject;
         }
     }
 
     private class MyStackIterator implements Iterator<K> {
         Node<K> tail;
         int size;
+        int position = size;
 
-        public MyStackIterator(Node<K> tail, int size) {
+        MyStackIterator(Node<K> tail, int size) {
             this.tail = tail;
             this.size = size;
         }
 
         public boolean hasNext() {
-            return false;
+            return (this.position < this.size) && (this.position >= 0);
         }
 
         public K next() {
-            return null;
+            Node<K> currentTopElement = this.tail;
+            this.tail = this.tail.prev;
+            this.position = this.position - 1;
+            return currentTopElement.valueOfObject;
         }
 
         public void remove() {
