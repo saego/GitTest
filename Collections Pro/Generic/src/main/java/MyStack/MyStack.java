@@ -26,6 +26,10 @@ public class MyStack<K> implements MyStackIterable<K>{
      * @return - value of element.
      */
     public K pop() {
+        if (this.size == 0){
+            throw new NullPointerException("Stack is empty");
+        }
+        else
         return this.tail.valueOfObject;
     }
 
@@ -34,10 +38,15 @@ public class MyStack<K> implements MyStackIterable<K>{
      * @return - value of element.
      */
     public K peek() {
-        Node<K> currentTopElement = this.tail;
-        this.tail = this.tail.prev;
-        this.size = this.size - 1;
-        return currentTopElement.valueOfObject;
+        if (this.size == 0){
+            throw new NullPointerException("Stack is empty");
+        }
+        else {
+            Node<K> currentTopElement = this.tail;
+            this.tail = this.tail.prev;
+            this.size = this.size - 1;
+            return currentTopElement.valueOfObject;
+        }
     }
 
     /**

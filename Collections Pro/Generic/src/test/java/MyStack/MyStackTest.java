@@ -61,15 +61,24 @@ public class MyStackTest {
 
     @Test
     public void peek() throws Exception {
+        try {
         assertThat(this.testPersons.pop(), is(new Person("Bob", 8)));
         assertThat(this.testPersons.peek(), is(new Person("Bob", 8)));
-        System.out.println(this.testPersons.pop());
-        assertThat(this.testPersons.pop(), is(new Person("Jack", 12)));
-        assertThat(this.testPersons.peek(), is(new Person("Bob", 8)));
+        assertThat(this.testPersons.pop(), is(new Person("Jack", 32)));
+        assertThat(this.testPersons.peek(), is(new Person("Jack", 32)));
+        assertThat(this.testPersons.peek(), is(new Person("Hanna", 26)));
+        assertThat(this.testPersons.peek(), is(new Person("Johnathan", 4)));
+        assertThat(this.testPersons.peek(), is(new Person("Irena", 18)));
+            System.out.println(this.testPersons.peek());
+        }
+        catch (NullPointerException ex){
+            ex.printStackTrace();
+        }
     }
 
     @Test
     public void count() throws Exception {
+        assertThat(this.testPersons.count(), is(5));
     }
 
     @Test
