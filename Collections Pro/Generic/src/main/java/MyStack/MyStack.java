@@ -78,7 +78,6 @@ public class MyStack<K> implements MyStackIterable<K>{
     private class MyStackIterator implements Iterator<K> {
         Node<K> tail;
         int size;
-        int position = size;
 
         MyStackIterator(Node<K> tail, int size) {
             this.tail = tail;
@@ -86,13 +85,13 @@ public class MyStack<K> implements MyStackIterable<K>{
         }
 
         public boolean hasNext() {
-            return (this.position < this.size) && (this.position >= 0);
+            return this.size > 0;
         }
 
         public K next() {
             Node<K> currentTopElement = this.tail;
             this.tail = this.tail.prev;
-            this.position = this.position - 1;
+            this.size = this.size - 1;
             return currentTopElement.valueOfObject;
         }
 

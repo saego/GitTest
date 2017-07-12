@@ -4,13 +4,14 @@ import SimpleList.Person;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 /**
- * Created by Saego on 11.07.2017.
+ *Created by Saego on 11.07.2017.
  */
 public class MyStackTest {
     private MyStack <Person> persons = new MyStack<Person>();
@@ -83,6 +84,31 @@ public class MyStackTest {
 
     @Test
     public void iterator() throws Exception {
+        Iterator<Person> iterator = this.testPersons.iterator();
+        Iterator<Person> iterator1 = this.testPersons.iterator();
+        assertThat(iterator.hasNext(), is(true));
+        assertThat(iterator.next(), is(new Person("Bob", 8)));
+        iterator.next();
+        //iterator.next();
+        assertThat(iterator.next(), is(new Person("Hanna", 26)));
+        iterator.next();
+        iterator.next();
+        assertThat(iterator.hasNext(), is(false));
+        assertThat(iterator.hasNext(), is(false));
+        Person[] persons = new Person[]{
+                new Person("Bob", 8),
+                new Person("Jack", 32),
+                new Person("Hanna", 26),
+                new Person("Johnathan", 4),
+                new Person("Irena", 18),
+        };
+        Person[] persons1 = new Person[5];
+        int n = 0;
+        while (iterator1.hasNext()){
+            persons1[n] = iterator1.next();
+            n++;
+        }
+        assertThat(persons1, is(persons));
     }
 
 }
