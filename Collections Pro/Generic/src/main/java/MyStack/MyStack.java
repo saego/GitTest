@@ -51,7 +51,7 @@ public class MyStack<K> implements MyStackIterable<K>{
 
     /**
      * Size of stack.
-     * @return - count ofelements.
+     * @return - count of elements.
      */
     public int count() {
         return this.size;
