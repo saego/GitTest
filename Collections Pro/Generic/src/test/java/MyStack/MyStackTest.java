@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class MyStackTest {
     private MyStack <Person> persons = new MyStack<Person>();
     private MyStack<Person> testPersons = new MyStack<Person>();
-    private Stack<Person> realStack = new Stack<Person>();
+    //private Stack<Person> realStack = new Stack<Person>();
 
     @Before
     public void initialization(){
@@ -33,11 +33,11 @@ public class MyStackTest {
         this.persons.push(new Person("Hanna", 26));
         this.persons.push(new Person("Jack", 32));
         this.persons.push(new Person("Bob", 8));
-        this.realStack.push(new Person("Irena", 18));
-        this.realStack.push(new Person("Johnathan", 4));
-        this.realStack.push(new Person("Hanna", 26));
-        this.realStack.push(new Person("Jack", 32));
-        this.realStack.push(new Person("Bob", 8));
+        //this.realStack.push(new Person("Irena", 18));
+        //this.realStack.push(new Person("Johnathan", 4));
+        //this.realStack.push(new Person("Hanna", 26));
+        //this.realStack.push(new Person("Jack", 32));
+        //this.realStack.push(new Person("Bob", 8));
         Person[] array1 = new Person[5];
         Person[] array2 = new Person[5];
         int i = 0;
@@ -48,9 +48,9 @@ public class MyStackTest {
         }
         int k  = 0;
         for (Person stackPerson:
-             this.realStack) {
+             this.testPersons) {
             array2[k] = stackPerson;
-            i++;
+            k++;
         }
         assertThat(array1, is(array2));
     }
