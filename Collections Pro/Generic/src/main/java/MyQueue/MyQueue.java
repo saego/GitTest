@@ -18,12 +18,22 @@ public class MyQueue<E> implements MyStackIterable<E> {
      * @param element - value of new element.
      */
     public void push(E element) {
-        Node<E> current = this.last;
+        /*Node<E> current = this.last;
         this.last = new Node<E>(current, element);
         if (this.size == 0){
             this.first = this.last;
         }
-        size++;
+        size++;*/
+        Node<E> current;
+        if (this.size == 0){
+            this.first = new Node<E>(null, element);
+            this.last = this.first;
+        }
+        else {
+            this.last = new Node<E>(null, element);
+            current = new Node<E>(this.last, current.valueOfObject);
+        }
+            size++;
     }
 
     /**
