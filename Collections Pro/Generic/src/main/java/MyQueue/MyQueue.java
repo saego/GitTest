@@ -37,6 +37,9 @@ public class MyQueue<E> implements MyStackIterable<E> {
         Node<E> getFirst = this.first;
         this.size = this.size - 1;
         this.first = this.first.next;
+        if (this.size == 0){
+            throw new NullPointerException("Queue is empty");
+        }
         return getFirst.valueOfObject;
     }
 
