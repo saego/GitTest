@@ -5,11 +5,15 @@ package Cycle;
  */
 public class Cycle<E> {
     public boolean loop(SimpleNode<E> first){
+        boolean result = false;
         while (first != null){
             SimpleNode<E> next = first.next;
-            if (first.)
+            if (first.value.hashCode() == next.value.hashCode()){
+                result = true;
+                break;
+            }
             first = next;
         }
-        return false;
+        return result;
     }
 }
