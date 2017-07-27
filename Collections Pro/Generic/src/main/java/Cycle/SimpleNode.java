@@ -5,9 +5,9 @@ package Cycle;
  */
 public class SimpleNode<E> {
     public SimpleNode<E> next;
-    public E value;
+    private E value;
 
-    public SimpleNode(SimpleNode<E> next, E value) {
+    SimpleNode(SimpleNode<E> next, E value) {
         this.next = next;
         this.value = value;
     }
