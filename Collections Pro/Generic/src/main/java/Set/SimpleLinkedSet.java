@@ -18,19 +18,20 @@ public class SimpleLinkedSet<E> implements MyIterable<E> {
     }
 
     private void addElement(E element){
-        Node<E> lastElement = this.last;
-        Node<E> currentElement = new Node<E>(lastElement, element,null);
-        this.last = currentElement;
-        if (lastElement == null){
-            this.first = currentElement;
+        if (!checkIfDuplicate(element)) {
+            Node<E> lastElement = this.last;
+            Node<E> currentElement = new Node<E>(lastElement, element, null);
+            this.last = currentElement;
+            if (lastElement == null) {
+                this.first = currentElement;
+            } else {
+                lastElement.next = currentElement;
+            }
+            size++;
         }
-        else {
-            lastElement.next = currentElement;
-        }
-        size++;
     }
 
-    private boolean checkIfDuble(E element){
+    private boolean checkIfDuplicate(E element){
         Node<E> node = this.first;
         boolean result = false;
         for (int i = 0; i != size; i++){
@@ -44,12 +45,12 @@ public class SimpleLinkedSet<E> implements MyIterable<E> {
     }
 
     public int size() {
-        return 0;
+        return this.size;
     }
 
     @NotNull
     public Iterator<E> iterator() {
-        return null;
+        return new MySetIterator(this.first, this.size);
     }
 
     /**
@@ -64,6 +65,31 @@ public class SimpleLinkedSet<E> implements MyIterable<E> {
             this.prev = prev;
             this.value = value;
             this.next = next;
+        }
+    }
+
+    private class MySetIterator implements Iterator<E> {
+        Node<E> element;
+        Node<E> elementToGet;
+        int size;
+        int index = 0;
+        MySetIterator(Node<E> first, int size) {
+            this.size = size;
+            this.element = first;
+        }
+        public boolean hasNext() {
+            return this.index < this.size;
+        }
+
+        public E next() {
+            this.elementToGet = this.element;
+            this.element = this.element.next;
+            this.index++;
+            return this.elementToGet.value;
+        }
+
+        public void remove() {
+
         }
     }
 }
