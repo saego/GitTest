@@ -12,6 +12,7 @@ class Cycle<E> {
                 result = true;
                 break;
             }
+
             next = next.next;
         }
         return result;
