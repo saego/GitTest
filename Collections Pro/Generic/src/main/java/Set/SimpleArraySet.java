@@ -26,7 +26,7 @@ public class SimpleArraySet<E> implements MyIterable<E>{
     }
 
     public int size() {
-        return this.elements.length;
+        return this.index;
     }
 
     private void addElement(E element){

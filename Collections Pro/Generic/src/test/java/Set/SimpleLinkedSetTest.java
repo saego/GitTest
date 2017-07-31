@@ -37,7 +37,7 @@ public class SimpleLinkedSetTest {
         Person[] testPersonsArray = new Person[5];
         int i= 0;
         for (Person person:
-             this.persons) {
+                this.persons) {
             testPersonsArray[i] = person;
             i++;
         }
