@@ -9,11 +9,38 @@ import java.util.Iterator;
  * Created by Saego on 28.07.2017.
  */
 public class SimpleLinkedSet<E> implements MyIterable<E> {
-    Node<E> next;
-    Node<E> prev;
-    int size;
+    private Node<E> last;
+    private Node<E> first;
+    private int size;
     public boolean add(E element) {
-        return false;
+
+        return true;
+    }
+
+    private void addElement(E element){
+        Node<E> lastElement = this.last;
+        Node<E> currentElement = new Node<E>(lastElement, element,null);
+        this.last = currentElement;
+        if (lastElement == null){
+            this.first = currentElement;
+        }
+        else {
+            lastElement.next = currentElement;
+        }
+        size++;
+    }
+
+    private boolean checkIfDuble(E element){
+        Node<E> node = this.first;
+        boolean result = false;
+        for (int i = 0; i != size; i++){
+            if (node.value.equals(element)){
+                result = true;
+                break;
+            }
+            node = node.next;
+        }
+        return result;
     }
 
     public int size() {
@@ -28,15 +55,15 @@ public class SimpleLinkedSet<E> implements MyIterable<E> {
     /**
      * Created by Saego on 28.07.2017.
      */
-    public static class Node<E> {
-        private Node<E> next;
+    static class Node<E> {
         private Node<E> prev;
         private E value;
+        private Node<E> next;
 
-        public Node(Node<E> next, Node<E> prev, E value) {
-            this.next = next;
+        Node(Node<E> prev, E value, Node<E> next) {
             this.prev = prev;
             this.value = value;
+            this.next = next;
         }
     }
 }
