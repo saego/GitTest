@@ -7,13 +7,22 @@ import java.util.Iterator;
 /**
  * Created by Saego on 31.07.2017.
  */
-public class SimpleArraySet<E> implements MyIterable{
+public class SimpleArraySet<E> implements MyIterable<E>{
     private static final int ARRAY_CAPACITY = 10;
     private Object[]elements;
     private int index = 0;
 
-    public boolean add(Object element) {
-        return false;
+    SimpleArraySet() {
+        this.elements = new Object[ARRAY_CAPACITY];
+    }
+
+    public boolean add(E element) {
+        boolean result = false;
+        if (!checkDuplicate(element)){
+            addElement(element);
+            result = true;
+        }
+        return result;
     }
 
     public int size() {
@@ -21,10 +30,8 @@ public class SimpleArraySet<E> implements MyIterable{
     }
 
     private void addElement(E element){
-        if (!checkDuplicate(element)) {
             checkCapacity();
             this.elements[index++] = element;
-        }
     }
 
     private boolean checkDuplicate(E element) {
@@ -47,8 +54,40 @@ public class SimpleArraySet<E> implements MyIterable{
         }
     }
 
+    private Object[] getAllElements(){
+        Object[] tmpElements = new Object[size()];
+        System.arraycopy(this.elements, 0, tmpElements, 0, size());
+        return tmpElements;
+    }
+
     @NotNull
     public Iterator iterator() {
-        return null;
+        return new SetArrayIterator(getAllElements());
+    }
+
+
+    public class SetArrayIterator implements Iterator<E> {
+        Object[] elements;
+        int cursor = 0;
+
+        SetArrayIterator(Object[] elements) {
+            this.elements = elements;
+        }
+
+        public boolean hasNext() {
+            boolean operationResult = true;
+            if (this.cursor == this.elements.length){
+                operationResult = false;
+            }
+            return operationResult;
+        }
+
+        public E next() {
+            return (E)elements[this.cursor++];
+        }
+
+        public void remove() {
+
+        }
     }
 }
