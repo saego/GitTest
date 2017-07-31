@@ -20,9 +20,9 @@ public class SimpleArraySet<E> implements MyIterable<E>{
     }
 
     /**
-     *
-     * @param element
-     * @return
+     * Add element general.
+     * @param element - new element value.
+     * @return - true if element's been added.
      */
     public boolean add(E element) {
         boolean result = false;
@@ -34,13 +34,17 @@ public class SimpleArraySet<E> implements MyIterable<E>{
     }
 
     /**
-     *Capacity of list.
+     * Capacity of list.
      * @return - numbers of elements.
      */
     public int size() {
         return this.index;
     }
 
+    /**
+     * Add element directly.
+     * @param element - new element value.
+     */
     private void addElement(E element){
             checkCapacity();
             this.elements[index++] = element;
