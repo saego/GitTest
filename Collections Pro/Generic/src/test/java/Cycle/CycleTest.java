@@ -10,10 +10,12 @@ import static org.junit.Assert.*;
  * Created by Saego on 27.07.2017.
  */
 public class CycleTest {
+
     private SimpleNode<Person> person1 = new SimpleNode<Person>(null, new Person("Name1", 12));
     private SimpleNode<Person> person2 = new SimpleNode<Person>(null, new Person("Name2", 13));
     private SimpleNode<Person> person3 = new SimpleNode<Person>(null, new Person("Name3", 14));
     private SimpleNode<Person> person4 = new SimpleNode<Person>(null, new Person("Name4", 15));
+
     @Test
     public void loop() throws Exception {
         person1.next = person2;
