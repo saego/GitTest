@@ -12,11 +12,25 @@ public class SimpleLinkedSet<E> implements MyIterable<E> {
     private Node<E> last;
     private Node<E> first;
     private int size;
-    public boolean add(E element) {
 
-        return true;
+    /**
+     * Add new element global, it is no duplicated.
+     * @param element - new element value.
+     * @return - true if was added.
+     */
+    public boolean add(E element) {
+        boolean result = false;
+        if (!checkIfDuplicate(element)){
+            addElement(element);
+            result = true;
+        }
+        return result;
     }
 
+    /**
+     * Add new element directly.
+     * @param element - new element value.
+     */
     private void addElement(E element){
         if (!checkIfDuplicate(element)) {
             Node<E> lastElement = this.last;
@@ -31,6 +45,11 @@ public class SimpleLinkedSet<E> implements MyIterable<E> {
         }
     }
 
+    /**
+     * Check if there is such value element in collection.
+     * @param element - new element value.
+     * @return - false if there is such element value in collection.
+     */
     private boolean checkIfDuplicate(E element){
         Node<E> node = this.first;
         boolean result = false;
