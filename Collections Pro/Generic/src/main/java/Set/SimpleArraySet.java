@@ -34,8 +34,8 @@ public class SimpleArraySet<E> implements MyIterable<E>{
     }
 
     /**
-     *
-     * @return
+     *Capacity of list.
+     * @return - numbers of elements.
      */
     public int size() {
         return this.index;
@@ -47,9 +47,9 @@ public class SimpleArraySet<E> implements MyIterable<E>{
     }
 
     /**
-     *
-     * @param element
-     * @return
+     * Check if there is the same element value in list.
+     * @param element - element to add.
+     * @return - true if there're no duplicate.
      */
     private boolean checkDuplicate(E element) {
         boolean result = false;
@@ -64,7 +64,7 @@ public class SimpleArraySet<E> implements MyIterable<E>{
     }
 
     /**
-     *
+     * Automatic change capacity array of objects.
      */
     private void checkCapacity() {
         if (index == this.elements.length){

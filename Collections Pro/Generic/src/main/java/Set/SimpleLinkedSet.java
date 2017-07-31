@@ -63,6 +63,10 @@ public class SimpleLinkedSet<E> implements MyIterable<E> {
         return result;
     }
 
+    /**
+     * Get capacity of list.
+     * @return - numbers of elements.
+     */
     public int size() {
         return this.size;
     }
