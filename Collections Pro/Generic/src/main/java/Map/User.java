@@ -21,7 +21,7 @@ class User {
         this.birthday = birthday;
         this.children = children;
     }
-///*
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -32,7 +32,7 @@ class User {
         if (children != user.children) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         return birthday != null ? birthday.equals(user.birthday) : user.birthday == null;
-    }
+    }/*
 
     @Override
     public int hashCode() {
@@ -40,5 +40,5 @@ class User {
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + children;
         return result;
-    }//*/
+    }*/
 }
