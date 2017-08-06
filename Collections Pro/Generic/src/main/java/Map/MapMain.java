@@ -17,5 +17,8 @@ public class MapMain {
         map.put(user1, new Object());
         map.put(user2, new Object());
         System.out.println(map);
+        Integer i = 5;
+        System.out.println(user1.hashCode());
+        System.out.println(i.hashCode());
     }
 }
