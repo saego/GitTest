@@ -17,8 +17,14 @@ public class MapMain {
         map.put(user1, new Object());
         map.put(user2, new Object());
         System.out.println(map);
-        Integer i = 5;
+        Integer i = 488888;
         System.out.println(user1.hashCode());
         System.out.println(i.hashCode());
+        i = user1.hashCode();
+        System.out.println((i^(i>>>16)) + " user1");
+        System.out.println((i & 15) + " basket");
+        i = user2.hashCode();
+        System.out.println((i^(i>>>16)) + " user2");
+        System.out.println((i & 15) + " basket");
     }
 }
