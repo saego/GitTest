@@ -10,16 +10,16 @@ import java.util.Iterator;
 public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     private final int BUCKET_CAPACITY = 16;
     private final float LOAD_FACTOR = (float) 0.75;
-    private Object[] bucketArray;
+    private Bucket<T, V>[] bucketArray;
     private float loadFactor;
 
     public SimpleHasMap() {
-        this.bucketArray = new Object[BUCKET_CAPACITY];
+        this.bucketArray = (Bucket<T, V>[])new Bucket[BUCKET_CAPACITY];
         this.loadFactor = LOAD_FACTOR;
     }
 
     public SimpleHasMap(int capacity, float loadFactor) {
-        this.bucketArray = new Object[capacity];
+        this.bucketArray = (Bucket<T, V>[]) new Bucket[capacity];
         this.loadFactor = loadFactor;
     }
 
@@ -46,9 +46,9 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     public V getValue(T key) {
         V value = null;
         if (key != null){
-            for (Object bucket:
-                 this.bucketArray) {
-                if (bucket.ge)
+            int bucket = simpleHash(key.hashCode());
+            if (this.bucketArray[bucket] != null & this.bucketArray[bucket].getKeyValue().equals(key)){
+                value = this.bucketArray[bucket].getBucketValue();
             }
         }
         return value;
@@ -63,56 +63,56 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         return null;
     }
 
-    private class Bucket <T, V>{
-        T key;
-        V value;
+    public class Bucket <TT, VV>{
+        TT key;
+        VV value;
 
-        Bucket(T key, V value) {
+        Bucket(TT key, VV value) {
             this.key = key;
             this.value = value;
         }
 
-        public T getKey() {
+        TT getKeyValue() {
             return key;
         }
 
-        public V getValue() {
+        VV getBucketValue() {
             return value;
         }
     }
 
-    /*private class MapNode<T, V> {
-        public T key;
-        public V value;
-        MapNode<T, V> next;
+    /*private class MapNode<TT, VV> {
+        public TT key;
+        public VV value;
+        MapNode<TT, VV> next;
 
-        public MapNode(T key, V value, MapNode<T, V> next) {
+        public MapNode(TT key, VV value, MapNode<TT, VV> next) {
             this.key = key;
             this.value = value;
             this.next = next;
         }
 
-        public T getKey() {
+        public TT getKey() {
             return key;
         }
 
-        public void setKey(T key) {
+        public void setKey(TT key) {
             this.key = key;
         }
 
-        public V getValue() {
+        public VV getValue() {
             return value;
         }
 
-        public void setValue(V value) {
+        public void setValue(VV value) {
             this.value = value;
         }
 
-        public MapNode<T, V> getNext() {
+        public MapNode<TT, VV> getNext() {
             return next;
         }
 
-        public void setNext(MapNode<T, V> next) {
+        public void setNext(MapNode<TT, VV> next) {
             this.next = next;
         }
     }*/
