@@ -14,6 +14,16 @@ public class SimpleHasMapTest {
     private Person person1 = new Person("Nil", 23);
     private Person person2 = new Person("Sonja", 32);
     private Person person3 = new Person("Niko", 17);
+    private Person person4 = new Person("Hitman", 33);
+    private Person person5 = new Person("Bob", 21);
+    private Person person6 = new Person("Eric", 13);
+    private Person person7 = new Person("Ruslan", 28);
+    private Person person8 = new Person("Victoria", 15);
+    private Person person9 = new Person("Ben", 53);
+    private Person person10 = new Person("William", 33);
+    private Person person11 = new Person("Filip", 24);
+    private Person person12 = new Person("Ronald", 41);
+
     private SimpleHasMap<Person, Integer> map = new SimpleHasMap<Person, Integer>();
         private int number0 = 1;
         private int number1 = 2;

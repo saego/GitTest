@@ -33,7 +33,7 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             }
             int bucket = getBucketNumber(simpleHash(key.hashCode()));
             if (bucketArray[bucket] == null){
-                bucketArray[bucket] = new Bucket<T, V>(key, value);
+                bucketArray[bucket] = new Bucket<T, V>(key, value, null);
                 resultOperation = true;
                 quantity ++;
             }
@@ -89,7 +89,7 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     public Iterator<T> iterator() {
         return null;
     }
-
+/*
     public class Bucket <TT, VV>{
         TT key;
         VV value;
@@ -107,40 +107,29 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             return value;
         }
     }
-
-    /*private class MapNode<TT, VV> {
-        public TT key;
+*/
+    private class Bucket<TT, VV> {
+        TT key;
         public VV value;
-        MapNode<TT, VV> next;
+        Bucket<TT, VV> next;
 
-        public MapNode(TT key, VV value, MapNode<TT, VV> next) {
+        Bucket(TT key, VV value, Bucket<TT, VV> next) {
             this.key = key;
             this.value = value;
             this.next = next;
         }
 
-        public TT getKey() {
-            return key;
+        TT getKeyValue() {
+            return this.key;
         }
 
-        public void setKey(TT key) {
-            this.key = key;
+        VV getBucketValue() {
+            return this.value;
         }
 
-        public VV getValue() {
-            return value;
+        public Bucket<TT, VV> getNextBucketQ() {
+            return this.next;
         }
 
-        public void setValue(VV value) {
-            this.value = value;
-        }
-
-        public MapNode<TT, VV> getNext() {
-            return next;
-        }
-
-        public void setNext(MapNode<TT, VV> next) {
-            this.next = next;
-        }
-    }*/
+    }
 }
