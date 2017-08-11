@@ -23,19 +23,41 @@ public class SimpleHasMapTest {
     private Person person10 = new Person("William", 33);
     private Person person11 = new Person("Filip", 24);
     private Person person12 = new Person("Ronald", 41);
+    private Person person13 = new Person("Regina", 22);
 
     private SimpleHasMap<Person, Integer> map = new SimpleHasMap<Person, Integer>();
-        private int number0 = 1;
-        private int number1 = 2;
-        private int number2 = 3;
-        private int number3 = 4;
+
+    private int number0 = 1;
+    private int number1 = 2;
+    private int number2 = 3;
+    private int number3 = 4;
+    private int number4 = 5;
+    private int number5 = 6;
+    private int number6 = 7;
+    private int number7 = 8;
+    private int number8 = 9;
+    private int number9 = 10;
+    private int number10 = 11;
+    private int number11 = 12;
+    private int number12 = 13;
+    private int number13 = 14;
+
     @Test
     public void put() throws Exception {
         map.put(person1, number1);
         map.put(person2, number2);
         map.put(person3, number3);
         assertThat(map.put(person0, number0), is(true));
-
+        map.put(person4, number4);
+        map.put(person5, number5);
+        map.put(person6, number6);
+        map.put(person7, number7);
+        map.put(person8, number8);
+        map.put(person9, number9);
+        map.put(person10, number10);
+        map.put(person11, number11);
+        map.put(person12, number12);
+        map.put(person13, number13);
     }
 
     @Test

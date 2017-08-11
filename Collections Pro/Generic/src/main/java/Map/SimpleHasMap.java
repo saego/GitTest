@@ -29,11 +29,17 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         boolean resultOperation = false;
         if (key != null){
             if (isOverload()){
+                quantity = 0;
                 resize();
             }
             int bucket = getBucketNumber(simpleHash(key.hashCode()));
             if (bucketArray[bucket] == null){
                 bucketArray[bucket] = new Bucket<T, V>(key, value, null);
+                resultOperation = true;
+                quantity ++;
+            }
+            else {
+                bucketArray[bucket] = new Bucket<T, V>(key, value, bucketArray[bucket]);
                 resultOperation = true;
                 quantity ++;
             }
@@ -48,16 +54,24 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         for (Bucket<T, V> buck:
              tmpArray) {
             if (buck != null){
-                T key = buck.getKeyValue();
-                V value = buck.getBucketValue();
-                put(key, value);
+/*                if (buck.getNextBucketQ() ==  null) {
+                    T key = buck.getKeyValue();
+                    V value = buck.getBucketValue();
+                    put(key, value);
+                }
+*/
+                while (buck.getNextBucketQ() != null){
+
+                }
             }
+
         }
     }
 
     @Contract(pure = true)
     private boolean isOverload() {
-        return this.quantity / this.bucketArray.length >= this.loadFactor;
+        boolean rr = (float)(this.quantity + 1) / this.bucketArray.length >= this.loadFactor;
+        return (float)(this.quantity + 1) / this.bucketArray.length >= this.loadFactor;
     }
 
     @Contract(pure = true)
@@ -127,7 +141,7 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             return this.value;
         }
 
-        public Bucket<TT, VV> getNextBucketQ() {
+        Bucket<TT, VV> getNextBucketQ() {
             return this.next;
         }
 
