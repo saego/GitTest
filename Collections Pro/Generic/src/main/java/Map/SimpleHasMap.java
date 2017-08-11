@@ -13,7 +13,7 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     private Bucket<T, V>[] bucketArray;
     private float loadFactor;
 
-    public SimpleHasMap() {
+    SimpleHasMap() {
         this.bucketArray = (Bucket<T, V>[])new Bucket[BUCKET_CAPACITY];
         this.loadFactor = LOAD_FACTOR;
     }
@@ -46,7 +46,7 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     public V getValue(T key) {
         V value = null;
         if (key != null){
-            int bucket = simpleHash(key.hashCode());
+            int bucket = getBucketNumber(simpleHash(key.hashCode()));
             if (this.bucketArray[bucket] != null & this.bucketArray[bucket].getKeyValue().equals(key)){
                 value = this.bucketArray[bucket].getBucketValue();
             }
