@@ -1,5 +1,6 @@
 package Map;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -12,6 +13,7 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     private final float LOAD_FACTOR = (float) 0.75;
     private Bucket<T, V>[] bucketArray;
     private float loadFactor;
+    private int quantity = 0;
 
     SimpleHasMap() {
         this.bucketArray = (Bucket<T, V>[])new Bucket[BUCKET_CAPACITY];
@@ -26,19 +28,44 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     public boolean put(T key, V value) {
         boolean resultOperation = false;
         if (key != null){
+            if (isOverload()){
+                resize();
+            }
             int bucket = getBucketNumber(simpleHash(key.hashCode()));
             if (bucketArray[bucket] == null){
                 bucketArray[bucket] = new Bucket<T, V>(key, value);
                 resultOperation = true;
+                quantity ++;
             }
         }
         return resultOperation;
     }
 
+    private void resize() {
+        Bucket<T, V>[] tmpArray = (Bucket<T, V>[]) new Bucket[this.bucketArray.length];
+        System.arraycopy(this.bucketArray, 0, tmpArray, 0, this.bucketArray.length);
+        this.bucketArray = (Bucket<T, V>[]) new Bucket[this.bucketArray.length * 2];
+        for (Bucket<T, V> buck:
+             tmpArray) {
+            if (buck != null){
+                T key = buck.getKeyValue();
+                V value = buck.getBucketValue();
+                put(key, value);
+            }
+        }
+    }
+
+    @Contract(pure = true)
+    private boolean isOverload() {
+        return this.quantity / this.bucketArray.length >= this.loadFactor;
+    }
+
+    @Contract(pure = true)
     private int simpleHash(int code) {
         return code ^ (code >>> 16);
     }
 
+    @Contract(pure = true)
     private int getBucketNumber(int hash){
         return hash & (this.bucketArray.length - 1);
     }
