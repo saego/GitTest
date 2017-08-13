@@ -54,17 +54,15 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         for (Bucket<T, V> buck:
              tmpArray) {
             if (buck != null){
-/*                if (buck.getNextBucketQ() ==  null) {
-                    T key = buck.getKeyValue();
-                    V value = buck.getBucketValue();
+                Bucket<T, V> tmpBuck = buck;
+                do {
+                    T key = tmpBuck.getKeyValue();
+                    V value = tmpBuck.getBucketValue();
                     put(key, value);
-                }
-*/
-                while (buck.getNextBucketQ() != null){
-
-                }
+                    tmpBuck = tmpBuck.getNextBucketQ();
+                    }
+                while (tmpBuck != null);
             }
-
         }
     }
 
@@ -88,8 +86,16 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         V value = null;
         if (key != null){
             int bucket = getBucketNumber(simpleHash(key.hashCode()));
-            if (this.bucketArray[bucket] != null & this.bucketArray[bucket].getKeyValue().equals(key)){
-                value = this.bucketArray[bucket].getBucketValue();
+            if (this.bucketArray[bucket] != null){
+                Bucket<T, V> tmpBuck = this.bucketArray[bucket];
+                do {
+                    if (tmpBuck.getKeyValue().equals(key)){
+                        value = this.bucketArray[bucket].getBucketValue();
+                        break;
+                    }
+                    else tmpBuck = tmpBuck.getNextBucketQ();
+                }
+                while (tmpBuck != null);
             }
         }
         return value;
