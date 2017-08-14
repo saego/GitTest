@@ -122,7 +122,7 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
 
     @NotNull
     public Iterator<T> iterator() {
-        return null;
+        return new MyMapIterator<T>(this.bucketArray);
     }
 
     private class Bucket<TT, VV> {
@@ -152,6 +152,28 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
 
         Bucket<TT, VV> getPrevBucketQ(){
             return  this.prev;
+        }
+    }
+
+    private class MyMapIterator<T> implements Iterator<T> {
+        Bucket<T, V>[] buckets;
+        MyMapIterator(Bucket<T, V>[] bucketArray) {
+            buckets = bucketArray;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public T next() {
+            return null;
+        }
+
+        @Override
+        public void remove() {
+
         }
     }
 }
