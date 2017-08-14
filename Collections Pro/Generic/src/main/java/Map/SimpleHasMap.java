@@ -68,7 +68,6 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
 
     @Contract(pure = true)
     private boolean isOverload() {
-        boolean rr = (float)(this.quantity + 1) / this.bucketArray.length >= this.loadFactor;
         return (float)(this.quantity + 1) / this.bucketArray.length >= this.loadFactor;
     }
 
@@ -102,32 +101,27 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     }
 
     public boolean removeNode(T key) {
-        return false;
+        int bucket = getBucketNumber(simpleHash(key.hashCode()));
+        boolean result = false;
+        if (this.bucketArray[bucket] != null){
+            Bucket<T, V> tmpBuck = this.bucketArray[bucket];
+            do {
+                if (tmpBuck.getKeyValue().equals(key)){
+                    tmpBuck = null;
+                    break;// тут треба змінити переадресацію
+                }
+                else tmpBuck = tmpBuck.getNextBucketQ();
+            }
+            while (tmpBuck != null);
+        }
+        return result;
     }
 
     @NotNull
     public Iterator<T> iterator() {
         return null;
     }
-/*
-    public class Bucket <TT, VV>{
-        TT key;
-        VV value;
 
-        Bucket(TT key, VV value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        TT getKeyValue() {
-            return key;
-        }
-
-        VV getBucketValue() {
-            return value;
-        }
-    }
-*/
     private class Bucket<TT, VV> {
         TT key;
         public VV value;
