@@ -4,7 +4,8 @@ import SimpleList.Person;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by Saego on 10.08.2017.
@@ -25,7 +26,7 @@ public class SimpleHasMapTest {
     private Person person12 = new Person("Ronald", 41);
     private Person person13 = new Person("Regina", 22);
 
-    private SimpleHasMap<Person, Integer> map = new SimpleHasMap<Person, Integer>();
+    private SimpleHasMap<Person, Integer> map = new SimpleHasMap<>();
 
     private int number0 = 1;
     private int number1 = 2;
@@ -72,6 +73,22 @@ public class SimpleHasMapTest {
 
     @Test
     public void removeNode() throws Exception {
+        map.put(person1, number1);
+        map.put(person2, number2);
+        map.put(person3, number3);
+        map.put(person0, number0);
+        map.put(person4, number4);
+        map.put(person5, number5);
+        map.put(person6, number6);
+        map.put(person7, number7);
+        map.put(person8, number8);
+        map.put(person9, number9);
+        map.put(person10, number10);
+        map.put(person11, number11);
+        map.put(person12, number12);
+        map.put(person13, number13);
+        map.removeNode(person11);
+        assertNull(map.getValue(person11));
     }
 
     @Test

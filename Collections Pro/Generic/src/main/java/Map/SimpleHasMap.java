@@ -34,12 +34,14 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             }
             int bucket = getBucketNumber(simpleHash(key.hashCode()));
             if (bucketArray[bucket] == null){
-                bucketArray[bucket] = new Bucket<T, V>(key, value, null);
+                bucketArray[bucket] = new Bucket<T, V>(key, value, null, null);
                 resultOperation = true;
                 quantity ++;
             }
             else {
-                bucketArray[bucket] = new Bucket<T, V>(key, value, bucketArray[bucket]);
+                Bucket<T, V> tmpBucket = bucketArray[bucket];
+                bucketArray[bucket] = new Bucket<T, V>(key, value, bucketArray[bucket], null);
+                tmpBucket.prev = bucketArray[bucket];
                 resultOperation = true;
                 quantity ++;
             }
@@ -107,8 +109,9 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             Bucket<T, V> tmpBuck = this.bucketArray[bucket];
             do {
                 if (tmpBuck.getKeyValue().equals(key)){
-                    tmpBuck = null;
-                    break;// тут треба змінити переадресацію
+                    tmpBuck.getPrevBucketQ().next = tmpBuck.getNextBucketQ();
+                    result = true;
+                    break;
                 }
                 else tmpBuck = tmpBuck.getNextBucketQ();
             }
@@ -126,11 +129,13 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         TT key;
         public VV value;
         Bucket<TT, VV> next;
+        Bucket<TT, VV> prev;
 
-        Bucket(TT key, VV value, Bucket<TT, VV> next) {
+        Bucket(TT key, VV value, Bucket<TT, VV> next, Bucket<TT, VV> prev) {
             this.key = key;
             this.value = value;
             this.next = next;
+            this.prev = prev;
         }
 
         TT getKeyValue() {
@@ -145,5 +150,8 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             return this.next;
         }
 
+        Bucket<TT, VV> getPrevBucketQ(){
+            return  this.prev;
+        }
     }
 }

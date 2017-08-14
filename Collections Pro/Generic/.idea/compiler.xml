@@ -14,7 +14,7 @@
     <bytecodeTargetLevel>
       <module name="EasyArrayList" target="1.5" />
       <module name="MyArrayList" target="1.5" />
-      <module name="MyLists" target="1.5" />
+      <module name="MyLists" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
