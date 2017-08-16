@@ -34,7 +34,7 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             }
             int bucket = getBucketNumber(simpleHash(key.hashCode()));
             if (bucketArray[bucket] == null){
-                bucketArray[bucket] = new Bucket<T, V>(key, value, null, null);
+                bucketArray[bucket] = new Bucket<>(key, value, null, null);
                 resultOperation = true;
                 quantity ++;
             }
@@ -155,19 +155,22 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         }
     }
 
-    private class MyMapIterator<T> implements Iterator<T> {
-        Bucket<T, V>[] buckets;
-        MyMapIterator(Bucket<T, V>[] bucketArray) {
+    private class MyMapIterator<TT> implements Iterator<TT> {
+        Bucket<TT, V>[] buckets;
+        int iterator = 0;
+        MyMapIterator(Bucket<TT, V>[] bucketArray) {
             buckets = bucketArray;
         }
 
         @Override
         public boolean hasNext() {
-            return false;
+            return (iterator < this.buckets.length) && (this.buckets[iterator].getNextBucketQ() != null);//not right
         }
 
         @Override
-        public T next() {
+        public TT next() {
+            if (this.buckets[iterator].)
+            iterator++;
             return null;
         }
 
