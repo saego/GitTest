@@ -169,11 +169,14 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             Bucket<TT, V>[] nodes = bucketsWithoutNull(this.buckets);
             Bucket<TT, V> tmpBucket = this.currentBucket;
             if (this.iterator < nodes.length) {
-                if (tmpBucket == null){
-                    tmpBucket = nodes[this.iterator];
-                }
-                if ((tmpBucket.getNextBucketQ() != null) & ((this.iterator + 1) != nodes.length)){
+                if ((tmpBucket == null) & (nodes.length != 0)){
                     has = true;
+                }
+                else {
+                    assert tmpBucket != null;
+                    if ((tmpBucket.getNextBucketQ() != null) || ((this.iterator + 1) != nodes.length)){
+                        has = true;
+                    }
                 }
             }
             return has;
