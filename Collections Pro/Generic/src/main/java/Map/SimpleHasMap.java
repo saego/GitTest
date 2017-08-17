@@ -184,12 +184,22 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
 
         @Override
         public TT next() {
-            return null;
+            Bucket<TT, V>[] nodes = bucketsWithoutNull(this.buckets);
+            if (this.currentBucket == null){
+                this.currentBucket = nodes[this.iterator];
+            }
+            else if (this.currentBucket.getNextBucketQ() == null){
+                iterator++;
+                next();
+            }
+            else {
+                this.currentBucket = this.currentBucket.getNextBucketQ();
+            }
+            return this.currentBucket.getKeyValue();
         }
 
         @Override
         public void remove() {
-
         }
 
         private Bucket<TT, V>[] bucketsWithoutNull(Bucket<TT, V>[] buckets){
