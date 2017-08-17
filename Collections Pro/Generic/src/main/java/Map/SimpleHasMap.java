@@ -158,25 +158,54 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     private class MyMapIterator<TT> implements Iterator<TT> {
         Bucket<TT, V>[] buckets;
         int iterator = 0;
+        Bucket<TT, V> currentBucket = null;
         MyMapIterator(Bucket<TT, V>[] bucketArray) {
             buckets = bucketArray;
         }
 
         @Override
         public boolean hasNext() {
-            return (iterator < this.buckets.length) && (this.buckets[iterator].getNextBucketQ() != null);//not right
+            boolean has = false;
+            Bucket<TT, V>[] nodes = bucketsWithoutNull(this.buckets);
+            Bucket<TT, V> tmpBucket = this.currentBucket;
+            if (this.iterator < nodes.length) {
+                if (tmpBucket == null){
+                    tmpBucket = nodes[this.iterator];
+                }
+                if ((tmpBucket.getNextBucketQ() != null) & ((this.iterator + 1) != nodes.length)){
+                    has = true;
+                }
+            }
+            return has;
         }
 
         @Override
         public TT next() {
-            if (this.buckets[iterator].)
-            iterator++;
             return null;
         }
 
         @Override
         public void remove() {
 
+        }
+
+        private Bucket<TT, V>[] bucketsWithoutNull(Bucket<TT, V>[] buckets){
+            int notNullQuantity = 0;
+            int iteratorNotNull = 0;
+            for (Bucket<TT, V> bucket : buckets) {
+                if (bucket != null) {
+                    notNullQuantity++;
+                }
+            }
+            Bucket<TT, V>[] notNullBucket = (Bucket<TT, V>[])new Bucket[notNullQuantity];
+            for (Bucket<TT, V> bucket :
+                 buckets) {
+                if (bucket != null) {
+                    notNullBucket[iteratorNotNull] = bucket;
+                    iteratorNotNull++;
+                }
+            }
+            return notNullBucket;
         }
     }
 }
