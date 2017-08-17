@@ -3,6 +3,8 @@ package Map;
 import SimpleList.Person;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -88,11 +90,30 @@ public class SimpleHasMapTest {
         map.put(person12, number12);
         map.put(person13, number13);
         map.removeNode(person11);
+        map.removeNode(person3);
+        assertNull(map.getValue(new Person("Niko", 17)));
         assertNull(map.getValue(person11));
     }
 
     @Test
     public void iterator() throws Exception {
+        map.put(person0, number0);
+        map.put(person1, number1);
+        map.put(person2, number2);
+        map.put(person3, number3);
+        Iterator<Person> iterator = map.iterator();
+        //assertThat(iterator.hasNext(), is(true));
+        //assertThat(iterator.hasNext(), is(true));
+        iterator.next();
+        //assertThat(iterator.hasNext(), is(true));
+        iterator.next();
+        //assertThat(iterator.hasNext(), is(true));
+        /*
+        iterator.next();
+        assertThat(iterator.hasNext(), is(true));
+        iterator.next();
+        assertThat(iterator.hasNext(), is(false));
+        assertThat(iterator.hasNext(), is(false)); */
     }
 
 }

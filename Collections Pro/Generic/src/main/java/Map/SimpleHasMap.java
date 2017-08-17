@@ -109,9 +109,27 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             Bucket<T, V> tmpBuck = this.bucketArray[bucket];
             do {
                 if (tmpBuck.getKeyValue().equals(key)){
-                    tmpBuck.getPrevBucketQ().next = tmpBuck.getNextBucketQ();
-                    result = true;
-                    break;
+                    if ((tmpBuck.getPrevBucketQ() == null) & (tmpBuck.getNextBucketQ() == null)){
+                        this.bucketArray[bucket] = null;
+                        result = true;
+                        break;
+                    }
+                    else if ((tmpBuck.getPrevBucketQ() == null) & (tmpBuck.getNextBucketQ() != null)){
+                        this.bucketArray[bucket] = tmpBuck.getNextBucketQ();
+                        tmpBuck.getNextBucketQ().prev = null;
+                        result = true;
+                        break;
+                    }
+                    else if ((tmpBuck.getPrevBucketQ() != null) & (tmpBuck.getNextBucketQ() == null)){
+                        tmpBuck.getPrevBucketQ().next = null;
+                        result = true;
+                        break;
+                    }
+                    else {
+                        tmpBuck.getPrevBucketQ().next = tmpBuck.getNextBucketQ();
+                        result = true;
+                        break;
+                    }
                 }
                 else tmpBuck = tmpBuck.getNextBucketQ();
             }
@@ -120,9 +138,28 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         return result;
     }
 
+    private Bucket<T, V>[] bucketsWithoutNull(Bucket<T, V>[] buckets){
+        int notNullQuantity = 0;
+        int iteratorNotNull = 0;
+        for (Bucket<T, V> bucket : buckets) {
+            if (bucket != null) {
+                notNullQuantity++;
+            }
+        }
+        Bucket<T, V>[] notNullBucket = (Bucket<T, V>[])new Bucket[notNullQuantity];
+        for (Bucket<T, V> bucket :
+                buckets) {
+            if (bucket != null) {
+                notNullBucket[iteratorNotNull] = bucket;
+                iteratorNotNull++;
+            }
+        }
+        return notNullBucket;
+    }
+
     @NotNull
     public Iterator<T> iterator() {
-        return new MyMapIterator<T>(this.bucketArray);
+        return new MyMapIterator<>(bucketsWithoutNull(this.bucketArray));
     }
 
     private class Bucket<TT, VV> {
@@ -166,15 +203,14 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         @Override
         public boolean hasNext() {
             boolean has = false;
-            Bucket<TT, V>[] nodes = bucketsWithoutNull(this.buckets);
             Bucket<TT, V> tmpBucket = this.currentBucket;
-            if (this.iterator < nodes.length) {
-                if ((tmpBucket == null) & (nodes.length != 0)){
+            if (this.iterator < this.buckets.length) {
+                if ((tmpBucket == null) & (this.buckets.length != 0)){
                     has = true;
                 }
                 else {
                     assert tmpBucket != null;
-                    if ((tmpBucket.getNextBucketQ() != null) || ((this.iterator + 1) != nodes.length)){
+                    if ((tmpBucket.getNextBucketQ() != null) || ((this.iterator + 1) != this.buckets.length)){
                         has = true;
                     }
                 }
@@ -184,41 +220,25 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
 
         @Override
         public TT next() {
-            Bucket<TT, V>[] nodes = bucketsWithoutNull(this.buckets);
             if (this.currentBucket == null){
-                this.currentBucket = nodes[this.iterator];
+                this.currentBucket = this.buckets[this.iterator];
             }
             else if (this.currentBucket.getNextBucketQ() == null){
                 iterator++;
+                this.currentBucket = null;
                 next();
             }
             else {
                 this.currentBucket = this.currentBucket.getNextBucketQ();
             }
-            return this.currentBucket.getKeyValue();
+            TT returnBucket = this.currentBucket.getKeyValue();
+            return this.currentBucket.getKeyValue(); // there are not move cursor
         }
 
         @Override
         public void remove() {
         }
 
-        private Bucket<TT, V>[] bucketsWithoutNull(Bucket<TT, V>[] buckets){
-            int notNullQuantity = 0;
-            int iteratorNotNull = 0;
-            for (Bucket<TT, V> bucket : buckets) {
-                if (bucket != null) {
-                    notNullQuantity++;
-                }
-            }
-            Bucket<TT, V>[] notNullBucket = (Bucket<TT, V>[])new Bucket[notNullQuantity];
-            for (Bucket<TT, V> bucket :
-                 buckets) {
-                if (bucket != null) {
-                    notNullBucket[iteratorNotNull] = bucket;
-                    iteratorNotNull++;
-                }
-            }
-            return notNullBucket;
-        }
     }
+
 }
