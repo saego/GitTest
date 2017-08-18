@@ -220,19 +220,22 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
 
         @Override
         public TT next() {
+            TT returnBucket;
             if (this.currentBucket == null){
-                this.currentBucket = this.buckets[this.iterator];
+                this.currentBucket = this.buckets[iterator];
+                returnBucket = this.currentBucket.getKeyValue();
             }
-            else if (this.currentBucket.getNextBucketQ() == null){
-                iterator++;
+            else {
+                returnBucket = this.currentBucket.getKeyValue();
+            }
+            if (this.currentBucket.getNextBucketQ() == null){
+                this.iterator++;
                 this.currentBucket = null;
-                next();
             }
             else {
                 this.currentBucket = this.currentBucket.getNextBucketQ();
             }
-            TT returnBucket = this.currentBucket.getKeyValue();
-            return this.currentBucket.getKeyValue(); // there are not move cursor
+            return returnBucket;
         }
 
         @Override

@@ -102,18 +102,17 @@ public class SimpleHasMapTest {
         map.put(person2, number2);
         map.put(person3, number3);
         Iterator<Person> iterator = map.iterator();
-        //assertThat(iterator.hasNext(), is(true));
-        //assertThat(iterator.hasNext(), is(true));
+        assertThat(iterator.hasNext(), is(true));
+        assertThat(iterator.hasNext(), is(true));
         iterator.next();
-        //assertThat(iterator.hasNext(), is(true));
+        assertThat(iterator.hasNext(), is(true));
         iterator.next();
-        //assertThat(iterator.hasNext(), is(true));
-        /*
+        assertThat(iterator.hasNext(), is(true));
         iterator.next();
         assertThat(iterator.hasNext(), is(true));
         iterator.next();
         assertThat(iterator.hasNext(), is(false));
-        assertThat(iterator.hasNext(), is(false)); */
+        assertThat(iterator.hasNext(), is(false));
+        }
     }
 
-}
