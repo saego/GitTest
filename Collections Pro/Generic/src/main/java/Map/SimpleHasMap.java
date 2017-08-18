@@ -13,17 +13,31 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
     private float loadFactor;
     private int quantity = 0;
 
+    /**
+     * Default constructor.
+     */
     SimpleHasMap() {
         int BUCKET_CAPACITY = 16;
         this.bucketArray = (Bucket<T, V>[])new Bucket[BUCKET_CAPACITY];
         this.loadFactor = (float) 0.75;
     }
 
+    /**
+     * Custom constructor.
+     * @param capacity - start quantity of buckets.
+     * @param loadFactor - max load of buckets, if more - quantity of bucket increase.
+     */
     SimpleHasMap(int capacity, float loadFactor) {
         this.bucketArray = (Bucket<T, V>[]) new Bucket[capacity];
         this.loadFactor = loadFactor;
     }
 
+    /**
+     * Add new element to hash table.
+     * @param key - key of element.
+     * @param value - value of element.
+     * @return - true - if element has been added to table.
+     */
     public boolean put(T key, V value) {
         boolean resultOperation = false;
         if (key != null){
@@ -48,6 +62,9 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         return resultOperation;
     }
 
+    /**
+     * Increase hash table size, if current load_factor is bigger than in constructor.
+     */
     private void resize() {
         Bucket<T, V>[] tmpArray = (Bucket<T, V>[]) new Bucket[this.bucketArray.length];
         System.arraycopy(this.bucketArray, 0, tmpArray, 0, this.bucketArray.length);
@@ -67,11 +84,20 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         }
     }
 
+    /**
+     * Check if current load_factor is bigger than in constructor.
+     * @return - true - if current load_factor is bigger than in constructor.
+     */
     @Contract(pure = true)
     private boolean isOverload() {
         return (float)(this.quantity + 1) / this.bucketArray.length >= this.loadFactor;
     }
 
+    /**
+     *
+     * @param code
+     * @return
+     */
     @Contract(pure = true)
     private int simpleHash(int code) {
         return code ^ (code >>> 16);
@@ -240,7 +266,5 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         @Override
         public void remove() {
         }
-
     }
-
 }
