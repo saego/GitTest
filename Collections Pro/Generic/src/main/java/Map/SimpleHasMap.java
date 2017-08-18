@@ -95,19 +95,29 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
 
     /**
      *
-     * @param code
-     * @return
+     * @param code - native(override) hashcode.
+     * @return - hash function of native(override) hashcode.
      */
     @Contract(pure = true)
     private int simpleHash(int code) {
         return code ^ (code >>> 16);
     }
 
+    /**
+     *
+     * @param hash - hash function.
+     * @return - number of bucket in hash table.
+     */
     @Contract(pure = true)
     private int getBucketNumber(int hash){
         return hash & (this.bucketArray.length - 1);
     }
 
+    /**
+     * Get value from table by key.
+     * @param key - key.
+     * @return - value of element.
+     */
     public V getValue(T key) {
         V value = null;
         if (key != null){
@@ -127,6 +137,11 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         return value;
     }
 
+    /**
+     * Remove value with key.
+     * @param key - key.
+     * @return - true - if has been removed.
+     */
     public boolean removeNode(T key) {
         int bucket = getBucketNumber(simpleHash(key.hashCode()));
         boolean result = false;
@@ -163,6 +178,11 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         return result;
     }
 
+    /**
+     * Get array of elements without null from current table.
+     * @param buckets - current hash table.
+     * @return - hash table without null values.
+     */
     private Bucket<T, V>[] bucketsWithoutNull(Bucket<T, V>[] buckets){
         int notNullQuantity = 0;
         int iteratorNotNull = 0;
@@ -182,17 +202,33 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
         return notNullBucket;
     }
 
+    /**
+     * Iterator for map.
+     * @return - my iterator.
+     */
     @NotNull
     public Iterator<T> iterator() {
         return new MyMapIterator<>(bucketsWithoutNull(this.bucketArray));
     }
 
+    /**
+     * Object node which consists of key, value and references to previous and next node in current bucket.
+     * @param <TT> - key.
+     * @param <VV> - value.
+     */
     private class Bucket<TT, VV> {
         TT key;
         public VV value;
         Bucket<TT, VV> next;
         Bucket<TT, VV> prev;
 
+        /**
+         * Default constructor.
+         * @param key - key of node.
+         * @param value - value of node.
+         * @param next - reference to next node.
+         * @param prev - reference to previous node.
+         */
         Bucket(TT key, VV value, Bucket<TT, VV> next, Bucket<TT, VV> prev) {
             this.key = key;
             this.value = value;
@@ -200,23 +236,43 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             this.prev = prev;
         }
 
+        /**
+         * Get key of node.
+         * @return - key.
+         */
         TT getKeyValue() {
             return this.key;
         }
 
+        /**
+         * Get e value of node.
+         * @return - value.
+         */
         VV getBucketValue() {
             return this.value;
         }
 
+        /**
+         * Get next node in current bucket.
+         * @return - next node.
+         */
         Bucket<TT, VV> getNextBucketQ() {
             return this.next;
         }
 
+        /**
+         * Get previous node in current bucket.
+         * @return - previous node.
+         */
         Bucket<TT, VV> getPrevBucketQ(){
             return  this.prev;
         }
     }
 
+    /**
+     * My iterator of SimpleHashMap.
+     * @param <TT> - key.
+     */
     private class MyMapIterator<TT> implements Iterator<TT> {
         Bucket<TT, V>[] buckets;
         int iterator = 0;
@@ -225,6 +281,10 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             buckets = bucketArray;
         }
 
+        /**
+         * Check if has net element.
+         * @return - true - if there is next element.
+         */
         @Override
         public boolean hasNext() {
             boolean has = false;
@@ -243,6 +303,10 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             return has;
         }
 
+        /**
+         * Get element.
+         * @return - next element.
+         */
         @Override
         public TT next() {
             TT returnBucket;
