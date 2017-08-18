@@ -9,18 +9,17 @@ import java.util.Iterator;
  * Created by Saego on 09.08.2017.
  */
 public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
-    private final int BUCKET_CAPACITY = 16;
-    private final float LOAD_FACTOR = (float) 0.75;
     private Bucket<T, V>[] bucketArray;
     private float loadFactor;
     private int quantity = 0;
 
     SimpleHasMap() {
+        int BUCKET_CAPACITY = 16;
         this.bucketArray = (Bucket<T, V>[])new Bucket[BUCKET_CAPACITY];
-        this.loadFactor = LOAD_FACTOR;
+        this.loadFactor = (float) 0.75;
     }
 
-    public SimpleHasMap(int capacity, float loadFactor) {
+    SimpleHasMap(int capacity, float loadFactor) {
         this.bucketArray = (Bucket<T, V>[]) new Bucket[capacity];
         this.loadFactor = loadFactor;
     }
@@ -40,7 +39,7 @@ public class SimpleHasMap<T, V> implements SimpleMapIterable<T, V> {
             }
             else {
                 Bucket<T, V> tmpBucket = bucketArray[bucket];
-                bucketArray[bucket] = new Bucket<T, V>(key, value, bucketArray[bucket], null);
+                bucketArray[bucket] = new Bucket<>(key, value, bucketArray[bucket], null);
                 tmpBucket.prev = bucketArray[bucket];
                 resultOperation = true;
                 quantity ++;

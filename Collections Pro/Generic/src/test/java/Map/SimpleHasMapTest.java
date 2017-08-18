@@ -28,7 +28,11 @@ public class SimpleHasMapTest {
     private Person person12 = new Person("Ronald", 41);
     private Person person13 = new Person("Regina", 22);
 
+    private int capacity = 22;
+    private float load = (float) 0.2;
+
     private SimpleHasMap<Person, Integer> map = new SimpleHasMap<>();
+    private SimpleHasMap<Person, Integer> map1 = new SimpleHasMap<>(capacity, load);
 
     private int number0 = 1;
     private int number1 = 2;
@@ -47,6 +51,7 @@ public class SimpleHasMapTest {
 
     @Test
     public void put() throws Exception {
+        map1.put(person11, number10);
         map.put(person1, number1);
         map.put(person2, number2);
         map.put(person3, number3);
@@ -113,6 +118,15 @@ public class SimpleHasMapTest {
         iterator.next();
         assertThat(iterator.hasNext(), is(false));
         assertThat(iterator.hasNext(), is(false));
+        Person[] persons = new Person[]{person1, person2, person0, person3};
+        Person[] testPersons = new Person[4];
+        Iterator<Person> iterator1 = map.iterator();
+        int i = 0;
+        while (iterator1.hasNext()){
+            testPersons[i] = iterator1.next();
+            i++;
+        }
+        assertThat(testPersons, is(persons));
         }
     }
 
