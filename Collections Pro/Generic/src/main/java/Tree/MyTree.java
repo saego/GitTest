@@ -22,24 +22,28 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree {
         }
         else {
             this.leaf = this.root;
-            boolean flagR = false;
-            while (this.leaf != null){
-                if (this.leaf.value.compareTo((T) element) > 0){
-                    this.leaf = this.leaf.getLeftBrunch();
-                    flagR = false;
+            while (this.leaf != null) {
+                if (this.leaf.value.compareTo((T) element) < 0) {
+                    if (this.leaf.getRightBrunch() == null){
+                        this.leaf.rightBrunch = new Node<>((T)element,null, null,  this.leaf);
+                        break;
+                    }
+                    else {
+                        this.leaf = this.leaf.getRightBrunch();
+                    }
+                } else if (this.leaf.value.compareTo((T) element) > 0) {
+                    if (this.leaf.getLeftBrunch() == null){
+                        this.leaf.leftBrunch = new Node<>((T)element,null, null,  this.leaf);
+                        break;
+                    }
+                    else {
+                        this.leaf = this.leaf.getLeftBrunch();
+                    }
                 }
-                else  if (this.leaf.value.compareTo((T) element) < 0){
-                    this.leaf = this.leaf.getRightBrunch();
-                    flagR = true;
-                }
-            }
-            if (flagR) {
-                this.leaf.prev.rightBrunch = new Node<>((T) element, null, null, this.leaf.prev);
-            }
-            else {
-                this.leaf.prev.leftBrunch = new Node<>((T) element, null, null, this.leaf.prev);
             }
         }
+            //else this.leaf.value = (T)element;
+
         return result;
     }
 
@@ -53,13 +57,13 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree {
         TT value;
         Node<TT> leftBrunch;
         Node<TT> rightBrunch;
-        Node<TT> prev;
+        Node<TT> parent;
 
-        Node(TT value, Node<TT> leftBrunch, Node<TT> rightBrunch, Node<TT> prev) {
+        Node(TT value, Node<TT> leftBrunch, Node<TT> rightBrunch, Node<TT> parent) {
             this.value = value;
             this.leftBrunch = leftBrunch;
             this.rightBrunch = rightBrunch;
-            this.prev = prev;
+            this.parent = parent;
         }
 
         public TT getValue() {
@@ -72,6 +76,10 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree {
 
         public Node<TT> getRightBrunch() {
             return rightBrunch;
+        }
+
+        public Node<TT> getParent() {
+            return parent;
         }
     }
 }

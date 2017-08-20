@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
  * Created by Saego on 20.08.2017.
  */
 public class MyTreeTest {
-    Integer i0 = 0, i1 = 34, i2 = 4, i3 = 16, i4 = 46, i5 = 13, i6 = 5;
+    Integer i0 = 6, i1 = 34, i2 = 4, i3 = 16, i4 = 46, i5 = 13, i6 = 5, i7 = 33;
     MyTree<Integer> tree = new MyTree<>();
     @Test
     public void add() throws Exception {
@@ -19,6 +19,7 @@ public class MyTreeTest {
         tree.add(i4);
         tree.add(i5);
         tree.add(i6);
+        tree.add(i7);
     }
 
     @Test
