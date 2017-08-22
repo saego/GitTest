@@ -5,4 +5,5 @@ package Tree;
  */
 public interface SimpleTree<T extends Comparable<T>> extends Iterable<T> {
     boolean add(T element);
+    T getLeaf (T element) throws Exception;
 }

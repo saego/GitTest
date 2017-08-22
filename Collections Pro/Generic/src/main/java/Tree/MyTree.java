@@ -12,7 +12,6 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree {
     private Node<T> leaf;
 
 
-
     @Override
     public boolean add(Comparable element) {
         boolean result = false;
@@ -23,17 +22,17 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree {
         else {
             this.leaf = this.root;
             while (this.leaf != null) {
-                if (this.leaf.value.compareTo((T) element) < 0) {
+                if (this.leaf.getValueOfLeaf().compareTo((T) element) <= 0) {
                     if (this.leaf.getRightBrunch() == null){
-                        this.leaf.rightBrunch = new Node<>((T)element,null, null,  this.leaf);
+                        this.leaf.rightBrunch = new Node<>((T)element,null, null, this.leaf);
                         break;
                     }
                     else {
                         this.leaf = this.leaf.getRightBrunch();
                     }
-                } else if (this.leaf.value.compareTo((T) element) > 0) {
+                } else if (this.leaf.getValueOfLeaf().compareTo((T) element) > 0) {
                     if (this.leaf.getLeftBrunch() == null){
-                        this.leaf.leftBrunch = new Node<>((T)element,null, null,  this.leaf);
+                        this.leaf.leftBrunch = new Node<>((T)element,null, null, this.leaf);
                         break;
                     }
                     else {
@@ -42,9 +41,31 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree {
                 }
             }
         }
-            //else this.leaf.value = (T)element;
-
         return result;
+    }
+
+    @Override
+    public Comparable getLeaf(Comparable element) throws Exception {
+        if (this.root == null){
+            throw new NullPointerException("Root is null!");
+        }
+        else {
+            this.leaf = this.root;
+            while ((this.leaf != null) & (this.leaf.getValueOfLeaf().compareTo((T)element) != 0)){
+                if (this.leaf.getValueOfLeaf().compareTo((T)element) > 0){
+                    this.leaf = this.leaf.getLeftBrunch();
+                }
+                else {
+                    this.leaf = this.leaf.getRightBrunch();
+                }
+            }
+            if (this.leaf == null){
+                throw new NullPointerException("Element not found!");
+            }
+            else {
+                return this.leaf.getValueOfLeaf();
+            }
+        }
     }
 
     @NotNull
@@ -66,15 +87,15 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree {
             this.parent = parent;
         }
 
-        public TT getValue() {
+        TT getValueOfLeaf() {
             return value;
         }
 
-        public Node<TT> getLeftBrunch() {
+        Node<TT> getLeftBrunch() {
             return leftBrunch;
         }
 
-        public Node<TT> getRightBrunch() {
+        Node<TT> getRightBrunch() {
             return rightBrunch;
         }
 
@@ -82,4 +103,5 @@ public class MyTree<T extends Comparable<T>> implements SimpleTree {
             return parent;
         }
     }
+
 }
