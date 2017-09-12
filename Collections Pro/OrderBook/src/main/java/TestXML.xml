@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<company>
+<books>
     <staff id="1001">
         <firstname>yong</firstname>
         <lastname>mook kim</lastname>
@@ -12,4 +12,4 @@
         <nickname>fong fong</nickname>
         <salary>200000</salary>
     </staff>
-</company>
+</books>
