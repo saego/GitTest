@@ -16,7 +16,7 @@ public class ReadXML {
 
         try {
 
-            File fXmlFile = new File("C:\\Users\\user\\IdeaProjects\\RepositBasic\\Collections Pro\\OrderBook\\src\\main\\java\\TestXML.xml");
+            File fXmlFile = new File("D:\\Java Examples\\RepositBasic\\RepositBasic\\Collections Pro\\OrderBook\\src\\main\\java\\TestXML.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);

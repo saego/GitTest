@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Orders>
-    <AddOrder book="book-1" operation="SELL" price="100.50" volume="81" orderId="1">
-    </AddOrder>
-    <AddOrder book="book-3" operation="BUY" price=" 99.50" volume="86" orderId="2">
-    </AddOrder>
-</Orders>
