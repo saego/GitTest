@@ -9,10 +9,10 @@ import java.io.FileNotFoundException;
 /**
  * Created by Saego on 14.09.2017.
  */
-public class SimpleParser {
+public class SimpleParserStart {
     public static void main(String[] args) throws FileNotFoundException {
         File xml = new File
-                ("D:\\Java Examples\\orders.xml");
+                ("d:\\HDD\\Hard_HDD\\orders.xml");
         XMLInputFactory factory =XMLInputFactory.newInstance();
         try {
             XMLStreamReader reader = factory.createXMLStreamReader(new FileInputStream(xml));
