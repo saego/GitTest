@@ -1,3 +1,5 @@
+package Examples;
+
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -7,10 +9,10 @@ import java.io.IOException;
  */
 public class SimpleParserStart {
     public static void main(String[] args) throws IOException, SAXException {
-        Parser parser = new Parser();
+        ParserExamples parser = new ParserExamples();
         String xml = "d:\\HDD\\Hard_HDD\\orders.xml";
-        //parser.stAXParser(xml);
-        //xml = "C:\\Users\\user\\IdeaProjects\\RepositBasic\\Collections Pro\\OrderBook\\src\\main\\java\\books.xml";
+        parser.stAXParser(xml);
+        xml = "C:\\Users\\user\\IdeaProjects\\RepositBasic\\Collections Pro\\OrderBook\\src\\main\\java\\books.xml";
         parser.dOMParser(xml);
     }
 }

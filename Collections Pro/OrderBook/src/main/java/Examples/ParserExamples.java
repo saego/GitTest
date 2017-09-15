@@ -1,3 +1,5 @@
+package Examples;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -19,7 +21,7 @@ import java.io.IOException;
 /**
  * Created by Saego on 15.09.2017.
  */
-class Parser {
+class ParserExamples {
     void stAXParser(String fileXML) throws FileNotFoundException {
         File xml = new File(fileXML);
         XMLInputFactory factory =XMLInputFactory.newInstance();
