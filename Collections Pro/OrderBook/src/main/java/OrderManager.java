@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.operations.Or;
+
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -10,6 +12,8 @@ import java.io.FileNotFoundException;
  * Created by Saego on 25.09.2017.
  */
 public class OrderManager {
+    Order order;
+
     public void xMLReader(String fileName) throws FileNotFoundException {
         File xmlFile = new File(fileName);
         XMLInputFactory inputFactory = XMLInputFactory.newInstance();
@@ -25,7 +29,14 @@ public class OrderManager {
                     case XMLStreamConstants.START_ELEMENT:
                         System.out.println("Start element: " + streamReader.getLocalName());
                         if (streamReader.getAttributeLocalName(0).equals("AddOrder")) {
-                            addOrder();
+                            this.order = new Order(new Book(streamReader.getAttributeValue(0)), streamReader.getAttributeValue(1).equals("SELL"),
+                                    Float.parseFloat(streamReader.getAttributeValue(2)), Integer.parseInt(streamReader.getAttributeValue(2)), Integer.parseInt(streamReader.getAttributeValue(4)));
+                            addOrder(order);
+                        }
+                        else{
+                            this.order = new Order(new Book(streamReader.getAttributeValue(0)), false,
+                                    0, Integer.parseInt(streamReader.getAttributeValue(1)), Integer.parseInt(streamReader.getAttributeValue(2)));
+                            removeOrder(order);
                         }
                         break;
                     case XMLStreamConstants.END_ELEMENT:
@@ -48,4 +59,5 @@ public class OrderManager {
     public void addOrder(Order order){
 
     }
+    public void removeOrder(Order order){}
 }
