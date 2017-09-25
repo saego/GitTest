@@ -24,12 +24,16 @@ public class OrderManager {
                         break;
                     case XMLStreamConstants.START_ELEMENT:
                         System.out.println("Start element: " + streamReader.getLocalName());
+                        if (streamReader.getAttributeLocalName(0).equals("AddOrder")) {
+                            addOrder();
+                        }
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         System.out.println("End element");
                         break;
                     case XMLStreamConstants.END_DOCUMENT:
                         n = false;
+                        break;
                 }
                 if (n){
                     event = streamReader.next();
@@ -39,6 +43,9 @@ public class OrderManager {
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
+
+    }
+    public void addOrder(Order order){
 
     }
 }
