@@ -12,7 +12,7 @@ public class SimpleParserStart {
         ParserExamples parser = new ParserExamples();
         String xml = "d:\\HDD\\Hard_HDD\\orders.xml";
         parser.stAXParser(xml);
-        xml = "C:\\Users\\user\\IdeaProjects\\RepositBasic\\Collections Pro\\OrderBook\\src\\main\\java\\books.xml";
+        xml = "C:\\Users\\user\\IdeaProjects\\RepositBasic\\Collections Pro\\OrderBook\\src\\main\\java\\Examples\\books.xml";
         parser.dOMParser(xml);
     }
 }

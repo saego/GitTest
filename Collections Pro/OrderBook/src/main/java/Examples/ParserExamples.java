@@ -24,7 +24,7 @@ import java.io.IOException;
 class ParserExamples {
     void stAXParser(String fileXML) throws FileNotFoundException {
         File xml = new File(fileXML);
-        XMLInputFactory factory =XMLInputFactory.newInstance();
+        XMLInputFactory factory = XMLInputFactory.newInstance();
         try {
             XMLStreamReader reader = factory.createXMLStreamReader(new FileInputStream(xml));
             int event = reader.getEventType();
