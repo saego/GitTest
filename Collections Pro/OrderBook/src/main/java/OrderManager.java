@@ -25,8 +25,16 @@ public class OrderManager {
                     case XMLStreamConstants.START_ELEMENT:
                         System.out.println("Start element: " + streamReader.getLocalName());
                         break;
-                    case
+                    case XMLStreamConstants.END_ELEMENT:
+                        System.out.println("End element");
+                        break;
+                    case XMLStreamConstants.END_DOCUMENT:
+                        n = false;
                 }
+                if (n){
+                    event = streamReader.next();
+                }
+                else streamReader.close();
             }
         } catch (XMLStreamException e) {
             e.printStackTrace();
