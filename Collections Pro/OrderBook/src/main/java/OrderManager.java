@@ -29,14 +29,12 @@ public class OrderManager {
                     case XMLStreamConstants.START_ELEMENT:
                         System.out.println("Start element: " + streamReader.getLocalName());
                         if (streamReader.getAttributeLocalName(0).equals("AddOrder")) {
-                            this.order = new Order(new Book(streamReader.getAttributeValue(0)), streamReader.getAttributeValue(1).equals("SELL"),
-                                    Float.parseFloat(streamReader.getAttributeValue(2)), Integer.parseInt(streamReader.getAttributeValue(2)), Integer.parseInt(streamReader.getAttributeValue(4)));
-                            addOrder(order);
+                            addOrder(new Book(streamReader.getAttributeValue(0)), streamReader.getAttributeValue(1).equals("BUY")? "bid": "ask",
+                                    Float.valueOf(streamReader.getAttributeValue(2)), Integer.valueOf(streamReader.getAttributeValue(3)),
+                                    Integer.valueOf(streamReader.getAttributeValue(4)));
                         }
                         else{
-                            this.order = new Order(new Book(streamReader.getAttributeValue(0)), false,
-                                    0, Integer.parseInt(streamReader.getAttributeValue(1)), Integer.parseInt(streamReader.getAttributeValue(2)));
-                            removeOrder(order);
+                            removeOrder(new Book(streamReader.getAttributeValue(0)), Integer.valueOf(streamReader.getAttributeValue(1)));
                         }
                         break;
                     case XMLStreamConstants.END_ELEMENT:
@@ -56,8 +54,10 @@ public class OrderManager {
         }
 
     }
-    public void addOrder(Order order){
+    public void addOrder(Book book, String ask, float price, int volume, int orderId){
 
     }
-    public void removeOrder(Order order){}
+    public void removeOrder(Book book, int orderId){
+
+    }
 }
