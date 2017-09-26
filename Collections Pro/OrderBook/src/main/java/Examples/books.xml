@@ -4,5 +4,5 @@
     </AddOrder>
     <AddOrder book="book-3" operation="BUY" price=" 99.50" volume="86" orderId="2">
     </AddOrder>
-    <DeleteOrder book="book-2" orderId="104" />
+    <DeleteOrder book="book-2" orderId="2" />
 </MyTestBooks>
