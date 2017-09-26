@@ -70,12 +70,15 @@ class OrderManager {
 
     }
     private void removeOrder(Book book, int orderId){
-        for (Map.Entry<Integer, Order> id:
+        /*for (Map.Entry<Integer, Order> id:
              this.orders.entrySet()) {
             if (Integer.valueOf(orderId).equals(id.getKey())){
                 this.orders.remove(id.getKey());
 
             }
+        }*/
+        for (int i = 0; i < this.orders.size(); i++){
+
         }
     }
     void output(){
