@@ -30,9 +30,9 @@ class OrderManager {
                         System.out.println("Process started....   " + "Encoding: " + streamReader.getEncoding());
                         break;
                     case XMLStreamConstants.START_ELEMENT:
-                        System.out.println("Start element: " + streamReader.getLocalName());
+                        //System.out.println("Start element: " + streamReader.getLocalName());
                         if (!streamReader.getLocalName().equals("Orders")) {
-                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!");
+                            //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!");
                             if (streamReader.getLocalName().equals("AddOrder")) {
                                 addOrder(new Book(streamReader.getAttributeValue(0)), streamReader.getAttributeValue(1).equals("BUY") ? "bid" : "ask",
                                         Float.valueOf(streamReader.getAttributeValue(2)), Integer.valueOf(streamReader.getAttributeValue(3)),
@@ -49,7 +49,7 @@ class OrderManager {
                         }
                         break;
                     case XMLStreamConstants.END_ELEMENT:
-                        System.out.println("End element");
+                        //System.out.println("End element");
                         break;
                     case XMLStreamConstants.END_DOCUMENT:
                         n = false;
