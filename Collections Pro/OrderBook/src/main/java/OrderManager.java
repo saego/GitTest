@@ -30,26 +30,19 @@ class OrderManager {
                         System.out.println("Process started....   " + "Encoding: " + streamReader.getEncoding());
                         break;
                     case XMLStreamConstants.START_ELEMENT:
-                        //System.out.println("Start element: " + streamReader.getLocalName());
                         if (!streamReader.getLocalName().equals("Orders")) {
-                            //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!");
                             if (streamReader.getLocalName().equals("AddOrder")) {
                                 addOrder(new Book(streamReader.getAttributeValue(0)), streamReader.getAttributeValue(1).equals("BUY") ? "bid" : "ask",
                                         Float.valueOf(streamReader.getAttributeValue(2)), Integer.valueOf(streamReader.getAttributeValue(3)),
                                         Integer.valueOf(streamReader.getAttributeValue(4)));
 
-                                //    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!");
-                                //
                             }
-                            //}
-
                             else {
                                 removeOrder(new Book(streamReader.getAttributeValue(0)), Integer.valueOf(streamReader.getAttributeValue(1)));
                             }
                         }
                         break;
                     case XMLStreamConstants.END_ELEMENT:
-                        //System.out.println("End element");
                         break;
                     case XMLStreamConstants.END_DOCUMENT:
                         n = false;
@@ -70,15 +63,10 @@ class OrderManager {
 
     }
     private void removeOrder(Book book, int orderId){
-        /*for (Map.Entry<Integer, Order> id:
-             this.orders.entrySet()) {
-            if (Integer.valueOf(orderId).equals(id.getKey())){
-                this.orders.remove(id.getKey());
-
+        if (this.orders.containsKey(orderId)){
+            if (this.orders.get(orderId).getBook().equals(book)) {
+                this.orders.remove(orderId);
             }
-        }*/
-        for (int i = 0; i < this.orders.size(); i++){
-
         }
     }
     void output(){

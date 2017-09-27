@@ -29,4 +29,8 @@ class Book {
                 "theTitleOfTheBook='" + theTitleOfTheBook + '\'' +
                 '}';
     }
+
+    String getTheTitleOfTheBook() {
+        return theTitleOfTheBook;
+    }
 }

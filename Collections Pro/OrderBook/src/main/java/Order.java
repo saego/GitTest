@@ -25,4 +25,36 @@ class Order {
                 ", volume=" + volume +
                 '}';
     }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public boolean isOperation() {
+        return operation;
+    }
+
+    public void setOperation(boolean operation) {
+        this.operation = operation;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
 }
