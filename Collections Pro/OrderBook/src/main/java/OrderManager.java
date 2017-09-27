@@ -7,8 +7,7 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Saego on 25.09.2017.
@@ -17,6 +16,10 @@ class OrderManager {
     //Order order;
     private Map<Integer, Order> orders = new HashMap<Integer, Order>();
 
+    /**
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     void xMLReader(String fileName) throws FileNotFoundException {
         File xmlFile = new File(fileName);
         XMLInputFactory inputFactory = XMLInputFactory.newInstance();
@@ -53,28 +56,61 @@ class OrderManager {
                 }
                 else streamReader.close();
             }
+            streamReader.close();
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
 
     }
-    private void addOrder(Book book, String ask, float price, int volume, int orderId){
-        this.orders.put(orderId, new Order(book, ask.equals("bid"),price, volume));
 
+    /**
+     * @param book
+     * @param ask
+     * @param price
+     * @param volume
+     * @param orderId
+     * @return
+     */
+    private Map<Integer, Order> addOrder(Book book, String ask, float price, int volume, int orderId){
+        this.orders.put(orderId, new Order(book, ask.equals("bid"),price, volume));
+        return this.orders;
     }
-    private void removeOrder(Book book, int orderId){
+
+    /**
+     * @param book
+     * @param orderId
+     * @return
+     */
+    private Map<Integer, Order> removeOrder(Book book, int orderId){
         if (this.orders.containsKey(orderId)){
             if (this.orders.get(orderId).getBook().equals(book)) {
                 this.orders.remove(orderId);
             }
         }
+        return this.orders;
     }
+
+    /**
+     *
+     */
     void output(){
         System.out.println("_______________________________");
         for (Order order:
              this.orders.values()) {
             System.out.println("_______________________________");
             System.out.println(order);
+        }
+    }
+    void calculatingProcess(Map<Integer, Order> orders){
+        List<TreeSet<Order>> trees = new ArrayList<TreeSet<Order>>();
+        List<Order> orderList = new ArrayList<Order>();
+        orderList.addAll(this.orders.values());
+        for (int i = 0; i < orderList.size() - 1; i++){
+            for (int n = i + 1; n < orderList.size(); n++){
+                if (orderList.get(i).getBook().equals(orderList.get(n).getBook())){
+
+                }
+            }
         }
     }
 }
