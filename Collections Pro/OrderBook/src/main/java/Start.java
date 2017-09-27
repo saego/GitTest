@@ -9,6 +9,6 @@ public class Start {
     OrderManager manager = new OrderManager();
     //manager.xMLReader("d:\\HDD\\Hard_HDD\\orders.xml");
     manager.xMLReader("C:\\Users\\user\\IdeaProjects\\RepositBasic\\Collections Pro\\OrderBook\\src\\main\\java\\Examples\\books.xml");
-    manager.output();
+    //manager.output();
     }
 }

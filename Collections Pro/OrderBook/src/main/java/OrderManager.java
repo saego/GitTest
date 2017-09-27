@@ -57,6 +57,7 @@ class OrderManager {
                 else streamReader.close();
             }
             streamReader.close();
+            output(calculatingProcess(this.orders));
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
@@ -93,24 +94,31 @@ class OrderManager {
     /**
      *
      */
-    void output(){
-        System.out.println("_______________________________");
-        for (Order order:
+    void output(ArrayList<Order> orders){
+        /*for (Order order:
              this.orders.values()) {
             System.out.println("_______________________________");
             System.out.println(order);
+        }*/
+        for (Order order:
+             orders) {
+            System.out.println(order);
+            System.out.println("_______________________________");
         }
     }
-    void calculatingProcess(Map<Integer, Order> orders){
+    private ArrayList<Order> calculatingProcess(Map<Integer, Order> orders){
         List<TreeSet<Order>> trees = new ArrayList<TreeSet<Order>>();
         List<Order> orderList = new ArrayList<Order>();
-        orderList.addAll(this.orders.values());
+        orderList.addAll(orders.values());
         for (int i = 0; i < orderList.size() - 1; i++){
             for (int n = i + 1; n < orderList.size(); n++){
-                if (orderList.get(i).getBook().equals(orderList.get(n).getBook())){
-
+                if ((orderList.get(i).getBook().equals(orderList.get(n).getBook())) & (orderList.get(i).getPrice() == orderList.get(n).getPrice()) &
+                        orderList.get(i).isOperation() == orderList.get(n).isOperation()){
+                    orderList.get(i).setVolume(orderList.get(i).getVolume() + orderList.get(n).getVolume());
+                    orderList.remove(n);
                 }
             }
         }
+        return (ArrayList<Order>) orderList;
     }
 }
