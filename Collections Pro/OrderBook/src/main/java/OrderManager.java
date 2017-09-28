@@ -7,6 +7,7 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -27,8 +28,8 @@ class OrderManager {
             XMLStreamReader streamReader = inputFactory.createXMLStreamReader(new FileInputStream(xmlFile));
             int event = streamReader.getEventType();
             boolean n = true;
-            while (n){
-                switch (event){
+            while (n) {
+                switch (event) {
                     case XMLStreamConstants.START_DOCUMENT:
                         System.out.println("Process started....   " + "Encoding: " + streamReader.getEncoding());
                         break;
@@ -39,8 +40,7 @@ class OrderManager {
                                         Float.valueOf(streamReader.getAttributeValue(2)), Integer.valueOf(streamReader.getAttributeValue(3)),
                                         Integer.valueOf(streamReader.getAttributeValue(4)));
 
-                            }
-                            else {
+                            } else {
                                 removeOrder(new Book(streamReader.getAttributeValue(0)), Integer.valueOf(streamReader.getAttributeValue(1)));
                             }
                         }
@@ -51,13 +51,13 @@ class OrderManager {
                         n = false;
                         break;
                 }
-                if (n){
+                if (n) {
                     event = streamReader.next();
-                }
-                else streamReader.close();
+                } else streamReader.close();
             }
             streamReader.close();
-            output(calculatingProcess(this.orders));
+            //output(calculatingProcess(this.orders));
+            getSetOfBooks(calculatingProcess(this.orders));
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
@@ -72,8 +72,8 @@ class OrderManager {
      * @param orderId
      * @return
      */
-    private Map<Integer, Order> addOrder(Book book, String ask, float price, int volume, int orderId){
-        this.orders.put(orderId, new Order(book, ask.equals("bid"),price, volume));
+    private Map<Integer, Order> addOrder(Book book, String ask, float price, int volume, int orderId) {
+        this.orders.put(orderId, new Order(book, ask.equals("bid"), price, volume));
         return this.orders;
     }
 
@@ -82,8 +82,8 @@ class OrderManager {
      * @param orderId
      * @return
      */
-    private Map<Integer, Order> removeOrder(Book book, int orderId){
-        if (this.orders.containsKey(orderId)){
+    private Map<Integer, Order> removeOrder(Book book, int orderId) {
+        if (this.orders.containsKey(orderId)) {
             if (this.orders.get(orderId).getBook().equals(book)) {
                 this.orders.remove(orderId);
             }
@@ -94,31 +94,49 @@ class OrderManager {
     /**
      *
      */
-    void output(ArrayList<Order> orders){
-        /*for (Order order:
-             this.orders.values()) {
-            System.out.println("_______________________________");
-            System.out.println(order);
-        }*/
-        for (Order order:
-             orders) {
+    private void output(ArrayList<Order> orders) {
+        for (Order order :
+                orders) {
             System.out.println(order);
             System.out.println("_______________________________");
         }
     }
-    private ArrayList<Order> calculatingProcess(Map<Integer, Order> orders){
+
+    private ArrayList<Order> calculatingProcess(Map<Integer, Order> orders) {
         List<TreeSet<Order>> trees = new ArrayList<TreeSet<Order>>();
         List<Order> orderList = new ArrayList<Order>();
         orderList.addAll(orders.values());
-        for (int i = 0; i < orderList.size() - 1; i++){
-            for (int n = i + 1; n < orderList.size(); n++){
+        for (int i = 0; i < orderList.size() - 1; i++) {
+            for (int n = i + 1; n < orderList.size(); n++) {
                 if ((orderList.get(i).getBook().equals(orderList.get(n).getBook())) & (orderList.get(i).getPrice() == orderList.get(n).getPrice()) &
-                        orderList.get(i).isOperation() == orderList.get(n).isOperation()){
+                        orderList.get(i).isOperation() == orderList.get(n).isOperation()) {
                     orderList.get(i).setVolume(orderList.get(i).getVolume() + orderList.get(n).getVolume());
                     orderList.remove(n);
                 }
             }
         }
         return (ArrayList<Order>) orderList;
+    }
+
+    private Set<Book> getSetOfBooks(ArrayList<Order> orders) {
+        Set<Book> books = new HashSet<Book>();
+        for (Order order:
+             orders) {
+            books.add(order.getBook());
+        }
+        return books;
+    }
+
+    private List<List<Order>> getListOfBookOrders(Set<Book> books, List<Order> orders){
+        List<List<Order>> listOfBookOrders = new ArrayList<List<Order>>();
+        for (Book book:
+             books) {
+            for (Order order:
+                 orders) {
+                if (book.equals(order.getBook())){
+                    listOfBookOrders.add()
+                }
+            }
+        }
     }
 }
