@@ -131,12 +131,12 @@ class OrderManager {
         List<List<Order>> listOfBookOrders = new ArrayList<List<Order>>();
         for (Book book:
              books) {
-            ArrayList <Order> re = new ArrayList<Order>();
-            listOfBookOrders.add(re);
+            ArrayList <Order> ordersOfEachBook = new ArrayList<Order>();
+            listOfBookOrders.add(ordersOfEachBook);
             for (Order order:
                  orders) {
                 if (book.equals(order.getBook())){
-                    re.add(order);
+                    ordersOfEachBook.add(order);
                 }
             }
         }
