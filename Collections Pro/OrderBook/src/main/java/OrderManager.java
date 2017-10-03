@@ -143,6 +143,9 @@ class OrderManager {
         return listOfBookOrders;
     }
     List<List<TreeSet<Order>>> getListOfListOfTree(List<List<Order>> orders){
+        for (List order:
+             orders) {
 
+        }
     }
 }
