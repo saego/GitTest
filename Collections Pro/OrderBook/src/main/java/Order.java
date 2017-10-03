@@ -26,6 +26,28 @@ class Order {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (operation != order.operation) return false;
+        if (Float.compare(order.price, price) != 0) return false;
+        if (volume != order.volume) return false;
+        return book != null ? book.equals(order.book) : order.book == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = book != null ? book.hashCode() : 0;
+        result = 31 * result + (operation ? 1 : 0);
+        result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        result = 31 * result + volume;
+        return result;
+    }
+
     public Book getBook() {
         return book;
     }

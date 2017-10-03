@@ -127,7 +127,7 @@ class OrderManager {
         return books;
     }
 
-    private List<List<Order>> getListOfBookOrders(Set<Book> books, List<Order> orders){
+    List<List<Order>> getListOfBookOrders(Set<Book> books, List<Order> orders){
         List<List<Order>> listOfBookOrders = new ArrayList<List<Order>>();
         for (Book book:
              books) {
@@ -141,5 +141,8 @@ class OrderManager {
             }
         }
         return listOfBookOrders;
+    }
+    List<List<TreeSet<Order>>> getListOfListOfTree(List<List<Order>> orders){
+
     }
 }
