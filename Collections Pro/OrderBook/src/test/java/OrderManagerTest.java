@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+
 
 /**
  * Created by Saego on 03.10.2017.

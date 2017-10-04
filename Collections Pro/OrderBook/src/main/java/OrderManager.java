@@ -144,9 +144,22 @@ class OrderManager {
     }
     List<List<TreeSet<Order>>> getListOfListOfTree(List<List<Order>> orders){
         List<List<TreeSet<Order>>> finalRes = new ArrayList<List<TreeSet<Order>>>();
-        for (List order:
+        for (List<Order> list:
              orders) {
-
+            List<TreeSet<Order>> listOfTree = new ArrayList<TreeSet<Order>>();
+            TreeSet<Order> sell = new TreeSet<Order>();
+            TreeSet<Order> buy = new TreeSet<Order>();
+            listOfTree.add(sell);
+            listOfTree.add(buy);
+            finalRes.add(listOfTree);
+            for (Order order:
+                 list) {
+                if (order.isOperation()) {
+                    sell.add(order);
+                } else {
+                    buy.add(order);
+                }
+            }
         }
         return finalRes;
     }
