@@ -1,19 +1,19 @@
 /**
  * Created by Saego on 04.09.2017.
  */
-class Order {
+class Order implements Comparable<Order>{
     private Book book;
     private boolean operation;
     private float price;
     private int volume;
-    //int orderId;
+
 
     Order(Book book, boolean operation, float price, int volume) {
         this.book = book;
         this.operation = operation;
         this.price = price;
         this.volume = volume;
-    //    this.orderId = orderId;
+
     }
 
     @Override
@@ -33,10 +33,7 @@ class Order {
 
         Order order = (Order) o;
 
-        if (operation != order.operation) return false;
-        if (Float.compare(order.price, price) != 0) return false;
-        if (volume != order.volume) return false;
-        return book != null ? book.equals(order.book) : order.book == null;
+        return operation == order.operation && Float.compare(order.price, price) == 0 && volume == order.volume && (book != null ? book.equals(order.book) : order.book == null);
     }
 
     @Override
@@ -48,35 +45,28 @@ class Order {
         return result;
     }
 
-    public Book getBook() {
+    Book getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public boolean isOperation() {
+    boolean isOperation() {
         return operation;
     }
 
-    public void setOperation(boolean operation) {
-        this.operation = operation;
-    }
-
-    public float getPrice() {
+    float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public int getVolume() {
+    int getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
+    void setVolume(int volume) {
         this.volume = volume;
+    }
+
+    @Override
+    public int compareTo(Order o) {
+        return (int) (this.price - o.getPrice());
     }
 }
