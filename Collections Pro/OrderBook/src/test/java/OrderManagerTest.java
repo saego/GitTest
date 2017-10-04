@@ -66,6 +66,8 @@ public class OrderManagerTest {
 
     @Test
     public void getListOfListOfTree() throws Exception {
+        List<List<Order>> orders = manager.getListOfBookOrders(booksTest, ordersTest);
+        manager.getListOfListOfTree(orders);
     }
 
     @org.junit.Test
