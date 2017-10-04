@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import static org.junit.Assert.assertThat;
  * Created by Saego on 03.10.2017.
  */
 public class OrderManagerTest {
+
     private Book book1 = new Book("book-1");
     private Book book2 = new Book("book-2");
     private Book book3 = new Book("book-3");
@@ -23,11 +25,15 @@ public class OrderManagerTest {
     private Order order5 = new Order(new Book("book-3"), true, (float) 2.14, 800);
     private Order order6 = new Order(new Book("book-1"), false, (float) 32.4, 421);
     private Order order7 = new Order(new Book("book-1"), true, (float) 30.24, 937);
-    OrderManager manager = new OrderManager();
-    @Test
-    public void getListOfBookOrders() throws Exception {
-        Set<Book> booksTest = new HashSet<Book>();
-        List<Order> ordersTest = new ArrayList<Order>();
+    private OrderManager manager = new OrderManager();
+    private Set<Book> booksTest = new HashSet<Book>();
+    private List<Order> ordersTest = new ArrayList<Order>();
+    private List<Order> testOrd0 = new ArrayList<Order>();
+    private List<Order> testOrd1 = new ArrayList<Order>();
+    private List<Order> testOrd2 = new ArrayList<Order>();
+
+    @Before
+    public void setUp() throws Exception {
         booksTest.add(book1);
         booksTest.add(book2);
         booksTest.add(book3);
@@ -38,9 +44,6 @@ public class OrderManagerTest {
         ordersTest.add(order5);
         ordersTest.add(order6);
         ordersTest.add(order7);
-        List<Order> testOrd0 = new ArrayList<Order>();
-        List<Order> testOrd1 = new ArrayList<Order>();
-        List<Order> testOrd2 = new ArrayList<Order>();
         testOrd0.add(order3);
         testOrd0.add(order5);
         testOrd1.add(order2);
@@ -48,12 +51,21 @@ public class OrderManagerTest {
         testOrd2.add(order4);
         testOrd2.add(order6);
         testOrd2.add(order7);
+
+    }
+
+    @Test
+    public void getListOfBookOrders() throws Exception {
         List<List<Order>> test = new ArrayList<List<Order>>();
         test.add(testOrd0);
         test.add(testOrd1);
         test.add(testOrd2);
         List<List<Order>> orders = manager.getListOfBookOrders(booksTest, ordersTest);
         assertThat(test, is(orders));
+    }
+
+    @Test
+    public void getListOfListOfTree() throws Exception {
     }
 
     @org.junit.Test
