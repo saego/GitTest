@@ -67,6 +67,12 @@ class Order implements Comparable<Order>{
 
     @Override
     public int compareTo(Order o) {
-        return (int) (this.price - o.getPrice());
+        if ((this.price - o.getPrice()) > 0){
+            return 1;
+        }
+        else if ((this.price - o.getPrice()) < 0) {
+            return (int) (this.price - o.getPrice());
+        }
+        else return 0;
     }
 }
