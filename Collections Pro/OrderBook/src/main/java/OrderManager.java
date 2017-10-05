@@ -94,11 +94,10 @@ class OrderManager {
     /**
      *
      */
-    private void output(ArrayList<Order> orders) {
-        for (Order order :
-                orders) {
-            System.out.println(order);
-            System.out.println("_______________________________");
+    private void output(List<List<TreeSet<Order>>> listOfListsOfTree) {
+        for (List listOfTree:
+             listOfListsOfTree) {
+
         }
     }
 
@@ -147,8 +146,24 @@ class OrderManager {
         for (List<Order> list:
              orders) {
             List<TreeSet<Order>> listOfTree = new ArrayList<TreeSet<Order>>();
-            TreeSet<Order> sell = new TreeSet<Order>();
-            TreeSet<Order> buy = new TreeSet<Order>();
+            TreeSet<Order> sell = new TreeSet<Order>(new Comparator<Order>() {
+                @Override
+                public int compare(Order o1, Order o2) {
+                    if (o1.getPrice() > o2.getPrice()){
+                        return -1;
+                    }
+                    else return 1;
+                }
+            });
+            TreeSet<Order> buy = new TreeSet<Order>(new Comparator<Order>() {
+                @Override
+                public int compare(Order o1, Order o2) {
+                    if (o1.getPrice() < o2.getPrice()){
+                        return -1;
+                    }
+                    else return 1;
+                }
+            });
             listOfTree.add(sell);
             listOfTree.add(buy);
             finalRes.add(listOfTree);

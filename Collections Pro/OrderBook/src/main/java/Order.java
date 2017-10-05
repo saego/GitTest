@@ -1,7 +1,7 @@
 /**
  * Created by Saego on 04.09.2017.
  */
-class Order implements Comparable<Order>{
+class Order{
     private Book book;
     private boolean operation;
     private float price;
@@ -65,14 +65,4 @@ class Order implements Comparable<Order>{
         this.volume = volume;
     }
 
-    @Override
-    public int compareTo(Order o) {
-        if ((this.price - o.getPrice()) > 0){
-            return 1;
-        }
-        else if ((this.price - o.getPrice()) < 0) {
-            return (int) (this.price - o.getPrice());
-        }
-        else return 0;
-    }
 }
