@@ -11,12 +11,11 @@ import java.util.*;
  * Created by Saego on 25.09.2017.
  */
 class OrderManager {
-    //Order order;
     private Map<Integer, Order> orders = new HashMap<Integer, Order>();
 
     /**
-     * @param fileName
-     * @throws FileNotFoundException
+     * @param fileName - name of *xml file.
+     * @throws FileNotFoundException - exception file is not exist.
      */
     void xMLReader(String fileName) throws FileNotFoundException {
         File xmlFile = new File(fileName);
@@ -53,7 +52,6 @@ class OrderManager {
                 } else streamReader.close();
             }
             streamReader.close();
-            //output(getListOfListOfTree(getListOfBookOrders(getSetOfBooks(calculatingProcess(this.orders)))));
             ArrayList<Order> calculatedOrders = calculatingProcess(this.orders);
             output(getListOfListOfTree(getListOfBookOrders(getSetOfBooks(calculatedOrders), calculatedOrders)));
         } catch (XMLStreamException e) {
@@ -63,21 +61,19 @@ class OrderManager {
     }
 
     /**
-     * @param book
-     * @param ask
-     * @param price
-     * @param volume
-     * @param orderId
-     * @return
+     * @param book - object book in order.
+     * @param ask - type of ask: sell or buy.
+     * @param price - price in order.
+     * @param volume - quantity of books in order.
+     * @param orderId - id of current order.
      */
     private void addOrder(Book book, String ask, float price, int volume, int orderId) {
         this.orders.put(orderId, new Order(book, ask.equals("bid"), price, volume));
     }
 
     /**
-     * @param book
-     * @param orderId
-     * @return
+     * @param book - object book in order.
+     * @param orderId - id of current order.
      */
     private void removeOrder(Book book, int orderId) {
         if (this.orders.containsKey(orderId)) {
