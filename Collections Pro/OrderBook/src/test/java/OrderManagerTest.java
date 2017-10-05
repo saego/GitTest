@@ -1,10 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -14,6 +11,7 @@ import static org.junit.Assert.assertThat;
  * Created by Saego on 03.10.2017.
  */
 public class OrderManagerTest {
+
 
     private Book book1 = new Book("book-1");
     private Book book2 = new Book("book-2");
@@ -55,19 +53,40 @@ public class OrderManagerTest {
     }
 
     @Test
+    public void addOrder() throws Exception {
+        this.manager.addOrder(new Book("book-1"), "bid", (float) 32.14, 12, 4444);
+        this.manager.addOrder(new Book("book-1"), "bid", (float) 32.4, 1, 4445);
+        Map<Integer, Order> testOrders = new HashMap<Integer, Order>();
+        testOrders.put(4444,new Order(new Book("book-1"), true, (float) 32.14, 12));
+        testOrders.put(4445, new Order(new Book("book-1"), true, (float) 32.4, 1));
+        assertThat(this.manager.getOrders(), is(testOrders));
+    }
+
+    @Test
+    public void removeOrder() throws Exception {
+    }
+
+    @Test
+    public void calculatingProcess() throws Exception {
+    }
+
+    @Test
+    public void getSetOfBooks() throws Exception {
+    }
+    @Test
     public void getListOfBookOrders() throws Exception {
         List<List<Order>> test = new ArrayList<List<Order>>();
-        test.add(testOrd0);
-        test.add(testOrd1);
-        test.add(testOrd2);
-        List<List<Order>> orders = manager.getListOfBookOrders(booksTest, ordersTest);
+        test.add(this.testOrd0);
+        test.add(this.testOrd1);
+        test.add(this.testOrd2);
+        List<List<Order>> orders = this.manager.getListOfBookOrders(this.booksTest, this.ordersTest);
         assertThat(test, is(orders));
     }
 
     @Test
     public void getListOfListOfTree() throws Exception {
-        List<List<Order>> orders = manager.getListOfBookOrders(booksTest, ordersTest);
-        manager.getListOfListOfTree(orders);
+        List<List<Order>> orders = this.manager.getListOfBookOrders(this.booksTest, this.ordersTest);
+        this.manager.getListOfListOfTree(orders);
     }
 
     @org.junit.Test

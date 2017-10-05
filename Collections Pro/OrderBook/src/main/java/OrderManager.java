@@ -13,7 +13,7 @@ import java.util.*;
 class OrderManager {
     private Map<Integer, Order> orders = new HashMap<Integer, Order>();
 
-    /**
+    /** Parsing an xml file by using StAX parser. Calculating orders using private methods.
      * @param fileName - name of *xml file.
      * @throws FileNotFoundException - exception file is not exist.
      */
@@ -67,7 +67,7 @@ class OrderManager {
      * @param volume - quantity of books in order.
      * @param orderId - id of current order.
      */
-    private void addOrder(Book book, String ask, float price, int volume, int orderId) {
+    void addOrder(Book book, String ask, float price, int volume, int orderId) {
         this.orders.put(orderId, new Order(book, ask.equals("bid"), price, volume));
     }
 
@@ -75,7 +75,7 @@ class OrderManager {
      * @param book - object book in order.
      * @param orderId - id of current order.
      */
-    private void removeOrder(Book book, int orderId) {
+    void removeOrder(Book book, int orderId) {
         if (this.orders.containsKey(orderId)) {
             if (this.orders.get(orderId).getBook().equals(book)) {
                 this.orders.remove(orderId);
@@ -83,8 +83,12 @@ class OrderManager {
         }
     }
 
+    Map<Integer, Order> getOrders(){
+        return this.orders;
+    }
+
     /**
-     *
+     * Prints result order.
      */
     private void output(List<List<TreeSet<Order>>> listOfListsOfTree) {
         for (List<TreeSet<Order>> listOfTree:
@@ -109,7 +113,11 @@ class OrderManager {
         }
     }
 
-    private ArrayList<Order> calculatingProcess(Map<Integer, Order> orders) {
+    /**
+     * @param orders - map of orders by id.
+     * @return - list of orders.
+     */
+    ArrayList<Order> calculatingProcess(Map<Integer, Order> orders) {
         List<Order> orderList = new ArrayList<Order>();
         orderList.addAll(orders.values());
         for (int i = 0; i < orderList.size() - 1; i++) {
@@ -124,15 +132,26 @@ class OrderManager {
         return (ArrayList<Order>) orderList;
     }
 
-    private Set<Book> getSetOfBooks(ArrayList<Order> orders) {
+    /**
+     * Makes set of books without duplicates.
+     *
+     * @param orders - all unsorted orders.
+     * @return - set of book's names.
+     */
+    Set<Book> getSetOfBooks(ArrayList<Order> orders) {
         Set<Book> books = new TreeSet<Book>();
-        for (Order order:
-             orders) {
+        for (Order order :
+                orders) {
             books.add(order.getBook());
         }
         return books;
     }
 
+    /** Makes list of orders by each book, BUY & C=SELL aren't sorted.
+     * @param books - book(the title of book).
+     * @param orders - all orders in one list.
+     * @return - list of lists of orders by each book.
+     */
     List<List<Order>> getListOfBookOrders(Set<Book> books, List<Order> orders){
         List<List<Order>> listOfBookOrders = new ArrayList<List<Order>>();
         for (Book book:
@@ -148,6 +167,11 @@ class OrderManager {
         }
         return listOfBookOrders;
     }
+
+    /** Makes list of orders by each book, which consists of two trees SELL & BUY.
+     * @param orders - lis of orders by each books, BUY & SELL together.
+     * @return - list of lists of trees of orders.
+     */
     List<List<TreeSet<Order>>> getListOfListOfTree(List<List<Order>> orders){
         List<List<TreeSet<Order>>> finalRes = new ArrayList<List<TreeSet<Order>>>();
         for (List<Order> list:

@@ -51,7 +51,6 @@
     <AddOrder book="book-3" operation="BUY" price=" 99.70" volume="8" orderId="1760849" />
     <DeleteOrder book="book-3" orderId="1760497" />
     <DeleteOrder book="book-2" orderId="1760689" />
-    <AddOrder book="book-6" operation="BUY" price="100.00" volume="30" orderId="1760850" />
     <AddOrder book="book-3" operation="SELL" price=" 99.80" volume="48" orderId="1760851" />
     <DeleteOrder book="book-2" orderId="1760803" />
     <AddOrder book="book-2" operation="BUY" price=" 99.40" volume="32" orderId="1760852" />
