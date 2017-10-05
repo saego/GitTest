@@ -25,11 +25,7 @@ class Book {
 
     @Override
     public String toString() {
-        return "Book: " +
-                "theTitleOfTheBook = " + theTitleOfTheBook;
+        return "Book: " + theTitleOfTheBook;
     }
 
-    String getTheTitleOfTheBook() {
-        return theTitleOfTheBook;
-    }
 }

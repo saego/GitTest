@@ -89,15 +89,23 @@ class OrderManager {
     private void output(List<List<TreeSet<Order>>> listOfListsOfTree) {
         for (List<TreeSet<Order>> listOfTree:
              listOfListsOfTree) {
+            System.out.print("@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@");
+            System.out.print("---" + listOfTree.get(0).first().getBook() + "---");
+            System.out.println("@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@");
             for (TreeSet<Order> tr:
                  listOfTree) {
+                String operation;
+                if (tr.first().isOperation()){
+                    operation = "@ SELL";
+                }
+                else operation = "@ BUY";
+                System.out.println("Operation : " + operation);
                 for (Order ord:
                      tr) {
-                    System.out.println(ord);
+                    System.out.println(" Price: " + ord.getPrice() + " Volume: " + ord.getVolume());
                 }
                 System.out.println("___________________");
             }
-            System.out.println("#######################");
         }
     }
 
