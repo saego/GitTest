@@ -125,7 +125,7 @@ class OrderManager {
     }
 
     private Set<Book> getSetOfBooks(ArrayList<Order> orders) {
-        Set<Book> books = new HashSet<Book>();
+        Set<Book> books = new TreeSet<Book>();
         for (Order order:
              orders) {
             books.add(order.getBook());

@@ -1,7 +1,7 @@
 /**
  * Created by Saego on 04.09.2017.
  */
-class Book {
+class Book implements Comparable<Book>{
     private String theTitleOfTheBook;
 
     Book(String theTitleOfTheBook) {
@@ -28,4 +28,8 @@ class Book {
         return "Book: " + theTitleOfTheBook;
     }
 
+    @Override
+    public int compareTo(Book o) {
+        return this.theTitleOfTheBook.compareTo(o.theTitleOfTheBook);
+    }
 }
