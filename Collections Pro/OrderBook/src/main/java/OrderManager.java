@@ -1,5 +1,3 @@
-import com.sun.org.apache.xpath.internal.operations.Or;
-
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -7,7 +5,6 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -56,8 +53,9 @@ class OrderManager {
                 } else streamReader.close();
             }
             streamReader.close();
-            //output(calculatingProcess(this.orders));
-            getSetOfBooks(calculatingProcess(this.orders));
+            //output(getListOfListOfTree(getListOfBookOrders(getSetOfBooks(calculatingProcess(this.orders)))));
+            ArrayList<Order> calculatedOrders = calculatingProcess(this.orders);
+            output(getListOfListOfTree(getListOfBookOrders(getSetOfBooks(calculatedOrders), calculatedOrders)));
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
@@ -72,9 +70,8 @@ class OrderManager {
      * @param orderId
      * @return
      */
-    private Map<Integer, Order> addOrder(Book book, String ask, float price, int volume, int orderId) {
+    private void addOrder(Book book, String ask, float price, int volume, int orderId) {
         this.orders.put(orderId, new Order(book, ask.equals("bid"), price, volume));
-        return this.orders;
     }
 
     /**
@@ -82,27 +79,33 @@ class OrderManager {
      * @param orderId
      * @return
      */
-    private Map<Integer, Order> removeOrder(Book book, int orderId) {
+    private void removeOrder(Book book, int orderId) {
         if (this.orders.containsKey(orderId)) {
             if (this.orders.get(orderId).getBook().equals(book)) {
                 this.orders.remove(orderId);
             }
         }
-        return this.orders;
     }
 
     /**
      *
      */
     private void output(List<List<TreeSet<Order>>> listOfListsOfTree) {
-        for (List listOfTree:
+        for (List<TreeSet<Order>> listOfTree:
              listOfListsOfTree) {
-
+            for (TreeSet<Order> tr:
+                 listOfTree) {
+                for (Order ord:
+                     tr) {
+                    System.out.println(ord);
+                }
+                System.out.println("___________________");
+            }
+            System.out.println("#######################");
         }
     }
 
     private ArrayList<Order> calculatingProcess(Map<Integer, Order> orders) {
-        List<TreeSet<Order>> trees = new ArrayList<TreeSet<Order>>();
         List<Order> orderList = new ArrayList<Order>();
         orderList.addAll(orders.values());
         for (int i = 0; i < orderList.size() - 1; i++) {
