@@ -78,11 +78,31 @@ public class OrderManagerTest {
 
     @Test
     public void calculatingProcess() throws Exception {
+        this.manager.addOrder(new Book("book-1"), "bid", (float) 32.14, 12, 4444);
+        this.manager.addOrder(new Book("book-1"), "bid", (float) 32.4, 11, 4445);
+        this.manager.addOrder(new Book("book-2"), "bid", (float) 2.14, 14, 4446);
+        this.manager.addOrder(new Book("book-3"), "ask", (float) 34.4, 14, 4447);
+        List<Order> testOrderList = new ArrayList<Order>();
+        testOrderList.add(new Order(new Book("book-1"), true, (float) 32.14, 12));
+        testOrderList.add(new Order(new Book("book-1"), true, (float) 32.4, 11));
+        testOrderList.add(new Order(new Book("book-2"), true, (float) 2.14, 14));
+        testOrderList.add(new Order(new Book("book-3"), false, (float) 34.4, 14));
+        assertThat(this.manager.calculatingProcess(this.manager.getOrders()), is(testOrderList));
     }
 
     @Test
     public void getSetOfBooks() throws Exception {
+        this.manager.addOrder(new Book("book-1"), "bid", (float) 32.14, 12, 4444);
+        this.manager.addOrder(new Book("book-1"), "bid", (float) 32.4, 11, 4445);
+        this.manager.addOrder(new Book("book-2"), "bid", (float) 2.14, 14, 4446);
+        this.manager.addOrder(new Book("book-3"), "ask", (float) 34.4, 14, 4447);
+        Set<Book> testBooks = new TreeSet<Book>();
+        testBooks.add(new Book("book-1"));
+        testBooks.add(new Book("book-2"));
+        testBooks.add(new Book("book-3"));
+        assertThat(this.manager.getSetOfBooks(this.manager.calculatingProcess(this.manager.getOrders())), is(testBooks));
     }
+
     @Test
     public void getListOfBookOrders() throws Exception {
         List<List<Order>> test = new ArrayList<List<Order>>();
@@ -97,10 +117,6 @@ public class OrderManagerTest {
     public void getListOfListOfTree() throws Exception {
         List<List<Order>> orders = this.manager.getListOfBookOrders(this.booksTest, this.ordersTest);
         this.manager.getListOfListOfTree(orders);
-    }
-
-    @org.junit.Test
-    public void xMLReader() throws Exception {
     }
 
 }
