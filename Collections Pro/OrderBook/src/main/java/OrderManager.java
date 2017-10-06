@@ -103,6 +103,11 @@ class OrderManager {
                     operation = "@ SELL";
                 }
                 else operation = "@ BUY";
+                int quantityOfColums;
+                if (listOfTree.get(0).size() > listOfTree.get(1).size()){
+                    quantityOfColums = listOfTree.get(0).size();
+                }
+                else quantityOfColums = listOfTree.get(1).size();
                 System.out.println("Operation : " + operation);
                 for (Order ord:
                      tr) {
