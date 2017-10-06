@@ -64,6 +64,16 @@ public class OrderManagerTest {
 
     @Test
     public void removeOrder() throws Exception {
+        this.manager.addOrder(new Book("book-1"), "bid", (float) 32.14, 12, 4444);
+        this.manager.addOrder(new Book("book-1"), "bid", (float) 32.4, 11, 4445);
+        this.manager.addOrder(new Book("book-2"), "bid", (float) 2.14, 14, 4446);
+        this.manager.addOrder(new Book("book-3"), "ask", (float) 34.4, 14, 4447);
+        this.manager.removeOrder(new Book("book-1"), 4445);
+        Map<Integer, Order> testOrders = new HashMap<Integer, Order>();
+        testOrders.put(4444,new Order(new Book("book-1"), true, (float) 32.14, 12));
+        testOrders.put(4446, new Order(new Book("book-2"), true, (float) 2.14, 14));
+        testOrders.put(4447, new Order(new Book("book-3"), false, (float) 34.4, 14));
+        assertThat(this.manager.getOrders(), is(testOrders));
     }
 
     @Test
