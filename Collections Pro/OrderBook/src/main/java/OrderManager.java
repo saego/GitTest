@@ -93,12 +93,12 @@ class OrderManager {
     private void output(List<List<TreeSet<Order>>> listOfListsOfTree) {
         for (List<TreeSet<Order>> listOfTree:
              listOfListsOfTree) {
-            System.out.print("@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@");
+            System.out.print("@-@-@-@-@");
             System.out.print("---" + listOfTree.get(0).first().getBook() + "---");
-            System.out.println("@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@-@");
-            for (TreeSet<Order> tr:
-                 listOfTree) {
-                String operation;
+            System.out.println("@-@-@-@-@");
+            //for (TreeSet<Order> tr:
+            //     listOfTree) {
+                /*String operation;
                 if (tr.first().isOperation()){
                     operation = "@ SELL";
                 }
@@ -109,12 +109,62 @@ class OrderManager {
                 }
                 else quantityOfColums = listOfTree.get(1).size();
                 System.out.println("Operation : " + operation);
+                */
+                //
+                String sell = "@SELL";
+                String buy = "@BUY";
+                TreeSet<Order> sells = listOfTree.get(0);
+                TreeSet<Order> buys = listOfTree.get(1);
+                Iterator<Order> iteratorSell = sells.iterator();
+                Iterator<Order> iteratorBuy = buys.iterator();
+                int quantityOfColums;
+                if (listOfTree.get(0).size() > listOfTree.get(1).size()){
+                    quantityOfColums = listOfTree.get(0).size();
+                }
+                else quantityOfColums = listOfTree.get(1).size();
+                System.out.println(String.format("%21s%s%21s", sell, "|", buy));
+                Order orderSell, orderBuy;
+                String priceSell, quantitySell, priceBuy, quantityBuy;
+                for (int i = 0; i < quantityOfColums; i++){
+                    if (iteratorSell.hasNext()) {
+                        orderSell = iteratorSell.next();
+                    }
+                    else {
+                        orderSell = null;
+                    }
+                    if (iteratorBuy.hasNext()) {
+                        orderBuy = iteratorBuy.next();
+                    }
+                    else {
+                        orderBuy = null;
+                    }
+                    if (orderSell != null){
+                        priceSell = String.valueOf(orderSell.getPrice());
+                        quantitySell = String.valueOf(orderSell.getVolume());
+                    }
+                    else {
+                        priceSell = "-/-";
+                        quantitySell = "-/-";
+                    }
+                    if (orderBuy !=null){
+                        priceBuy = String.valueOf(orderBuy.getPrice());
+                        quantityBuy = String.valueOf(orderBuy.getVolume());
+                    }
+                    else {
+                        priceBuy = "-/-";
+                        quantityBuy = "-/-";
+                    }
+                    System.out.println(String.format("%10s%s%10s%s%10s%s%10s", priceSell, "|", quantitySell, "|", priceBuy, "|", quantityBuy));
+                }
+                //
+                /*
                 for (Order ord:
                      tr) {
                     System.out.println(" Price: " + ord.getPrice() + " Volume: " + ord.getVolume());
                 }
+                */
                 System.out.println("___________________");
-            }
+            //}
         }
     }
 
