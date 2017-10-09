@@ -1,0 +1,5 @@
+<web-app xmlns="http://xmlns.jsp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jsp.org/xml/ns/javaee ">
+
+</web-app>
