@@ -15,6 +15,6 @@ public class ClockServlets extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        out.println("Current time : " + new Date());
+        out.println("Current time in Kiev : " + new Date());
     }
 }
