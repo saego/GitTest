@@ -7,6 +7,7 @@
     <groupId>Servlet</groupId>
     <artifactId>ServletJAVA</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <build>
         <plugins>
@@ -21,6 +22,15 @@
                     <target>
                         1.8
                     </target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webXml>
+                        src/main/resources/WEB_INF/web.xml
+                    </webXml>
+                    <warName>goit</warName>
                 </configuration>
             </plugin>
         </plugins>
