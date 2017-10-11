@@ -14,6 +14,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Clock</servlet-name>
-        <url-pattern>/clock</url-pattern>
+        <url-pattern>/myServlet</url-pattern>
     </servlet-mapping>
 </web-app>
