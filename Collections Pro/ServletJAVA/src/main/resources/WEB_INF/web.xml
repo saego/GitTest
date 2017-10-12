@@ -10,8 +10,16 @@
     </description>
     <servlet>
         <servlet-name>Clock</servlet-name>
-        <servlet-class>ua.java.servlets.ClockServlets</servlet-class>
+        <servlet-class>ua.java.servlets.ClockServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Form</servlet-name>
+        <servlet-class>ua.java.servlets.FormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Form</servlet-name>
+        <url-pattern>/form</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Clock</servlet-name>
         <url-pattern>/myServlet</url-pattern>

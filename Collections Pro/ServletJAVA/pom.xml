@@ -30,7 +30,7 @@
                     <webXml>
                         src/main/resources/WEB_INF/web.xml
                     </webXml>
-                    <warName>red</warName>
+                    <warName>goit</warName>
                 </configuration>
             </plugin>
         </plugins>

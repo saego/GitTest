@@ -11,10 +11,11 @@ import java.util.Date;
 /**
  * Created by Saego on 09.10.2017.
  */
-public class ClockServlets extends HttpServlet{
+public class ClockServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        out.println("#####################################");
         out.println("Current time in Kiev : " + new Date());
     }
 }
