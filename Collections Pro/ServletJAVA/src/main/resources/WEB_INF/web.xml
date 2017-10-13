@@ -1,7 +1,5 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jsp.org/xml/ns/javaee "
-         version = "3.1">
+         version="3.1">
     <display-name>
         Application Servlet
     </display-name>
@@ -9,12 +7,12 @@
         This application for get current time
     </description>
     <servlet>
-        <servlet-name>Clock</servlet-name>
-        <servlet-class>ua.java.servlets.ClockServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Form</servlet-name>
         <servlet-class>ua.java.servlets.FormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Clock</servlet-name>
+        <servlet-class>ua.java.servlets.ClockServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Form</servlet-name>
@@ -22,6 +20,6 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Clock</servlet-name>
-        <url-pattern>/myServlet</url-pattern>
+        <url-pattern>/clock</url-pattern>
     </servlet-mapping>
 </web-app>

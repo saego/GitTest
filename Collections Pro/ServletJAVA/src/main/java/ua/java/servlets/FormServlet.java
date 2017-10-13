@@ -12,19 +12,27 @@ public class FormServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String title = "I am using " + request.getMethod() + " to read this form data";
-        //String docType = "<!doctype html public \" - //w3c//dtd html 4.0 transitional//en\">\n";
-        out.println(//docType +
+        String docType = "<!DOCTYPE html>\n";
+        /*out.println(docType +
         "<html>\n"+
         "<head><title>" + title + "</title></head>\n" +
-        "<body>" +
-                // bgcolor = \"f0f0f0\">\n" +
-        //"h1 align=\"center\">" + title + "</h1>\n" +
-        //"<ul>\n" +
-        //"<li><b>User's first name</b>: " +
-        //request.getParameter("first_name") + "\n" +
-        //"<li><b>User's last name</b>: " +
-        //request.getParameter("last_name") + "<\n>" +
-        //"</ul>\n" +
+        "<body bgcolor = \"#f0f0f0\">\n" +
+        "<h1 align=\"center\">" + title + "</h1>\n" +
+        "<ul>\n" +
+        "<li><b>User's first name</b>: " +
+        request.getParameter("first_name") + "\n" +
+        "<li><b>User's last name</b>: " +
+        request.getParameter("last_name") + "<\n>" +
+        "</ul>\n" +
         "</body></html>");
+        */
+        out.println(docType + "<html>\n" + "<head><title>" + title + "</title></head>\n" + "<body>" +"<h1>" + title + "</h1>"
+                +
+                "<ul>\n" +
+                "<li><b>User's first name</b>: " +
+                request.getParameter("Your first name") + "\n" +
+                "<li><b>User's last name</b>: " +
+                request.getParameter("Your last name") + "\n" +
+                "</ul>\n" + "</body></html>");
     }
 }
