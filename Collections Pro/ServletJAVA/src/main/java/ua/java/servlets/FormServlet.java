@@ -30,9 +30,9 @@ public class FormServlet extends HttpServlet{
                 +
                 "<ul>\n" +
                 "<li><b>User's first name</b>: " +
-                request.getParameter("Your first name") + "\n" +
+                request.getParameter("first_name") + "\n" +
                 "<li><b>User's last name</b>: " +
-                request.getParameter("Your last name") + "\n" +
+                request.getParameter("last_name") + "\n" +
                 "</ul>\n" + "</body></html>");
     }
 }
