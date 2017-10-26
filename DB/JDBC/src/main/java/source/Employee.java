@@ -3,12 +3,12 @@ package source;
 import java.util.Date;
 
 public class Employee {
-    int id;
-    String name;
-    int age;
-    String address;
-    float salary;
-    Date join_date;
+    private int id;
+    private String name;
+    private int age;
+    private String address;
+    private float salary;
+    private Date join_date;
 
     public int getId() {
         return id;
