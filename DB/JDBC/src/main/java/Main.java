@@ -1,5 +1,6 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import source.Employee;
 
 import java.sql.*;
 
@@ -12,14 +13,24 @@ public class Main {
     public static void main(String[] args){
         loadDriver();
         String url = "jdbc:postgresql://localhost:5432/company";
-        String user = "Ruslan";
+        String user = "ruslan";
         String password = "7716";
         LOGGER.info("Connecting to server: " + url);
         try (Connection connection = DriverManager.getConnection(url, user, password);
              Statement statement = connection.createStatement()){
             LOGGER.info("Connection successful to: " + url);
-            String query = "SELECT * from employee";
+            String query = "SELECT * FROM employee";
             ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                Employee employee = new Employee();
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setAge(resultSet.getInt("age"));
+                employee.setAddress(resultSet.getString("address"));
+                employee.setSalary(resultSet.getFloat("salary"));
+                employee.setJoin_date(resultSet.getDate("join_date"));
+                System.out.println(employee);
+            }
         } catch (SQLException e) {
             LOGGER.error("Can't connect to server: " + url, e);
         }
