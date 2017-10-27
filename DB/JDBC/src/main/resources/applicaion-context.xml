@@ -22,4 +22,13 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="txManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean class="ua.jdbc.controllers.EmployeeController" id="controller">
+        <property name="txManager" ref="txManager"/>
+        <property name="daOjdbc" ref="daOjdbc"/>
+    </bean>
+
 </beans>
