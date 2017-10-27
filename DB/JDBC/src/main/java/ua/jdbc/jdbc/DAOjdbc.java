@@ -5,14 +5,16 @@ import org.slf4j.LoggerFactory;
 import ua.jdbc.source.DAO;
 import ua.jdbc.source.Employee;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class DAOjdbc implements DAO{
+    private DataSource dataSource;
     private static final Logger LOGGER = LoggerFactory.getLogger(DAOjdbc.class);
-    private String url = "jdbc:postgresql://localhost:5432/company";
+    /*private String url = "jdbc:postgresql://localhost:5432/company";
     private String user = "ruslan";
     private String password = "7716";
     private List<Employee> employees;
@@ -21,28 +23,28 @@ public class DAOjdbc implements DAO{
     public DAOjdbc() {
         loadDriver();
     }
-
+*/
     /**
      * Get all employee from DB.
      * @return - lis of employee.
      */
     @Override
     public List<Employee> getAll(){
-        this.employees = new ArrayList<>();
-        LOGGER.info("Connecting to server: " + this.url);
-        try (Connection connection = DriverManager.getConnection(this.url, this.user, this.password);
+        List<Employee> employees = new ArrayList<>();
+        LOGGER.info("Connecting to server: ");
+        try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()){
-            LOGGER.info("Connection successful to: " + this.url);
-            this.query = "SELECT * FROM employee";
-            ResultSet resultSet = statement.executeQuery(this.query);
+            LOGGER.info("Connection successful to: DB");
+            String query = "SELECT * FROM employee";
+            ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()){
-                this.employees.add(createEmployee(resultSet));
+                employees.add(createEmployee(resultSet));
             }
         } catch (SQLException e) {
-            LOGGER.error("Can't connect to server: " + this.url, e);
+            LOGGER.error("Can't connect to server: " , e);
             throw new RuntimeException(e);
         }
-        return this.employees;
+        return employees;
     }
 
     /**
@@ -52,8 +54,8 @@ public class DAOjdbc implements DAO{
      */
     @Override
     public Employee loadById(int id){
-        try(Connection connection = DriverManager.getConnection(this.url, this.user, this.password);
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE id = ?")
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE id = ?")
         ) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -63,11 +65,11 @@ public class DAOjdbc implements DAO{
             else throw new RuntimeException(id + " is not valid");
         }
         catch (SQLException e){
-            LOGGER.error("Can't connect to: " + this.url, e);
+            LOGGER.error("Can't connect to DB: ");
             throw new RuntimeException(e);
         }
     }
-
+/*
     private void loadDriver() {
         try {
             LOGGER.info("Loading JDBC DRIVER: org.postgresql.Driver");
@@ -78,7 +80,7 @@ public class DAOjdbc implements DAO{
             throw new RuntimeException(e);
         }
     }
-
+*/
     private Employee createEmployee(ResultSet resultSet) throws SQLException {
         Employee employee = new Employee();
         employee.setId(resultSet.getInt("id"));
@@ -88,5 +90,9 @@ public class DAOjdbc implements DAO{
         employee.setSalary(resultSet.getFloat("salary"));
         employee.setJoin_date(resultSet.getDate("join_date"));
         return employee;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }
