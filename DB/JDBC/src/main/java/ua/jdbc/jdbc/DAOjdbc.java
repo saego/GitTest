@@ -22,6 +22,11 @@ public class DAOjdbc implements DAO{
         loadDriver();
     }
 
+    /**
+     * Get all employee from DB.
+     * @return - lis of employee.
+     */
+    @Override
     public List<Employee> getAll(){
         this.employees = new ArrayList<>();
         LOGGER.info("Connecting to server: " + this.url);
@@ -40,6 +45,12 @@ public class DAOjdbc implements DAO{
         return this.employees;
     }
 
+    /**
+     * Get employee by id in DB.
+     * @param id - id of employee in DB.
+     * @return - object employee.
+     */
+    @Override
     public Employee loadById(int id){
         try(Connection connection = DriverManager.getConnection(this.url, this.user, this.password);
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE id = ?")
