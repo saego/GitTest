@@ -1,4 +1,4 @@
-package source;
+package ua.jdbc.source;
 
 import java.util.Date;
 
