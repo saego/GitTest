@@ -15,12 +15,6 @@ public class JdbcEmployeeDao implements EmployeeDao {
     private DataSource dataSource;
 
     private  static final Logger LOGGER = LoggerFactory.getLogger(JdbcEmployeeDao.class);
-    private String url = "jdbc:postgresql://localhost:5432/company";
-    private String user = "ruslan";
-    private String password = "7716";
-    public JdbcEmployeeDao() {
-        loadDriver();
-    }
 
     @Override
     public Employee load(int id) {
@@ -38,7 +32,7 @@ public class JdbcEmployeeDao implements EmployeeDao {
             }
 
         } catch (SQLException e) {
-            LOGGER.error("Can't connect to model" + e);
+            LOGGER.error("Can't connect to model", e);
             throw new RuntimeException(e);
         }
     }
@@ -48,7 +42,7 @@ public class JdbcEmployeeDao implements EmployeeDao {
 
         List<Employee> result = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(url, user, password);
+        try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()
         ){
 
@@ -61,22 +55,11 @@ public class JdbcEmployeeDao implements EmployeeDao {
             }
 
         } catch (SQLException e) {
-            LOGGER.error("Can't connect to model" + e);
+            LOGGER.error("Can't connect to model", e);
             throw new RuntimeException(e);
         }
 
         return result;
-    }
-
-    private void loadDriver() {
-        try {
-            LOGGER.info("Loading driver");
-            Class.forName("org.postgresql.Driver");
-            LOGGER.info("Driver load successful");
-        } catch (ClassNotFoundException e) {
-            LOGGER.error("Can't find driver");
-            throw new RuntimeException(e);
-        }
     }
 
     private Employee createEmployee(ResultSet resultSet) throws SQLException {
@@ -88,6 +71,10 @@ public class JdbcEmployeeDao implements EmployeeDao {
         employee.setSalary(resultSet.getFloat("salary"));
         employee.setJoinDate(resultSet.getDate("join_date"));
         return employee;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }
 
