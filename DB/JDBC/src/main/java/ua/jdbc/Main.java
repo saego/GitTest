@@ -1,22 +1,28 @@
 package ua.jdbc;
 
-import ua.jdbc.jdbc.DAOjdbc;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ua.jdbc.controllers.EmployeeController;
 
 /**
  * Created by Saego on 25/10/2017.
  */
 
 public class Main {
+    private EmployeeController employeeController;
+
     public static void main(String[] args){
-        DAOjdbc DAOjdbc = new DAOjdbc();
-        System.out.println("-----All employees-----");
-        DAOjdbc.getAll().forEach(System.out::println);
-        int id = 2;
-        System.out.println("-----Employee by id-----");
-        System.out.println(DAOjdbc.loadById(id));
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+        Main main = applicationContext.getBean(Main.class);
+        main.start();
     }
 
+    private void start() {
+        employeeController.getAll().forEach(System.out::println);
+        System.out.println(employeeController.getById(3));
+    }
 
-
-
+    public void setEmployeeController(EmployeeController employeeController) {
+        this.employeeController = employeeController;
+    }
 }

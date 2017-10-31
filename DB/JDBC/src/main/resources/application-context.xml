@@ -12,6 +12,7 @@
         <property name="minPoolSize" value="${jdbc.minConnections}"/>
         <property name="maxPoolSize" value="${jdbc.maxConnections}"/>
         <property name="acquireIncrement" value="${jdbc.acquireIncrement}"/>
+        <property name="maxStatements" value="10"/>
     </bean>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="placeholderConfigurer">
@@ -29,6 +30,9 @@
     <bean class="ua.jdbc.controllers.EmployeeController" id="controller">
         <property name="txManager" ref="txManager"/>
         <property name="daOjdbc" ref="daOjdbc"/>
+    </bean>
+    <bean class="ua.jdbc.Main" id="main">
+        <property name="employeeController" ref="controller"/>
     </bean>
 
 </beans>

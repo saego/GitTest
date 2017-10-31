@@ -14,16 +14,7 @@ import java.util.List;
 public class DAOjdbc implements DAO{
     private DataSource dataSource;
     private static final Logger LOGGER = LoggerFactory.getLogger(DAOjdbc.class);
-    /*private String url = "jdbc:postgresql://localhost:5432/company";
-    private String user = "ruslan";
-    private String password = "7716";
-    private List<Employee> employees;
-    private String query;
 
-    public DAOjdbc() {
-        loadDriver();
-    }
-*/
     /**
      * Get all employee from DB.
      * @return - lis of employee.
@@ -55,10 +46,10 @@ public class DAOjdbc implements DAO{
     @Override
     public Employee loadById(int id){
         try(Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE id = ?")
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM employee WHERE id = ?")
         ) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){
                 return createEmployee(resultSet);
             }
@@ -69,18 +60,7 @@ public class DAOjdbc implements DAO{
             throw new RuntimeException(e);
         }
     }
-/*
-    private void loadDriver() {
-        try {
-            LOGGER.info("Loading JDBC DRIVER: org.postgresql.Driver");
-            Class.forName("org.postgresql.Driver");
-            LOGGER.info("Driver loaded successfully");
-        } catch (ClassNotFoundException e) {
-            LOGGER.error("Can't find driver: org.postgresql.Driver");
-            throw new RuntimeException(e);
-        }
-    }
-*/
+
     private Employee createEmployee(ResultSet resultSet) throws SQLException {
         Employee employee = new Employee();
         employee.setId(resultSet.getInt("id"));

@@ -26,6 +26,12 @@ public class EmployeeController {
         }
     }
 
+    public Employee getById(int id){
+            Employee employee = daOjdbc.loadById(id);
+            return employee;
+
+    }
+
     public void setTxManager(PlatformTransactionManager txManager) {
         this.txManager = txManager;
     }
