@@ -18,7 +18,7 @@ public class JdbcEmployeeDao implements EmployeeDao {
 
     @Override
     public Employee load(int id) {
-        try (Connection connection = dataSource.getConnection();
+        /*try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM company.public.employee WHERE id = ?")
         ) {
 
@@ -34,25 +34,30 @@ public class JdbcEmployeeDao implements EmployeeDao {
         } catch (SQLException e) {
             LOGGER.error("Can't connect to model", e);
             throw new RuntimeException(e);
-        }
+        }*/
+
+        //
+        return null;
+        //
     }
 
     @Override
     public List<Employee> getAll(){
 
         List<Employee> result = new ArrayList<>();
-
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()
         ){
-
             String sql = "SELECT * FROM company.public.employee";
-            ResultSet resultSet = statement.executeQuery(sql);
+            /*ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()){
 
                 result.add(createEmployee(resultSet));
-            }
+            }*/
+            //
+            System.out.println("!!!!");
+            //
 
         } catch (SQLException e) {
             LOGGER.error("Can't connect to model", e);
