@@ -1,4 +1,5 @@
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.dataformat.bindy.format.
 
 public class MyRouteBuilder extends RouteBuilder {
 
@@ -9,6 +10,10 @@ public class MyRouteBuilder extends RouteBuilder {
                 .bean(new MyTransformer(), "transformContent(${body})")
                 .process(new MyResultProcessor())
                 .to("file:/Users/macbook/IdeaProjects/RepositBasic/Camel/CamelTransfer/tmp/output");
+
+
+        from("direct:marshal")
+                .marshal().xmljson()
     }
 
 }
